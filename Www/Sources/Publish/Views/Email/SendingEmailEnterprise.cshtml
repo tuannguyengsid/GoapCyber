@@ -1,0 +1,158 @@
+﻿@using GSID.WebApp.ViewModels;
+@using GSID.WebApp.Helpers;
+@model SendEmailViewModel
+@{
+}
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="Email_SendingEmail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="min-width: 200px; width:70%; max-width:1200px;">
+        <div class="modal-content">
+            @using (Html.BeginForm("Email", "SendingEmailEnterprise", FormMethod.Post, new { @class = "form-horizontal SendingEmail_emailEnterprise", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="modal-title"><i class='ion-android-mail'></i><span> Gửi email</span></h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-8">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                        @Html.ValidationMessageFor(model => model.Title)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Body, new { @class = "col-sm-2 control-label" })
+                                    <div class="col-sm-10">
+                                        @Html.TextAreaFor(model => model.Body, new { @class = "form-control summernote", @placeholder = "Nội dung" })
+                                        @Html.ValidationMessageFor(model => model.Body)
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                    <label class="col-sm-3 control-label">Tập tin nạp dữ liệu</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+                                    </div>
+                                </div>*@
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3">{{name}}</label>
+                                    <div class="col-md-9">: Tên công ty</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3">{{shortname}}</label>
+                                    <div class="col-md-9">: Tên viết tắt công ty</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3">{{taxcode}}</label>
+                                    <div class="col-md-9">: Mã số thuế</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3">{{owner}}</label>
+                                    <div class="col-md-9">: chủ doanh nghiệp</div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @Html.Button("<i class='fa fa-send'></i> Gửi", new { @class = "btn-success btn", type = "submit", id = "btnsave" }).IfRole("SendingEmailEnterprise", "Email")
+                </div>
+                
+                @Html.HiddenFor(m => m.Keyword)
+                @Html.HiddenFor(m => m.Career)
+                @Html.HiddenFor(m => m.CareerId)
+                @Html.HiddenFor(m => m.HistoryQuery)
+                @Html.HiddenFor(m => m.ConditionCareer)
+                @Html.HiddenFor(m => m.ReportViolationCategoryId)
+                @Html.HiddenFor(m => m.CountryId)
+                @Html.HiddenFor(m => m.ProvinceId)
+                @Html.HiddenFor(m => m.DistrictId)
+                @Html.HiddenFor(m => m.WardId)
+                @Html.HiddenFor(m => m.AddressLine2)
+                @Html.HiddenFor(m => m.AddressLine1)
+                @Html.HiddenFor(m => m.AddressNumber)
+                @Html.HiddenFor(m => m.CharterCapitalStart)
+                @Html.HiddenFor(m => m.CharterCapitalEnd)
+                @Html.HiddenFor(m => m.CapitalOrigin)
+                @Html.HiddenFor(m => m.BusinessType)
+                @Html.HiddenFor(m => m.BusinessStatus)
+                @Html.HiddenFor(m => m.EstablishmentStart)
+                @Html.HiddenFor(m => m.EstablishmentEnd)
+                @Html.HiddenFor(m => m.ChangeProfileDateStart)
+                @Html.HiddenFor(m => m.ChangeProfileDateEnd)
+                @Html.HiddenFor(m => m.RevenueStart)
+                @Html.HiddenFor(m => m.RevenueEnd)
+                @Html.HiddenFor(m => m.TaxCostStart)
+                @Html.HiddenFor(m => m.TaxCostEnd)
+                @Html.HiddenFor(m => m.TaxCostYear)
+                @Html.HiddenFor(m => m.LaborStart)
+                @Html.HiddenFor(m => m.LaborReportMonth)
+                @Html.HiddenFor(m => m.LaborReportYear)
+                @Html.HiddenFor(m => m.LaborMoneyStart)
+                @Html.HiddenFor(m => m.LaborMoneyEnd)
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.summernote').summernote({
+            height: 300,
+            placeholder: 'start typing',
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']]
+            ]
+        });
+
+        initCreateModal();
+    });
+
+    function initCreateModal() {
+        $('#Email_SendingEmail').modal();
+    }
+
+    $(function () {
+        $('form.SendingEmail_emailEnterprise').ajaxForm({
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    $('#Email_SendingEmail').modal('hide');
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

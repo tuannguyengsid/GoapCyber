@@ -1,0 +1,138 @@
+﻿@using GSID.Model.MongodbModels;
+@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model PopupSubcribesPageManagementAdminConfig
+
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@if (Model != null)
+{
+    if (Model.IsActive)
+    {
+        if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+        {
+            <!-- Modal HTML -->
+            <div id="newslettermodal" class="modal fade newslettermodal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xl-6 col-sm-6 newslettermodal-img">
+                                    <img src="@string.Format("{0}/{1}", httpStatic, Model.BackgroundVnSrc)" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xl-6 col-sm-6 newslettermodal-content">
+                                    <div class="newslettermodal_title">@Model.NameVn</div>
+                                    <div class="newslettermodal_description">@Model.DescriptionVn</div>
+
+                                    @{ Html.RenderAction("PopupSubmitForm", "Init", new { language = currentLan != null ? currentLan.Parent : "" }); }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="cookie-warning">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 content">
+                            @Html.Raw(Model.CookieWarningVn)
+                        </div>
+                        <div class="col-12 btn-action">
+                            <button type="button" class="ok" id="btn-cookieok">Đồng ý</button>
+                            <button type="button" class="cancel" id="btn-cookiecancel">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        }
+        else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+        {
+            <!-- Modal HTML -->
+            <div id="newslettermodal" class="modal fade newslettermodal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-xl-6 col-sm-6 newslettermodal-img">
+                                    <img src="@string.Format("{0}/{1}", httpStatic, Model.BackgroundEnSrc)" />
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-xl-6 col-sm-6 newslettermodal-content">
+                                    <div class="newslettermodal_title">@Model.NameEn</div>
+                                    <div class="newslettermodal_description">@Model.DescriptionEn</div>
+
+                                    @{ Html.RenderAction("PopupSubmitForm", "Init", new { language = currentLan != null ? currentLan.Parent : "" }); }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="cookie-warning">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 content">
+                            @Html.Raw(Model.CookieWarningEn)
+                        </div>
+                        <div class="col-12 btn-action">
+                            <button type="button" class="ok" id="btn-cookieok">Accept all</button>
+                            <button type="button" class="cancel" id="btn-cookiecancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        }
+
+        <script type="text/javascript" src="/Content/js/bootstrap.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                //$('.ok').click(function () {
+                //    $('.cookie-warning').hide();
+                //});
+
+                //$('.cancel').click(function () {
+                //    alert('cancel');
+                //});
+                $("#newslettermodal").modal('show');
+                $('#newslettermodal .modal-header .close').click(function () {
+                    $.ajax({
+                        method: 'Post',
+                        url: '@Url.Action("PopupCloseForm", "Init")',
+                        data: { },
+                        dataType: 'Json',
+                        success: function (data, status) {
+                            if (data.Status == '2') {
+                                $("#newslettermodal").modal('hide');
+                            }
+                            
+                        },
+                        error: function (error) {
+                            console.log('Error in sending ajax data');
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+}

@@ -1,0 +1,18 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model ProvinceFilterModel
+
+<label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.ProvinceId) <span class="required">(*)</span></label>
+<div class="col-sm-2 tabular-border">
+    @Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "NameVn"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+    @Html.ValidationMessageFor(model => model.ProvinceId)
+</div>
+<script>
+    $(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+    });
+</script>

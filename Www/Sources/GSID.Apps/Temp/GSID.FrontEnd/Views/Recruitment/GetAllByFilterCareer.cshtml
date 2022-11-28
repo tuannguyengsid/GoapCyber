@@ -1,0 +1,193 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model RecruitmentViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <div class="listing_tab row">
+            @if (Model.Recruitments != null && Model.Recruitments.Count > 0)
+            {
+                foreach (var item in Model.Recruitments)
+                {
+                    string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : "";
+                    string returnUrl = Url.Action("Index", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "" });
+                    string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                    string siteName = item.Site != null ? item.Site.NameVn : "";
+                    string careerName = item.Career != null ? item.Career.NameVn : "";
+                    string careerSlugVn = item.Career != null && item.Career.RouteDataUrlVn != null ? item.Career.RouteDataUrlVnId : "";
+                    string careerSlugEn = item.Career != null && item.Career.RouteDataUrlEn != null ? item.Career.RouteDataUrlEnId : "";
+                    string recruitmentTagName = item.RecruitmentTag != null ? item.RecruitmentTag.NameVn : "";
+                    string styleCss = item.RecruitmentTag != null ? string.Format("background-color:{0}; color:{1};", item.RecruitmentTag.BackgroundColor, item.RecruitmentTag.TextColor) : "";
+
+                    <div class="col-lg-6 item it new">
+                        <div class="list_item">
+                            <figure><a href="@url"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn"></a></figure>
+                            <div class="joblisting_text">
+                                <div class="job_list_table">
+                                    <div class="jobsearch-table-cell">
+                                        <div class="jobsearch-content">
+                                            <h4><a href="@url" class="f_500 t_color3">@item.NameVn</a></h4>
+                                            <span></span>
+                                            <time datetime="@expirationDate"><i class="icon-clock"></i> @expirationDate</time>
+                                        </div>
+                                        <div class="job-featured-listing-options">
+                                            <ul class="list-unstyled">
+                                                <li><i class="icon-location1"></i> @siteName</li>
+                                                <li><a href="javascript:;" class="careerfilter" data-filter="@careerSlugVn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" title="@careerName">@careerName</a></li>
+                                            </ul>
+                                            <div class="rectag">
+                                                <a href="#" class="job-option-btn" style="@styleCss">@recruitmentTagName</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        if (Model.CountTotal > Model.PageSize)
+        {
+            @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+            @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+            @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+            <!-- /Products Grid -->
+            <div class="navigation pagination text-center" role="navigation">
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <div class="listing_tab row">
+            @if (Model.Recruitments != null && Model.Recruitments.Count > 0)
+            {
+                foreach (var item in Model.Recruitments)
+                {
+                    string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : "";
+                    string returnUrl = Url.Action("Index", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "" });
+                    string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                    string siteName = item.Site != null ? item.Site.NameVn : "";
+                    string careerName = item.Career != null ? item.Career.NameVn : "";
+                    string careerSlugVn = item.Career != null && item.Career.RouteDataUrlVn != null ? item.Career.RouteDataUrlVnId : "";
+                    string careerSlugEn = item.Career != null && item.Career.RouteDataUrlEn != null ? item.Career.RouteDataUrlEnId : "";
+                    string recruitmentTagName = item.RecruitmentTag != null ? item.RecruitmentTag.NameVn : "";
+                    string styleCss = item.RecruitmentTag != null ? string.Format("background-color:{0}; color:{1};", item.RecruitmentTag.BackgroundColor, item.RecruitmentTag.TextColor) : "";
+
+                    <div class="col-lg-6 item it new">
+                        <div class="list_item">
+                            <figure><a href="@url"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn"></a></figure>
+                            <div class="joblisting_text">
+                                <div class="job_list_table">
+                                    <div class="jobsearch-table-cell">
+                                        <div class="jobsearch-content">
+                                            <h4><a href="@url" class="f_500 t_color3">@item.NameEn</a></h4>
+                                            <span></span>
+                                            <time datetime="@expirationDate"><i class="icon-clock"></i> @expirationDate</time>
+                                        </div>
+                                        <div class="job-featured-listing-options">
+                                            <ul class="list-unstyled">
+                                                <li><i class="icon-location1"></i> @siteName</li>
+                                                <li><a href="javascript:;" class="careerfilter" data-filter="@careerSlugEn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" title="@careerName">@careerName</a></li>
+                                            </ul>
+                                            <div class="rectag">
+                                                <a href="#" class="job-option-btn" style="@styleCss">@recruitmentTagName</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        if (Model.CountTotal > Model.PageSize)
+        {
+            @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+            @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+            @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+            <!-- /Products Grid -->
+            <div class="navigation pagination text-center" role="navigation">
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+        }
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.careerfilter').click(function () {
+            var slugfilter = $(this).attr('data-filter');
+            var slugfilterVn = $(this).attr('data-lanvn');
+            var slugfilterEn = $(this).attr('data-lanen');
+            switchtab(slugfilter, slugfilterVn, slugfilterEn);
+        });
+
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: '<i class="fa fa-angle-double-left"></i>',
+                prev: '<i class="fa fa-angle-left"></i>',
+                next: '<i class="fa fa-angle-right"></i>',
+                last: '<i class="fa fa-angle-double-right"></i>',
+                onPageClick: function (event, page) {
+                    var jobFilterUrl = $('#jobFilterUrl').val();
+                    jobFilterUrl = replaceUrlParam(jobFilterUrl, 'p', page);
+
+                    $.ajax({
+                        method: 'GET',
+                        url: jobFilterUrl,
+                        data: {},
+                        dataType: 'html',
+                        success: function (data, status) {
+                            $('#job-result').html(data);
+
+                            var jobCareerUrl = $('#jobCareerUrl').val();
+                            jobCareerUrl = replaceUrlParam(jobCareerUrl, 'p', page);
+
+                            history.replaceState({ url: jobCareerUrl }, 'category', jobCareerUrl);
+
+                            var rootUrlVn = $('#VnLanguage').val();
+                            rootUrlVn = replaceUrlParam(rootUrlVn, 'p', page);
+                            $('#VnLanguage').val(rootUrlVn);
+
+                            var rootUrlEn = $('#EnLanguage').val();
+                            rootUrlEn = replaceUrlParam(rootUrlEn, 'p', page);
+                            $('#EnLanguage').val(rootUrlEn);
+                        },
+                        error: function (error) {
+                            console.log('Error in sending ajax data');
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,140 @@
+﻿@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@using GSID.Service.MongoRepositories.Service;
+@using Newtonsoft.Json;
+@{
+    var languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language viLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        viLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    IRouteDataUrlService routeDataUrlService = DependencyResolver.Current.GetService<IRouteDataUrlService>();
+    IParameterService paraService = DependencyResolver.Current.GetService<IParameterService>();
+
+    HomePageManagementAdminConfig modelHomepage = new HomePageManagementAdminConfig();
+    var paraHomePageConfig = paraService.GetByCode(new HomePageManagementAdminConfig().Code);
+    string urlHomePage = "/";
+    if (paraHomePageConfig != null)
+    {
+        modelHomepage = JsonConvert.DeserializeObject<HomePageManagementAdminConfig>(paraHomePageConfig.Content.ToString());
+        if(currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+        {
+            modelHomepage.RouteDataUrlVn = routeDataUrlService.GetBy(modelHomepage.RouteDataUrlVnId ?? "");
+            urlHomePage = modelHomepage.RouteDataUrlVn != null ? modelHomepage.RouteDataUrlVn.Url : urlHomePage;
+        }
+        else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+        {
+            modelHomepage.RouteDataUrlEn = routeDataUrlService.GetBy(modelHomepage.RouteDataUrlVnId ?? "");
+            urlHomePage = modelHomepage.RouteDataUrlEn != null ? modelHomepage.RouteDataUrlEn.Url : urlHomePage;
+        }
+    }
+}
+
+<header class="header_area">
+    <nav class="navbar navbar-expand-lg menu_one menu_four menu_poss">
+        <div class="container">
+            <a class="navbar-brand sticky_logo" href="@urlHomePage">
+                <img src="@string.Format("{0}/{1}", httpStatic, SiteInformation.WhiteLogoSrc)" srcset="@string.Format("{0}/{1}", httpStatic, SiteInformation.WhiteLogoSrc) 2x" alt="@SiteInformation.CompanyNameVn" />
+                <img src="@string.Format("{0}/{1}", httpStatic, SiteInformation.BlackLogoSrc)" srcset="@string.Format("{0}/{1}", httpStatic, SiteInformation.BlackLogoSrc) 2x" alt="@SiteInformation.CompanyNameVn" />
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="menu_toggle">
+                    <span class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="hamburger-cross">
+                        <span></span>
+                        <span></span>
+                    </span>
+                </span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @{ Html.RenderAction("MenuHorizone", "init", new { language = currentLan != null ? currentLan.Parent : "" }); }
+
+            </div>
+            <div class="alter_nav">
+                <ul class="navbar-nav search_lang menu w_menu">
+                    <li class="dropdown submenu authen">
+                        @if (SiteInformation.IsShowAuthenticationPage)
+                        {
+                            if (Request.IsAuthenticated)
+                            {
+                                string[] sa = HttpContext.Current.User.Identity.Name.Split('|');
+                                string name = sa[1];
+                                <a title="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><i class="ti-user"></i> @name</a>
+                            }
+                            else
+                            {
+                                <a title="" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#"><i class="ti-user"></i></a>
+                                if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+                                {
+                                    <ul role="menu" class=" dropdown-menu">
+                                        <li class="nav-item"><a title="" class="nav-link" href="@Url.Action("Login", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Đăng nhập</a></li>
+                                        <li class="nav-item"><a title="" class="nav-link" href="@Url.Action("Register", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Đăng ký</a></li>
+                                    </ul>
+                                }
+                                else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+                                {
+                                    <ul role="menu" class=" dropdown-menu">
+                                        <li class="nav-item"><a title="" class="nav-link" href="@Url.Action("Login", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Login</a></li>
+                                        <li class="nav-item"><a title="" class="nav-link" href="@Url.Action("Register", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Register</a></li>
+                                    </ul>
+                                }
+                            }
+                        }
+                    </li>
+                    <li class="nav-item search"><a class="nav-link search-btn" href="javascript:void(0);"><i class="ti-search"></i></a></li>
+                    <li class="dropdown submenu languages">
+                        @if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+                        {
+                            <a title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="javascript:;">VN</a>
+                        }
+                        else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+                        {
+                            <a title="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="javascript:;">EN</a>
+                        }
+                        <ul role="menu" class=" dropdown-menu">
+                            @if (viLan != null)
+                            {
+                                @Html.Hidden("VnLanguage", viLan.Url)
+                                <li class="nav-item"><a title="" class="nav-link" onclick="languagueVn();" href="javascript:;">VN</a></li>
+                            }
+                            @if (enLan != null)
+                            {
+                                @Html.Hidden("EnLanguage", enLan.Url)
+                                <li class="nav-item"><a title="" class="nav-link" onclick="languagueEn();" href="javascript:;">EN</a></li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+@{ Html.RenderAction("Form", "Search", new { language = currentLan != null ? currentLan.Parent : "" }); }
+
+
+<script type="text/javascript">
+    function languagueVn() {
+        var languageUrl = $('#VnLanguage').val();
+        window.location.href = languageUrl;
+    }
+
+    function languagueEn() {
+        var languageUrl = $('#EnLanguage').val();
+        window.location.href = languageUrl;
+    }
+</script>

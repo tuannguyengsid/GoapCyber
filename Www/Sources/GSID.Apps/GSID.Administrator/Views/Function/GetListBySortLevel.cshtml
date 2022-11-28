@@ -1,0 +1,80 @@
+﻿@using GSID.Admin.Helpers;
+@using GSID.Model.MongodbModels;
+@model List<Permission>
+@{
+    string SelectNode = (string)ViewBag.SelectNode;
+}
+<!-- .modal for add task -->
+<div class="modal draggable fade" id="modalViewRoleFunction" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-40" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-upload"></i> Danh sách chức năng</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mt-e-10 tabular-border">
+                        <div id="listf">
+                            <ul>
+                                <li class="jstree-open" id="____">Gốc @Html.Action("Children", "Function", new { ParentID = "" })</li>
+                            </ul>
+                        </div>
+                        <input type="hidden" id="hdkpdef" value="@SelectNode.ToString()" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm waves-effect waves-light btn-primary" data-dismiss="modal"><i class='fa fa-save'></i> Chọn</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#listf').on('changed.jstree', function (e, data) {
+            var objdata = data.instance.get_node(data.selected[data.selected.length - 1]);
+            $('#ParentId').val(objdata.id);
+            $('#Postion').val(objdata.text.trim());
+        }).jstree({
+            'core': {
+                'check_callback': true,
+                'multiple': false
+            },
+            'plugins': ['dnd'],
+            'types': {
+                'default': {
+                    'icon': 'fa fa-folder'
+                }
+            },
+            'ui': { 'select_limit': 1 }
+        });
+
+        $('#listf').jstree(true).select_node($('#hdkpdef').val());
+    });
+
+    $(function () {
+        "use strict";
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#modalViewRoleFunction').modal('show');
+    });
+</script>

@@ -1,0 +1,1393 @@
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuan\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\PublishPhuNhuan\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojResolveAssemblyReference.cache
+D:\PublishPhuNhuan\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\PublishPhuNhuan\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\PublishPhuNhuan\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\PublishPhuNhuan\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Projects\Carel\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Projects\Carel\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Projects\Carel\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Projects\Carel\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Projects\Carel\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\AutoMapper.dll
+C:\Sms\GSID.Web.Core\bin\Debug\EntityFramework.dll
+C:\Sms\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Model.dll
+C:\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Sms\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Sms\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+C:\Sms\GSID.Web.Core\bin\Debug\PagedList.dll
+C:\Sms\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Data.dll
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+C:\Sms\GSID.Web.Core\bin\Debug\StructureMap.dll
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+C:\Sms\GSID.Web.Core\bin\Debug\DnsClient.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Sms\GSID.Web.Core\bin\Debug\System.Buffers.dll
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+C:\Sms\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\AutoMapper.xml
+C:\Sms\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\EntityFramework.xml
+C:\Sms\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Sms\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Sms\GSID.Web.Core\bin\Debug\PagedList.xml
+C:\Sms\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Sms\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+C:\Sms\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+C:\Sms\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+C:\Sms\GSID.Web.Core\bin\Debug\DnsClient.xml
+C:\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+C:\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+C:\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+C:\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+C:\Sms\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Test\Sms\Source\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Test\Sms\Source\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Test\Sms\Source\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Test\Sms\Source\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Test\Sms\Source\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Test\Sms\Source\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csprojAssemblyReference.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MailKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MimeKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MailKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MimeKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MailKit.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MimeKit.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MailKit.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MimeKit.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MailKit.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MimeKit.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\StructureMap.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\DnsClient.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Buffers.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MailKit.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MimeKit.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\DnsClient.xml
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MailKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MimeKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MailKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MimeKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MailKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MimeKit.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MailKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MimeKit.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MailKit.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MimeKit.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MailKit.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MimeKit.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MailKit.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MimeKit.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MailKit.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MimeKit.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll.config
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Web.Core.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MailKit.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MimeKit.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Mvc.Mailer.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.Expressions.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\StructureMap.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\DnsClient.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Buffers.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Core.Common.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Data.dll.config
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\GSID.Model.dll.config
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\AutoMapper.Net4.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MailKit.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MimeKit.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\PagedList.Mvc.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Helpers.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Mvc.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.Razor.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Deployment.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Bson.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\MongoDB.Driver.Core.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\bin\Debug\DnsClient.xml
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.AssemblyReference.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CoreCompileInputs.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.csproj.CopyComplete
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Web.Core\obj\Debug\GSID.Web.Core.pdb

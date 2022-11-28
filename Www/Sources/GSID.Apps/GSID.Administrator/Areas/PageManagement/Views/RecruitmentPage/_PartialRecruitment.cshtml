@@ -1,0 +1,91 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model RecruitmentPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="accordion-group" id="accordionRecruitment">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionRecruitment" href="#collapseaRecruitment" aria-expanded="true"><h2>Tuyển dụng</h2></a>
+        <div id="collapseaRecruitment" class="collapse in" aria-expanded="true" >
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbSectionRecruitmentTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#tbSectionRecruitmentTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbSectionRecruitmentTitleVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.RecruitmentTitleVn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.RecruitmentTitleVn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.RecruitmentTitleVn)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tbSectionRecruitmentTitleEn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.RecruitmentTitleEn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.RecruitmentTitleEn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.RecruitmentTitleEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbSectionRecruitmentPagingTitleVn" data-toggle="tab">Thông tin</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbSectionRecruitmentPagingTitleVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.RecruitmentPagingItem)</label>
+                                        <div class="col-sm-1">
+                                            @Html.TextBoxFor(model => model.RecruitmentPagingItem, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.RecruitmentPagingItem)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mt-e-10">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quản lý thông tin các tin tuyển dụng </label>
+                            <div class="col-sm-10">
+                                Truy cập tại Menu => Tuyển dụng => Tin tuyển dụng hoặc <a href="@Url.Action("Index", "Recruitment", new { Area = "" })">Click tại đây</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quản lý hồ sơ ứng viên ứng tuyển: </label>
+                            <div class="col-sm-10">
+                                Truy cập tại Menu => Tuyển dụng => Hồ sơ ứng viên hoặc <a href="@Url.Action("Index", "CurriculumVitae", new { Area = "" })">Click tại đây</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quản lý thông tin liên quan đến tin tuyển dụng: </label>
+                            <div class="col-sm-10">
+                                Truy cập tại Menu => Tuyển dụng => các menu con
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

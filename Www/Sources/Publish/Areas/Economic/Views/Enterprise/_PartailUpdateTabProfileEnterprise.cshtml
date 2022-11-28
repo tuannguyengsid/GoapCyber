@@ -1,0 +1,100 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+@using GSID.WebApp.Helpers;
+@model List<EnterpriseToProfile>
+
+
+<table class="table table-bordered hoverTable tablesaw" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+    <thead>
+        <tr>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Doanh nghiệp</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Phiên bản</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Số thông tin thay đổi</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string changeDate = item.ChangeProfileDate.HasValue ? item.ChangeProfileDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+            <tr class="gradeX">
+                <td><b>@item.Name</b></td>
+                <td><b>@item.ChangeNumber</b></td>
+                <td>@item.ChangeLogs.Count.ToString()</td>
+                <td>@changeDate</td>
+                <td>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.RawActionLink("<i class='ion-paper-airplane'></i>", "Update", "Enterprise", new { gsid = item.EnterpriseId.ToString(), revision = item.ChangeNumber.ToString(), v= 1 }, new { id = item.Id.ToString() })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+@*<div class="et-post-outer-wrapper-798534267  et-main-blog-wrapper et-left-timeline et-one-side-template-3" data-id="et_4194120">
+    <div class="et-layout-one_side-section ">
+        <div class="et-clearfix et-blog-cover">
+            <div class="et-timeline-line"></div>
+
+            @foreach (var item in Model)
+            {
+                if (item.ChangeLogs.Count > 0)
+                {
+                    string changeDate = item.ChangeProfileDate.HasValue ? item.ChangeProfileDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+
+                    <div class="et-timeline-date ">
+                        @item.ChangeNumber.ToString()
+                    </div>
+                    <div class="et-timeline-item et-clearfix ">
+                        <div class="et-icon-block">
+                            <div class="et-icon-block-main">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                            </div>
+                            <div class="et-circle"></div>
+                            <div class="et-date">
+                                @changeDate
+                            </div>
+                        </div>
+                        <div data-wow-delay=".25s" class="et-all-contain-here wow slideInDown" style="visibility: visible; animation-delay: 0.25s; animation-name: slideInDown;">
+                            <div class="et-inner-content et-clearfix">
+                                <div class="et-contain-main-inner">
+                                    <div class="row">
+                                        @foreach (var x in item.ChangeLogs)
+                                        {
+                                            <div class="col-xs-12 col-md-12">
+                                                <div class="form-group">
+                                                    <div class="et-title">
+                                                        <label class="col-md-2">@x.FieldDisplayName:</label>
+                                                        <div class="col-md-10">@x.NewValue</div>
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div class="et-lower-meta et-clearfix">
+                                        <div class="et-link-button">
+                                            @Html.RawActionLink("Chi tiết", "Update", "Enterprise", new { gsid = item.EnterpriseId.ToString(), revision = item.ChangeNumber.ToString() }, new { id = item.Id.ToString() })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>*@

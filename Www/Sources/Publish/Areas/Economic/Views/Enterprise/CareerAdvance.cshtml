@@ -1,0 +1,438 @@
+﻿@using GSID.WebApp.Areas.Economic.ViewModels;
+@using GSID.WebApp.Helpers;
+@model CareerAdvanceEnterpriseViewModel
+@{ 
+    var imageExtensions = new[] { ".jpg", ".png", ".jpeg" };
+}
+
+<div class="accordion-group" id="accordionB">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionB" href="#collapseaOne"><h2>Cập nhật ngành nghề</h2></a>
+        <div id="collapseaOne" class="collapse in">
+            <div class="accordion-body">
+                
+                @using (Html.BeginForm("CareerAdvance", "Enterprise", new { area = "Economic" }, FormMethod.Post, new { @class = "form-horizontal row-border careeradvance", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.EnterpriseId)
+                    @Html.HiddenFor(m => m.CareerId)
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.CareerName)</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.CareerName, new { @class = "form-control", disabled = "disabled" })
+                                    @Html.ValidationMessageFor(model => model.CareerName)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Noted, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Noted, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Noted)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.BeginDate) <span class="required">(*)</span></label>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.BeginDate, new { @class = "form-control datepicker" })
+                                    @Html.ValidationMessageFor(model => model.BeginDate)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.EndDate) <span class="required">(*)</span></label>
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control datepicker" })
+                                    @Html.ValidationMessageFor(model => model.EndDate)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Files)</label>
+                                <div class="col-sm-10">
+                                    <div class="file-loading">
+                                        @Html.TextBoxFor(model => model.Files, "", new { @type = "file", @multiple = "multiple", name = "Files[]" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-outline-info pull-right"><i class="fa fa-save"></i> Lưu</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionB" href="#collapseaTwo"><h2>Danh sách cập nhật</h2></a>
+        <div id="collapseaTwo" class="collapse">
+            <div class="accordion-body">
+                <div class="et-post-outer-wrapper-798534267 et-left-timeline et-one-side-template-3" data-id="et_4194120">
+                    <div class="et-layout-one_side-section ">
+                        <div class="et-clearfix et-blog-cover">
+                            <div class="et-timeline-line"></div>
+                            @foreach (var item in Model.EnterpriseToCareerAdvances)
+                            {
+                                string changeDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                <div class="et-timeline-date ">
+                                    @item.ChangeNumber.ToString()
+                                </div>
+                                <div class="et-timeline-item et-clearfix ">
+                                    <div class="et-icon-block">
+                                        <div class="et-icon-block-main">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="et-circle"></div>
+                                        <div class="et-date">
+                                            @changeDate
+                                        </div>
+                                    </div>
+                                    <div data-wow-delay=".25s" class="et-all-contain-here wow slideInDown" style="visibility: visible; animation-delay: 0.25s; animation-name: slideInDown;">
+                                        <div class="et-inner-content">
+                                            <div class="et-contain-main-inner">
+                                                <div class="row">
+                                                    @item.Noted
+                                                </div>
+
+                                                <div class="et-lower-meta">
+                                                    <div class="msg-attachments row">
+                                                        @foreach (var x in item.Files)
+                                                        {
+                                                            <div class="col-md-3">
+                                                                <div class="well well-sm p10">
+                                                                    @if (imageExtensions.Contains(x.Extension))
+                                                                    {
+                                                                        <img src="@x.Url" class="mb10 img-responsive imgview">
+                                                                    }
+                                                                    <strong>@x.Name</strong>
+                                                                    <ul class="list-inline">
+                                                                        <li><a href="@x.Url">Tải</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="handler"></div>
+
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //support link:http://plugins.krajee.com/file-preview-management-demo#preview-reverse
+        $("#Files").fileinput({
+            theme: 'fa',
+            previewFileIcon: '<i class="fa fa-file"></i>',
+            minFileCount: 0,
+            maxFileCount: 10,
+            overwriteInitial: false,
+            //initialPreview: [
+            //    // IMAGE DATA
+            //   'https://placeimg.com/800/460/any',
+            //    // IMAGE RAW MARKUP
+            //    '<img src="https://placeimg.com/800/460/any" class="kv-preview-data file-preview-image">',
+            //    // TEXT DATA
+            //    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut mauris ut libero fermentum feugiat eu et dui. Mauris condimentum rhoncus enim, sed semper neque vestibulum id. Nulla semper, turpis ut consequat imperdiet, enim turpis aliquet orci, eget venenatis elit sapien non ante. Aliquam neque ipsum, rhoncus id ipsum et, volutpat tincidunt augue. Maecenas dolor libero, gravida nec est at, commodo tempor massa. Sed id feugiat massa. Pellentesque at est eu ante aliquam viverra ac sed est.",
+            //    // PDF DATA
+            //    'http://kartik-v.github.io/bootstrap-fileinput-samples/samples/pdf-sample.pdf',
+            //    // VIDEO DATA
+            //    "http://kartik-v.github.io/bootstrap-fileinput-samples/samples/small.mp4"
+            //],
+            initialPreviewAsData: true, // defaults markup
+            //initialPreviewFileType: 'image', // image is the default and can be overridden in config below
+            //initialPreviewConfig: [
+            //    {caption: "Business 1", filename: "Business-1.jpg", size: 762980, url: "/site/file-delete", key: 11},
+            //    {previewAsData: false, size: 823782, caption: "Business 2", filename: "Business-2.jpg", url: "/site/file-delete", key: 13}, 
+            //    {caption: "Lorem Ipsum", filename: "LoremIpsum.txt", type: "text", size: 1430, url: "/site/file-delete", key: 12}, 
+            //    {type: "pdf", size: 8000, caption: "PDF Sample", filename: "PDF-Sample.pdf", url: "/file-upload-batch/2", key: 14}, 
+            //    {type: "video", size: 375000, filetype: "video/mp4", caption: "Krajee Sample", filename: "KrajeeSample.mp4", url: "/file-upload-batch/2", key: 15} 
+            //],
+            uploadExtraData: {
+                img_key: "1000",
+                img_keywords: "happy, nature",
+            },
+            preferIconicPreview: true, // this will force thumbnails to display icons for following file extensions
+            previewFileIconSettings: { // configure your icon file extensions
+                'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+                'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+                'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+                'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+                'htm': '<i class="fa fa-file-code-o text-info"></i>',
+                'txt': '<i class="fa fa-file-text-o text-info"></i>',
+                'mov': '<i class="fa fa-file-movie-o text-warning"></i>',
+                'mp3': '<i class="fa fa-file-audio-o text-warning"></i>',
+                // note for these file types below no extension determination logic 
+                // has been configured (the keys itself will be used as extensions)
+                'jpg': '<i class="fa fa-file-photo-o text-danger"></i>', 
+                'gif': '<i class="fa fa-file-photo-o text-muted"></i>', 
+                'png': '<i class="fa fa-file-photo-o text-primary"></i>'    
+            },
+            previewFileExtSettings: { // configure the logic for determining icon file extensions
+                'doc': function(ext) {
+                    return ext.match(/(doc|docx)$/i);
+                },
+                'xls': function(ext) {
+                    return ext.match(/(xls|xlsx)$/i);
+                },
+                'ppt': function(ext) {
+                    return ext.match(/(ppt|pptx)$/i);
+                },
+                'zip': function(ext) {
+                    return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
+                },
+                'htm': function(ext) {
+                    return ext.match(/(htm|html)$/i);
+                },
+                'txt': function(ext) {
+                    return ext.match(/(txt|ini|csv|java|php|js|css)$/i);
+                },
+                'mov': function(ext) {
+                    return ext.match(/(avi|mpg|mkv|mov|mp4|3gp|webm|wmv)$/i);
+                },
+                'mp3': function(ext) {
+                    return ext.match(/(mp3|wav)$/i);
+                }
+            },
+            msgZoomModalHeading: 'Xem chi tiết',
+            previewZoomButtonTitles: {
+                prev: 'View previous file',
+                next: 'View next file',
+                toggleheader: 'Toggle header',
+                fullscreen: 'Toggle full screen',
+                borderless: 'Toggle borderless mode',
+                close: 'Close detailed preview'
+            },
+            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
+            msgInvalidFileExtension: 'Tiện ích mở rộng không hợp lệ cho tệp "{name}". Chỉ hỗ trợ tệp "{extensions}"',
+            fileSizeGetter:function (bytes) {
+                var i = Math.floor(Math.log(bytes) / Math.log(1024)),
+                    sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                return (bytes / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
+            },
+            showClose: false,
+            msgFoldersNotAllowed: 'Chỉ kéo và thả tệp! Đã bỏ qua {n} thư mục bị bỏ qua.',
+            dropZoneTitle: 'Chỉ kéo và thả tập tin tại đây...',
+            msgPlaceholder: 'Chọn các tập tin...',
+            msgFilesTooMany: 'Số lượng tập tin được chọn để tải lên ({n}) vượt quá giới hạn tối đa cho phép là {m}. Vui lòng thử tải lên lại của bạn!',
+            btnBrowse: '<div tabindex="500" class="{css}"{status}>{icon}{label}</div>',
+            browseLabel: 'Duyệt',
+            removeLabel: 'Xóa',
+            removeTitle: 'Xóa tất cả tập tin đã chọn',
+            showRemove: true,
+            initialPreviewShowDelete: false,
+            deleteExtraData: false,
+            //deleteUrl: "handlers/ImageUploadReceiver.ashx?deleteId",
+            //uploadExtraData: { id: newImageId },
+            //deleteExtraData: { id: newImageId },
+            uploadAsync: false,
+            showUpload: false,
+            uploadUrl: "#",
+            showUploadedThumbs: false,
+            uploadLabel: 'Đăng',
+            uploadTitle: 'Đăng tải các tập tin đã chọn',
+            msgSelected: '{n} tập tin đã chọn',
+            msgLoading: 'Đang tải tập tin {index} của {files}…',
+            layoutTemplates: {
+                //main1: '{preview}\n' +
+                //    '<div class="kv-upload-progress kv-hidden"></div><div class="clearfix"></div>\n' +
+                //    '<div class="input-group {class}">\n' +
+                //    '  {caption}\n' +
+                //    '  <div class="input-group-btn">\n' +
+                //    '    {remove}\n' +
+                //    '    {cancel}\n' +
+                //    '    {upload}\n' +
+                //    '    {browse}\n' +
+                //    '  </div>\n' +
+                //    '</div>',
+                //main2: '{preview}\n<div class="kv-upload-progress hide"></div>\n{remove}\n{cancel}\n{upload}\n{browse}\n',
+                //preview: '<div class="file-preview {class}">\n' +
+                //    '    {close}\n' +
+                //    '    <div class="close fileinput-remove">×</div>\n' +
+                //    '    <div class="{dropClass}">\n' +
+                //    '    <div class="file-preview-thumbnails">\n' +
+                //    '    </div>\n' +
+                //    '    <div class="clearfix"></div>' +
+                //    '    <div class="file-preview-status text-center text-success"></div>\n' +
+                //    '    <div class="kv-fileinput-error"></div>\n' +
+                //    '    </div>\n' +
+                //    '</div>',
+                //icon: '<span class="glyphicon glyphicon-file kv-caption-icon"></span>',
+                //caption: '<div class="file-caption form-control {class}" tabindex="500">\n' +
+                //    '  <span class="file-caption-icon"></span>\n' +
+                //    '  <input class="file-caption-name" onkeydown="return false;" onpaste="return false;">\n' +
+                //    '</div>',
+                btnDefault: '<button type="{type}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</button>',
+                btnLink: '<a href="{href}" tabindex="500" title="{title}" class="{css}"{status}>{icon}{label}</a>',
+                btnBrowse: '<div tabindex="500" class="{css}"{status}>{icon}{label}</div>',
+                //modalMain: '<div id="kvFileinputModal" class="file-zoom-dialog modal fade" tabindex="-1" aria-labelledby="kvFileinputModalLabel"></div>',
+                //modal: '<div class="modal-dialog modal-lg{rtl}" role="document">\n' +
+                //    '  <div class="modal-content">\n' +
+                //    '    <div class="modal-header">\n' +
+                //    '      <div class="kv-zoom-actions pull-right">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+                //    '      <h3 class="modal-title">{heading} <small><span class="kv-zoom-title"></span></small></h3>\n' +
+                //    '    </div>\n' +
+                //    '    <div class="modal-body">\n' +
+                //    '      <div class="floating-buttons"></div>\n' +
+                //    '      <div class="kv-zoom-body file-zoom-content"></div>\n' + '{prev} {next}\n' +
+                //    '    </div>\n' +
+                //    '  </div>\n' +
+                //    '</div>\n',
+                progress: '<div class="progress">\n' +
+                    '    <div class="progress-bar progress-bar-success progress-bar-striped text-center" role="progressbar" aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100" style="width:{percent}%;">\n' +
+                    '        {status}\n' +
+                    '     </div>\n' +
+                    '</div>',
+                footer: '<div class="file-thumbnail-footer">\n' +
+                    '    <div class="file-footer-caption" title="{caption}">' +
+                    '       <div class="file-caption-info">{caption}</div>' +
+                    '    </div>\n' +
+                    '    {progress} {actions}\n' +
+                    '</div>',
+                actions: '<div class="file-actions">\n' +
+                    '    <div class="file-footer-buttons">\n' +
+                    '         {download}  {zoom} {other}' +
+                    //'        {upload} {download} {delete} {zoom} {other}' +
+                    '    </div>\n' +
+                    '    {drag}\n' +
+                    //'    <div class="file-upload-indicator" title="{indicatorTitle}">{indicator}</div>\n' +
+                    '    <div class="clearfix"></div>\n' +
+                    '</div>',
+                actionDelete: '<button type="button" class="kv-file-remove {removeClass}" title="{removeTitle}"{dataUrl}{dataKey}>{removeIcon}</button>\n',
+                actionUpload: '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">{uploadIcon}</button>\n',
+                actionDownload: '<button type="button" class="{downloadClass}" title="{downloadTitle}" data-url="{downloadUrl}" data-caption="{caption}">{downloadIcon}</button>\n',
+                actionZoom: '<button type="button" class="kv-file-zoom {zoomClass}" title="{zoomTitle}">{zoomIcon}</button>',
+                actionDrag: '<span class="file-drag-handle {dragClass}" title="{dragTitle}">{dragIcon}</span>'
+            },
+            //showRemove: true,
+            //showUpload: true,
+            //showDownload: true,
+            //showZoom: true,
+            //showDrag: true,
+            //removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+            //removeClass: 'btn btn-kv btn-default btn-outline-secondary',
+            //removeErrorClass: 'btn btn-kv btn-danger',
+            //removeTitle: 'Remove file',
+            //uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+            //uploadClass: 'btn btn-kv btn-default btn-outline-secondary',
+            //uploadTitle: 'Upload file',
+            //uploadRetryIcon: '<i class="glyphicon glyphicon-repeat"></i>',
+            //uploadRetryTitle: 'Retry upload',
+            //downloadIcon: '<i class="glyphicon glyphicon-download"></i>',
+            //downloadClass: 'btn btn-kv btn-default btn-outline-secondary',
+            //downloadTitle: 'Download file',
+            //zoomIcon: '<i class="glyphicon glyphicon-zoom-in"></i>',
+            //zoomClass: 'btn btn-kv btn-default btn-outline-secondary',
+            //zoomTitle: 'View Details',
+            //dragIcon: '<i class="glyphicon glyphicon-move"></i>',
+            //dragClass: 'text-info',
+            //dragTitle: 'Move / Rearrange',
+            //dragSettings: {},
+            //indicatorNew: '<i class="glyphicon glyphicon-plus-sign text-warning"></i>',
+            //indicatorSuccess: '<i class="glyphicon glyphicon-ok-sign text-success"></i>',
+            //indicatorError: '<i class="glyphicon glyphicon-exclamation-sign text-danger"></i>',
+            //indicatorLoading: '<i class="glyphicon glyphicon-hourglass text-muted"></i>',
+            //indicatorNewTitle: 'Not uploaded yet',
+            //indicatorSuccessTitle: 'Uploaded',
+            //indicatorErrorTitle: 'Upload Error',
+            //indicatorLoadingTitle: 'Uploading ...'
+        }).on('filesorted', function (e, params) {
+            console.log('File sorted params', params);
+        }).on('fileuploaded', function (e, params) {
+            console.log('File uploaded params', params);
+        });
+    	
+        $(".datepicker").datepicker({
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            allowClear: true
+        });
+
+        //Custom checkboxes
+        //------------------------
+        $(".bootstrap-switch").bootstrapSwitch();
+        $('.icheck input').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+
+        $('.datepicker-range').datepicker({
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            autoSize: true
+        });
+    });
+
+    function initCareers() {
+
+    }
+
+    $(function () {
+        $('form.careeradvance').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    initCareers();
+                }
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('#bodymask').hide();
+            },
+        });
+    });
+</script>

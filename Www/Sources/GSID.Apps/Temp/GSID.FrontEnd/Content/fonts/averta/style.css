@@ -1,0 +1,47 @@
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-Light.eot");
+	src: url("../fonts/Averta-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-Light.woff2") format("woff2"), url("../fonts/Averta-Light.woff") format("woff"), url("../fonts/Averta-Light.ttf") format("truetype"), url("../fonts/Averta-Light.svg#Averta-Light") format("svg");
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-Regular.eot");
+	src: url("../fonts/Averta-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-Regular.woff2") format("woff2"), url("../fonts/Averta-Regular.woff") format("woff"), url("../fonts/Averta-Regular.ttf") format("truetype"), url("../fonts/Averta-Regular.svg#Averta-Regular") format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-Semibold.eot");
+	src: url("../fonts/Averta-Semibold.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-Semibold.woff2") format("woff2"), url("../fonts/Averta-Semibold.woff") format("woff"), url("../fonts/Averta-Semibold.ttf") format("truetype"), url("../fonts/Averta-Semibold.svg#Averta-Semibold") format("svg");
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-Bold.eot");
+	src: url("../fonts/Averta-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-Bold.woff2") format("woff2"), url("../fonts/Averta-Bold.woff") format("woff"), url("../fonts/Averta-Bold.ttf") format("truetype"), url("../fonts/Averta-Bold.svg#Averta-Bold") format("svg");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-ExtraBold.eot");
+	src: url("../fonts/Averta-ExtraBold.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-ExtraBold.woff2") format("woff2"), url("../fonts/Averta-ExtraBold.woff") format("woff"), url("../fonts/Averta-ExtraBold.ttf") format("truetype"), url("../fonts/Averta-ExtraBold.svg#Averta-ExtraBold") format("svg");
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Averta';
+	src: url("../fonts/Averta-Black.eot");
+	src: url("../fonts/Averta-Black.eot?#iefix") format("embedded-opentype"), url("../fonts/Averta-Black.woff2") format("woff2"), url("../fonts/Averta-Black.woff") format("woff"), url("../fonts/Averta-Black.ttf") format("truetype"), url("../fonts/Averta-Black.svg#Averta-Black") format("svg");
+	font-weight: 900;
+	font-style: normal;
+}

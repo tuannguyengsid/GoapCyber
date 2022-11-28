@@ -1,0 +1,1156 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.WebApp.Helpers;
+@using GSID.Model.Models.NotMap;
+@model EnterpriseViewModel
+
+@{
+    var TotalPage   = (int)ViewBag.TotalPage;
+    var PageVisit   = (int)ViewBag.PageVisit;
+    var PageSize    = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal  = (int)ViewBag.CountTotal;
+    var SecondRecord    = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord     = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <div class="panel-ctrls"
+                         data-actions-container=""
+                         data-action-collapse='{"target": ".panel-body"}'
+                         data-action-refresh=''
+                         data-action-close=''>
+                    </div>
+                    <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                </div>
+                <div class="panel-editbox" data-widget-controls=""></div>
+                <div class="panel-body">
+                    <div class="panel-ctrls">
+                        <div id="crudtable_filter" class="dataTables_filter pull-right">
+                            @*@Html.RawActionLink("<i class='ion-ios-search-strong'></i> Tìm kiếm", null, null, null, new { @class = "btn search-advance btn-outline-info", href = "javascript:;", data_direction = "right", data_skin = "box-search-advance" }).IfRole("SearchAdvance", "Enterprise")*@
+                            <a href="javascript:;" class="btn search-advance btn-outline-info" data-direction="right" data-skin="box-search-advance"><i class="ion-ios-search-strong"></i> Tìm kiếm</a>
+                        </div>
+                        <i class="separator"></i>
+                        <div class="pull-left" >
+                            @Html.RawActionLinkIfRole("<i class='ion-plus'></i><span> Tạo mới</span>", "Create", "Enterprise", null, new { @class = "btn btn-default" })
+                            @Html.RawActionLink("<i class='ion-ios-cloud-upload-outline'></i><span> Đồng bộ dữ liệu</span>", null, null, null, new { @class = "btn btn-success", href = "javascript:;", id = "btn-importdata" }).IfRole("ImportData", "Enterprise")
+                            @Html.RawActionLink("<i class='ion-ios-cloud-download'></i><span> Xuất dữ liệu</span>", null, null, null, new { @class = "btn btn-danger", href = "javascript:;", id = "exportToExcel", onclick = "onExportToExcel();" }).IfRole("ExportToExcel", "Enterprise")
+                            @Html.RawActionLink("<i class='ion-android-mail'></i><span> Gửi email</span>", null, null, null, new { @class = "btn btn-warning", href = "javascript:;", id = "btn-email"}).IfRole("SendingEmailEnterprise", "Email")
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="table-flipscroll">
+                        <table class="table tablesaw hoverTable table-bordered" data-tablesaw-mode="columntoggle"  data-tablesaw-minimap>
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Mã số thuế</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tên doanh nghiệp</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">Người đại diện</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Loại hình</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Nguồn vốn</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Trạng thái</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"><i class="fa fa-paperclip"></i></th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Lần thay đổi</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Source)
+                                {
+                                    string name                 = item.Name.Length > 70 ? string.Format("{0}...", item.Name.Substring(0,70)) : item.Name;
+                                    string establishmentDate    = item.EstablishmentDate.HasValue ? item.EstablishmentDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                    string lastChangedFull      = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy");
+                                    string lastChanged          = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("dd/MM/yyyy") : item.AddedByDate.Value.ToString("dd/MM/yyyy");
+                                    string actived              = (item.IsDeleted.HasValue && !item.IsDeleted.Value) ? "<span class='label label-success'>Kích hoạt</span>" : "<span class='label bg-danger'>Ngưng kích hoạt</span>";
+                                    string member               = item.EnterpriseToMembers != null && item.EnterpriseToMembers.Count() > 0 ? string.Format("{0} {1} {2}", item.EnterpriseToMembers.FirstOrDefault().User.FirstName, item.EnterpriseToMembers.FirstOrDefault().User.MiddleName, item.EnterpriseToMembers.FirstOrDefault().User.LastName) : "";
+                                    var businessStatus          = item.BusinessStatuss;
+                                    string status               = (businessStatus != null ?
+                                                                        (!string.IsNullOrEmpty(businessStatus.HexColor) ?
+                                                                            string.Format("<span class='label' style='background-color:{0}' width='58%'>{1}</span>", businessStatus.HexColor, businessStatus.Name)
+                                                                            : businessStatus.Name)
+                                                                        : "");
+                                    string address              = item.EnterpriseToAddress != null ? item.EnterpriseToAddress.Address1Full : "";
+                                    string charterCapital       = item.CharterCapital.HasValue ? String.Format("{0:C}", item.CharterCapital.Value) : "0 ₫";
+                                    double charter_Capital      = item.CharterCapital.HasValue ? item.CharterCapital.Value : 0;
+
+                                    <tr class="gradeX">
+                                        <td>@item.TaxCode</td>
+                                        <td>
+                                            <a class="mytooltip" href="javascript:void(0)">
+                                                <b>@name</b>
+                                                <div class="tooltip-content5">
+                                                    <div class="tooltip-text3">
+                                                        <div class="tooltip-inner2">
+                                                            @item.Name
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <br />
+                                            <small><i class="ion-ios-location-outline"></i> <b>@address</b></small>
+                                        </td>
+                                        <td><b>@member</b></td>
+                                        <td>
+                                            @if (item.BusinessType != null)
+                                            {
+                                                <a href="javascript:void(0)" class="mytooltip">
+                                                    @item.BusinessType.ShortName
+                                                    <span class="tooltip-content3">
+                                                        @item.BusinessType.Name
+                                                    </span>
+                                                </a>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class="mytooltip charter_capital" href="javascript:void(0)"  data-value="@charter_Capital">
+                                                <span></span>
+                                                <div class="tooltip-content3">
+                                                    @charterCapital
+                                                </div>
+                                            </a>
+                                        </td>
+                                        <td>@Html.Raw(status)</td>
+                                        <td class="inbox-msg-attach">
+                                            @if (item.EnterpriseToAttactFiles.Count() > 0)
+                                            {
+                                                <i class="fa fa-paperclip"></i>
+                                            }
+                                        </td>
+                                        <td>
+                                            Số lần: @item.ChangeNumber
+                                            <br />
+                                            <a href="javascript:void(0)" class="mytooltip">
+                                                Ngày: @lastChanged
+                                                <span class="tooltip-content3">
+                                                    @lastChangedFull
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="pull-right">
+                                                <div class="btn-group">
+                                                    @Html.RawActionLink("<i class='ion-fork-repo'></i>", null, null, new { id = "reportViolation_" + item.Id.ToString() }, new { @class = "btn btn-xs btn-warning", onclick = "onReportViolation('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Report", "ReportViolation")
+                                                    @Html.RawActionLinkIfRole("<i class='ion-android-create'></i>", "Update", "Enterprise", new { gsid = item.Id.ToString(), revision = item.ChangeNumber.ToString() }, new { @class = "btn btn-default btn-xs", id = item.Id.ToString() })
+                                                    @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-danger btn-xs", href = "javascript:;", id = item.Id.ToString(), data_toggle = "modal", data_target = "#myModal_" + item.Id.ToString() }).IfRole("Delete", "Enterprise")
+
+                                                    <!-- Begin Alert Modal -->
+                                                    <div class="modal fade" id="myModal_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                    <h2 class="modal-title">Xóa thông tin</h2>
+                                                                    <p>Hệ thống sẽ xóa vĩnh viễn các tệp mà bạn đã chọn</p>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-horizontal">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Tên doanh nghiệp:</label>
+                                                                                    <div class="col-md-9">@item.Name</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Tên viết tắt:</label>
+                                                                                    <div class="col-md-9">@item.ShortName</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Mã số thuế:</label>
+                                                                                    <div class="col-md-9">@item.TaxCode</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Địa chỉ:</label>
+                                                                                    <div class="col-md-9">@address</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Hủy bỏ</button>
+                                                                    @Html.RawActionLink("<i class='ion-android-delete''></i> Xóa", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Delete", "Enterprise")
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.End Alert Modal  -->
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+                                    @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap">
+                                    <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+<div id="show-importdata"></div>
+<div id="show-reportviolation"></div>
+
+@Html.HiddenFor(m => m.EnterpriseKeyword)
+@Html.HiddenFor(m => m.EnterpriseCareer)
+@Html.HiddenFor(m => m.EnterpriseCareerId)
+@Html.HiddenFor(m => m.EnterpriseHistoryQuery)
+@Html.HiddenFor(m => m.EnterpriseConditionCareer)
+@Html.HiddenFor(m => m.EnterpriseReportViolationCategoryId)
+@Html.HiddenFor(m => m.EnterpriseCountryId)
+@Html.HiddenFor(m => m.EnterpriseProvinceId)
+@Html.HiddenFor(m => m.EnterpriseDistrictId)
+@Html.HiddenFor(m => m.EnterpriseWardId)
+@Html.HiddenFor(m => m.EnterpriseAddressLine2)
+@Html.HiddenFor(m => m.EnterpriseAddressLine1)
+@Html.HiddenFor(m => m.EnterpriseAddressNumber)
+@Html.HiddenFor(m => m.EnterpriseCharterCapitalStart)
+@Html.HiddenFor(m => m.EnterpriseCharterCapitalEnd)
+@Html.HiddenFor(m => m.EnterpriseCapitalOrigin)
+@Html.HiddenFor(m => m.EnterpriseBusinessType)
+@Html.HiddenFor(m => m.EnterpriseBusinessStatus)
+@Html.HiddenFor(m => m.EnterpriseEstablishmentStart)
+@Html.HiddenFor(m => m.EnterpriseEstablishmentEnd)
+@Html.HiddenFor(m => m.EnterpriseChangeProfileDateStart)
+@Html.HiddenFor(m => m.EnterpriseChangeProfileDateEnd)
+@Html.HiddenFor(m => m.EnterpriseRevenueStart)
+@Html.HiddenFor(m => m.EnterpriseRevenueEnd)
+@Html.HiddenFor(m => m.EnterpriseTaxCostStart)
+@Html.HiddenFor(m => m.EnterpriseTaxCostEnd)
+@Html.HiddenFor(m => m.EnterpriseTaxCostYear)
+@Html.HiddenFor(m => m.EnterpriseLaborStart)
+@Html.HiddenFor(m => m.EnterpriseLaborReportMonth)
+@Html.HiddenFor(m => m.EnterpriseLaborReportYear)
+@Html.HiddenFor(m => m.EnterpriseLaborMoneyStart)
+@Html.HiddenFor(m => m.EnterpriseLaborMoneyEnd)
+@Html.HiddenFor(m => m.EnterpriseCareerChild)
+@Html.HiddenFor(m => m.EnterpriseCareerChildId)
+
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+
+<script type="text/javascript">
+    const units = ['₫', 'nghìn ₫', 'triệu ₫', 'tỉ ₫', 'nghìn tỉ ₫'];
+    function niceBytes(x) {
+        let l = 0, n = parseInt(x, 10) || 0;
+        while (n >= 1000) {
+            n = n / 1000;
+            l++;
+        }
+        return (n.toFixed(n >= 10 || l < 1 ? 0 : 1) + ' ' + units[l]);
+    }
+
+    $(document).ready(function () {
+        $('.charter_capital').each(function (index, value) {
+            $(this).children('span').html('~' + niceBytes($(this).attr('data-value')));
+        });
+
+        $('.search-advance').on('click', function () {
+            var direction = $(this).data('direction');
+            var skin = $(this).data('skin');
+
+            var Keyword             = $('#EnterpriseKeyword').val();
+            var Career              = $('#EnterpriseCareer').val();
+            var CareerId            = $('#EnterpriseCareerId').val();
+            var CareerChild                 = $('#EnterpriseCareerChild').val();
+            var CareerChildId               = $('#EnterpriseCareerChildId').val();
+            var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+            var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+            var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+            var CountryId                   = $('#EnterpriseCountryId').val();
+            var ProvinceId                  = $('#EnterpriseProvinceId').val();
+            var DistrictId                  = $('#EnterpriseDistrictId').val();
+            var WardId                      = $('#EnterpriseWardId').val();
+            var AddressLine2                = $('#EnterpriseAddressLine2').val();
+            var AddressLine1                = $('#EnterpriseAddressLine1').val();
+            var AddressNumber               = $('#EnterpriseAddressNumber').val();
+            var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+            var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+            var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+            var BusinessType                = $('#EnterpriseBusinessType').val();
+            var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+            var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+            var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+            var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+            var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+            var RevenueStart                = $('#EnterpriseRevenueStart').val();
+            var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+            var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+            var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+            var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+            var LaborStart                  = $('#EnterpriseLaborStart').val();
+            var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+            var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+            var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+            var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+            var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+
+            $.slidePanel.show({
+                url: '@Url.Action("SearchAdvance", "Enterprise")',
+                dataType: 'html',
+                settings: {
+                    method: 'GET',
+                    data: {
+                        Keyword: Keyword,
+                        Career: Career,
+                        CareerId: CareerId,
+                        CareerChild: CareerChild,
+                        CareerChildId: CareerChildId,
+                        HistoryQuery: HistoryQuery,
+                        ConditionCareer: ConditionCareer,
+                        ReportViolationCategoryId: ReportViolationCategoryId,
+                        CountryId: CountryId,
+                        ProvinceId: ProvinceId,
+                        DistrictId: DistrictId,
+                        WardId: WardId,
+                        AddressLine2: AddressLine2,
+                        AddressLine1: AddressLine1,
+                        AddressNumber: AddressNumber,
+                        CharterCapitalStart: CharterCapitalStart,
+                        CharterCapitalEnd: CharterCapitalEnd,
+                        CapitalOrigin: CapitalOrigin,
+                        BusinessType: BusinessType,
+                        BusinessStatus: BusinessStatus,
+                        EstablishmentStart: EstablishmentStart,
+                        EstablishmentEnd: EstablishmentEnd,
+                        ChangeProfileDateStart: ChangeProfileDateStart,
+                        ChangeProfileDateEnd: ChangeProfileDateEnd,
+                        RevenueStart: RevenueStart,
+                        RevenueEnd: RevenueEnd,
+                        TaxCostStart: TaxCostStart,
+                        TaxCostEnd: TaxCostEnd,
+                        TaxCostYear: TaxCostYear,
+                        LaborStart: LaborStart,
+                        LaborEnd: LaborEnd,
+                        LaborReportMonth: LaborReportMonth,
+                        LaborReportYear: LaborReportYear,
+                        LaborMoneyStart: LaborMoneyStart,
+                        LaborMoneyEnd: LaborMoneyEnd
+                    }
+                }
+            }, {
+                direction: direction,
+                skin: skin,
+                mouseDragHandler: '.handler',
+                closeSelector: '.close',
+            });
+        });
+
+        $('#btn-importdata').click(function () {
+            $('#bodymask').show();
+            $.ajax({
+                url: '@Url.Action("ImportData", "Enterprise")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#show-importdata').html(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+
+        $('#btn-email').click(function () {
+            $('#bodymask').show();
+            var Keyword             = $('#EnterpriseKeyword').val();
+            var Career              = $('#EnterpriseCareer').val();
+            var CareerId            = $('#EnterpriseCareerId').val();
+            var CareerChild                 = $('#EnterpriseCareerChild').val();
+            var CareerChildId               = $('#EnterpriseCareerChildId').val();
+            var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+            var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+            var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+            var CountryId                   = $('#EnterpriseCountryId').val();
+            var ProvinceId                  = $('#EnterpriseProvinceId').val();
+            var DistrictId                  = $('#EnterpriseDistrictId').val();
+            var WardId                      = $('#EnterpriseWardId').val();
+            var AddressLine2                = $('#EnterpriseAddressLine2').val();
+            var AddressLine1                = $('#EnterpriseAddressLine1').val();
+            var AddressNumber               = $('#EnterpriseAddressNumber').val();
+            var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+            var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+            var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+            var BusinessType                = $('#EnterpriseBusinessType').val();
+            var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+            var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+            var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+            var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+            var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+            var RevenueStart                = $('#EnterpriseRevenueStart').val();
+            var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+            var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+            var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+            var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+            var LaborStart                  = $('#EnterpriseLaborStart').val();
+            var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+            var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+            var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+            var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+            var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+
+            $.ajax({
+                url: '@Url.Action("SendingEmailEnterprise", "Email", new { area = ""})',
+                type: 'GET',
+                data: {
+                    Keyword: Keyword,
+                    Career: Career,
+                    CareerId: CareerId,
+                    CareerChild: CareerChild,
+                    CareerChildId: CareerChildId,
+                    HistoryQuery: HistoryQuery,
+                    ConditionCareer: ConditionCareer,
+                    ReportViolationCategoryId: ReportViolationCategoryId,
+                    CountryId: CountryId,
+                    ProvinceId: ProvinceId,
+                    DistrictId: DistrictId,
+                    WardId: WardId,
+                    AddressLine2: AddressLine2,
+                    AddressLine1: AddressLine1,
+                    AddressNumber: AddressNumber,
+                    CharterCapitalStart: CharterCapitalStart,
+                    CharterCapitalEnd: CharterCapitalEnd,
+                    CapitalOrigin: CapitalOrigin,
+                    BusinessType: BusinessType,
+                    BusinessStatus: BusinessStatus,
+                    EstablishmentStart: EstablishmentStart,
+                    EstablishmentEnd: EstablishmentEnd,
+                    ChangeProfileDateStart: ChangeProfileDateStart,
+                    ChangeProfileDateEnd: ChangeProfileDateEnd,
+                    RevenueStart: RevenueStart,
+                    RevenueEnd: RevenueEnd,
+                    TaxCostStart: TaxCostStart,
+                    TaxCostEnd: TaxCostEnd,
+                    TaxCostYear: TaxCostYear,
+                    LaborStart: LaborStart,
+                    LaborEnd: LaborEnd,
+                    LaborReportMonth: LaborReportMonth,
+                    LaborReportYear: LaborReportYear,
+                    LaborMoneyStart: LaborMoneyStart,
+                    LaborMoneyEnd: LaborMoneyEnd
+                },
+                dataType: 'html',
+                success: function (result) {
+                    $('#show-importdata').html(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    var Keyword             = $('#EnterpriseKeyword').val();
+                    var Career              = $('#EnterpriseCareer').val();
+                    var CareerId            = $('#EnterpriseCareerId').val();
+                    var CareerChild                 = $('#EnterpriseCareerChild').val();
+                    var CareerChildId               = $('#EnterpriseCareerChildId').val();
+                    var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+                    var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+                    var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+                    var CountryId                   = $('#EnterpriseCountryId').val();
+                    var ProvinceId                  = $('#EnterpriseProvinceId').val();
+                    var DistrictId                  = $('#EnterpriseDistrictId').val();
+                    var WardId                      = $('#EnterpriseWardId').val();
+                    var AddressLine2                = $('#EnterpriseAddressLine2').val();
+                    var AddressLine1                = $('#EnterpriseAddressLine1').val();
+                    var AddressNumber               = $('#EnterpriseAddressNumber').val();
+                    var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+                    var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+                    var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+                    var BusinessType                = $('#EnterpriseBusinessType').val();
+                    var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+                    var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+                    var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+                    var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+                    var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+                    var RevenueStart                = $('#EnterpriseRevenueStart').val();
+                    var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+                    var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+                    var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+                    var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+                    var LaborStart                  = $('#EnterpriseLaborStart').val();
+                    var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+                    var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+                    var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+                    var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+                    var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+                    window.location.href            = '@Url.Action("Index", "Enterprise")?p=' + page
+                                                            + '&Keyword=' + Keyword
+                                                            + '&Career=' + Career
+                                                            + '&CareerId=' + CareerId
+                                                            + '&CareerChild=' + CareerChild
+                                                            + '&CareerChildId=' + CareerChildId
+                                                            + '&HistoryQuery=' + HistoryQuery
+                                                            + '&ConditionCareer=' + ConditionCareer
+                                                            + '&ReportViolationCategoryId=' + ReportViolationCategoryId
+                                                            + '&CountryId=' + CountryId
+                                                            + '&ProvinceId=' + ProvinceId
+                                                            + '&DistrictId=' + DistrictId
+                                                            + '&WardId=' + WardId
+                                                            + '&AddressLine2=' + AddressLine2
+                                                            + '&AddressLine1=' + AddressLine1
+                                                            + '&AddressNumber=' + AddressNumber
+                                                            + '&CharterCapitalStart=' + CharterCapitalStart
+                                                            + '&CharterCapitalEnd=' + CharterCapitalEnd
+                                                            + '&CapitalOrigin=' + CapitalOrigin
+                                                            + '&BusinessType=' + BusinessType
+                                                            + '&BusinessStatus=' + BusinessStatus
+                                                            + '&EstablishmentStart=' + EstablishmentStart
+                                                            + '&EstablishmentEnd=' + EstablishmentEnd
+                                                            + '&ChangeProfileDateStart=' + ChangeProfileDateStart
+                                                            + '&ChangeProfileDateEnd=' + ChangeProfileDateEnd
+                                                            + '&RevenueStart=' + RevenueStart
+                                                            + '&RevenueEnd=' + RevenueEnd
+                                                            + '&TaxCostStart=' + TaxCostStart
+                                                            + '&TaxCostEnd=' + TaxCostEnd
+                                                            + '&TaxCostYear=' + TaxCostYear
+                                                            + '&LaborStart=' + LaborStart
+                                                            + '&LaborReportMonth=' + LaborReportMonth
+                                                            + '&LaborReportYear=' + LaborReportYear
+                                                            + '&LaborMoneyStart=' + LaborMoneyStart
+                                                            + '&LaborMoneyEnd=' + LaborMoneyEnd;
+                }
+            });
+        }
+    });
+
+    function onExportToWord() {
+        $('#bodymask').show();
+        var Keyword             = $('#EnterpriseKeyword').val();
+        var Career              = $('#EnterpriseCareer').val();
+        var CareerId            = $('#EnterpriseCareerId').val();
+        var CareerChild                 = $('#EnterpriseCareerChild').val();
+        var CareerChildId               = $('#EnterpriseCareerChildId').val();
+        var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+        var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+        var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+        var CountryId                   = $('#EnterpriseCountryId').val();
+        var ProvinceId                  = $('#EnterpriseProvinceId').val();
+        var DistrictId                  = $('#EnterpriseDistrictId').val();
+        var WardId                      = $('#EnterpriseWardId').val();
+        var AddressLine2                = $('#EnterpriseAddressLine2').val();
+        var AddressLine1                = $('#EnterpriseAddressLine1').val();
+        var AddressNumber               = $('#EnterpriseAddressNumber').val();
+        var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+        var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+        var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+        var BusinessType                = $('#EnterpriseBusinessType').val();
+        var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+        var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+        var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+        var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+        var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+        var RevenueStart                = $('#EnterpriseRevenueStart').val();
+        var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+        var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+        var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+        var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+        var LaborStart                  = $('#EnterpriseLaborStart').val();
+        var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+        var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+        var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+        var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+        var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+        $.ajax({
+            url: '@Url.Action("ExportToWord", "Enterprise")',
+            type: 'POST',
+            data: {
+                Keyword: Keyword,
+                Career: Career,
+                CareerId: CareerId,
+                CareerChild: CareerChild,
+                CareerChildId: CareerChildId,
+                HistoryQuery: HistoryQuery,
+                ConditionCareer: ConditionCareer,
+                ReportViolationCategoryId: ReportViolationCategoryId,
+                CountryId: CountryId,
+                ProvinceId: ProvinceId,
+                DistrictId: DistrictId,
+                WardId: WardId,
+                AddressLine2: AddressLine2,
+                AddressLine1: AddressLine1,
+                AddressNumber: AddressNumber,
+                CharterCapitalStart: CharterCapitalStart,
+                CharterCapitalEnd: CharterCapitalEnd,
+                CapitalOrigin: CapitalOrigin,
+                BusinessType: BusinessType,
+                BusinessStatus: BusinessStatus,
+                EstablishmentStart: EstablishmentStart,
+                EstablishmentEnd: EstablishmentEnd,
+                ChangeProfileDateStart: ChangeProfileDateStart,
+                ChangeProfileDateEnd: ChangeProfileDateEnd,
+                RevenueStart: RevenueStart,
+                RevenueEnd: RevenueEnd,
+                TaxCostStart: TaxCostStart,
+                TaxCostEnd: TaxCostEnd,
+                TaxCostYear: TaxCostYear,
+                LaborStart: LaborStart,
+                LaborEnd: LaborEnd,
+                LaborReportMonth: LaborReportMonth,
+                LaborReportYear: LaborReportYear,
+                LaborMoneyStart: LaborMoneyStart,
+                LaborMoneyEnd: LaborMoneyEnd
+            },
+            success: function (response, status, xhr) {
+                $('#bodymask').hide();
+                // check for a filename
+                var filename = "";
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+
+                var type = xhr.getResponseHeader('Content-Type');
+                var blob = new Blob([response], { type: type });
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onExportToExcel() {
+        $('#bodymask').show();
+        var Keyword             = $('#EnterpriseKeyword').val();
+        var Career              = $('#EnterpriseCareer').val();
+        var CareerId            = $('#EnterpriseCareerId').val();
+        var CareerChild                 = $('#EnterpriseCareerChild').val();
+        var CareerChildId               = $('#EnterpriseCareerChildId').val();
+        var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+        var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+        var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+        var CountryId                   = $('#EnterpriseCountryId').val();
+        var ProvinceId                  = $('#EnterpriseProvinceId').val();
+        var DistrictId                  = $('#EnterpriseDistrictId').val();
+        var WardId                      = $('#EnterpriseWardId').val();
+        var AddressLine2                = $('#EnterpriseAddressLine2').val();
+        var AddressLine1                = $('#EnterpriseAddressLine1').val();
+        var AddressNumber               = $('#EnterpriseAddressNumber').val();
+        var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+        var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+        var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+        var BusinessType                = $('#EnterpriseBusinessType').val();
+        var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+        var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+        var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+        var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+        var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+        var RevenueStart                = $('#EnterpriseRevenueStart').val();
+        var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+        var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+        var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+        var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+        var LaborStart                  = $('#EnterpriseLaborStart').val();
+        var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+        var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+        var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+        var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+        var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+        $.ajax({
+            url: '@Url.Action("ExportToExcel", "Enterprise")',
+            type: 'POST',
+            data: {
+                Keyword: Keyword,
+                Career: Career,
+                CareerId: CareerId,
+                CareerChild: CareerChild,
+                CareerChildId: CareerChildId,
+                HistoryQuery: HistoryQuery,
+                ConditionCareer: ConditionCareer,
+                ReportViolationCategoryId: ReportViolationCategoryId,
+                CountryId: CountryId,
+                ProvinceId: ProvinceId,
+                DistrictId: DistrictId,
+                WardId: WardId,
+                AddressLine2: AddressLine2,
+                AddressLine1: AddressLine1,
+                AddressNumber: AddressNumber,
+                CharterCapitalStart: CharterCapitalStart,
+                CharterCapitalEnd: CharterCapitalEnd,
+                CapitalOrigin: CapitalOrigin,
+                BusinessType: BusinessType,
+                BusinessStatus: BusinessStatus,
+                EstablishmentStart: EstablishmentStart,
+                EstablishmentEnd: EstablishmentEnd,
+                ChangeProfileDateStart: ChangeProfileDateStart,
+                ChangeProfileDateEnd: ChangeProfileDateEnd,
+                RevenueStart: RevenueStart,
+                RevenueEnd: RevenueEnd,
+                TaxCostStart: TaxCostStart,
+                TaxCostEnd: TaxCostEnd,
+                TaxCostYear: TaxCostYear,
+                LaborStart: LaborStart,
+                LaborEnd: LaborEnd,
+                LaborReportMonth: LaborReportMonth,
+                LaborReportYear: LaborReportYear,
+                LaborMoneyStart: LaborMoneyStart,
+                LaborMoneyEnd: LaborMoneyEnd
+            },
+            success: function (response, status, xhr) {
+                $('#bodymask').hide();
+                // check for a filename
+                var filename = "";
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+
+                var type = xhr.getResponseHeader('Content-Type');
+                var blob = new Blob([response], { type: type });
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+
+                //var xhr = new XMLHttpRequest();
+                //xhr.open('POST', url, true);
+                //xhr.responseType = 'arraybuffer';
+                //xhr.onload = function () {
+                //    if (this.status === 200) {
+                //        var filename = "";
+                //        var disposition = xhr.getResponseHeader('Content-Disposition');
+                //        if (disposition && disposition.indexOf('attachment') !== -1) {
+                //            var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                //            var matches = filenameRegex.exec(disposition);
+                //            if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                //        }
+                //        var type = xhr.getResponseHeader('Content-Type');
+
+                //        var blob = typeof File === 'function'
+                //            ? new File([this.response], filename, { type: type })
+                //            : new Blob([this.response], { type: type });
+                //        if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                //            // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                //            window.navigator.msSaveBlob(blob, filename);
+                //        } else {
+                //            var URL = window.URL || window.webkitURL;
+                //            var downloadUrl = URL.createObjectURL(blob);
+
+                //            if (filename) {
+                //                // use HTML5 a[download] attribute to specify filename
+                //                var a = document.createElement("a");
+                //                // safari doesn't support this yet
+                //                if (typeof a.download === 'undefined') {
+                //                    window.location = downloadUrl;
+                //                } else {
+                //                    a.href = downloadUrl;
+                //                    a.download = filename;
+                //                    document.body.appendChild(a);
+                //                    a.click();
+                //                }
+                //            } else {
+                //                window.location = downloadUrl;
+                //            }
+
+                //            setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                //        }
+                //    }
+                //};
+                //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                //xhr.send($.param(params));
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onExportToCSV() {
+        $('#bodymask').show();
+        var Keyword             = $('#EnterpriseKeyword').val();
+        var Career              = $('#EnterpriseCareer').val();
+        var CareerId            = $('#EnterpriseCareerId').val();
+        var CareerChild                 = $('#EnterpriseCareerChild').val();
+        var CareerChildId               = $('#EnterpriseCareerChildId').val();
+        var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+        var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+        var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+        var CountryId                   = $('#EnterpriseCountryId').val();
+        var ProvinceId                  = $('#EnterpriseProvinceId').val();
+        var DistrictId                  = $('#EnterpriseDistrictId').val();
+        var WardId                      = $('#EnterpriseWardId').val();
+        var AddressLine2                = $('#EnterpriseAddressLine2').val();
+        var AddressLine1                = $('#EnterpriseAddressLine1').val();
+        var AddressNumber               = $('#EnterpriseAddressNumber').val();
+        var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+        var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+        var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+        var BusinessType                = $('#EnterpriseBusinessType').val();
+        var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+        var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+        var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+        var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+        var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+        var RevenueStart                = $('#EnterpriseRevenueStart').val();
+        var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+        var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+        var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+        var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+        var LaborStart                  = $('#EnterpriseLaborStart').val();
+        var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+        var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+        var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+        var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+        var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+        $.ajax({
+            url: '@Url.Action("ExportToCSV", "Enterprise")',
+            type: 'POST',
+            data: {
+                Keyword: Keyword,
+                Career: Career,
+                CareerId: CareerId,
+                CareerChild: CareerChild,
+                CareerChildId: CareerChildId,
+                HistoryQuery: HistoryQuery,
+                ConditionCareer: ConditionCareer,
+                ReportViolationCategoryId: ReportViolationCategoryId,
+                CountryId: CountryId,
+                ProvinceId: ProvinceId,
+                DistrictId: DistrictId,
+                WardId: WardId,
+                AddressLine2: AddressLine2,
+                AddressLine1: AddressLine1,
+                AddressNumber: AddressNumber,
+                CharterCapitalStart: CharterCapitalStart,
+                CharterCapitalEnd: CharterCapitalEnd,
+                CapitalOrigin: CapitalOrigin,
+                BusinessType: BusinessType,
+                BusinessStatus: BusinessStatus,
+                EstablishmentStart: EstablishmentStart,
+                EstablishmentEnd: EstablishmentEnd,
+                ChangeProfileDateStart: ChangeProfileDateStart,
+                ChangeProfileDateEnd: ChangeProfileDateEnd,
+                RevenueStart: RevenueStart,
+                RevenueEnd: RevenueEnd,
+                TaxCostStart: TaxCostStart,
+                TaxCostEnd: TaxCostEnd,
+                TaxCostYear: TaxCostYear,
+                LaborStart: LaborStart,
+                LaborEnd: LaborEnd,
+                LaborReportMonth: LaborReportMonth,
+                LaborReportYear: LaborReportYear,
+                LaborMoneyStart: LaborMoneyStart,
+                LaborMoneyEnd: LaborMoneyEnd
+            },
+            success: function (response, status, xhr) {
+                $('#bodymask').hide();
+                // check for a filename
+                var filename = "";
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+
+                var type = xhr.getResponseHeader('Content-Type');
+                var blob = new Blob([response], { type: type });
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onExportToPDF() {
+        $('#bodymask').show();
+        var Keyword             = $('#EnterpriseKeyword').val();
+        var Career              = $('#EnterpriseCareer').val();
+        var CareerId            = $('#EnterpriseCareerId').val();
+        var CareerChild                 = $('#EnterpriseCareerChild').val();
+        var CareerChildId               = $('#EnterpriseCareerChildId').val();
+        var HistoryQuery                = $('#EnterpriseHistoryQuery').val();
+        var ConditionCareer             = $('#EnterpriseConditionCareer').val();
+        var ReportViolationCategoryId   = $('#EnterpriseReportViolationCategoryId').val();
+        var CountryId                   = $('#EnterpriseCountryId').val();
+        var ProvinceId                  = $('#EnterpriseProvinceId').val();
+        var DistrictId                  = $('#EnterpriseDistrictId').val();
+        var WardId                      = $('#EnterpriseWardId').val();
+        var AddressLine2                = $('#EnterpriseAddressLine2').val();
+        var AddressLine1                = $('#EnterpriseAddressLine1').val();
+        var AddressNumber               = $('#EnterpriseAddressNumber').val();
+        var CharterCapitalStart         = $('#EnterpriseCharterCapitalStart').val();
+        var CharterCapitalEnd           = $('#EnterpriseCharterCapitalEnd').val();
+        var CapitalOrigin               = $('#EnterpriseCapitalOrigin').val();
+        var BusinessType                = $('#EnterpriseBusinessType').val();
+        var BusinessStatus              = $('#EnterpriseBusinessStatus').val();
+        var EstablishmentStart          = $('#EnterpriseEstablishmentStart').val();
+        var EstablishmentEnd            = $('#EnterpriseEstablishmentEnd').val();
+        var ChangeProfileDateStart      = $('#EnterpriseChangeProfileDateStart').val();
+        var ChangeProfileDateEnd        = $('#EnterpriseChangeProfileDateEnd').val();
+        var RevenueStart                = $('#EnterpriseRevenueStart').val();
+        var RevenueEnd                  = $('#EnterpriseRevenueEnd').val();
+        var TaxCostStart                = $('#EnterpriseTaxCostStart').val();
+        var TaxCostEnd                  = $('#EnterpriseTaxCostEnd').val();
+        var TaxCostYear                 = $('#EnterpriseTaxCostYear').val();
+        var LaborStart                  = $('#EnterpriseLaborStart').val();
+        var LaborEnd                    = $('#EnterpriseLaborEnd').val();
+        var LaborReportMonth            = $('#EnterpriseLaborReportMonth').val();
+        var LaborReportYear             = $('#EnterpriseLaborReportYear').val();
+        var LaborMoneyStart             = $('#EnterpriseLaborMoneyStart').val();
+        var LaborMoneyEnd               = $('#EnterpriseLaborMoneyEnd').val();
+        $.ajax({
+            url: '@Url.Action("ExportToPDF", "Enterprise")',
+            type: 'POST',
+            data: {
+                Keyword: Keyword,
+                Career: Career,
+                CareerId: CareerId,
+                CareerChild: CareerChild,
+                CareerChildId: CareerChildId,
+                HistoryQuery: HistoryQuery,
+                ConditionCareer: ConditionCareer,
+                ReportViolationCategoryId: ReportViolationCategoryId,
+                CountryId: CountryId,
+                ProvinceId: ProvinceId,
+                DistrictId: DistrictId,
+                WardId: WardId,
+                AddressLine2: AddressLine2,
+                AddressLine1: AddressLine1,
+                AddressNumber: AddressNumber,
+                CharterCapitalStart: CharterCapitalStart,
+                CharterCapitalEnd: CharterCapitalEnd,
+                CapitalOrigin: CapitalOrigin,
+                BusinessType: BusinessType,
+                BusinessStatus: BusinessStatus,
+                EstablishmentStart: EstablishmentStart,
+                EstablishmentEnd: EstablishmentEnd,
+                ChangeProfileDateStart: ChangeProfileDateStart,
+                ChangeProfileDateEnd: ChangeProfileDateEnd,
+                RevenueStart: RevenueStart,
+                RevenueEnd: RevenueEnd,
+                TaxCostStart: TaxCostStart,
+                TaxCostEnd: TaxCostEnd,
+                TaxCostYear: TaxCostYear,
+                LaborStart: LaborStart,
+                LaborEnd: LaborEnd,
+                LaborReportMonth: LaborReportMonth,
+                LaborReportYear: LaborReportYear,
+                LaborMoneyStart: LaborMoneyStart,
+                LaborMoneyEnd: LaborMoneyEnd
+            },
+            success: function (response, status, xhr) {
+                $('#bodymask').hide();
+                // check for a filename
+                var filename = "";
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+
+                var type = xhr.getResponseHeader('Content-Type');
+                var blob = new Blob([response], { type: type });
+
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onDelete(val) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("Delete", "Enterprise")',
+            type: 'POST',
+            data: { id: val },
+            dataType: 'json',
+            success: function (result) {
+                $('#bodymask').hide();
+                if (result.Status == '2') {
+                    $('#myModal_' + val).modal('hide');
+                    window.location.href = window.location.href;
+                }
+                else {
+                    alert(result.Message);
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onReportViolation(val) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("Report", "ReportViolation", new { area =""})',
+            data: { id: val },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#show-reportviolation').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+</script>

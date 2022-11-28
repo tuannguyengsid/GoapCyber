@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Plugin for TinyMCE Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Gilles Migliori">
+    <meta name="copyright" content="miglisoft">
+    <meta name="description" content="Bootstrap Plugin for TinyMCE adds a Bootstrap 4 toolbar to your Rich Text Editor. It allows you to use Bootstrap 4 components such as Templates, Alerts, Buttons, Cards, etc..">
+    <meta name="language" content="en">
+    <meta name="robots" content="noindex">
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- TinyMCE -->
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@5.10.2/tinymce.js"></script>
+    <!-- Bootstrap plugin -->
+    <script src="../plugin/plugin.min.js"></script>
+</head>
+
+<body>
+    <div class="container py-5">
+
+        <h1 class="text-secondary font-weight-normal mb-4">Bootstrap Plugin for TinyMCE - Bootstrap 4 Demo</h1>
+        <details class="mb-5 bg-dark text-light">
+            <summary class="p-3" style="outline-color: transparent">keys &amp; special features</summary>
+
+            <article class="px-4 pt-2">
+
+                <h2 class="h4 text-dark font-weight-normal bg-secondary px-3 py-2 mb-3">Special keys</h2>
+
+                <dl class="row pl-5 mb-5">
+                    <dt class="col-sm-3"><kbd class="badge badge-secondary">Enter</kbd></dt>
+                    <dd class="col-sm-9">Add a new paragraph after the current element</dd>
+                    <dt class="col-sm-3"><kbd class="badge badge-secondary">Shift + Enter</kbd></dt>
+                    <dd class="col-sm-9">Insert a line break</dd>
+                    <dt class="col-sm-3"><kbd class="badge badge-secondary">Right-click</kbd></dt>
+                    <dd class="col-sm-9">Shows the context menu to add a new paragraph before or after the current element</dd>
+                </dl>
+            </article>
+
+            <article class="px-4 pt-2 pb-4">
+
+                <h2 class="h4 text-dark font-weight-normal bg-secondary px-3 py-2 mb-3">Bootstrap 4 styles <small class="small">(margins, paddings, ...)</small></h2>
+                <div class="pl-5">
+                    <p>Select an element in the editor then use the <em>styles</em> dropdown list to apply the available styles.</p>
+                    <p class="text-underline">To apply styles on parent containers:</p>
+
+                    <ol>
+                        <li class="mb-4">Select the container by clicking on the corresponding tag in the editor's status bar<br><img src="../plugin/assets/images/tinymce-status-bar.png" class="img-thumbnail mt-3" alt="tinyMce Status bar"></li>
+                        <li>Use the <em>styles</em> dropdown list to apply the available styles.<br><img src="../plugin/assets/images/tinymce-styles-dropdown.png" class="img-thumbnail mt-3" alt="tinyMce Styles dropdown"></li>
+                    </ol>
+                </div>
+            </article>
+        </details>
+        <div class="d-flex justify-content-end mb-2">
+            <a href="../plugin/snippets/snippets-manager.html" class="btn btn-sm btn-secondary mr-2" target="_blank">Open the Snippets Manager <i class="fas fa-external-link-alt ml-2"></i></a>
+            <a href="../plugin/templates/templates-manager.html" class="btn btn-sm btn-secondary" target="_blank">Open the Templates Manager <i class="fas fa-external-link-alt ml-2"></i></a>
+        </div>
+        <textarea class="tinymce" style="min-height:80vh">
+            <div class="bg-light">
+                <div class="container py-4 px-3">
+
+                    <!-- Buttons -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Buttons</h2>
+                            <button type="button" class="btn btn-primary mb-2 mb-md-0" data-test="true">Primary</button>
+                            <button type="button" class="btn btn-secondary mb-2 mb-md-0">Secondary</button>
+                            <button type="button" class="btn btn-success mb-2 mb-md-0">Success</button>
+                            <button type="button" class="btn btn-danger mb-2 mb-md-0">Danger</button>
+                            <button type="button" class="btn btn-warning mb-2 mb-md-0">Warning</button>
+                            <button type="button" class="btn btn-info mb-2 mb-md-0">Info</button>
+                            <button type="button" class="btn btn-light mb-2 mb-md-0">Light</button>
+                            <button type="button" class="btn btn-dark mb-2 mb-md-0">Dark</button>
+                            <button type="button" class="btn btn-link mb-2 mb-md-0">Link</button>
+
+                            <hr class="w-100">
+
+                            <button type="button" class="btn btn-outline-primary mb-2 mb-md-0">Primary</button>
+                            <button type="button" class="btn btn-outline-dark mb-2 mb-md-0">Secondary</button>
+                            <button type="button" class="btn btn-outline-success mb-2 mb-md-0">Success</button>
+                            <button type="button" class="btn btn-outline-danger mb-2 mb-md-0">Danger</button>
+                            <button type="button" class="btn btn-outline-warning mb-2 mb-md-0">Warning</button>
+                            <button type="button" class="btn btn-outline-info mb-2 mb-md-0">Info</button>
+                            <button type="button" class="btn btn-outline-light mb-2 mb-md-0">Light</button>
+                            <button type="button" class="btn btn-outline-dark mb-2 mb-md-0">Dark</button>
+
+                            <hr class="w-100">
+
+                            <button type="button" class="btn btn-dark btn-lg mb-2 mb-md-0">Large button</button>
+                            <button type="button" class="btn btn-secondary mb-2 mb-md-0">Normal button</button>
+                            <button type="button" class="btn btn-light btn-sm mb-2 mb-md-0">Small button</button>
+
+                            <hr class="w-100">
+
+                            <a class="btn btn-primary mb-2 mb-md-0" href="#" role="button">Link<i class="fas fa-link ml-2"></i></a>
+                            <button class="btn btn-primary mb-2 mb-md-0" type="submit">Submit Button<i class="fas fa-check ml-2"></i></button>
+                            <input class="btn btn-primary mb-2 mb-md-0" type="button" value="Input">
+                            <input class="btn btn-primary mb-2 mb-md-0" type="submit" value="Input type=submit">
+                            <input class="btn btn-primary mb-2 mb-md-0" type="reset" value="Input type=reset">
+
+                            <hr class="w-100">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-outline-info btn-lg btn-block mb-2 mb-md-0"><i class="fas fa-user-secret mr-2"></i>Block level button</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-outline-danger btn-lg btn-block mb-2 mb-md-0">Another Block level button<i class="fas fa-user-nurse ml-2"></i></button>
+                                </div>
+                            </div>
+
+                            <hr class="w-100">
+
+                            <button type="button" class="btn btn-info mb-2 mb-md-0">Icon After <i class="far fa-address-card ml-2"></i></button>
+                            <button type="button" class="btn btn-danger mb-2 mb-md-0"><i class="fas fa-camera mr-2"></i> Icon Before</button>
+                            <button type="button" class="btn btn-success mb-2 mb-md-0">
+                                Notifications <span class="badge badge-light ml-2">4</span>
+                            </button>
+                            <button type="button" class="btn btn-warning mb-2 mb-md-0"><i class="fas fa-umbrella-beach mr-2"></i> Icon + Notifications <span class="badge badge-light ml-2">4</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Icons -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark text-center rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Icons</h2>
+                            <i class="fas fa-envelope-open fa-border text-secondary fa-3x mx-5 mb-4"></i>
+                            <i class="fas fa-bicycle mx-5 mb-4" style="font-size:3em;color:#8c2dcc;"></i>
+                            <i class="fas fa-bomb text-danger fa-rotate-90 fa-flip-horizontal fa-3x mx-5 mb-4"></i>
+                            <i class="fas fa-palette text-warning fa-3x mx-5 mb-4"></i>
+                            <i class="fab fa-earlybirds fa-border text-info fa-3x mx-5 mb-4"></i>
+                            <i class="fas fa-peace text-dark fa-3x mx-5 mb-4"></i>
+                            <i class="fas fa-spinner fa-pulse fa-3x mx-5 mb-4" style="color:#2DCCA7"></i>
+                            <i class="fas fa-compact-disc fa-spin fa-3x mx-5 mb-4" style="color:#6E6B5D"></i>
+                        </div>
+                    </div>
+
+                    <!-- Images -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Image</h2>
+                            <img class="img-thumbnail d-block mx-auto img-fluid" alt="Beautiful Greek landscape" src="../plugin/assets/images/default.jpg" width:"400" height:"267">
+                        </div>
+                    </div>
+
+                    <!-- Tables -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Table</h2>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <caption>List of users</caption>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Breadcrumbs -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Breadcrumbs</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                    <li class="breadcrumb-item"><a href="#">Category</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Page</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- pagination -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Pagination</h2>
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item active"><span class="page-link"> 2 <span class="sr-only">(current)</span></span></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                            </ul>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Badge -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Badge</h2>
+                            <p class="mb-4 h5">Example heading <span class="badge badge-dark">New</span></p>
+                            <div class="d-flex align-items-center justify-content-around mb-3">
+                                <div>
+                                    <button type="button" class="btn btn-primary">
+                                        Notifications <span class="badge badge-light">4</span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <span class="badge badge-danger">Danger</span>
+                                </div>
+                                <div>
+                                    <span class="badge badge-pill badge-warning">Warning</span>
+                                </div>
+                                <div>
+                                    <a href="#" class="badge badge-dark">Dark</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Alert</h2>
+                            <div class="alert alert-primary" role="alert">
+                                A simple primary alert—check it out!
+                            </div>
+                            <div class="alert alert-primary" role="alert">
+                                A simple primary alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+                            </div>
+                            <div class="alert alert-success" role="alert">
+                                <h2 class="alert-heading">Well done!</h2>
+                                <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                                <hr>
+                                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                            </div>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Cards</h2>
+                            <div class="container">
+                                <div class="card-deck">
+                                    <div class="card bg-light">
+                                        <img src="../plugin/assets/images/default.jpg" width:"400" height:"267" class="card-img-top" alt="" />
+                                        <div class="card-body">
+
+                                            <p class="card-title h5">Card title</p>
+                                            <p class="card-text">
+                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Last updated 3 mins ago</small>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-light">
+                                        <img src="../plugin/assets/images/default.jpg" width:"400" height:"267" class="card-img-top" alt="" />
+                                        <div class="card-body">
+
+                                            <p class="card-title h5">Card title</p>
+                                            <p class="card-text">
+                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Last updated 3 mins ago</small>
+                                        </div>
+                                    </div>
+                                    <div class="card bg-light">
+                                        <img src="../plugin/assets/images/default.jpg" width:"400" height:"267" class="card-img-top" alt="" />
+                                        <div class="card-body">
+
+                                            <p class="card-title h5">Card title</p>
+                                            <p class="card-text">
+                                                This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Last updated 3 mins ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Modal</h2>
+                            <p> <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#nnlrbpgq"> Launch demo modal</button> </p>
+                            <div class="modal fade" id="nnlrbpgq" aria-labelledby="nnlrbpgqLabel" aria-hidden="true" data-mce-tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <p class="modal-title h5" id="nnlrbpgqLabel">Modal title</p><button class="close" type="button" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button></div>
+                                        <div class="modal-body">...</div>
+                                        <div class="modal-footer"><button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button> <button class="btn btn-primary" type="button">Save changes</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full Snippet -->
+
+                    <div class="row mb-4">
+                        <div class="col pb-3 mb-4 bg-white border border-dark rounded">
+
+                            <h2 class="h4 py-2 mx-n3 mb-4 rounded-top text-center text-white bg-dark text-uppercase font-weight-light">Full Pricing table Snippet</h2>
+                    <section class="py-5 bg-primary">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card bg-success mb-5 mb-lg-0 rounded-lg shadow">
+                                        <div class="card-header">
+
+                                            <p class="card-title h5 text-white-50 text-uppercase text-center">
+							Free
+						</p>
+
+                                            <h6 class="h1 text-white text-center">
+							$0<span class="h6 text-white-50">/month</span>
+						</h6>
+                                        </div>
+                                        <div class="card-body bg-light rounded-bottom">
+
+                                            <ul class="list-unstyled mb-4">
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-success"></i></span>Single User
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-success"></i></span>5GB Storage
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-success"></i></span>Unlimited Public Projects
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-success"></i></span>Community Access
+                                                </li>
+                                                <li class="text-muted mb-3">
+                                                    <span class="mr-3"><i class="fas fa-times"></i></span>Unlimited Private Projects
+                                                </li>
+                                                <li class="text-muted mb-3">
+                                                    <span class="mr-3"><i class="fas fa-times"></i></span>Dedicated Phone Support
+                                                </li>
+                                                <li class="text-muted mb-3">
+                                                    <span class="mr-3"><i class="fas fa-times"></i></span>Free Subdomain
+                                                </li>
+                                                <li class="text-muted mb-3">
+                                                    <span class="mr-3"><i class="fas fa-times"></i></span>Monthly Status Reports
+                                                </li>
+                                            </ul><a href="#" class="btn btn-block btn-primary text-uppercase rounded-lg py-3">Buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card bg-warning mb-5 mb-lg-0 rounded-lg shadow">
+                                        <div class="card-header">
+
+                                            <p class="card-title h5 text-white-50 text-uppercase text-center">
+							Plus
+						</p>
+
+                                            <p class="h1 text-white text-center">
+							$9<span class="h6 text-white-50">/month</span>
+						</p>
+                                        </div>
+                                        <div class="card-body bg-light rounded-bottom">
+
+                                            <ul class="list-unstyled mb-4">
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span><strong>5 Users</strong>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>50GB Storage
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>Unlimited Public Projects
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>Community Access
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>Unlimited Private Projects
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>Dedicated Phone Support
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-warning"></i></span>Free Subdomain
+                                                </li>
+                                                <li class="text-muted mb-3">
+                                                    <span class="mr-3"><i class="fas fa-times"></i></span>Monthly Status Reports
+                                                </li>
+                                            </ul><a href="#" class="btn btn-block btn-primary text-uppercase rounded-lg py-3">Buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card bg-danger mb-5 mb-lg-0 rounded-lg shadow">
+                                        <div class="card-header">
+
+                                            <p class="card-title h5 text-white-50 text-uppercase text-center">
+							Pro
+						</p>
+
+                                            <h6 class="h1 text-white text-center">
+							$29<span class="h6 text-white-50">/month</span>
+						</h6>
+                                        </div>
+                                        <div class="card-body bg-light rounded-bottom">
+
+                                            <ul class="list-unstyled mb-4">
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span><strong>Unlimited Users</strong>
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>150GB Storage
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>Unlimited Public Projects
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>Community Access
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>Unlimited Private Projects
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>Dedicated Phone Support
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span><strong>Unlimited</strong> Free Subdomains
+                                                </li>
+                                                <li class="mb-3">
+                                                    <span class="mr-3"><i class="fas fa-check text-danger"></i></span>Monthly Status Reports
+                                                </li>
+                                            </ul><a href="#" class="btn btn-block btn-primary text-uppercase rounded-lg py-3">Buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </textarea>
+        <p class="text-center mt-4"><a href="https://www.tinymce-bootstrap-plugin.com/" title="Bootstrap Plugin for TinyMCE">&COPY; Bootstrap Plugin for TinyMCE</a></p>
+    </div>
+    <script src="https://kit.fontawesome.com/dc840779d0.js" crossorigin="anonymous"></script>
+    <script>
+        if (typeof (base_url) == "undefined") {
+            var base_url = location.protocol + '//' + location.host + '/';
+
+            const LOCAL_DOMAINS = ["localhost", "127.0.0.1", 'tinymce-bootstrap-plugin'];
+            if (LOCAL_DOMAINS.includes(window.location.hostname)) {
+                var tbpKey = 'localhost-key-here';
+            } else {
+                var tbpKey = 'production-key-here';
+            }
+        }
+        // uncomment the following line to test if your key is properly set
+        // console.log(tbpKey);
+        tinymce.init({
+            // language: 'fr_FR',
+            // language_url :'/plugin/langs/fr_FR.js',
+            selector: 'textarea.tinymce',
+            toolbar_drawer: false,
+            plugins: 'advlist autolink bootstrap link image lists charmap print preview help table',
+            toolbar: [
+            'undo redo | bootstrap',
+            'cut copy paste | styleselect | alignleft aligncenter alignright alignjustify | bold italic | link image | preview | help'],
+            contextmenu: "link image imagetools table spellchecker | bootstrap",
+            file_picker_types: 'file image media',
+            bootstrapConfig: {
+                // language: 'fr_FR',
+                url: base_url + 'plugin/',
+                iconFont: 'fontawesome5',
+                imagesPath: '/demo/demo-images',
+                key: tbpKey,
+                enableTemplateEdition: false
+            },
+            formats: {
+                alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-left'},
+                aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-center'},
+                alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-right'},
+                alignjustify: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-justify'},
+                bold: {inline : 'strong'},
+                italic: {inline : 'em'},
+                underline: {inline : 'u'},
+                sup: {inline : 'sup'},
+                sub: {inline : 'sub'},
+                strikethrough: {inline : 'del'}
+            },
+            style_formats: [
+                { title: 'Headings', items: [
+                    { title: 'Heading 1', format: 'h1' },
+                    { title: 'Heading 2', format: 'h2' },
+                    { title: 'Heading 3', format: 'h3' },
+                    { title: 'Heading 4', format: 'h4' },
+                    { title: 'Heading 5', format: 'h5' },
+                    { title: 'Heading 6', format: 'h6' }
+                ]},
+                { title: 'Blocks', items: [
+                    { title: 'Paragraph', format: 'p' },
+                    { title: 'Blockquote', format: 'blockquote' },
+                    { title: 'Div', block: 'div', wrapper: true }
+                ]},
+                { title: 'Containers', items: [
+                    { title: 'Container fluid', block: 'div', classes: 'container-fluid', wrapper: true },
+                    { title: 'Container', block: 'div', classes: 'container', wrapper: true },
+                    { title: 'Section', block: 'section', wrapper: true },
+                    { title: 'Article', block: 'article', wrapper: true }
+                ]}
+            ],
+            style_formats_merge: false,
+            style_formats_autohide: true
+        });
+    </script>
+</body>
+
+</html>

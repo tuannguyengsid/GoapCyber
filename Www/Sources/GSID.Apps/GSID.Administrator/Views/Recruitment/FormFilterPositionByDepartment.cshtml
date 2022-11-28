@@ -1,0 +1,15 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model PositionFilterModel
+
+@Html.DropDownListFor(model => model.PositionId, new SelectList(Model.Positions, "Id", "NameVn"), "---Chọn vị trí---", new { @class = "form-control select2 select-placeholder" })
+@Html.ValidationMessageFor(model => model.PositionId)
+<script type="text/javascript">
+    $(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+    });
+</script>

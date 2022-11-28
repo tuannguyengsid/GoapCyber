@@ -1,0 +1,104 @@
+﻿@using GSID.Admin.Helpers;
+@model List<GSID.Model.MongodbModels.Permission>
+@{
+    string SelectNode = (string)ViewBag.SelectNode;
+}
+
+<!-- .modal for add task -->
+<div class="modal draggable fade" id="modalViewRoleFunction" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-40" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-upload"></i> Danh sách chức năng</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 mt-e-10 tabular-border">
+                        <div id="listf">
+                            <ul>
+                                <li class="jstree-open" id="0">Tất cả @Html.Action("Children", Request.RequestContext.RouteData.Values["controller"].ToString(), new { ParentID = string.Empty })</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm waves-effect waves-light btn-danger" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Thoát</button>
+                @Html.RawActionLink("<i class='fa fa-save'></i> Chọn", null, null, null, new { @class = "btn btn-default btn-sm btn-apply-role", href="javascript:;" })
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var tree = $('#listf');
+        var c = [], u = [];
+        tree.on('changed.jstree', function (e, data) {
+            var i, j;
+            c = [];
+            for (i = 0, j = data.selected.length; i < j; i++) {
+                if (data.instance.get_node(data.selected[i]).id != 0) {
+                    c.push(data.instance.get_node(data.selected[i]).id);
+                }
+            }
+        }).on("loaded.jstree", function (e, data) {
+            var ids = $('#ListPermisison').val().split(',');
+            data.instance.select_node(ids);
+        });
+
+        tree.jstree({
+            'core': {
+                'check_callback': true,
+                'multiple': true
+            },
+            'checkbox': {
+                'keep_selected_style': false
+            },
+            'plugins': ['checkbox', 'real_checkboxes'],
+            'types': {
+                'default': {
+                    'icon': 'fa fa-folder'
+                }
+            }
+        });
+
+        $('.btn-apply-role').click(function () {
+            tree.find(".jstree-undetermined").each(function (i, element) {
+                if ($(element).closest('.jstree-node').attr("id") != 0) {
+                    u.push($(element).closest('.jstree-node').attr("id"));
+                }
+            });
+
+            $('#ListPermisison').val(c.join(','));
+            $('#Listundetermined').val(u.join(','));
+
+            $('#modalViewRoleFunction').modal('hide');
+        });
+    });
+
+    $(function () {
+        "use strict";
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#modalViewRoleFunction').modal('show');
+    });
+</script>

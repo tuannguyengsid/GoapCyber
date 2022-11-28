@@ -1,0 +1,284 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model SiteEditViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border tabular-form", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            @Html.HiddenFor(m => m.Id)
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="row row-flex">
+                            <div class="col-md-9" data-step="1" data-intro="Nhập liệu nội dung" data-position='right'>
+                                <div class="tab-container tab-default">
+                                    <ul class="nav nav-tabs" data-step="2" data-intro="Lựa chọn ngôn ngữ để <br/>nhập nội dung phù hợp theo ngôn ngữ" data-position='right'>
+                                        <li class="active"><a href="#vietnamese" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                        <li><a href="#english" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="vietnamese">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameVn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên văn phòng" })
+                                                    @Html.ValidationMessageFor(model => model.NameVn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.AddressVn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.AddressVn, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                                                    @Html.ValidationMessageFor(model => model.AddressVn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.DescriptionVn)</label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextAreaFor(model => model.DescriptionVn, new { @class = "form-control", @placeholder = "Mô tả" })
+                                                    @Html.ValidationMessageFor(model => model.DescriptionVn)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="english">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameEn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên văn phòng" })
+                                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.AddressEn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.AddressEn, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                                                    @Html.ValidationMessageFor(model => model.AddressEn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.DescriptionEn)</label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control", @placeholder = "Mô tả" })
+                                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 tabular-border">
+                                <div class="tab-container tab-default clearfix">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tbsocialmedia" data-toggle="tab">Thuộc tính</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active  clearfix" id="tbsocialmedia">
+                                            <div class="accordion-group clearfix" id="accordionGeneral">
+                                                <div class="panel accordion-item" data-step="3" data-position='left' data-intro="Nhập các thuộc tính liên quan nơi làm việc">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionGeneral" href="#collapseaGeneral" aria-expanded="true"><h2>Thông tin chung</h2></a>
+                                                    <div id="collapseaGeneral" class="collapse in" aria-expanded="true">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">Quốc gia <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-12 tabular-border">
+                                                                            @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.Countries, "Id", "NameVn"), "---Quốc gia---", new { @class = "form-control select2 select-placeholder" })
+                                                                            @Html.ValidationMessageFor(model => model.CountryId)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">Tỉnh/Thành phố <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-12" id="provinceContainer">
+                                                                            @Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "NameVn"), "---Tỉnh/thành---", new { @class = "form-control select2 select-placeholder" })
+                                                                            @Html.ValidationMessageFor(model => model.ProvinceId)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">Quận/Huyện <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-12" id="districtContainer">
+                                                                            @Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.Districts, "Id", "NameVn"), "---Quận/huyện---", new { @class = "form-control select2 select-placeholder" })
+                                                                            @Html.ValidationMessageFor(model => model.DistrictId)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.Email)</label>
+                                                                        <div class="col-sm-12">
+                                                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Nhập email" })
+                                                                            @Html.ValidationMessageFor(model => model.Email)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.PhoneNumber)</label>
+                                                                        <div class="col-sm-12 tabular-border">
+                                                                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "Số điện thoại" })
+                                                                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-4 tabular-border pt-1">
+                                                                            @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                                                            @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit", data_step = "4", data_intro = "Bấm Lưu để lưu dữ liệu đã nhập liệu.", data_position = "top" }).IfRole("Update", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#CountryId').change(function () {
+            var selectedId = this.value;
+            if (selectedId.length > 0)
+                $('#provinceContainer').show();
+            $('#provinceContainer').load('@Url.Action("FormFilterProvinceByCountryType1", "Province")?Country=' + selectedId);
+            $('#districtContainer').load('@Url.Action("FormFilterDistrictByProvinceType1", "District")?Province=');
+        });
+
+        $('#ProvinceId').change(function () {
+            var selectedProvinceId = this.value;
+            if (selectedProvinceId.length > 0)
+                $('#districtContainer').show();
+            $('#districtContainer').load('@Url.Action("FormFilterDistrictByProvinceType1", "District")?Province=' + selectedProvinceId);
+        });
+    });
+    $(function () {
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+
+        $('form').submit(function () {
+            var options = {};
+            options = {
+                url: '@Url.Action("Update", "Site")',
+                type: 'POST',
+                delegation: true,
+                beforeSerialize: function (form, opts) {
+                    if ($('.fileinput-preview img').length <= 0) {
+                        $("#ImageChange").attr("value", "2");
+                    }
+                    else if ($('.fileinput-preview img').length > 0) {
+                        $("#ImageChange").attr("value", "1");
+                    }
+                },
+                beforeSubmit: function (arr, form, options) {
+                    var validator = form.validate(); // obtain validator
+                    var anyError = false;
+                    try {
+                        form.find("input,select").each(function () {
+                            if (!validator.element(this)) { // validate every input element inside this step
+                                anyError = true;
+                            }
+                        });
+                    } catch (e) {
+                    }
+
+                    $('.tab-container .nav-tabs > li').each(function (index, value) {
+                        var $tab = $(this);
+                        var elName = $tab.find('a').attr('href');
+                        var _hasValid = $(elName).find('.input-validation-error');
+                        if (_hasValid.length > 0) {
+                            $tab.addClass('input-validation-error');
+                        }
+                        else {
+                            $tab.removeClass('input-validation-error');
+                        }
+                    });
+                    if (anyError) {
+                        return false; // exit if any error found
+                    }
+
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                },  // pre-submit callback
+                success: function (data, statusText) {
+                    var idmodal = '#myModal';
+                    $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                    $(idmodal + ' .modal-body p').text(data.Message);
+                    if (data.Status == '2') {
+                        $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                        $("#hdfid").val(data.Id);
+                        $.validator.unobtrusive.parse("form");
+                    }
+                    $(idmodal).modal();
+                    swal.close();
+                },  // post-submit callback
+                timeout: 10000,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                    console.log("in ajaxForm error");
+                    swal.close();
+                },
+                complete: function (xhr) {
+                    console.log("in ajaxForm complete");
+                    swal.close();
+                    //status.html(xhr.responseText);
+                }
+            };
+            // submit the form
+            $(this).ajaxSubmit(options);
+            // return false to prevent normal browser submit and page navigation
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

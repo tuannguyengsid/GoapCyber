@@ -1,0 +1,307 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.ViewModels.MongoModels;
+@model DesktopViewModel
+
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="container-fluid statics-desktop">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="panel panel-default alt with-footer" data-step="1" data-intro="Danh sách hồ sơ xin việc mới nhất" data-position='right'>
+                            <div class="panel-heading">
+                                <h2 class="title">Hồ sơ xin việc mới nhất</h2>
+                                <div class="panel-ctrls">
+                                    @*<div class="badge badge-info">99</div>*@
+                                </div>
+                            </div>
+                            <div class="panel-body" style="max-height: 400px;overflow-x: auto;">
+                                @if (Model.CurriculumVitaes != null)
+                                {
+                                    <div class="table-flipscroll">
+                                        <table class="table table-bordered hoverTable tablesaw table-striped table-language" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Họ và tên</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Email</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Số điện thoại</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngành nghề</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Tin tuyển dụng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.CurriculumVitaes)
+                                                {
+                                                    string fullName = item.Contact != null ? item.Contact.FullName : "";
+                                                    string email = item.Contact != null ? item.Contact.Email : "";
+                                                    string phoneNumber = item.Contact != null ? item.Contact.PhoneNumber : "";
+                                                    string careerName = item.Career != null ? item.Career.NameVn : "";
+                                                    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+
+                                                    string recruitmentNameVn = "", recruitmentNameEn = "", siteNameVn = "", departmentNameVn = "", positionNameVn = "", recruitmentTagNameVn = "", expirationDate = "";
+                                                    if (item.Recruitment != null)
+                                                    {
+                                                        recruitmentNameVn = item.Recruitment != null ? item.Recruitment.NameVn : "";
+                                                        recruitmentNameEn = item.Recruitment != null ? item.Recruitment.NameEn : "";
+                                                        siteNameVn = item.Recruitment.Site != null ? item.Recruitment.Site.NameVn : "";
+                                                        departmentNameVn = item.Recruitment.Department != null ? item.Recruitment.Department.NameVn : "";
+                                                        positionNameVn = item.Recruitment.Site != null ? item.Recruitment.Site.NameVn : "";
+                                                        recruitmentTagNameVn = item.Recruitment.RecruitmentTag != null ? item.Recruitment.RecruitmentTag.NameVn : "";
+                                                        expirationDate = (item.Recruitment.ExpirationDate.HasValue ? item.Recruitment.ExpirationDate.Value.ToString("dd/MM/yyyy") : "");
+                                                    }
+
+                                                    <tr class="gradeX">
+                                                        <td>
+                                                            <span class="name tooltips" data-trigger="hover" data-original-title="@fullName"><a href="javascript:;" data-toggle="modal" data-target="#myModalCVInfo_@item.Id.ToString()"><b>@fullName</b></a></span>
+
+                                                            <!-- Begin Alert Modal -->
+                                                            <div class="modal fade" id="myModalCVInfo_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                            <h2 class="modal-title">Thông tin liên hệ</h2>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-horizontal">
+                                                                                <div class="row">
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Họ và tên</label>
+                                                                                            <div class="col-md-9">@fullName</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Email</label>
+                                                                                            <div class="col-md-9">@email</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Số điện thoại</label>
+                                                                                            <div class="col-md-9">@phoneNumber</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Tập tin</label>
+                                                                                            <div class="col-md-9">
+                                                                                                @if (!string.IsNullOrEmpty(item.FileSrc))
+                                                                                                {
+                                                                                                    <a href="@string.Format("{0}/{1}", httpStatic, item.FileSrc)">Tải tập tin</a>
+                                                                                                }
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Đóng</button>
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div><!-- /.modal-dialog -->
+                                                            </div><!-- /.End Alert Modal  -->
+                                                        </td>
+                                                        <td><span class="name tooltips" data-trigger="hover" data-original-title="@email">@email</span></td>
+                                                        <td><span class="name tooltips" data-trigger="hover" data-original-title="@phoneNumber">@phoneNumber</span></td>
+                                                        <td><span class="name tooltips" data-trigger="hover" data-original-title="@careerName">@careerName</span></td>
+                                                        <td class="flex">
+                                                            <div>
+                                                                <div class="language">
+                                                                    <label class="lblanguage"><img src="~/Content/Control/assets/flags/vn.svg" /></label>
+                                                                    <span class="name tooltips" data-trigger="hover" data-original-title="@recruitmentNameVn"><b>@recruitmentNameVn</b></span>
+                                                                </div>
+                                                                <div class="language">
+                                                                    <label class="lblanguage"><img src="~/Content/Control/assets/flags/en.svg" /></label>
+                                                                    <span class="name tooltips" data-trigger="hover" data-original-title="@recruitmentNameEn"><b>@recruitmentNameEn</b></span>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                }
+                            </div>
+                            <div class="panel-footer">
+                                <a href="@Url.Action("Index","CurriculumVitae")" class="btn btn-default">Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="panel panel-default alt with-footer" data-step="2" data-intro="Danh sách tin nhắn liên hệ mới nhất" data-position='left'>
+                            <div class="panel-heading">
+                                <h2 class="title">Tin nhắn liên hệ</h2>
+                                <div class="panel-ctrls">
+                                    @*<div class="badge badge-info">99</div>*@
+                                </div>
+                            </div>
+                            <div class="panel-body" style="max-height: 400px; overflow-x: auto;">
+                                <div class="table-flipscroll">
+                                    <table class="table table-bordered hoverTable tablesaw table-striped" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Họ và tên</th>
+                                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Liên hệ</th>
+                                                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Thời gian</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.ContactMessages.Count > 0)
+                                            {
+                                                foreach (var item in Model.ContactMessages)
+                                                {
+                                                    var contact = item.Contact;
+                                                    string fullName = contact != null ? contact.FullName : "";
+                                                    string email = contact != null ? contact.Email : "";
+                                                    string phoneNumber = contact != null ? contact.PhoneNumber : "";
+                                                    string editUrl = Url.Action("Update", "ContactMessage", new { gsid = item.Id.ToString() });
+                                                    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+
+                                                    <tr class="gradeX">
+                                                        <td>
+                                                            <span class="name tooltips" data-trigger="hover" data-original-title="@fullName"><a href="javascript:;" data-toggle="modal" data-target="#myModalMessageInfo_@item.Id.ToString()"><b>@fullName</b></a></span>
+
+                                                            <!-- Begin Alert Modal -->
+                                                            <div class="modal fade" id="myModalMessageInfo_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                            <h2 class="modal-title">Thông tin liên hệ</h2>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-horizontal">
+                                                                                <div class="row">
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Họ và tên</label>
+                                                                                            <div class="col-md-9">@fullName</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Email</label>
+                                                                                            <div class="col-md-9">@email</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Số điện thoại</label>
+                                                                                            <div class="col-md-9">@phoneNumber</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                    <div class="col-xs-12 col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-md-3">Tin nhắn</label>
+                                                                                            <div class="col-md-9">@item.Message</div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Đóng</button>
+                                                                        </div>
+                                                                    </div><!-- /.modal-content -->
+                                                                </div><!-- /.modal-dialog -->
+                                                            </div><!-- /.End Alert Modal  -->
+                                                        </td>
+                                                        <td>
+                                                            <span class="name tooltips" data-trigger="hover" data-original-title="@email">@email</span>
+                                                            <span class="name tooltips" data-trigger="hover" data-original-title="@phoneNumber">@phoneNumber</span>
+                                                        </td>
+                                                        <td>
+                                                            <span class="name tooltips" data-trigger="hover" data-original-title="@addDate"><i class="ion-plus"></i>: @addDate</span>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="@Url.Action("Index","ContactMessage")" class="btn btn-default">Xem thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-6" data-step="3" data-intro="Tổng số danh bạ khách hàng trong hệ thống" data-position='left'>
+                        <a href="@Url.Action("Index","Contact")" class="gsid-info-tile white">
+                            <div class="tile-heading">
+                                <span class="title">Danh bạ</span>
+                            </div>
+                            <div class="tile-body">
+                                <span class="text"><sup></sup>@Model.TotalContact</span>
+                                <span class="sparkline bar" id="tectonicinfotile1bteal"><canvas width="76" height="40" style="display: inline-block; width: 76px; height: 40px; vertical-align: top;"></canvas></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6" data-step="4" data-intro="Tổng số hồ sơ xin việc trong hệ thống" data-position='left'>
+                        <a href="@Url.Action("Index","CurriculumVitae")" class="gsid-info-tile white">
+                            <div class="tile-heading">
+                                <span class="title">Hồ sơ xin việc</span>
+                            </div>
+                            <div class="tile-body">
+                                <span class="text"><sup></sup>@Model.TotalICurriculumVitae</span>
+                                <span class="sparkline bar" id="tectonicinfotile1lgreen"><canvas width="72" height="40" style="display: inline-block; width: 72px; height: 40px; vertical-align: top;"></canvas></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6" data-step="5" data-intro="Tổng số tin tuyển dụng trong hệ thống" data-position='left'>
+                        <a href="@Url.Action("Index","Recruitment")" class="gsid-info-tile white">
+                            <div class="tile-heading">
+                                <span class="title">Tin tuyển dụng</span>
+                            </div>
+                            <div class="tile-body">
+                                <span class="text"><sup></sup>@Model.TotalRecruitment</span>
+                                <span class="sparkline bar" id="tectonicinfotile1pcyan"><canvas width="40" height="40" style="display: inline-block; width: 40px; height: 40px; vertical-align: top;"></canvas></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6" data-step="5" data-intro="Tổng số tin tức trong hệ thống" data-position='left'>
+                        <a href="@Url.Action("Index","News")" class="gsid-info-tile white">
+                            <div class="tile-heading">
+                                <span class="title">Tin tức</span>
+                            </div>
+                            <div class="tile-body">
+                                <span class="text"><sup></sup>@Model.TotalPost</span>
+                                <span class="icon" style=""></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('.desktop');
+    });
+</script>

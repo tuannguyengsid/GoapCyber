@@ -1,0 +1,46 @@
+﻿@using GSID.Model.MongodbModels;
+@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model List<QuickLink>
+
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language viLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        viLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg col-md-6 footer-quicklink">
+                <div class="f_widget dark_widget about-widget">
+                    <h3 class="f-title">@item.NameVn</h3>
+                    @Html.Action("QuickLinkParent", "Init", new { language = currentLan != null ? currentLan.Parent : "", parentId = item.Id })
+                </div>
+            </div>
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg col-md-6 footer-quicklink">
+                <div class="f_widget dark_widget about-widget">
+                    <h3 class="f-title">@item.NameEn</h3>
+                    @Html.Action("QuickLinkParent", "Init", new { language = currentLan != null ? currentLan.Parent : "", parentId = item.Id })
+                </div>
+            </div>
+        }
+    }
+}

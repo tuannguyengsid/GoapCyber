@@ -1,0 +1,188 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model ProductDetailPageViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("EditHomePage", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form EditHomePage", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-heading">
+                        <div class="panel-ctrls"
+                             data-actions-container=""
+                             data-action-collapse='{"target": ".panel-body"}'
+                             data-action-refresh=''
+                             data-action-close=''>
+                        </div>
+                        <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                    </div>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="col-12">
+                            <div class="tab-container tab-default">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#buildform" data-toggle="tab">Thiết lập trang</a></li>
+                                    <li><a href="#informationpage" data-toggle="tab">Thông tin chung</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="buildform">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 mt-e-10">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Quản lý danh mục sản phẩm: </label>
+                                                            <div class="col-sm-10">
+                                                                Truy cập tại Menu => Sản phẩm => Nhóm sản phẩm hoặc <a href="@Url.Action("Index", "ProductCategory", new { Area = "" })">Click tại đây</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-2 control-label">Quản lý sản phẩm: </label>
+                                                            <div class="col-sm-10">
+                                                                Truy cập tại Menu => Sản phẩm => Sản phẩm hoặc <a href="@Url.Action("Index", "Product", new { Area = "" })">Click tại đây</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane " id="informationpage">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-9">
+                                                <div class="row row-flex">
+                                                    <div class="col-sm-12">
+                                                        <div class="tab-container tab-default">
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#activemenu" data-toggle="tab">Kích hoạt menu</a></li>
+                                                            </ul>
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="activemenu">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-1 control-label">Chọn menu</label>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="row">
+                                                                                @if (Model.MenuNodes != null)
+                                                                                {
+                                                                                    string check = (!string.IsNullOrEmpty(Model.MenuActiveId) && Model.MenuActiveId == "home") ? "checked" : "";
+                                                                                    <div class="col-sm-12 radio">
+                                                                                        <input type="radio" @check class="tectonic" id="menu_home" value="home" name="menuactives">
+                                                                                        <label for="menu_home"> Trang chủ</label>
+                                                                                    </div>
+                                                                                    foreach (var item in Model.MenuNodes)
+                                                                                    {
+                                                                                        check = (!string.IsNullOrEmpty(Model.MenuActiveId) && item.Id == Model.MenuActiveId) ? "checked" : "";
+                                                                                        <div class="col-sm-12 radio">
+                                                                                            <input type="radio" @check class="tectonic" id="menu_@item.Id.ToString()" value="@item.Id.ToString()" name="menuactives">
+                                                                                            <label for="menu_@item.Id.ToString()"> @item.NameVn</label>
+                                                                                        </div>
+                                                                                    }
+                                                                                }
+                                                                                @Html.HiddenFor(m => m.MenuActiveId)
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+
+        menuActive('.user-interface');
+
+        $('form.EditHomePage').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                $('#MenuActiveId').val($("input[name='menuactives']:checked").val());
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>

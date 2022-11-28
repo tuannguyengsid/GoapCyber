@@ -1,0 +1,208 @@
+﻿@using GSID.Model.Models;
+@using GSID.WebApp.Helpers;
+@model List<Permission>
+
+<div class="static-leftbar-wrapper leftbar-bunting">
+    <div class="static-leftbar">
+        <div class="leftbar">
+            <div class="widget hide-on-horizontal hide-on-small">
+                <div class="widget-body">
+                    <div class="userinfo clearfix">
+                        <div class="avatar">
+                            <img class="img-responsive img-circle" src="~/Content/Control/assets/demo/avatar/avatar_06.png">
+                            <!-- <span class="status online"></span> -->
+                        </div>
+                        <div class="info">
+                            <span class="name">Nguyễn Quang Nhựt</span>
+                            <span class="email">Info@tphcmphunhuan.gov.vn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget stay-on-collapse" id="widget-leftbar">
+                <nav role="navigation" class="widget-body">
+                    <ul class="acc-menu" style="background:#fff;">
+                        <li>
+                            <a href="~/">
+                                <span class="icon"><i class="ion-monitor"></i></span>
+                                <span class="text" data-localize="nav_dashboard">Bàn làm việc</span>
+                            </a>
+                        </li>
+
+                        @{
+                            var xxx = Model.Where(c => c.ParentId == string.Empty);
+
+                            foreach (var x in xxx)
+                            {
+                                var yyy = Model.Where(c => c.ParentId == x.Id);
+
+                                <li>
+                                    <a href="@x.Url">
+                                        <span class="icon">
+                                            @Html.Raw(x.Icon)
+                                        </span>
+                                        <span class="text" data-localize="nav_options">@x.Name</span>
+                                    </a>
+                                    @if (yyy.Count() > 0)
+                                    {
+                                        <ul class="acc-menu">
+                                            @foreach (var y in yyy)
+                                            {
+                                                <li><a href="@y.Url"><span class="text" data-localize="nav_options_leftbar_scroll">@y.Name</span></a></li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="infobar-wrapper scroll-pane">
+    <div class="infobar scroll-content">
+        <div id="widgetarea">
+            <div class="widget">
+                <div class="widget-heading">
+                    <a href="javascript:;" data-toggle="collapse" data-target="#options">
+                        <h4>Options</h4>
+                    </a>
+                </div>
+                <div id="options" class="collapse in">
+                    <div class="widget-body">
+                        <ul class="media-list">
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body">
+                                        <span class="title">Alerts</span>
+                                        <span class="info">Get notified on new alerts</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <span class="switch">
+                                            <input type="checkbox" class="toggle-input" name="toggle1" id="toggle1">
+                                            <label for="toggle1"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body">
+                                        <span class="title">Notifications</span>
+                                        <span class="info">Get notified on new notifications</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <span class="switch">
+                                            <input type="checkbox" class="toggle-input" name="toggle2" id="toggle2">
+                                            <label for="toggle2"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body">
+                                        <span class="title">Messages</span>
+                                        <span class="info">Get notified on new messages</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <span class="switch">
+                                            <input type="checkbox" class="toggle-input" name="toggle3" id="toggle3">
+                                            <label for="toggle3"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body">
+                                        <span class="title">Warnings</span>
+                                        <span class="info">Get notified on new warnings</span>
+                                    </div>
+                                    <div class="media-right">
+                                        <span class="switch">
+                                            <input type="checkbox" class="toggle-input" name="toggle4" id="toggle4">
+                                            <label for="toggle4"></label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="widget">
+                <div class="widget-heading">
+                    <a href="javascript:;" data-toggle="collapse" data-target="#ranger">
+                        <h4>Sliders</h4>
+                    </a>
+                </div>
+                <div id="ranger" class="collapse in">
+                    <div class="widget-body">
+                        <ul class="media-list">
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body" style="width: 248px;">
+                                        <span class="title">Snap to increments</span>
+                                        <span class="info mb-md">
+                                            <div class="slider-value">
+                                                Amount ($100 increments):
+                                                <span id="slider-snap-inc-amount"></span>
+                                            </div>
+                                        </span>
+                                        <div id="slider-snap-inc" class="slider mb-sm"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body" style="width: 248px;">
+                                        <span class="title">Range</span>
+                                        <span class="info mb-md">
+                                            <div class="slider-value">
+                                                Price range:
+                                                <span id="slider-range-amount"></span>
+                                            </div>
+                                        </span>
+                                        <div id="slider-range" class="slider primary mb-sm"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body" style="width: 248px;">
+                                        <span class="title">Maximum</span>
+                                        <span class="info mb-md">
+                                            <div class="slider-value">
+                                                Maximum Value:
+                                                <span id="slider-range-max-amount"></span>
+                                            </div>
+                                        </span>
+                                        <div id="slider-range-max" class="slider success mb-sm"></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <div class="media-content">
+                                    <div class="media-body" style="width: 248px;">
+                                        <span class="title">Minimum</span>
+                                        <span class="info mb-md">
+                                            <div class="slider-value">
+                                                Minimum Value:
+                                                <span class="slider-value" id="slider-range-min-amount"></span>
+                                            </div>
+                                        </span>
+                                        <div id="slider-range-min" class="slider danger mb-sm"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

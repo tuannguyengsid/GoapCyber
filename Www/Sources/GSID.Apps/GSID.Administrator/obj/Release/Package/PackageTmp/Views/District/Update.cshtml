@@ -1,0 +1,219 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Setting;
+@using GSID.Admin.Helpers;
+@model DistrictEditViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border tabular-form", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            @Html.HiddenFor(m => m.Id)
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#vietnamese" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#english" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="vietnamese">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameVn) <span class="required">(*)</span></label>
+                                        <div class="col-sm-3">
+                                            @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên " })
+                                            @Html.ValidationMessageFor(model => model.NameVn)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="english">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameEn) <span class="required">(*)</span></label>
+                                        <div class="col-sm-3">
+                                            @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên" })
+                                            @Html.ValidationMessageFor(model => model.NameEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#info" data-toggle="tab">Thông tin chung</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="info">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.CountryId) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border">
+                                            @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.Countries, "Id", "NameVn"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                            @Html.ValidationMessageFor(model => model.CountryId)
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="provinceContainer">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.ProvinceId) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border">
+                                            @Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "NameVn"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                            @Html.ValidationMessageFor(model => model.ProvinceId)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border pt-1">
+                                            @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                            @Html.ValidationMessageFor(model => model.IsDeleted)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" }).IfRole("Update", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(function () {
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+        $('#CountryId').change(function () {
+            var selectedId = this.value;
+            if (selectedId.length > 0)
+                $('#provinceContainer').show();
+            $('#provinceContainer').load('@Url.Action("FormFilterProvinceByCountryType2", "Province")?Country=' + selectedId);
+        });
+
+        $('form').submit(function () {
+            var options = {};
+            options = {
+                url: '@Url.Action("Update", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                type: 'POST',
+                delegation: true,
+                beforeSerialize: function (form, opts) {
+                },
+                beforeSubmit: function (arr, form, options) {
+                    var validator = form.validate(); // obtain validator
+                    var anyError = false;
+                    try {
+                        form.find("input,select").each(function () {
+                            if (!validator.element(this)) { // validate every input element inside this step
+                                anyError = true;
+                            }
+                        });
+                    } catch (e) {
+                    }
+
+                    $('.tab-container .nav-tabs > li').each(function (index, value) {
+                        var $tab = $(this);
+                        var elName = $tab.find('a').attr('href');
+                        var _hasValid = $(elName).find('.input-validation-error');
+                        if (_hasValid.length > 0) {
+                            $tab.addClass('input-validation-error');
+                        }
+                        else {
+                            $tab.removeClass('input-validation-error');
+                        }
+                    });
+                    if (anyError) {
+                        return false; // exit if any error found
+                    }
+
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                },  // pre-submit callback
+                success: function (data, statusText) {
+                    var idmodal = '#myModal';
+                    $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                    $(idmodal + ' .modal-body p').text(data.Message);
+                    if (data.Status == '2') {
+                        $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                        $("#hdfid").val(data.Id);
+                        $.validator.unobtrusive.parse("form");
+                    }
+                    $(idmodal).modal();
+                    swal.close();
+                },  // post-submit callback
+                timeout: 10000,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                    console.log("in ajaxForm error");
+                    swal.close();
+                },
+                complete: function (xhr) {
+                    console.log("in ajaxForm complete");
+                    //status.html(xhr.responseText);
+                }
+            };
+            // submit the form
+            $(this).ajaxSubmit(options);
+            // return false to prevent normal browser submit and page navigation
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

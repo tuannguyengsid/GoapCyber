@@ -1,0 +1,1 @@
+User-agent: *Disallow: /url-admin/Allow: /Sitemap: https://msm.com.vn/vn/sitemap.xml

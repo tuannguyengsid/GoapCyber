@@ -1,0 +1,17 @@
+﻿@using GSID.WebApp.ViewModels;
+@using GSID.WebApp.Helpers;
+@model WardFilterModel
+@Html.LabelFor(m => m.WardId)
+@Html.DropDownListFor(model => model.WardId, new SelectList(Model.Wards, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+@Html.ValidationMessageFor(model => model.WardId)
+
+<script>
+    $(function () {
+    //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+
+    });
+</script>

@@ -1,0 +1,101 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model HouseHoldBusinessCreateViewModel
+
+<fieldset>
+    <legend><b>Thông tin người đại diện </b></legend>
+    <div data-row-span="6">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.Gender) <span class="required">(*)</span>
+            <br />
+            <label>@Html.RadioButtonFor(m => m.Gender, 1) Ông.</label> &nbsp;
+            <label>@Html.RadioButtonFor(m => m.Gender, 2) Bà.</label>
+            <br/>
+            @Html.ValidationMessageFor(m => m.Gender)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.FirstName) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", placeholder = "Nguyễn" })
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.MiddleName)
+            @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", placeholder = "Văn" })
+            @Html.ValidationMessageFor(model => model.MiddleName)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.LastName) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", placeholder = "A" })
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+        <div data-field-span="2">
+            @Html.LabelFor(m => m.BirthdayString)
+            @Html.TextBoxFor(model => model.BirthdayString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.BirthdayString)
+        </div>
+    </div>
+
+    <div data-row-span="3">
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.IdentityCard)
+            @Html.TextBoxFor(model => model.IdentityCard, new { @class = "form-control", placeholder = "Chứng minh nhân dân/Passport" })
+            @Html.ValidationMessageFor(model => model.IdentityCard)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.IssuedByIdentityCard)
+            @Html.TextBoxFor(model => model.IssuedByIdentityCard, new { @class = "form-control", placeholder = "Nơi cấp" })
+            @Html.ValidationMessageFor(model => model.IssuedByIdentityCard)
+        </div>
+
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.DatedByIdentityCardString)
+            @Html.TextBoxFor(model => model.DatedByIdentityCardString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.DatedByIdentityCardString)
+        </div>
+    </div>
+
+    <div class="toggler">
+        <div class="toggler-header pull-right" data-toggler="">
+            <span class="label label-primary">Mở rộng</span>
+            <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="toggler-content" style="display:none;">
+            <div data-row-span="1">
+                <div data-field-span="1">
+                    @Html.LabelFor(m => m.UserAddressLine2)
+                    @Html.TextBoxFor(model => model.UserAddressLine2, new { @class = "form-control", placeholder = "Địa chỉ" })
+                    @Html.ValidationMessageFor(model => model.UserAddressLine2)
+                </div>
+            </div>
+
+            <div data-row-span="4">
+                <div data-field-span="2">
+                    @Html.LabelFor(m => m.UserEmail)
+                    @Html.TextBoxFor(model => model.UserEmail, new { @class = "form-control", placeholder = "Email" })
+                    @Html.ValidationMessageFor(model => model.UserEmail)
+                </div>
+                <div data-field-span="1">
+                    @Html.LabelFor(m => m.UserHomePhone)
+                    @Html.TextBoxFor(model => model.UserHomePhone, new { @class = "form-control mask", data_inputmask = "'mask':'(999) 999-9999'", placeholder = "(999) 999-9999" })
+                    @Html.ValidationMessageFor(model => model.UserHomePhone)
+                </div>
+                <div data-field-span="1">
+                    @Html.LabelFor(m => m.UserPhoneNumber)
+                    @Html.TextBoxFor(model => model.UserPhoneNumber, new { @class = "form-control mask", data_inputmask = "'mask':'(999) 999-9999'", placeholder = "(999) 999-9999" })
+                    @Html.ValidationMessageFor(model => model.UserPhoneNumber)
+                </div>
+            </div>
+
+            <div data-row-span="1">
+                <div data-field-span="1">
+                    @Html.LabelFor(m => m.UserNoted)
+                    @Html.TextBoxFor(model => model.UserNoted, new { @class = "summernote" })
+                    @Html.ValidationMessageFor(model => model.UserNoted)
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

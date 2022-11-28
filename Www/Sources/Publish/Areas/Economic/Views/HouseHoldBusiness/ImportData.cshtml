@@ -1,0 +1,109 @@
+﻿
+@using GSID.WebApp.Helpers;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+@model ImportDataViewModel
+@{
+}
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="ImportDatamodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("ImportData", "HouseHoldBusiness", FormMethod.Post, new { @class = "form-horizontal importDataForm", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="modal-title">Nạp dữ liệu</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Type, new { @class = "col-sm-4 control-label" })
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(model => model.Type, new List<SelectListItem>() {
+                                        new SelectListItem() { Value = "1", Text = "Số liệu tình hình xử lý GCN ĐKKD" },
+                                        new SelectListItem() { Value = "2", Text = "Dữ liệu hộ kinh doanh" },
+                                    }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                    @Html.ValidationMessageFor(model => model.Type)
+
+                                    <div id="type_1" class="importtemplate">
+                                        <a href="/ImportTemplate/Import_excel_ho_kinh_doanh_GCN_DKKD.xls">Tải mẫu tình hình xử lý GCN ĐKKD</a>
+                                    </div>
+                                    <div id="type_2" class="importtemplate">
+                                        <a href="/ImportTemplate/Import_excel_ho_kinh_doanh_phuong.xlsx">Tải mẫu Hộ kinh doanh của Phường</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Tập tin nạp dữ liệu</label>
+                                <div class="col-sm-4">
+                                    <input type="file" id="file" name="file" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary btn" id="btnsave" type="submit"><i class="fa fa-save"></i> Lưu</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        initCreateModal();
+    });
+
+    function initCreateModal() {
+        $('#ImportDatamodal').modal();
+        $('.importtemplate').hide();
+
+        $('#Type').change(function () {
+            var value = $(this).val();
+            $('.importtemplate').hide();
+            $('#type_' + value).show();
+        });
+    }
+
+    $(function () {
+        $('form.importDataForm').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    $('#ImportDatamodal').modal('hide');
+                    window.location.href = window.location.href;
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $('#bodymask').hide();
+            },
+        });
+    });
+</script>

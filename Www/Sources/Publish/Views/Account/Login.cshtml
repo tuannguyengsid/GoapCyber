@@ -1,0 +1,199 @@
+﻿@using GSID.WebApp.ViewModels;
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Đăng nhập";
+}
+<div class="wrapper">
+    <div class="header header-filter" style="background-image: url('/Content/Control/assets/img/login-bg.jpg'); background-size: cover; background-position: top center;">
+        <div id="particles-js" style="position:absolute;top:0;left:0; width:100%; height:95%"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 text-center">
+                    <div class="card card-signup">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="header header-primary text-center">
+                                <h4>Đăng nhập</h4>
+                                <div class="social-line">
+                                    @*<a href="#" class="btn btn-just-icon"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="#" class="btn btn-just-icon"><i class="fa fa-twitter"></i></a>
+                                        <a href="#" class="btn btn-just-icon"><i class="fa fa-google-plus"></i></a>*@
+                                </div>
+                            </div>
+                            <h3 class="mt-0">UBND QUẬN PHÚ NHUẬN</h3>
+                            <p class="help-block">G-SID TECHNOLOGY</p>
+                            <div class="content">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control underline-input", @placeholder = "Vui lòng nhập email" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control underline-input", @placeholder = "Vui lòng nhập mật khẩu" })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe, new { name = "optionsCheckboxes", @unchecked = "unchecked" })
+                                        Ghi nhớ
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="footer text-center">
+                                <button type="submit" class="btn btn-primary btn-raised">Đăng nhập<div class="ripple-container"></div></button>
+                            </div>
+                            @*<a href="forgotpass.html" class="btn btn-primary btn-wd btn-lg">Forgot Password?</a>*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="col-lg-12 text-center">
+                    @*<a href="signup.html" class="text-uppercase text-white">Create an account</a>*@
+                    <div class="copyright"> &copy; @DateTime.Now.Year.ToString(), Developed by <a href="http://g-sid.com" target="_blank">G-SID Technology</a> </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+
+<script>
+    /* -----------------------------------------------
+/* How to use? : Check the GitHub README
+/* ----------------------------------------------- */
+
+    /* To load a config file (particles.json) you need to host this demo (MAMP/WAMP/local)... */
+    /*
+    particlesJS.load('particles-js', 'particles.json', function() {
+      console.log('particles.js loaded - callback');
+    });
+    */
+
+    /* Otherwise just put the config content (json): */
+
+    particlesJS('particles-js',
+
+        {
+            "particles": {
+                "number": {
+                    "value": 40,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 10,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true,
+            "config_demo": {
+                "hide_card": false,
+                "background_color": "#b61924",
+                "background_image": "",
+                "background_position": "50% 50%",
+                "background_repeat": "no-repeat",
+                "background_size": "cover"
+            }
+        }
+
+    );
+</script>

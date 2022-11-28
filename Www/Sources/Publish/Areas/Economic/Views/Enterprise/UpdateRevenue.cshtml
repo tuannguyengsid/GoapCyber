@@ -1,0 +1,107 @@
+﻿@using GSID.WebApp.Areas.Economic.ViewModels
+@using GSID.WebApp.Helpers;
+@model EditRevenueViewModel
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="UpdateRevenueModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("UpdateRevenue", "Enterprise", FormMethod.Post, new { @class = "form-horizontal updateRevenue", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="modal-title">Cập nhật thông tin doanh thu</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            @Html.HiddenFor(m => m.Id)
+                            @Html.HiddenFor(m => m.EnterpriseId)
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TotalRevenue, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.TextBoxFor(model => model.TotalRevenue, new { @class = "form-control", @placeholder = "Nhập số lượng lao động" })
+                                    @Html.ValidationMessageFor(model => model.TotalRevenue)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Year, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-4">
+                                    @Html.DropDownListFor(model => model.Year, Model.Years, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                    @Html.ValidationMessageFor(model => model.Year)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary btn" id="btnsave" type="submit">Lưu</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Hủy bỏ</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        initUpdateModal();
+    });
+
+    function initUpdateModal() {
+        $('#UpdateRevenueModal').modal();
+    }
+
+    function initUpdateRevenue() {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("GetListRevenue", "Enterprise")',
+            type: 'GET',
+            data: {
+                enterpriseId: '@Model.EnterpriseId'
+            },
+            dataType: 'html',
+            success: function (result) {
+                $('#revenueContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    $(function () {
+        $('form.updateRevenue').ajaxForm({
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    $('#UpdateRevenueModal').modal('hide');
+                    initUpdateRevenue();
+                }
+                $(idmodal).modal();
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

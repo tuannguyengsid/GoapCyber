@@ -1,0 +1,54 @@
+﻿@using GSID.Admin.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - Goap Group</title>
+    <meta charset="utf-8" />
+    @if (SiteInformation != null && !string.IsNullOrEmpty(SiteInformation.IconSrc))
+    {
+        <link rel="shortcut icon" type="image/x-icon" href="@string.Format("{0}/{1}", httpStatic, SiteInformation.IconSrc)">
+    }
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="author" content="goapcyber.com/">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/login-style.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/login-theme.css">
+    <link type="text/css" rel="stylesheet" href="~/Content/Control/assets/plugins/sweetalert/sweetalert.css" />
+
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/jquery.form.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/Content/Control/assets/js/popper.min.js"></script>
+    <script src="/Content/Control/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/Control/assets/plugins/sweetalert/sweetalert.min.js"></script>
+
+    <!-- <script type="text/javascript" src="~/Content/Control/assets/js/main.js"></script>
+    End loading site level scripts -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+    <link type="text/css" href="assets/css/ie8.css" rel="stylesheet">
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+</head>
+<body>
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

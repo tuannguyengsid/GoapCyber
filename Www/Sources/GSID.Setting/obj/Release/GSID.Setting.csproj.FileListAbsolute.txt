@@ -1,0 +1,47 @@
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Project Implements\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Project Implements\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Project Implements\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Project Implements\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csprojAssemblyReference.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\bin\Release\GSID.Setting.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\bin\Release\GSID.Setting.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Setting\obj\Release\GSID.Setting.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\bin\Release\GSID.Setting.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\bin\Release\GSID.Setting.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\obj\Release\GSID.Setting.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\obj\Release\GSID.Setting.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Setting\obj\Release\GSID.Setting.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\bin\Release\GSID.Setting.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\bin\Release\GSID.Setting.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.AssemblyReference.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\obj\Release\GSID.Setting.csproj.CoreCompileInputs.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\obj\Release\GSID.Setting.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Setting\obj\Release\GSID.Setting.pdb

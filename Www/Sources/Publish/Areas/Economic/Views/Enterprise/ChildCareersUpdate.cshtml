@@ -1,0 +1,60 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.WebApp.Helpers;
+@using GSID.Model.Models;
+@{
+    int numberid = (int)ViewBag.CareerChildId;
+}
+
+<div class="col-sm-12 child_@numberid.ToString()">
+    <div class="row">
+        <div class="col-sm-9" style="padding-left:0px;">
+            @Html.TextBox(string.Format("careerchildchild_{0}", numberid.ToString()), "", new { @class = "form-control", @placeholder = "Nhập ngành nghề phụ" })
+            @Html.Hidden(string.Format("careerchild_{0}", numberid.ToString()), "", new { @class = "childcareer" })
+        </div>
+        <div class="col-sm-3">
+            <ul>
+                <li></li>
+                <li></li>
+                <li><a href="javascript:;" onclick="onDeleteCarrer('.child_@numberid.ToString()');"><i class="fa fa-trash-o"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('@string.Format("#careerchildchild_{0}", numberid.ToString())').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("AutocompleteCareer", "Enterprise", "Economic")',
+                    data: request,
+                    async: false,
+                    success: function (data) {
+                        $('@string.Format("#careerchild_{0}", numberid.ToString())').val();
+                        response(data.slice(0, 10));
+                    }
+                });
+            },
+            minLength: 0,
+            select: function (event, ui) {
+                $('@string.Format("#careerchild_{0}", numberid.ToString())').val(ui.item.Id);
+                $('@string.Format("#careerchildchild_{0}", numberid.ToString())').val(ui.item.Code + " : " + ui.item.Value);
+                return false;
+            },
+            focus: function (event, ui) {
+                $('@string.Format("#careerchildchild_{0}", numberid.ToString())').val(ui.item.Code + " : " + ui.item.Value);
+                return false;
+            },
+        })
+		.data("autocomplete")._renderItem = function (ul, item) {
+		    return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a>" + item.Code + " : " + item.Value + "</a>")
+				.appendTo(ul);
+		};
+    });
+
+    function onDeleteCarrer(val) {
+        $(val).remove();
+    }
+</script>

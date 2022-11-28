@@ -1,0 +1,225 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model RecruitmentDetailViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    var RecruitmentDetailPage = (RecruitmentDetailPageManagementAdminConfig)ViewBag.RecruitmentDetailPage;
+
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        if (Model.Recruitment != null && RecruitmentDetailPage != null)
+        {
+            <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, RecruitmentDetailPage.BreakScrumBackgroundSrc)'); background-position:  center center; background-repeat: no-repeat; background-size: cover;">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
+                <div class="container">
+                    <div class="breadcrumb_content text-center">
+                        <h1 class="breadcrumb_title">@Model.Recruitment.NameVn</h1>
+                        <p class="breadcrumb_desc"></p>
+                    </div>
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><title>turquoise_blue_waves</title><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+
+            <section class="job_details_area sec_pad">
+                <div class="container">
+                    <div class="row flex-row-reverse">
+                        <div class="col-lg-4 pl_70">
+                            <div class="job_info">
+                                <div class="info_head">
+                                    <i class="ti-receipt"></i>
+                                    <h6>Tuyển dụng</h6>
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-ruler-pencil"></i>
+                                    <h6>Phòng ban</h6>
+                                    @if (Model.Department != null)
+                                    {
+                                        <p>@Model.Department.NameVn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-location-pin"></i>
+                                    <h6>Khu vực làm việc</h6>
+                                    @if (Model.Site != null)
+                                    {
+                                        <p>@Model.Site.NameVn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-layout-tab-window"></i>
+                                    <h6>Vị trí:</h6>
+                                    @if (Model.Position != null)
+                                    {
+                                        <p>@Model.Position.NameVn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-cup"></i>
+                                    <h6>Kinh nghiệm</h6>
+                                    <p>@Model.Recruitment.ExperienceVn</p>
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-ruler-pencil"></i>
+                                    <h6>Lương</h6>
+                                    <p>@Model.Recruitment.SalaryVn</p>
+                                </div>
+                            </div>
+
+                            <div class="widget sidebar_widget recent_post_widget_two">
+                                <h3 class="widget_title_two">Tuyển dụng liên quan</h3>
+                                @if (Model.Related != null && Model.Related.Count > 0)
+                                {
+                                    foreach (var item in Model.Related)
+                                    {
+                                        string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : ""; 
+                                        string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                                        <div class="media post_item">
+                                            <div class="post-img">
+                                                <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn">
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="@url">
+                                                    <h3>@item.NameVn</h3>
+                                                </a>
+                                                <a href="@url" class="entry_post_info" title="@item.NameVn">Ngày hết hạn: @expirationDate</a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="details_content">
+                                @Html.Raw(Model.Recruitment.DescriptionVn)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            Html.RenderAction("RecruitmentDetailSubmit", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "", CareerId = Model.Career.Id, RecruitmentId = Model.Recruitment.Id, returnUrl = Model.returnUrl });
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+
+        if (Model.Recruitment != null && RecruitmentDetailPage != null)
+        {
+            <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, RecruitmentDetailPage.BreakScrumBackgroundSrc)'); background-position:  center center; background-repeat: no-repeat; background-size: cover;">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <img class="breadcrumb_shap" src="img/breadcrumb/banner_bg.png" alt="">
+                <div class="container">
+                    <div class="breadcrumb_content text-center">
+                        <h1 class="breadcrumb_title">@Model.Recruitment.NameEn</h1>
+                        <p class="breadcrumb_desc"></p>
+                    </div>
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><title>turquoise_blue_waves</title><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+
+            <section class="job_details_area sec_pad">
+                <div class="container">
+                    <div class="row flex-row-reverse">
+                        <div class="col-lg-4 pl_70">
+                            <div class="job_info">
+                                <div class="info_head">
+                                    <i class="ti-receipt"></i>
+                                    <h6>Recruitment</h6>
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-ruler-pencil"></i>
+                                    <h6>Department</h6>
+                                    @if (Model.Department != null)
+                                    {
+                                        <p>@Model.Department.NameEn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-location-pin"></i>
+                                    <h6>Khu vực làm việc</h6>
+                                    @if (Model.Site != null)
+                                    {
+                                        <p>@Model.Site.NameEn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-layout-tab-window"></i>
+                                    <h6>Position:</h6>
+                                    @if (Model.Position != null)
+                                    {
+                                        <p>@Model.Position.NameEn</p>
+                                    }
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-cup"></i>
+                                    <h6>Experience</h6>
+                                    <p>@Model.Recruitment.ExperienceEn</p>
+                                </div>
+                                <div class="info_item">
+                                    <i class="ti-ruler-pencil"></i>
+                                    <h6>Salary</h6>
+                                    <p>@Model.Recruitment.SalaryEn</p>
+                                </div>
+                            </div>
+
+                            <div class="widget sidebar_widget recent_post_widget_two">
+                                <h3 class="widget_title_two">Related</h3>
+                                @if (Model.Related != null && Model.Related.Count > 0)
+                                {
+                                    foreach (var item in Model.Related)
+                                    {
+                                        string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : "";
+                                        string url = item.RouteDataUrlEn != null ? item.RouteDataUrlEn.Url : "";
+                                        <div class="media post_item">
+                                            <div class="post-img">
+                                                <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn">
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="@url">
+                                                    <h3>@item.NameEn</h3>
+                                                </a>
+                                                <a href="@url" class="entry_post_info" title="@item.NameEn">Expiration date: @expirationDate</a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="details_content">
+                                @Html.Raw(Model.Recruitment.DescriptionEn)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            Html.RenderAction("RecruitmentDetailSubmit", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "", CareerId = Model.Career.Id, RecruitmentId = Model.Recruitment.Id, returnUrl = Model.returnUrl });
+        }
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@RecruitmentDetailPage.MenuActiveId');
+    });
+</script>

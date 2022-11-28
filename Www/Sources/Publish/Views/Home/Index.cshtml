@@ -1,0 +1,278 @@
+﻿@using GSID.Model.Models;
+@using GSID.WebApp.Helpers;
+@{ 
+    List<Enterprise> Enterprises = (List<Enterprise>)ViewBag.Enterprises;
+    List<Enterprise> HouseHoldBusiness = (List<Enterprise>)ViewBag.HouseHoldBusiness;
+    List<ReportViolation> ReportViolations = (List<ReportViolation>)ViewBag.ReportViolations;
+}
+
+<div class="page-heading mb-n">
+    <h1>Bảng điều khiển</h1>
+    <div class="options">
+        <div class="btn-toolbar">
+        </div>
+    </div>
+</div>
+<div class="row">
+    @*<div class="col-md-2">
+        <a href="#" class="tectonic-shortcut-tile alt teal">
+            <span class="icon"><i class="ion-link"></i></span>
+            <span class="title">Links</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a href="#" class="tectonic-shortcut-tile alt success">
+            <span class="icon"><i class="ion-android-done-all"></i></span>
+            <span class="title">Delivery</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a href="#" class="tectonic-shortcut-tile alt pink">
+            <span class="icon"><i class="ion-beer"></i></span>
+            <span class="title">Drinks</span>
+        </a>
+    </div>
+    <div class="col-md-2">
+        <a href="#" class="tectonic-shortcut-tile alt orange">
+            <span class="icon"><i class="ion-alert-circled"></i></span>
+            <span class="title">Alert Info</span>
+        </a>
+    </div>*@
+</div>
+
+<div class="page-tabs">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Biểu đồ doanh nghiệp</h2>
+                </div>
+                <div class="panel-body p-n">
+                    @Html.Partial("_PartialChartOne")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-content dashboard-tabs mb-n">
+                <div id="tab1" class="tab-pane active">
+                    <div class="row m-n">
+                        <div class="col-md-12 p-xl" style="background-color: #fafafa;">
+                            <div id="dashChartStacked" style="height: 264px;">
+                                <div id="dashChartStackedLabels"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Biểu đồ trạng thái doanh nghiệp</h2>
+                    <div class="panel-ctrls">
+                    </div>
+                </div>
+                <div class="panel-body p-n" style="min-height: 262px;overflow-x: auto;">
+                    <div id="enterpriseStatus"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Biểu đồ trạng thái hộ kinh doanh</h2>
+                    <div class="panel-ctrls">
+                    </div>
+                </div>
+                <div class="panel-body p-n" style="min-height: 262px;overflow-x: auto;">
+                    <div id="houseHoldBusinessStatus"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Doanh nghiệp mới cập nhật</h2>
+                    <div class="panel-ctrls">
+                    </div>
+                </div>
+                <div class="panel-body p-n" style="max-height: 262px;overflow-x: auto;">
+                    <ul class="media-list scroll-content m-n">
+                        @foreach (var item in Enterprises)
+                        {
+                            string lastChangedFull = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy");
+
+                            <li class="media b-bl">
+                                <a href="#">
+                                    <div class="media-left">
+                                        <span class="icon success"><i class="ion-checkmark-circled"></i></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="name">@item.Name</span>
+                                        <span class="time">@lastChangedFull</span>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Hộ kinh doanh mới cập nhật</h2>
+                    <div class="panel-ctrls">
+                    </div>
+                </div>
+                <div class="panel-body p-n" style="max-height: 262px;overflow-x: auto;">
+                    <ul class="media-list scroll-content m-n">
+                        @foreach (var item in HouseHoldBusiness)
+                        {
+                            string lastChangedFull = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy");
+
+                            <li class="media b-bl">
+                                <a href="#">
+                                    <div class="media-left">
+                                        <span class="icon purple"><i class="ion-checkmark-circled"></i></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="name">@item.Name</span>
+                                        <span class="time">@lastChangedFull</span>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default alt with-footer">
+                <div class="panel-heading">
+                    <h2 class="title">Vi phạm mới cập nhật</h2>
+                    <div class="panel-ctrls">
+                    </div>
+                </div>
+                <div class="panel-body p-n" style="max-height: 262px;overflow-x: auto;">
+
+                    <ul class="media-list scroll-content m-n">
+                        @foreach (var item in ReportViolations)
+                        {
+                            string addedByDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            string status = item.Status.HasValue ? (item.Status.Value == 1 ? "Đợi duyệt" : "Đã duyệt") : "";
+
+                            <li class="media b-bl">
+                                <a href="#">
+                                    <div class="media-left">
+                                        <span >@status</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <span class="name">@item.Name</span>
+                                        <span class="time">@addedByDate</span>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+<input type="hidden" value="@ViewBag.EnterpriseChart" id="enterpriseChart" />
+<input type="hidden" value="@ViewBag.HouseHoldBusinessChart" id="houseHoldBusinessChart" />
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script>
+
+    Highcharts.chart('enterpriseStatus', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Biểu đồ trạng thái doanh nghiệp năm 2018'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: $.parseJSON($('#enterpriseChart').val())
+        }]
+    });
+
+    Highcharts.chart('houseHoldBusinessStatus', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Biểu đồ trạng thái hộ kinh doanh năm 2018'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: $.parseJSON($('#houseHoldBusinessChart').val())
+        }]
+    });
+</script>

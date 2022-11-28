@@ -1,0 +1,209 @@
+﻿
+@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model PostViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    var HomePageConfig = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+    var PostPageConfig = (PostPageManagementAdminConfig)ViewBag.PostPageConfig;
+
+    ViewBag.Title = string.Format("{0}", (PostPageConfig != null ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? PostPageConfig.NameVn : PostPageConfig.NameEn) : ""));
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        if (PostPageConfig != null && HomePageConfig != null && Model.TagPost != null)
+        {
+            <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, PostPageConfig.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <div class="container">
+                    <div class="breadcrumb_content text-center">
+                        <h1 class="breadcrumb_title">Thẻ: @Model.TagPost.NameVn</h1>
+                    </div>
+                    <div class="breadcrumb_nav">
+                        <ul class="breadcrumb rounded shadow">
+                            @if (HomePageConfig != null && HomePageConfig.RouteDataUrlVn != null)
+                            {
+                                <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlVn.Url">@HomePageConfig.RouteDataUrlVn.Title</a></li>
+                            }
+                            @if (PostPageConfig != null && PostPageConfig.RouteDataUrlVn != null)
+                            {
+                                <li class="breadcrumb-item"><a href="@PostPageConfig.RouteDataUrlVn.Url">@PostPageConfig.RouteDataUrlVn.Title</a></li>
+                            }
+                            <li class="breadcrumb-item" aria-current="page">Thẻ: @Model.TagPost.NameVn</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+        }
+
+        <section class="blog_area_two sec_pad">
+            <div class="container">
+                <div class="row blog_grid_info" id="blog_masonry">
+                    @if (Model.Posts != null)
+                    {
+                        foreach (var item in Model.Posts)
+                        {
+                            string datePost = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture) : (item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture) : "");
+                            string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+
+                            <div class="col-lg-4 blog-item-inner">
+                                <div class="blog_list_item blog_list_item_two">
+                                    <a href="@url"><img class="img-fluid" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn"></a>
+                                    <div class="blog_content">
+                                        <a href="@url">
+                                            <h5 class="blog_title">@item.NameVn</h5>
+                                        </a>
+                                        <p>@item.ShortDescriptionVn</p>
+                                        <div class="post-info-bottom">
+                                            <a href="javascript:;" class="timepost"><i class="icon-clock"></i> <span data-utcdate="@datePost"></span></a>
+                                            <a href="@url" class="btn_learn" alt="@item.NameVn">Xem thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                @if (Model.CountTotal > Model.PageSize)
+                {
+                    @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+                    @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+                    @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+                    <!-- /Products Grid -->
+                    <div class="navigation pagination text-center" role="navigation">
+                        <ul class="pagination" id="pagination"></ul>
+                    </div>
+                }
+            </div>
+        </section>
+        <script type="text/javascript">
+            $(function () {
+                $('[data-utcdate]').each(function () {
+                    var d = moment($(this).attr('data-utcdate'));
+                    $(this).html(d.lang('vi').calendar());
+                });
+            });
+        </script>
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        if (PostPageConfig != null && HomePageConfig != null && Model.TagPost != null)
+        {
+            <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, PostPageConfig.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <div class="container">
+                    <div class="breadcrumb_content text-center">
+                        <h1 class="breadcrumb_title">@PostPageConfig.NameEn</h1>
+                    </div>
+                    <div class="breadcrumb_nav">
+                        <ul class="breadcrumb rounded shadow">
+                            @if (HomePageConfig != null && HomePageConfig.RouteDataUrlEn != null)
+                            {
+                                <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlEn.Url">@HomePageConfig.RouteDataUrlEn.Title</a></li>
+                            }
+                            @if (PostPageConfig != null && PostPageConfig.RouteDataUrlEn != null)
+                            {
+                                <li class="breadcrumb-item"><a href="@PostPageConfig.RouteDataUrlEn.Url">@PostPageConfig.RouteDataUrlEn.Title</a></li>
+                            }
+                            <li class="breadcrumb-item" aria-current="page">Tag: @Model.TagPost.NameEn</li>
+                        </ul>
+                    </div>
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+        }
+
+        <section class="blog_area_two sec_pad">
+            <div class="container">
+                <div class="row blog_grid_info" id="blog_masonry">
+                    @if (Model.Posts != null)
+                    {
+                        foreach (var item in Model.Posts)
+                        {
+                            string datePost = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture) : (item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture) : "");
+                            string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+
+                            <div class="col-lg-4 blog-item-inner">
+                                <div class="blog_list_item blog_list_item_two">
+                                    <a href="@url"><img class="img-fluid" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn"></a>
+                                    <div class="blog_content">
+                                        <a href="@url">
+                                            <h5 class="blog_title">@item.NameEn</h5>
+                                        </a>
+                                        <p>@item.ShortDescriptionEn</p>
+                                        <div class="post-info-bottom">
+                                            <a href="javascript:;" class="timepost"><i class="icon-clock"></i> <span data-utcdate="@datePost"></span></a>
+                                            <a href="@url" class="btn_learn" alt="@item.NameEn">View more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                @if (Model.CountTotal > Model.PageSize)
+                {
+                    @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+                    @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+                    @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+                    <!-- /Products Grid -->
+                    <div class="navigation pagination text-center" role="navigation">
+                        <ul class="pagination" id="pagination"></ul>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+    <script type="text/javascript">
+        $(function () {
+            $('[data-utcdate]').each(function () {
+                var d = moment($(this).attr('data-utcdate'));
+                $(this).html(d.lang('en').calendar());
+            });
+        });
+    </script>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@PostPageConfig.MenuActiveId');
+
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: '<i class="fa fa-angle-double-left"></i>',
+                prev: '<i class="fa fa-angle-left"></i>',
+                next: '<i class="fa fa-angle-right"></i>',
+                last: '<i class="fa fa-angle-double-right"></i>',
+                onPageClick: function (event, page) {
+                    window.location.href = replaceUrlParam(window.location.href, 'p', page);
+                }
+            });
+        }
+    });
+</script>

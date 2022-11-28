@@ -1,0 +1,36 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model List<EnterpriseToProfile>
+<table class="table table-bordered hoverTable tablesaw" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+    <thead>
+        <tr>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Hộ kinh doanh</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Phiên bản</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Số thông tin thay đổi</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string changeDate = item.ChangeProfileDate.HasValue ? item.ChangeProfileDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+            <tr class="gradeX">
+                <td><b>@item.Name</b></td>
+                <td><b>@item.ChangeNumber</b></td>
+                <td>@*@item.ChangeLogs.Count.ToString()*@</td>
+                <td>@changeDate</td>
+                <td>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.RawActionLink("<i class='ion-paper-airplane'></i>", "Update", "HouseHoldBusiness", new { gsid = item.EnterpriseId.ToString(), revision = item.ChangeNumber.ToString(), v = 1 }, new { id = item.Id.ToString() })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,213 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model LoginViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var HomePageConfig = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+    Context.Request.RequestContext.RouteData.Values["TitleSEO"] = (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? "Đăng nhập" : "Login");
+}
+
+@if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+{
+    <section class="breadcrumb_area">
+        <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+        <div class="container">
+            <div class="breadcrumb_content text-center">
+                <h1 class="breadcrumb_title">Đăng nhập</h1>
+            </div>
+        </div>
+        <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+    </section>
+    <section class="sign_in_area sec_pad">
+        <div class="container">
+            <div class="sign_info">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="sign_info_content">
+                            <h2>Chưa có tài khoản?</h2>
+                            <h3>Đăng ký ngay và<br> bắt đầu sử dụng các tiện ích <br><span class="f_700">của chúng tôi.</span></h3>
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="ti-check"></i> Quản lý tài khoản</li>
+                                <li><i class="ti-check"></i> Quản lý hồ sơ xin việc</li>
+                            </ul>
+                            <a href="@Url.Action("Register", "Account", new { language = currentLan != null ? currentLan.Parent : ""})" class="btn_three sign_btn_transparent">Đăng ký</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="login_info">
+                            <h2>Đăng nhập</h2>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, language = currentLan != null ? currentLan.Parent : "" }, FormMethod.Post, new { @class = "login-form sign-in-form LoginForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(m => m.Language)
+                                @Html.Hidden("confirmButtonText", "Thoát")
+                                @Html.Hidden("ErrorTitle", "Lỗi")
+                                @Html.Hidden("ErrorMessage", "Hệ thống internet gặp vấn đề. Xin vui lòng kiểm tra")
+                                @Html.Hidden("ProcessMessage", "Đang xử lý dữ liệu")
+                                <div class="form-group text_box">
+                                    <label>Email </label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Nhập email hoặc số điện thoại" })
+                                </div>
+                                <div class="form-group text_box mb_20">
+                                    <label>Mật khẩu</label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control underline-input", @placeholder = "Nhập mật khẩu" })
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button type="submit" class="btn-login">Đăng nhập</button>
+                                    <div class="social_text d-flex ">
+                                        <div class="lead-text"><a href="@Url.Action("Forgot", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Quên mật khẩu</a></div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+{
+    <section class="breadcrumb_area">
+        <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+        <div class="container">
+            <div class="breadcrumb_content text-center">
+                <h1 class="breadcrumb_title">Login</h1>
+            </div>
+        </div>
+        <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+    </section>
+    <section class="sign_in_area sec_pad">
+        <div class="container">
+            <div class="sign_info">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="sign_info_content">
+                            <h2>Already have an account?</h2>
+                            <h3>Register now and<br> start using utilities <br><span class="f_700">of us.</span></h3>
+                            <ul class="list-unstyled mb-0">
+                                <li><i class="ti-check"></i> Account Management</li>
+                                <li><i class="ti-check"></i> Job application management</li>
+                            </ul>
+                            <a href="@Url.Action("Register", "Account", new { language = currentLan != null ? currentLan.Parent : ""})" class="btn_three sign_btn_transparent">Register</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="login_info">
+                            <h2>Login</h2>
+                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl, language = currentLan != null ? currentLan.Parent : "" }, FormMethod.Post, new { @class = "login-form sign-in-form LoginForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(m => m.Language)
+                                @Html.Hidden("confirmButtonText", "Close")
+                                @Html.Hidden("ErrorTitle", "Error")
+                                @Html.Hidden("ErrorMessage", "There is a problem with the internet system. Please check")
+                                @Html.Hidden("ProcessMessage", "Processing")
+                                <div class="form-group text_box">
+                                    <label>Email </label>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter your email or phone number" })
+                                </div>
+                                <div class="form-group text_box mb_20">
+                                    <label>Password</label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control underline-input", @placeholder = "Enter your password" })
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <button type="submit" class="btn-login">Login</button>
+                                    <div class="social_text d-flex ">
+                                        <div class="lead-text"><a href="@Url.Action("Forgot", "Account", new { language = currentLan != null ? currentLan.Parent : ""})">Forgot password</a></div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.form.min.js" crossorigin="anonymous"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('form.LoginForm').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                var processTitle = $('#ProcessMessage').val();
+                Swal.fire({
+                    title: processTitle,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    focusConfirm: false,
+                });
+            },
+            success: function (data, statusText) {
+                setTimeout(function () {
+                    if (data.Status == '2') {
+                        $('#Email').val('');
+                        $('#Password').val('');
+                        Swal.fire({
+                            title: data.Title,
+                            text: data.Message,
+                            type: "success",
+                            showDenyButton: false,
+                            showConfirmButton: true,
+                            showCancelButton: false,
+                            confirmButtonText: $('#confirmButtonText').val(),
+                            confirmButtonColor: '#1a477fd6'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = data.Url;
+                            }
+                        });
+                        $.validator.unobtrusive.parse("form");
+                    }
+                    else {
+                        Swal.fire({
+                            title: data.Title,
+                            text: data.Message,
+                            type: "warning",
+                            showConfirmButton: true,
+                            confirmButtonColor: '#1a477fd6',
+                            confirmButtonText: $('#confirmButtonText').val(),
+                        });
+                    }
+                }, 500);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var title = $('#ErrorTitle').val();
+                var message = $('#ErrorMessage').val();
+                Swal.fire(title, message);
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

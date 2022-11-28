@@ -1,0 +1,48 @@
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Project Implements\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Project Implements\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Project Implements\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Project Implements\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csprojAssemblyReference.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.AssemblyReference.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\bin\Release\GSID.Core.Common.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.AssemblyReference.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.csproj.CoreCompileInputs.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Core.Common\obj\Release\GSID.Core.Common.pdb

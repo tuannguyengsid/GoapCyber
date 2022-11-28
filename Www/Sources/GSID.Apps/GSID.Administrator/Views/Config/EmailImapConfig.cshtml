@@ -1,0 +1,118 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model EmailIMapConfigViewModel
+
+@using (Html.BeginForm("EmailImapConfig", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border EmailImapConfig", enctype = "multipart/form-data" }))
+{
+    <div class="col-md-6">
+        <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+            <div class="panel-heading">
+                <div class="panel-ctrls"
+                     data-actions-container=""
+                     data-action-collapse='{"target": ".panel-body"}'
+                     data-action-refresh=''
+                     data-action-close=''>
+                </div>
+                <h2>Cấu hình Email(Imap)</h2>
+            </div>
+            <div class="panel-editbox" data-widget-controls=""></div>
+            <div class="panel-body">
+                <div class="panel-ctrls">
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.UserName)</label>
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Email" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Password)</label>
+                    <div class="col-sm-6">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.InCommingServer)</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.InCommingServer, new { @class = "form-control", @placeholder = "Địa chỉ máy chủ" })
+                    </div>
+                    <div class="col-sm-2">
+                        @Html.TextBoxFor(model => model.Port, new { @class = "form-control", @placeholder = "Cổng truy cập" })
+                    </div>
+                </div>
+                <a href="https://myaccount.google.com/u/0/lesssecureapps" target="_blank">Tắt bảo mật để kết nối tài khoản Gmail</a>
+                <div class="clearfix pt20">
+                    <div class="pull-right">
+                        @Html.Button("<i class='fa fa-save'></i> Kết nối", new { @class = "btn btn-primary", type = "submit" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+<script type="text/javascript">
+    $(function () {
+        $('form.EmailImapConfig').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

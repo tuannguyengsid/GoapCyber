@@ -1,0 +1,58 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model HouseHoldBusinessEditViewModel
+
+<fieldset>
+    <legend><b>Ngành nghề</b></legend>
+    <div data-row-span="2">
+        <div data-field-span="1">
+            <div class="row">
+                @Html.LabelFor(m => m.CareerId)
+                @Html.DropDownListFor(model => model.CareerId, new SelectList(Model.Careers, "Id", "Name"), "---Chọn ngành nghề chính---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.CareerId)
+            </div>
+
+            <div class="row">
+                <label>Danh sách ngành nghề phụ</label>
+                <div id="careerchild">
+                    @foreach (var item in Model.ChildCareers)
+                    {
+                        Random r = new Random();
+                        var numberid = r.Next(5, 10000);
+                        <div class="child_@numberid.ToString()">
+                            @Html.DropDownList(string.Format("{0}_", "careerchild", numberid.ToString()), new SelectList(Model.Careers, "Id", "Name", item.Id), "---Chọn ngành nghề---", new { @class = "form-control select2 select-placeholder childcareer", style = "width: 100%" })
+                        </div>
+                    }
+                </div>
+                <a href="javascript:;" id="addcareers"><span class="label label-primary">Thêm ngành nghề</span></a>
+                <br />
+                <span id="errorcareer">Lỗi</span>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#addcareers').click(function () {
+            $('#bodymask').show();
+            $.ajax({
+                url: '@Url.Action("ChildCareers", "Enterprise")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#careerchild').append(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+    });
+</script>

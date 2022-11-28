@@ -1,0 +1,236 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<NewsCategory>
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+    string recycleBinClass = "active";
+    if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        recycleBinClass = "disabled";
+    }
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                    <div class="panel-ctrls"
+                         data-actions-container=""
+                         data-action-collapse='{"target": ".panel-body"}'
+                         data-action-refresh=''
+                         data-action-close=''>
+                        @Html.RawActionLink("<span class='btn-icon ion-plus-round'></span><span class='text'>Tạo mới<span>", "Create", Request.RequestContext.RouteData.Values["controller"].ToString(), null, new { @class = "btn btn-no-shadow btn-sm well well-sm tooltips", data_trigger = "hover", data_original_title = "Tạo mới" })
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-flipscroll">
+                        <table class="table table-bordered hoverTable tablesaw table-striped table-parent" id="table-parent" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tên</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Thứ tự hiển thị</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày tạo</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày sửa</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                                    string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+                                    string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                                    string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+                                    var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "toggle-input status_trash well well-sm tooltips"},
+                                                    {"data-val", item.Id},
+                                                    {recycleBinClass,recycleBinClass}
+                                                };
+                                    <tr class="gradeX" data-tt-id="@item.Id.ToString()" data-tt-parent-id="@item.ParentId.ToString()">
+                                        <td class="tree">
+                                            <div class="">
+                                                <div class="language">
+                                                    <label class="lblanguage"><img src="/Content/Control/assets/img/flags/vn.svg" /></label>
+                                                    <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameVn">@item.NameVn</span>
+                                                </div>
+                                                <div class="language">
+                                                    <label class="lblanguage"><img src="/Content/Control/assets/img/flags/en.svg" /></label>
+                                                    <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameEn">@item.NameEn</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>@item.Sort</td>
+                                        <td>
+                                            <span class="name tooltips" data-trigger="hover" data-original-title="@addDate"><i class="ion-plus"></i>: @addDate</span>
+                                            <span class="name tooltips" data-trigger="hover" data-original-title="@addBy"><i class="ion-person"></i>: @addBy</span>
+                                        </td>
+                                        <td>
+                                            <span class="name tooltips" data-trigger="hover" data-original-title="@editDate"><i class="ion-compose"></i>: @editDate</span>
+                                            <span class="name tooltips" data-trigger="hover" data-original-title="@editBy"><i class="ion-person"></i>: @editBy</span>
+                                        </td>
+                                        <td>
+                                            <div class="handle">
+                                                <div class="pull-left">
+                                                    <span class="switch">
+                                                        @Html.CheckBox(string.Format("Item_trash_{0}", item.Id), !item.IsDeleted, _hasAttrCheckbox)
+                                                        @Html.Label(string.Format("Item_trash_{0}", item.Id))
+                                                    </span>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <div class="btn-group-hover">
+                                                        @Html.RawActionLink("<span class='ion-compose'></span>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn text-success btn-xs well well-sm tooltips", id = item.Id.ToString(), data_trigger = "hover", data_original_title = "Cập nhật" })
+                                                        @Html.RawActionLink("<span class='ion-trash-a'></span>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn delete text-danger btn-xs well well-sm tooltips", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;", data_trigger = "hover", data_original_title = "Xóa" }).IfRole("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @Html.Action("PartialIndexChildren", Request.RequestContext.RouteData.Values["controller"].ToString(), new { ParentId = item.Id })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@ViewBag.ActiveMenu');
+        $("table").agikiTreeTable({ persist: true, persistStoreName: "files" });
+    });
+
+    //initializing
+    $(function () {
+        "use strict";
+
+        $('input.status_trash').change(function (e) {
+            var $checkSwitch = $(this);
+            const data  = $checkSwitch.is(':checked');
+            const id = $checkSwitch.attr('data-val');
+
+            if (data == false) {
+                swal({
+                    title: 'Bạn đã chắc chứ?',
+                    text: "Bạn có chắc muốn ẩn dữ liệu này không",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Ẩn đi",
+                    cancelButtonText: "Đóng",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal({
+                                title: "Đang xử lý dữ liệu",
+                                html: true,
+                                showConfirmButton: false
+                            });
+                            $.ajax({
+                                url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                                type: 'POST',
+                                data: { id: id, isDeleted: data },
+                                dataType: 'json',
+                                success: function (result) {
+                                    if (result.Status == '2')
+                                        swal.close();
+                                    else {
+                                        $checkSwitch.prop("checked", !data);
+                                        swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                    }
+                                },
+                                error: function () {
+                                    $checkSwitch.prop("checked", !data);
+                                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                }
+                            });
+                        } else {
+                            $checkSwitch.prop("checked", !data);
+                            swal.close();
+                        }
+                    });
+            }
+            else {
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+                $.ajax({
+                    url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                    type: 'POST',
+                    data: { id: id, isDeleted: data },
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.Status == '2')
+                            swal.close();
+                        else
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                    },
+                    error: function () {
+                        swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                    }
+                });
+            }
+        });
+    });
+
+    function onDelete(val) {
+        if (val.length > 0) {
+            swal({
+                title: 'Bạn đã chắc chứ?',
+                text: "Bạn có chắc muốn xóa dữ liệu này không",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xóa",
+                cancelButtonText: "Đóng",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        url: '@Url.Action("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                        type: 'POST',
+                        data: { id: val },
+                        dataType: 'json',
+                        success: function (result) {
+                            swal.close();
+                            if (result.Status == '2') {
+                                window.location.href = window.location.href;
+                            }
+                            else {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        },
+                        error: function () {
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                        }
+                    });
+                }
+                else {
+                    swal.close();
+                }
+            });
+        }
+    }
+</script>

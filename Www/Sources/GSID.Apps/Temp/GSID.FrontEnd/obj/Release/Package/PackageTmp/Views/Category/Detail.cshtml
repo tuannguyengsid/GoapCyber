@@ -1,0 +1,129 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model CategoryViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+    var HomePageConfig = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+    var ProductDetailPageConfig = (ProductDetailPageManagementAdminConfig)ViewBag.ProductDetailPageConfig;
+
+    ViewBag.Title = string.Format("{0}", ((Model != null && Model.ProductCategory != null) ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? Model.ProductCategory.NameVn : Model.ProductCategory.NameEn) : ""));
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, Model.ProductCategory.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+            <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+            <div class="container">
+                <div class="breadcrumb_content text-center">
+                    <h1 class="breadcrumb_title">@Model.ProductCategory.NameVn</h1>
+                </div>
+                <div class="breadcrumb_nav">
+                    <ul class="breadcrumb rounded shadow">
+                        @if (HomePageConfig != null && HomePageConfig.RouteDataUrlVn != null)
+                        {
+                            <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlVn.Url">@HomePageConfig.RouteDataUrlVn.Title</a></li>
+                        }
+                        <li class="breadcrumb-item" aria-current="page">@Model.ProductCategory.NameVn</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+        </section>
+
+        if (Model.Products != null && Model.Products.Count > 0)
+        {
+            <section class="security_customers_logo_area">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.ProductCategory.NameVn</h2>
+                        <p class="desc wow fadeInUp" data-wow-delay="0.3s">@Model.ProductCategory.ShortDescriptionVn</p>
+                    </div>
+                    <div class="row clearfix">
+                        @foreach (var item in Model.Products)
+                        {
+                            string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "/";
+
+                            <div class="col-lg-3 col-md-6 col-sm-12 service-block">
+                                <div class="service-block-three wow flipInY animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                                    <div class="inner-box">
+                                        <h3><a href="@url">@item.NameVn</a></h3>
+                                        <figure class="image-box"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn"></figure>
+                                        <p>@item.ShortDescriptionVn</p>
+                                        <div class="link"><a href="@url">Xem thêm<i class="fas fa-angle-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, Model.ProductCategory.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+            <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+            <div class="container">
+                <div class="breadcrumb_content text-center">
+                    <h1 class="breadcrumb_title">@Model.ProductCategory.NameEn</h1>
+                </div>
+                <div class="breadcrumb_nav">
+                    <ul class="breadcrumb rounded shadow">
+                        @if (HomePageConfig != null && HomePageConfig.RouteDataUrlEn != null)
+                        {
+                            <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlEn.Url">@HomePageConfig.RouteDataUrlEn.Title</a></li>
+                        }
+                        <li class="breadcrumb-item" aria-current="page">@Model.ProductCategory.NameEn</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+        </section>
+
+        <section class="security_customers_logo_area">
+            <div class="container">
+                <div class="sec_title text-center">
+                    <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.ProductCategory.NameEn</h2>
+                    <p class="desc wow fadeInUp" data-wow-delay="0.3s">@Model.ProductCategory.ShortDescriptionEn</p>
+                </div>
+                <div class="row clearfix">
+                    @foreach (var item in Model.Products)
+                    {
+                        string url = item.RouteDataUrlEn != null ? item.RouteDataUrlEn.Url : "/";
+                        <div class="col-lg-3 col-md-6 col-sm-12 service-block">
+                            <div class="service-block-three wow flipInY animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                                <div class="inner-box">
+                                    <h3><a href="@url">@item.NameEn</a></h3>
+                                    <figure class="image-box"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageEnSrc)" alt="@item.NameEn"></figure>
+                                    <p>@item.ShortDescriptionEn</p>
+                                    <div class="link"><a href="@url">View more<i class="fas fa-angle-right"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@ProductDetailPageConfig.MenuActiveId');
+    });
+</script>

@@ -1,0 +1,205 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Helpers;
+@model List<ReportViolation>
+@{
+    var TotalPage = (int)ViewBag.TotalPage;
+    var PageVisit = (int)ViewBag.PageVisit;
+    var PageSize = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal = (int)ViewBag.CountTotal;
+    var SecondRecord = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs material-nav-tabs tab-warning" style="margin:0px;">
+                        <li>@Html.RawActionLinkIfRole("Doanh nghiệp", "Index", "ReportViolation", null, new { })</li>
+                        <li class="active">@Html.RawActionLinkIfRole("Hộ kinh doanh", "HouseHoldBusiness", "ReportViolation", null, new { })</li>
+                    </ul>
+                </div>
+                <div class="panel-editbox" data-widget-controls=""></div>
+                <div class="panel-body">
+                    <div class="panel-ctrls">
+                        <div class="pull-left">
+                            @*<div class="btn-group">
+                                    @Html.RawActionLink("<i class='ion-plus'></i><span> Tạo mới</span>", "Create", "ReportViolation", null, new { @class = "btn btn-default" })
+                                </div>*@
+                        </div>
+                        <div class="clearfix"></div>
+                        <div id="crudtable_filter" class="dataTables_filter pull-right">
+                            @*<a href="javascript:;" class="btn search-advancehouse btn-outline-info" data-direction="right" ><i class="ion-ios-search-strong"></i> Tìm kiếm</a>*@
+                            @*<a data-toggle="collapse" data-parent="#accordionB" class="btn btn-sm btn-teal-alt btn-label" href="#search-advance"><i class="ion-ios-search-strong"></i> Tìm kiếm</a>*@
+                        </div>
+                    </div>
+
+                    <div class="table-flipscroll">
+                        <table class="table table-bordered hoverTable tablesaw" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Tiêu đề</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Hộ kinh doanh</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Loại vi phạm</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày lập</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Trạng thái</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string enterpriseName = item.Enterprise != null ? item.Enterprise.Name : "";
+                                    string reportViolationCategories = item.ReportViolationCategory != null ? item.ReportViolationCategory.Name : "";
+                                    string addedByDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                    string status = item.Status.HasValue ? (item.Status.Value == 1 ? "Đợi duyệt" : "Đã duyệt") : "";
+
+                                    <tr class="gradeX">
+                                        <td><b>@item.Name</b></td>
+                                        <td><b>@enterpriseName</b></td>
+                                        <td>@reportViolationCategories</td>
+                                        <td>@addedByDate</td>
+                                        <td>@status</td>
+                                        <td>
+                                            <div class="pull-right">
+                                                <div class="btn-group">
+                                                    @Html.RawActionLink("<i class='ion-android-create'></i>", "Update", "ReportViolation", new { gsid = item.Id.ToString() }, new { @class = "btn btn-default btn-xs", id = item.Id.ToString() })
+                                                    @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-danger btn-xs", href = "javascript:;", id = item.Id.ToString(), data_toggle = "modal", data_target = "#myModal_" + item.Id.ToString() }).IfRole("Delete", "ReportViolation")
+
+                                                    <!-- Begin Alert Modal -->
+                                                    <div class="modal fade" id="myModal_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                    <h2 class="modal-title">Xóa thông tin</h2>
+                                                                    <p>Hệ thống sẽ xóa vĩnh viễn các tệp mà bạn đã chọn</p>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-horizontal">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Tiêu đề</label>
+                                                                                    <div class="col-md-9">@item.Name</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Hủy bỏ</button>
+                                                                    @Html.RawActionLink("<i class='ion-android-delete''></i> Xóa", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Delete", "ReportViolation")
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.End Alert Modal  -->
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+                                    @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap">
+                                    <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+<script type="text/javascript">
+    $(document).ready(function () {
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    window.location.href = '@Url.Action("HouseHoldBusiness", "ReportViolation")?p=' + page;
+                }
+            });
+        }
+
+        $('.search-advancehouse').on('click', function () {
+            var direction   = $(this).data('direction');
+            var skin        = $(this).data('skin');
+            var Keyword     = $('#EnterpriseKeyword').val();
+
+            $.slidePanel.show({
+                url: '@Url.Action("SearchAdvanceEnterprise", "ReportViolation")',
+                dataType: 'html',
+                settings: {
+                    method: 'GET',
+                    data: {
+                        Keyword: Keyword
+                    }
+                }
+            }, {
+                direction: direction,
+                skin: skin,
+                mouseDragHandler: '.handler',
+                closeSelector: '.close',
+            });
+        });
+    });
+
+    function onDelete(val) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("Delete", "ReportViolation")',
+            type: 'POST',
+            data: { id: val },
+            dataType: 'json',
+            success: function (result) {
+                $('#bodymask').hide();
+                if (result.Status == '2') {
+                    $('#myModal_' + val).modal('hide');
+                    window.location.href = window.location.href;
+                }
+                else {
+                    alert(result.Message);
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+</script>

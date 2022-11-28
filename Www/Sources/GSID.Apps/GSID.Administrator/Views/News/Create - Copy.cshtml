@@ -1,0 +1,1522 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model NewsCreateViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Create", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border tabular-form CreateForm", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="row row-flex">
+                            <div class="col-sm-9 tabular-border">
+                                <div class="tab-container tab-default">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#vietnamese" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                        <li><a href="#english" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="vietnamese">
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.NameVn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tiêu đề bài viết..." })
+                                                    @Html.ValidationMessageFor(model => model.NameVn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.ShortDescriptionVn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextAreaFor(model => model.ShortDescriptionVn, new { @class = "form-control", @placeholder = "Mô tả..." })
+                                                    @Html.ValidationMessageFor(model => model.ShortDescriptionVn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionVn)</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextAreaFor(model => model.DescriptionVn, new { @class = "form-control gsideditorfull", @placeholder = "Mô tả..." })
+                                                    @Html.ValidationMessageFor(model => model.DescriptionVn)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="english">
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.NameEn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tiêu đề bài viết..." })
+                                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.ShortDescriptionEn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextAreaFor(model => model.ShortDescriptionEn, new { @class = "form-control", @placeholder = "Mô tả..." })
+                                                    @Html.ValidationMessageFor(model => model.ShortDescriptionEn)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionEn)</label>
+                                                <div class="col-sm-12">
+                                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control gsideditorfull", @placeholder = "Mô tả..." })
+                                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 tabular-border">
+                                <div class="tab-container tab-default clearfix">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tbsocialmedia" data-toggle="tab">Thuộc tính</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active  clearfix" id="tbsocialmedia">
+                                            <div class="accordion-group clearfix" id="accordionAvatar">
+                                                <div class="panel accordion-item">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionAvatar" href="#collapseaAvatar" aria-expanded="true"><h2>Hình đại diện</h2></a>
+                                                    <div id="collapseaAvatar" class="collapse in" aria-expanded="true">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="fileinputcrop">
+                                                                        <div class="fileinputcrop-preview" style="height:200px;">
+                                                                            <img class="rounded max-width imgpreview" id="imgpreviewId" src="~/Content/Control/assets/img/default/default_gallery_photo.jpg" alt="Preview">
+                                                                            <a href="javascript:;" class="fileinput-trigger-addimage" data-trigger="fileinput" data-provides="#inputfile"><i class="ion-camera"></i></a>
+                                                                        </div>
+                                                                        <input type="file" class="form-control" id="inputfile" name="image" accept="image/*">
+                                                                        <br />
+                                                                        <small>Kích thước hình ảnh: chiều rộng tối thiểu 1000px</small>
+
+                                                                        <div class="filecrop_modal">
+                                                                            <div class="modal fade" id="modalCrop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog w-95" role="document">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <h5 class="modal-title">Đăng tải hình ảnh</h5>
+                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                <span aria-hidden="true">&times;</span>
+                                                                                            </button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-10">
+                                                                                                    <div class="img-container">
+                                                                                                        <img id="imgcrop" src="~/Content/Control/assets/img/default/default_gallery_photo.jpg">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-2">
+                                                                                                    <div class="docs-data">
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataX">X</label>
+                                                                                                            <input type="text" class="form-control dataX" placeholder="x" readonly>
+                                                                                                            <span class="input-group-addon">px</span>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataY">Y</label>
+                                                                                                            <input type="text" class="form-control dataY" placeholder="y" readonly>
+                                                                                                            <span class="input-group-addon">px</span>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataWidth">Width</label>
+                                                                                                            <input type="text" class="form-control dataWidth" placeholder="width" readonly>
+                                                                                                            <span class="input-group-addon">px</span>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataHeight">Height</label>
+                                                                                                            <input type="text" class="form-control dataHeight" placeholder="height" readonly>
+                                                                                                            <span class="input-group-addon">px</span>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataRotate">Rotate</label>
+                                                                                                            <input type="text" class="form-control dataRotate" placeholder="rotate" readonly>
+                                                                                                            <span class="input-group-addon">deg</span>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataScaleX">ScaleX</label>
+                                                                                                            <input type="text" class="form-control dataScaleX" placeholder="scaleX" readonly>
+                                                                                                        </div>
+                                                                                                        <div class="input-group input-group-sm">
+                                                                                                            <label class="input-group-addon" for="dataScaleY">ScaleY</label>
+                                                                                                            <input type="text" class="form-control dataScaleY" placeholder="scaleY" readonly>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="tab-container tab-default">
+                                                                                                        <ul class="nav nav-tabs">
+                                                                                                            <li class="active"><a href="#" data-toggle="tab">Công cụ</a></li>
+                                                                                                        </ul>
+                                                                                                        <div class="tab-content">
+                                                                                                            <div class="tab-pane active clearfix">
+                                                                                                                <div class="btn-toolbar">
+                                                                                                                    <div class="col-md-12 docs-buttons">
+                                                                                                                        <!-- <h3>Toolbar:</h3> -->
+                                                                                                                        <div class="btn-group">
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="setDragMode" data-option="move" title="Move">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;move&quot;)">
+                                                                                                                                    <span class="fa fa-arrows-alt"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="setDragMode" data-option="crop" title="Crop">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;crop&quot;)">
+                                                                                                                                    <span class="fa fa-crop"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            @*<button type="button" class="btn btn-secondary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                                                                            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(0.1)">
+                                                                                                <span class="fa fa-search-plus"></span>
+                                                                                            </span>
+                                                                                        </button>
+                                                                                        <button type="button" class="btn btn-secondary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                                                                            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(-0.1)">
+                                                                                                <span class="fa fa-search-minus"></span>
+                                                                                            </span>
+                                                                                        </button>*@
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(-10, 0)">
+                                                                                                                                    <span class="fa fa-arrow-left"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(10, 0)">
+                                                                                                                                    <span class="fa fa-arrow-right"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, -10)">
+                                                                                                                                    <span class="fa fa-arrow-up"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, 10)">
+                                                                                                                                    <span class="fa fa-arrow-down"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-45)">
+                                                                                                                                    <span class="fa fa-rotate-left"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotate" data-option="45" title="Rotate Right">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(45)">
+                                                                                                                                    <span class="fa fa-rotate-right"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleX(-1)">
+                                                                                                                                    <span class="fa fa-arrows-h"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleY(-1)">
+                                                                                                                                    <span class="fa fa-arrows-v"></span>
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                        </div>
+
+                                                                                                                        <div class="btn-group">
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="moveTo" data-option="0">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.moveTo(0)">
+                                                                                                                                    Move to [0,0]
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="zoomTo" data-option="1">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoomTo(1)">
+                                                                                                                                    Zoom to 100%
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="90">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(90)">
+                                                                                                                                    Rotate 90°
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="180">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(180)">
+                                                                                                                                    Rotate 180°
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="270">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(270)">
+                                                                                                                                    Rotate 270°
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="360">
+                                                                                                                                <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(360)">
+                                                                                                                                    Rotate 360°
+                                                                                                                                </span>
+                                                                                                                            </button>
+                                                                                                                            @*<button type="button" class="btn btn-secondary" data-method="scale" data-option="-2" data-second-option="-1">
+                                                                                            <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scale(-2, -1)">
+                                                                                                Scale (-2, -1)
+                                                                                            </span>
+                                                                                        </button>*@
+                                                                                                                        </div>
+                                                                                                                    </div><!-- /.docs-buttons -->
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                                            <button type="button" class="btn btn-primary submit">Đồng ý</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-group clearfix" id="accordionGeneral">
+                                                <div class="panel accordion-item">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionGeneral" href="#collapseaGeneral" aria-expanded="false"><h2>Thông tin chung</h2></a>
+                                                    <div id="collapseaGeneral" class="collapse" aria-expanded="false">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.TagPostIds) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-12 tabular-border">
+                                                                            @Html.DropDownListFor(model => model.TagPostIds, new SelectList(Model.TagPosts, "Id", "NameVn"), "---Chọn thẻ---", new { @class = "form-control select2 select-placeholder", multiple = "multiple" })
+                                                                            @Html.ValidationMessageFor(model => model.TagPostIds)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-6 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-4 tabular-border pt-1">
+                                                                            @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                                                            @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-group clearfix" id="accordionSEOGeneral">
+                                                <div class="panel accordion-item">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionSEOGeneral" href="#collapseaSEOGeneral" aria-expanded="false"><h2>Thiết lập SEO</h2></a>
+                                                    <div id="collapseaSEOGeneral" class="collapse" aria-expanded="false">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="tab-container tab-default">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#PageSEOVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                        <li><a href="#PageSEOEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active  clearfix" id="PageSEOVn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOVn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.TitleSEOVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.TitleSEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            @Html.HiddenFor(m => m.RouteDataUrlVnId)
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugVn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.SlugVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                                    <br />
+                                                                                    @Html.ValidationMessageFor(model => model.SlugVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.KeywordSEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.KeywordSEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.DescriptionSEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.DescriptionSEOVn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H1SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H1SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H2SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H2SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H3SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H3SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H4SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H4SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H5SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H5SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H6SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H6SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="PageSEOEn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOEn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.TitleSEOEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.TitleSEOEn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            @Html.HiddenFor(m => m.RouteDataUrlEnId)
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugEn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.SlugEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                                    <br />
+                                                                                    @Html.ValidationMessageFor(model => model.SlugEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.KeywordSEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.KeywordSEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.DescriptionSEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.DescriptionSEOEn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H1SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H1SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H2SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H2SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H3SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H3SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H4SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H4SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H5SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H5SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H6SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H6SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-group clearfix" id="accordionOpenGraphMetaData">
+                                                <div class="panel accordion-item">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionOpenGraphMetaData" href="#collapseaOpenGraphMetaData" aria-expanded="false"><h2>Thiết lập OpenGraph MetaData</h2></a>
+                                                    <div id="collapseaOpenGraphMetaData" class="collapse" aria-expanded="false">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+
+                                                                <div class="tab-container tab-default">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#tbOpenGraphMetaDataVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                        <li><a href="#tbOpenGraphMetaDataEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active  clearfix" id="tbOpenGraphMetaDataVn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgTitleVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgTitleVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.OgDescriptionVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgSite_nameVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameVn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="tbOpenGraphMetaDataEn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgTitleEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgTitleEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.OgDescriptionEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgSite_nameEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameEn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12">Hình ảnh đại diện OpenGraph MetaData</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="fileinputcrop">
+                                                                            <div class="fileinputcrop-preview" style="height:200px;">
+                                                                                <img class="rounded max-width imgpreviewOpenGraphMetaData" id="imgpreviewOpenGraphMetaDataId" src="~/Content/Control/assets/img/default/default_gallery_photo.jpg" alt="Preview">
+                                                                                <a href="javascript:;" class="fileinput-trigger-addimage" data-trigger="fileinput" data-provides="#inputfileOpenGraphMetaData"><i class="ion-camera"></i></a>
+                                                                            </div>
+                                                                            <input type="file" class="form-control" id="inputfileOpenGraphMetaData" name="image" accept="image/*">
+                                                                            <br />
+                                                                            <small>Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.</small>
+
+                                                                            <div class="filecrop_modal">
+                                                                                <div class="modal fade" id="modalCropOpenGraphMetaData" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                                                                    <div class="modal-dialog w-95" role="document">
+                                                                                        <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <h5 class="modal-title">Đăng tải hình ảnh</h5>
+                                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                    <span aria-hidden="true">&times;</span>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-10">
+                                                                                                        <div class="img-container">
+                                                                                                            <img id="imgcropOpenGraphMetaData" src="~/Content/Control/assets/img/default/default_gallery_photo.jpg">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-2">
+                                                                                                        <div class="docs-data">
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataX">X</label>
+                                                                                                                <input type="text" class="form-control dataX" placeholder="x" readonly>
+                                                                                                                <span class="input-group-addon">px</span>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataY">Y</label>
+                                                                                                                <input type="text" class="form-control dataY" placeholder="y" readonly>
+                                                                                                                <span class="input-group-addon">px</span>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataWidth">Width</label>
+                                                                                                                <input type="text" class="form-control dataWidth" placeholder="width" readonly>
+                                                                                                                <span class="input-group-addon">px</span>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataHeight">Height</label>
+                                                                                                                <input type="text" class="form-control dataHeight" placeholder="height" readonly>
+                                                                                                                <span class="input-group-addon">px</span>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataRotate">Rotate</label>
+                                                                                                                <input type="text" class="form-control dataRotate" placeholder="rotate" readonly>
+                                                                                                                <span class="input-group-addon">deg</span>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataScaleX">ScaleX</label>
+                                                                                                                <input type="text" class="form-control dataScaleX" placeholder="scaleX" readonly>
+                                                                                                            </div>
+                                                                                                            <div class="input-group input-group-sm">
+                                                                                                                <label class="input-group-addon" for="dataScaleY">ScaleY</label>
+                                                                                                                <input type="text" class="form-control dataScaleY" placeholder="scaleY" readonly>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="tab-container tab-default">
+                                                                                                            <ul class="nav nav-tabs">
+                                                                                                                <li class="active"><a href="#" data-toggle="tab">Công cụ</a></li>
+                                                                                                            </ul>
+                                                                                                            <div class="tab-content">
+                                                                                                                <div class="tab-pane active clearfix">
+                                                                                                                    <div class="btn-toolbar">
+                                                                                                                        <div class="col-md-12 docs-buttons">
+                                                                                                                            <!-- <h3>Toolbar:</h3> -->
+                                                                                                                            <div class="btn-group">
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="setDragMode" data-option="move" title="Move">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;move&quot;)">
+                                                                                                                                        <span class="fa fa-arrows-alt"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="setDragMode" data-option="crop" title="Crop">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.setDragMode(&quot;crop&quot;)">
+                                                                                                                                        <span class="fa fa-crop"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                @*<button type="button" class="btn btn-secondary" data-method="zoom" data-option="0.1" title="Zoom In">
+                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(0.1)">
+                                                                        <span class="fa fa-search-plus"></span>
+                                                                    </span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-secondary" data-method="zoom" data-option="-0.1" title="Zoom Out">
+                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoom(-0.1)">
+                                                                        <span class="fa fa-search-minus"></span>
+                                                                    </span>
+                                                                </button>*@
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(-10, 0)">
+                                                                                                                                        <span class="fa fa-arrow-left"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="move" data-option="10" data-second-option="0" title="Move Right">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(10, 0)">
+                                                                                                                                        <span class="fa fa-arrow-right"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, -10)">
+                                                                                                                                        <span class="fa fa-arrow-up"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="move" data-option="0" data-second-option="10" title="Move Down">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.move(0, 10)">
+                                                                                                                                        <span class="fa fa-arrow-down"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotate" data-option="-45" title="Rotate Left">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(-45)">
+                                                                                                                                        <span class="fa fa-rotate-left"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotate" data-option="45" title="Rotate Right">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotate(45)">
+                                                                                                                                        <span class="fa fa-rotate-right"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="scaleX" data-option="-1" title="Flip Horizontal">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleX(-1)">
+                                                                                                                                        <span class="fa fa-arrows-h"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="scaleY" data-option="-1" title="Flip Vertical">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scaleY(-1)">
+                                                                                                                                        <span class="fa fa-arrows-v"></span>
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                            </div>
+
+                                                                                                                            <div class="btn-group">
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="moveTo" data-option="0">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.moveTo(0)">
+                                                                                                                                        Move to [0,0]
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="zoomTo" data-option="1">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.zoomTo(1)">
+                                                                                                                                        Zoom to 100%
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="90">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(90)">
+                                                                                                                                        Rotate 90°
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="180">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(180)">
+                                                                                                                                        Rotate 180°
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="270">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(270)">
+                                                                                                                                        Rotate 270°
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                <button type="button" class="btn btn-secondary" data-method="rotateTo" data-option="360">
+                                                                                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.rotateTo(360)">
+                                                                                                                                        Rotate 360°
+                                                                                                                                    </span>
+                                                                                                                                </button>
+                                                                                                                                @*<button type="button" class="btn btn-secondary" data-method="scale" data-option="-2" data-second-option="-1">
+                                                                    <span class="docs-tooltip" data-toggle="tooltip" title="cropper.scale(-2, -1)">
+                                                                        Scale (-2, -1)
+                                                                    </span>
+                                                                </button>*@
+                                                                                                                            </div>
+                                                                                                                        </div><!-- /.docs-buttons -->
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                                                <button type="button" class="btn btn-primary submit">Đồng ý</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgType)</label>
+                                                                        <div class="col-sm-12">
+                                                                            @Html.DropDownListFor(model => model.OgType, new List<SelectListItem>() {
+                                                                                    new SelectListItem() { Value = "website", Text = "Website" },
+                                                                                    new SelectListItem() { Value = "article", Text = "Article" },
+                                                                                    new SelectListItem() { Value = "video.other", Text = "Video.other" },
+                                                                                    new SelectListItem() { Value = "product", Text = "Product" },
+                                                                                }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                                                            @Html.ValidationMessageFor(model => model.OgType)
+                                                                            <br />
+                                                                            @Html.ValidationMessageFor(model => model.OgType)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-12">og:url</label>
+                                                                        <div class="col-sm-12">
+                                                                            <small>Hệ thống sẽ tự động đồng bộ Url trong phần Thiết lập SEO</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                
+                                <input type="text" id="editor" style="width:500px;">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" }).IfRole("Create", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-success btn-alert-submit" style="display:none;">Đến cập nhật</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+
+    //Begin Crop Image
+    //process crop Image
+    var imgpreview = $('.imgpreview');
+    var $triggeraddfile = imgpreview.closest('.fileinputcrop-preview').find('.fileinput-trigger-addimage[data-trigger="fileinput"]');
+    var imageCrop = document.getElementById('imgcrop');
+    var $inputfile = $('#inputfile');
+    var $modalCrop = $('#modalCrop');////Modal
+    var fileblob;
+
+    var finalCropWidth = 1000;
+    var finalCropHeight = 200;
+    var finalAspectRatio = finalCropWidth / finalCropHeight;
+    var cropper;
+
+    function imageCropper() {
+        if ($triggeraddfile.length > 0) {
+            $triggeraddfile.click(function () {
+                var provideName = $(this).attr('data-provides');
+                if (typeof provideName !== typeof undefined && provideName !== false) {
+                    $(provideName).click();
+                }
+            });
+        }
+        imgpreview.click(function (e) {
+            $inputfile.click();
+        });
+
+        $inputfile.change(function (e) {
+            var files = e.target.files;
+            var done = function (url) {
+                $inputfile.value = '';
+                imageCrop.src = url;
+                $modalCrop.modal('show');////Modal
+            };
+            var reader;
+            var file;
+
+            if (files && files.length > 0) {
+                file = files[0];
+
+                if (URL) {
+                    done(URL.createObjectURL(file));
+                } else if (FileReader) {
+                    reader = new FileReader();
+                    reader.onload = function (e) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        $modalCrop.on('shown.bs.modal', function () {////Modal
+            var elname = '#' + $(this).attr('id');
+            var actions = document.querySelector(elname + ' .btn-toolbar');
+            var datas = document.querySelector(elname + ' .docs-data');
+
+            var dataX = datas.querySelector('.dataX');
+            var dataY = datas.querySelector('.dataY');
+            var dataHeight = datas.querySelector('.dataHeight');
+            var dataWidth = datas.querySelector('.dataWidth');
+            var dataRotate = datas.querySelector('.dataRotate');
+            var dataScaleX = datas.querySelector('.dataScaleX');
+            var dataScaleY = datas.querySelector('.dataScaleY');
+
+            options = {
+                //width: finalCropWidth,
+                //height: finalCropHeight,
+                viewMode: 1,// zoom size
+                zoomable: true,
+                dragMode: 'move',
+                /*      autoCropArea: 0.65,*/
+                //restore: false,
+                //guides: false,
+                //center: false,
+                //highlight: false,
+                //cropBoxMovable: false,
+                //toggleDragModeOnDblclick: false,
+                //minCropBoxWidth: 1000,
+                //minCropBoxHeight: 300,
+                //cropBoxResizable: false,
+                //data: { //define cropbox size
+                //    width: finalCropWidth,
+                //    height: finalCropHeight,
+                //},
+                ready: function (e) {
+                    /*                  console.log(e.type);*/
+                },
+                cropstart: function (e) {
+                    /*                console.log(e.type, e.detail.action);*/
+                },
+                cropmove: function (e) {
+                    /*              console.log(e.type, e.detail.action);*/
+                },
+                cropend: function (e) {
+                    /*          console.log(e.type, e.detail.action);*/
+                },
+                crop: function (e) {
+                    var data = e.detail;
+
+                    /*                console.log(e.type);*/
+                    dataX.value = Math.round(data.x);
+                    dataY.value = Math.round(data.y);
+                    dataHeight.value = Math.round(data.height);
+                    dataWidth.value = Math.round(data.width);
+                    dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
+                    dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
+                    dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
+                },
+                zoom: function (e) {
+                    /*       console.log(e.type, e.detail.ratio);*/
+                }
+            };
+
+            cropper = new Cropper(imageCrop, options);
+
+            var originalImageURL = imgpreviewId.src;
+            var uploadedImageType = 'image/jpeg';
+            var uploadedImageName = 'cropped.jpg';
+            var uploadedImageURL;
+
+            // Methods
+            actions.querySelector('.docs-buttons').onclick = function (event) {
+                var e = event || window.event;
+                var target = e.target || e.srcElement;
+                var cropped;
+                var result;
+                var input;
+                var data;
+
+                if (!cropper) {
+                    return;
+                }
+
+                while (target !== this) {
+                    if (target.getAttribute('data-method')) {
+                        break;
+                    }
+
+                    target = target.parentNode;
+                }
+
+                if (target === this || target.disabled || target.className.indexOf('disabled') > -1) {
+                    return;
+                }
+
+                data = {
+                    method: target.getAttribute('data-method'),
+                    target: target.getAttribute('data-target'),
+                    option: target.getAttribute('data-option') || undefined,
+                    secondOption: target.getAttribute('data-second-option') || undefined
+                };
+
+                cropped = cropper.cropped;
+
+                if (data.method) {
+                    if (typeof data.target !== 'undefined') {
+                        input = document.querySelector(data.target);
+
+                        if (!target.hasAttribute('data-option') && data.target && input) {
+                            try {
+                                data.option = JSON.parse(input.value);
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+                        }
+                    }
+
+                    switch (data.method) {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0) {
+                                cropper.clear();
+                            }
+
+                            break;
+
+                        case 'getCroppedCanvas':
+                            try {
+                                data.option = JSON.parse(data.option);
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+
+                            if (uploadedImageType === 'image/jpeg') {
+                                if (!data.option) {
+                                    data.option = {};
+                                }
+
+                                data.option.fillColor = '#fff';
+                            }
+
+                            break;
+                    }
+
+                    result = cropper[data.method](data.option, data.secondOption);
+
+                    switch (data.method) {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0) {
+                                cropper.crop();
+                            }
+
+                            break;
+
+                        case 'scaleX':
+                        case 'scaleY':
+                            target.setAttribute('data-option', -data.option);
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (result) {
+                                // Bootstrap's Modal
+                                $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+
+                                if (!download.disabled) {
+                                    download.download = uploadedImageName;
+                                    download.href = result.toDataURL(uploadedImageType);
+                                }
+                            }
+
+                            break;
+
+                        case 'destroy':
+                            cropper = null;
+
+                            if (uploadedImageURL) {
+                                URL.revokeObjectURL(uploadedImageURL);
+                                uploadedImageURL = '';
+                                imgpreviewId.src = originalImageURL;
+                            }
+
+                            break;
+                    }
+                }
+            };
+
+        }).on('hidden.bs.modal', function () {
+            cropper.destroy();
+            cropper = null;
+        });
+
+        $modalCrop.find('.submit').click(function () {
+            $modalCrop.modal('hide');////Modal
+
+            if (cropper) {
+                var canvas = cropper.getCroppedCanvas({
+                    //width: finalCropWidth,
+                    //height: finalCropHeight,
+                });
+
+                //Id img
+                imgpreviewId.src = canvas.toDataURL();
+
+                canvas.toBlob(function (blob) {
+                    fileblob = blob;
+                });
+            }
+        });
+    }
+
+    //Begin Crop Image
+    //process crop Image
+    var imgpreviewOpenGraphMetaData = $('.imgpreviewOpenGraphMetaData');
+    var $triggeraddfileOpenGraphMetaData = imgpreviewOpenGraphMetaData.closest('.fileinputcrop-preview').find('.fileinput-trigger-addimage[data-trigger="fileinput"]');
+    var imageCropOpenGraphMetaData = document.getElementById('imgcropOpenGraphMetaData');
+    var $inputfileOpenGraphMetaData = $('#inputfileOpenGraphMetaData');
+    var $modalCropOpenGraphMetaData = $('#modalCropOpenGraphMetaData');////Modal
+    var fileblobOpenGraphMetaData;
+
+    var finalCropOpenGraphMetaDataWidth = 1000;
+    var finalCropOpenGraphMetaDataHeight = 200;
+    var finalOpenGraphMetaDataAspectRatio = finalCropOpenGraphMetaDataWidth / finalCropOpenGraphMetaDataHeight;
+    var cropperOpenGraphMetaData;
+
+    function imageCropperOpenGraphMetaData() {
+        if ($triggeraddfileOpenGraphMetaData.length > 0) {
+            $triggeraddfileOpenGraphMetaData.click(function () {
+                var provideName = $(this).attr('data-provides');
+                if (typeof provideName !== typeof undefined && provideName !== false) {
+                    $(provideName).click();
+                }
+            });
+        }
+        imgpreviewOpenGraphMetaData.click(function (e) {
+            $inputfileOpenGraphMetaData.click();
+        });
+
+        $inputfileOpenGraphMetaData.change(function (e) {
+            var files = e.target.files;
+            var done = function (url) {
+                $inputfileOpenGraphMetaData.value = '';
+                imageCropOpenGraphMetaData.src = url;
+                $modalCropOpenGraphMetaData.modal('show');////Modal
+            };
+            var reader;
+            var file;
+
+            if (files && files.length > 0) {
+                file = files[0];
+
+                if (URL) {
+                    done(URL.createObjectURL(file));
+                } else if (FileReader) {
+                    reader = new FileReader();
+                    reader.onload = function (e) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        $modalCropOpenGraphMetaData.on('shown.bs.modal', function () {////Modal
+            var elname = '#' + $(this).attr('id');
+            var actions = document.querySelector(elname + ' .btn-toolbar');
+            var datas = document.querySelector(elname + ' .docs-data');
+
+            var dataX = datas.querySelector('.dataX');
+            var dataY = datas.querySelector('.dataY');
+            var dataHeight = datas.querySelector('.dataHeight');
+            var dataWidth = datas.querySelector('.dataWidth');
+            var dataRotate = datas.querySelector('.dataRotate');
+            var dataScaleX = datas.querySelector('.dataScaleX');
+            var dataScaleY = datas.querySelector('.dataScaleY');
+
+            options = {
+                //width: finalCropOpenGraphMetaDataWidth,
+                //height: finalCropOpenGraphMetaDataHeight,
+                viewMode: 1,// zoom size
+                zoomable: true,
+                dragMode: 'move',
+                /*      autoCropArea: 0.65,*/
+                //restore: false,
+                //guides: false,
+                //center: false,
+                //highlight: false,
+                //cropBoxMovable: false,
+                //toggleDragModeOnDblclick: false,
+                //minCropBoxWidth: 1000,
+                //minCropBoxHeight: 300,
+                //cropBoxResizable: false,
+                //data: { //define cropbox size
+                //    width: finalCropOpenGraphMetaDataWidth,
+                //    height: finalCropOpenGraphMetaDataHeight,
+                //},
+                ready: function (e) {
+                    /*                  console.log(e.type);*/
+                },
+                cropstart: function (e) {
+                    /*                console.log(e.type, e.detail.action);*/
+                },
+                cropmove: function (e) {
+                    /*              console.log(e.type, e.detail.action);*/
+                },
+                cropend: function (e) {
+                    /*          console.log(e.type, e.detail.action);*/
+                },
+                crop: function (e) {
+                    var data = e.detail;
+
+                    /*                console.log(e.type);*/
+                    dataX.value = Math.round(data.x);
+                    dataY.value = Math.round(data.y);
+                    dataHeight.value = Math.round(data.height);
+                    dataWidth.value = Math.round(data.width);
+                    dataRotate.value = typeof data.rotate !== 'undefined' ? data.rotate : '';
+                    dataScaleX.value = typeof data.scaleX !== 'undefined' ? data.scaleX : '';
+                    dataScaleY.value = typeof data.scaleY !== 'undefined' ? data.scaleY : '';
+                },
+                zoom: function (e) {
+                    /*       console.log(e.type, e.detail.ratio);*/
+                }
+            };
+
+            cropperOpenGraphMetaData = new Cropper(imageCropOpenGraphMetaData, options);
+
+            var originalImageURL = imgpreviewOpenGraphMetaDataId.src;
+            var uploadedImageType = 'image/jpeg';
+            var uploadedImageName = 'cropped.jpg';
+            var uploadedImageURL;
+
+            // Methods
+            actions.querySelector('.docs-buttons').onclick = function (event) {
+                var e = event || window.event;
+                var target = e.target || e.srcElement;
+                var cropped;
+                var result;
+                var input;
+                var data;
+
+                if (!cropperOpenGraphMetaData) {
+                    return;
+                }
+
+                while (target !== this) {
+                    if (target.getAttribute('data-method')) {
+                        break;
+                    }
+
+                    target = target.parentNode;
+                }
+
+                if (target === this || target.disabled || target.className.indexOf('disabled') > -1) {
+                    return;
+                }
+
+                data = {
+                    method: target.getAttribute('data-method'),
+                    target: target.getAttribute('data-target'),
+                    option: target.getAttribute('data-option') || undefined,
+                    secondOption: target.getAttribute('data-second-option') || undefined
+                };
+
+                cropped = cropperOpenGraphMetaData.cropped;
+
+                if (data.method) {
+                    if (typeof data.target !== 'undefined') {
+                        input = document.querySelector(data.target);
+
+                        if (!target.hasAttribute('data-option') && data.target && input) {
+                            try {
+                                data.option = JSON.parse(input.value);
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+                        }
+                    }
+
+                    switch (data.method) {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0) {
+                                cropperOpenGraphMetaData.clear();
+                            }
+
+                            break;
+
+                        case 'getCroppedCanvas':
+                            try {
+                                data.option = JSON.parse(data.option);
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+
+                            if (uploadedImageType === 'image/jpeg') {
+                                if (!data.option) {
+                                    data.option = {};
+                                }
+
+                                data.option.fillColor = '#fff';
+                            }
+
+                            break;
+                    }
+
+                    result = cropperOpenGraphMetaData[data.method](data.option, data.secondOption);
+
+                    switch (data.method) {
+                        case 'rotate':
+                            if (cropped && options.viewMode > 0) {
+                                cropperOpenGraphMetaData.crop();
+                            }
+
+                            break;
+
+                        case 'scaleX':
+                        case 'scaleY':
+                            target.setAttribute('data-option', -data.option);
+                            break;
+
+                        case 'getCroppedCanvas':
+                            if (result) {
+                                // Bootstrap's Modal
+                                $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
+
+                                if (!download.disabled) {
+                                    download.download = uploadedImageName;
+                                    download.href = result.toDataURL(uploadedImageType);
+                                }
+                            }
+
+                            break;
+
+                        case 'destroy':
+                            cropperOpenGraphMetaData = null;
+
+                            if (uploadedImageURL) {
+                                URL.revokeObjectURL(uploadedImageURL);
+                                uploadedImageURL = '';
+                                imgpreviewOpenGraphMetaDataId.src = originalImageURL;
+                            }
+
+                            break;
+                    }
+                }
+            };
+
+        }).on('hidden.bs.modal', function () {
+            cropperOpenGraphMetaData.destroy();
+            cropperOpenGraphMetaData = null;
+        });
+
+        $modalCropOpenGraphMetaData.find('.submit').click(function () {
+            $modalCropOpenGraphMetaData.modal('hide');////Modal
+
+            if (cropperOpenGraphMetaData) {
+                var canvas = cropperOpenGraphMetaData.getCroppedCanvas({
+                    //width: finalCropOpenGraphMetaDataWidth,
+                    //height: finalCropOpenGraphMetaDataHeight,
+                });
+
+                //Id img
+                imgpreviewOpenGraphMetaDataId.src = canvas.toDataURL();
+
+                canvas.toBlob(function (blob) {
+                    fileblobOpenGraphMetaData = blob;
+                });
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#myModal .modal-footer .btn-alert-submit').click(function () {
+            window.location.href = '@Url.Action("Update", Request.RequestContext.RouteData.Values["controller"].ToString())?gsid=' + $('#hdfid').val();
+        });
+    });
+
+    $(function () {
+        // make instance
+        const mceGSIDFM = new tinymceGSIDFileManager({
+            // connector URL (Use elFinder Demo site's connector for this demo)
+            url: '/connector',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            // upload target folder hash for this tinyMCE
+            uploadTargetHash: 'l3_TUNFX0ltZ3M', // l3 MCE_Imgs on elFinder Demo site for this demo
+            // elFinder dialog node id
+            nodeId: 'elfinder',
+            title: 'File Manager'
+        });
+
+        // TinyMCE init
+        tinymce.init({
+            selector: ".gsideditorfull",
+            height: 600,
+            plugins: 'preview searchreplace autolink directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount charmap emoticons',
+            menubar: 'file edit view insert format tools table',
+            toolbar1: 'code fullscreen  preview print | undo redo | forecolor backcolor removeformat | pagebreak | charmap emoticons | | insertfile image media link anchor codesample',
+            toolbar2: 'bold italic underline strikethrough | fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist',
+            toolbar_sticky: true,
+            relative_urls: false,
+            image_class_list: [
+                { title: 'None', value: '' },
+                { title: 'bootstrap-responsive', value: 'responsive' }
+            ],
+            table_default_attributes: {
+                border: '0'
+            },
+            table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+            image_caption: true,
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+            noneditable_class: 'mceNonEditable',
+            toolbar_mode: 'sliding',
+            contextmenu: 'link image table imagetools',
+            remove_script_host: false,
+            paste_data_images: false,
+            image_advtab: true,
+            image_uploadtab: false,
+            remove_script_host: false,
+            fullscreen_native: true,
+            file_picker_callback: mceGSIDFM.browser,
+            images_upload_handler: mceGSIDFM.uploadHandler,
+        });
+
+        $("#editor").click(function (e) {
+            swal({
+                title: "Đang xử lý dữ liệu",
+                html: true,
+                showConfirmButton: false
+            });
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("BrowserFileModal", "Files", new { Area = ""})',
+                data: {
+                    titlemodal: 'File Managemer',
+                    elfinderelement: 'elfinder',
+                    elementreturn: '#editor',
+                    urlstatic : '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia'
+                },
+                dataType: 'html',
+                success: function (data, status) {
+                    swal.close();
+                    $('#binding-modal').html(data);
+                },
+                error: function (error) {
+                    console.log('Error in sending ajax data');
+                }
+            });
+        });
+
+
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+        imageCropper();
+        imageCropperOpenGraphMetaData();
+
+        $('form.CreateForm').ajaxForm({
+            delegation: true,
+            enctype: "multipart/form-data",
+            beforeSerialize: function (arr, $form, options) {
+            },
+            beforeSubmit: function (arr, $form, options) {
+                var validator = $form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    $form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+
+                if (fileblob) {
+                    arr.push({ name: 'file', value: fileblob });
+                }
+
+                if (fileblobOpenGraphMetaData) {
+                    arr.push({ name: 'fileOpenGraph', value: fileblobOpenGraphMetaData });
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+            },  // pre-submit callback
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $("#hdfid").val(data.Id);
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                swal.close();
+            },  // post-submit callback
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                swal.close();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                swal.close();
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

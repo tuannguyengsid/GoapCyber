@@ -1,0 +1,64 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@using GSID.Model.ExtraEntities;
+<!-- .modal for add task -->
+<div class="modal draggable fade config" id="formconfig" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-70" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-cogs"></i> Cấu hình</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-container tab-left tab-default">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#configsite" data-toggle="tab" aria-expanded="true">Thông tin trang</a></li>
+                        <li class=""><a href="#configstmpemail" data-toggle="tab" aria-expanded="false">Email</a></li>
+                        @*<li class=""><a href="#configfilemanagement" data-toggle="tab" aria-expanded="false">Tập tin</a></li>*@
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="configsite">
+                            @{ Html.RenderAction("PartialConfigSiteInformation", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "" }); }
+                        </div>
+                        <div class="tab-pane" id="configstmpemail">
+                            @{ Html.RenderAction("PartialSTMPConfig", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "" }); }
+                        </div>
+                        @*<div class="tab-pane" id="configfilemanagement">
+            @{ Html.RenderAction("PartialFilePathConfigSiteInformation", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "" }); }
+        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<div id="binding-modal-folderpath"></div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#formconfig').modal('show');
+    });
+</script>
+

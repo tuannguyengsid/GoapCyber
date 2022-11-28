@@ -1,0 +1,56 @@
+﻿@model Guid
+<div class="inbox-mail-heading">
+    <div class="clearfix">
+        <div class="pull-left">
+            <div class="btn-group">
+                <a href="javascript:;" class="btn btn-success btn-label" onclick="CreateRevenue('@Model');"><i class="ion-plus-round"></i>Thêm </a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div id="revenueContent"></div>
+<div id="createRevenueContent"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        initRevenue();
+    });
+
+    function initRevenue() {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("GetListRevenue", "Enterprise")',
+            type: 'GET',
+            data: { enterpriseId : '@Model' },
+            dataType: 'html',
+            success: function (result) {
+                $('#revenueContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function CreateRevenue(enterprise) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("CreateRevenue", "Enterprise")',
+            type: 'GET',
+            data: {
+                enterpriseId: '@Model'
+            },
+            dataType: 'html',
+            success: function (result) {
+                $('#createRevenueContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+</script>

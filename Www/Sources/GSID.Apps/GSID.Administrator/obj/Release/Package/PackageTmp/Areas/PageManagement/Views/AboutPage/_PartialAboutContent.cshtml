@@ -1,0 +1,144 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model AboutPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<div class="accordion-group" id="accordionAboutContent">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionAboutContent" href="#collapseaAboutContent" aria-expanded="true"><h2>Thông tin giới thiệu</h2></a>
+        <div id="collapseaAboutContent" class="collapse in" aria-expanded="true">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="col-sm-12">Hình đại diện giám đốc</label>
+                            <div class="col-sm-12">
+                                <div class="fileinputcrop">
+                                    <div class="fileinputcrop-preview" style="height: 400px;" data-elbinding="#AvatarCEOImageSrc" data-preview-el="#imgAvatarCEOSrc" data-note="Kích thước hình ảnh: 270px x 400px.">
+                                        <img class="rounded max-width" id="imgAvatarCEOSrc" src="@StringExtension.ImageOrDefault(Model.AvatarCEOImageSrc, "", httpStatic)" alt="Preview" style="width:auto;">
+                                        <div class="img-inner-text">
+                                            <div class="shff">
+                                                <span class="icon ion-image"></span>
+                                                <p>Click để thêm ảnh</p>
+                                            </div>
+                                        </div>
+                                        @Html.HiddenFor(m => m.AvatarCEOImageSrc)
+                                    </div>
+                                    <br />
+                                    <small>Kích thước hình ảnh: 270px x 400px.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mt-e-10">
+                            <div class="tab-container tab-default">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tbceoVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                    <li><a href="#tbceoEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tbceoVn">
+                                        <div class="form-group">
+                                            <label class="col-sm-6 control-label">@Html.DisplayNameFor(m => m.SectionAboutFullNameCEOVn)</label>
+                                            <div class="col-sm-6">
+                                                @Html.TextBoxFor(model => model.SectionAboutFullNameCEOVn, new { @class = "form-control", @placeholder = "" })
+                                                @Html.ValidationMessageFor(model => model.SectionAboutFullNameCEOVn)
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-6 control-label">@Html.DisplayNameFor(m => m.SectionAboutPositionCEOVn)</label>
+                                            <div class="col-sm-6">
+                                                @Html.TextBoxFor(model => model.SectionAboutPositionCEOVn, new { @class = "form-control", @placeholder = "" })
+                                                @Html.ValidationMessageFor(model => model.SectionAboutPositionCEOVn)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="tbceoEn">
+                                        <div class="form-group">
+                                            <label class="col-sm-6 control-label">@Html.DisplayNameFor(m => m.SectionAboutFullNameCEOEn)</label>
+                                            <div class="col-sm-6">
+                                                @Html.TextBoxFor(model => model.SectionAboutFullNameCEOEn, new { @class = "form-control", @placeholder = "" })
+                                                @Html.ValidationMessageFor(model => model.SectionAboutFullNameCEOEn)
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-6 control-label">@Html.DisplayNameFor(m => m.SectionAboutPositionCEOEn)</label>
+                                            <div class="col-sm-6">
+                                                @Html.TextBoxFor(model => model.SectionAboutPositionCEOEn, new { @class = "form-control", @placeholder = "" })
+                                                @Html.ValidationMessageFor(model => model.SectionAboutPositionCEOEn)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbaboutContentVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#tbaboutContentEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbaboutContentVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutTitleNameVn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.SectionAboutTitleNameVn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutTitleNameVn)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutContentVn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(model => model.SectionAboutContentVn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutContentVn)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutContentMoreVn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(model => model.SectionAboutContentMoreVn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutContentMoreVn)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tbaboutContentEn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutTitleNameEn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextBoxFor(model => model.SectionAboutTitleNameEn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutTitleNameEn)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutContentEn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(model => model.SectionAboutContentEn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutContentEn)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionAboutContentMoreEn)</label>
+                                        <div class="col-sm-10">
+                                            @Html.TextAreaFor(model => model.SectionAboutContentMoreEn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.SectionAboutContentMoreEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

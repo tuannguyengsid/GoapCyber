@@ -1,0 +1,15 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model DistrictFormFilterProvinceViewModel
+
+@Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "NameVn"), "---Tỉnh/Thành---", new { @class = "form-control select2 select-placeholder" })
+
+<script>
+    $(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+    });
+</script>

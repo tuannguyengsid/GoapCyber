@@ -1,0 +1,68 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<NewsCategory>
+
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    string recycleBinClass = "active";
+    if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        recycleBinClass = "disabled";
+    }
+}
+@foreach (var item in Model)
+{
+    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+    string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+    var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "toggle-input status_trash well well-sm tooltips"},
+                                                    {"data-val", item.Id},
+                                                    {recycleBinClass,recycleBinClass}
+                                                };
+    <tr class="gradeX" data-tt-id="@item.Id.ToString()" data-tt-parent-id="@item.ParentId.ToString()">
+        <td class="tree">
+            <div class="">
+                <div class="language">
+                    <label class="lblanguage"><img src="/Content/Control/assets/img/flags/vn.svg" /></label>
+                    <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameVn">@item.NameVn</span>
+                </div>
+                <div class="language">
+                    <label class="lblanguage"><img src="/Content/Control/assets/img/flags/en.svg" /></label>
+                    <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameEn">@item.NameEn</span>
+                </div>
+            </div>
+        </td>
+        <td>@item.Sort</td>
+        <td>
+            <span class="name tooltips" data-trigger="hover" data-original-title="@addDate"><i class="ion-plus"></i>: @addDate</span>
+            <span class="name tooltips" data-trigger="hover" data-original-title="@addBy"><i class="ion-person"></i>: @addBy</span>
+        </td>
+        <td>
+            <span class="name tooltips" data-trigger="hover" data-original-title="@editDate"><i class="ion-compose"></i>: @editDate</span>
+            <span class="name tooltips" data-trigger="hover" data-original-title="@editBy"><i class="ion-person"></i>: @editBy</span>
+        </td>
+        <td>
+            <div class="handle">
+                <div class="pull-left">
+                    <span class="switch">
+                        @Html.CheckBox(string.Format("Item_trash_{0}", item.Id), !item.IsDeleted, _hasAttrCheckbox)
+                        @Html.Label(string.Format("Item_trash_{0}", item.Id))
+                    </span>
+                </div>
+                <div class="pull-right">
+                    <div class="btn-group-hover">
+                        @Html.RawActionLink("<span class='ion-compose'></span>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn text-success btn-xs well well-sm tooltips", id = item.Id.ToString(), data_trigger = "hover", data_original_title = "Cập nhật" })
+                        @Html.RawActionLink("<span class='ion-trash-a'></span>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn delete text-danger btn-xs well well-sm tooltips", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;", data_trigger = "hover", data_original_title = "Xóa" }).IfRole("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())
+                    </div>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    @Html.Action("PartialIndexChildren", Request.RequestContext.RouteData.Values["controller"].ToString(), new { ParentId = item.Id })
+}

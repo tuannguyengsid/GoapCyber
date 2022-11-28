@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+  <!--https://github.com/maartenba/MvcSiteMapProvider-->
+
+  <mvcSiteMapNode title="Trang chủ" controller="Home" action="Index">
+    <mvcSiteMapNode title="Công ty" controller="Company" action="Index" area="">
+      <mvcSiteMapNode title="Cập nhật thông tin công ty" controller="Company" action="CompanyInformation" area=""/>
+    </mvcSiteMapNode>
+  </mvcSiteMapNode>
+</mvcSiteMap>

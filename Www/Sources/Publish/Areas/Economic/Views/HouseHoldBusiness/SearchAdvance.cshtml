@@ -1,0 +1,265 @@
+﻿
+@using GSID.WebApp.Helpers;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+@model SearchAdvanceHouseHoldBusinessViewModel
+<div class="panel panel-default alt">
+    <div class="panel-heading">
+        <h2>Tìm kiếm</h2>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Index", "HouseHoldBusiness", new { area = "Economic" }, FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data", @id = "searchAdvanceForm" }))
+        {
+            @*<div class="form-group">
+                <div class="row">
+                    @Html.LabelFor(m => m.Keyword, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Keyword, new { @class = "form-control", @placeholder = "Nhập từ khóa như tên công ty, mã số thuế, tên viết tắt" })
+                    </div>
+                </div>
+            </div>*@
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <div class="col-sm-2 control-label">
+                        @Html.LabelFor(m => m.Keyword, new { })
+                    </div>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Keyword, new { @class = "form-control", @placeholder = "Nhập từ khóa để tìm kiếm" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.ReportViolationCategoryId, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-5">
+                        @Html.DropDownListFor(model => model.ReportViolationCategoryId,
+                                                new SelectList(Model.ReportViolationCategories, "Id", "Name"),
+                                                new { @class = "form-control select2 select-placeholder" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.BusinessStatus, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-5">
+                        @Html.DropDownListFor(model => model.BusinessStatus,
+                                                new SelectList(Model.BusinessStatuss, "Id", "Name"),
+                                                new { @class = "form-control select2 select-placeholder" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @*<div class="row">
+                        <div class="col-sm-2 control-label">
+                            @Html.LabelFor(m => m.CountryId)
+                        </div>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.Countries, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                            @Html.ValidationMessageFor(model => model.CountryId)
+                        </div>
+
+                        <div class="col-sm-2">
+                            @Html.LabelFor(m => m.ProvinceId, new { @class = "control-label" })
+                        </div>
+                        <div class="col-sm-4" id="provinceContainer">
+                            @Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                            @Html.ValidationMessageFor(model => model.ProvinceId)
+                        </div>
+                    </div>*@
+
+                @*<div class="row mt20">
+                        <div class="col-sm-2 control-label">
+                            @Html.LabelFor(m => m.DistrictId)
+                        </div>
+                        <div class="col-sm-4" id="districtContainer">
+                            @Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.Districts, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                            @Html.ValidationMessageFor(model => model.DistrictId)
+                        </div>
+
+                        <div class="col-sm-2">
+                            @Html.LabelFor(m => m.WardId, new { @class = "control-label" })
+                        </div>
+                        <div class="col-sm-4" id="wardContainer">
+                            @Html.DropDownListFor(model => model.WardId, new SelectList(Model.Wards, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                            @Html.ValidationMessageFor(model => model.WardId)
+                        </div>
+                    </div>*@
+
+                @Html.HiddenFor(m => m.CountryId)
+                @Html.HiddenFor(m => m.ProvinceId)
+                @Html.HiddenFor(m => m.DistrictId)
+
+                <div class="col-sm-12">
+                    <label class="col-sm-2 control-label">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.AddressLine2, new { @class = "form-control", placeholder = "Bổ sung" })
+                            </div>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.AddressNumber, new { @class = "form-control", placeholder = "Số nhà" })
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.AddressLine1, new { @class = "form-control", placeholder = "Tên đường" })
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(model => model.WardId, new SelectList(Model.Wards, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.CharterCapitalStart, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-8">
+                        <div class="input-daterange input-group">
+                            @Html.TextBoxFor(model => model.CharterCapitalStart, new { @class = "form-control", placeholder = "500000000" })
+                            <span class="input-group-addon">@Html.DisplayNameFor(m => m.CharterCapitalEnd)</span>
+                            @Html.TextBoxFor(model => model.CharterCapitalEnd, new { @class = "form-control", placeholder = "1000000000" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.EstablishmentStart, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-8">
+                        <div class="input-daterange input-group datepicker-range">
+                            @Html.TextBoxFor(model => model.EstablishmentStart, new { @class = "form-control", name = "start", placeholder = "ngày/tháng/năm" })
+                            <span class="input-group-addon">@Html.DisplayNameFor(m => m.EstablishmentEnd)</span>
+                            @Html.TextBoxFor(model => model.EstablishmentEnd, new { @class = "form-control", name = "end", placeholder = "ngày/tháng/năm" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.ChangeProfileDateStart, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-8">
+                        <div class="input-daterange input-group datepicker-range">
+                            @Html.TextBoxFor(model => model.ChangeProfileDateStart, new { @class = "form-control", name = "start", placeholder = "ngày/tháng/năm" })
+                            <span class="input-group-addon">@Html.DisplayNameFor(m => m.ChangeProfileDateEnd)</span>
+                            @Html.TextBoxFor(model => model.ChangeProfileDateEnd, new { @class = "form-control", name = "end", placeholder = "ngày/tháng/năm" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.LabelFor(m => m.HistoryQuery, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-5">
+                        @Html.DropDownListFor(model => model.HistoryQuery, new List<SelectListItem>() {
+                                        new SelectListItem() { Value = "", Text = "" },
+                                        new SelectListItem() { Value = "False", Text = "Không" },
+                                        new SelectListItem() { Value = "True", Text = "Có" }
+                                    }, new { @class = "form-control select2 select-placeholder" })
+                    </div>
+                </div>
+            </div>
+            
+            @Html.HiddenFor(m => m.CapitalOrigin)
+            @Html.HiddenFor(m => m.BusinessType)
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-outline-info pull-right"><i class="ion-ios-search-strong"></i> Tìm kiếm</button>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+<div class="handler"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+
+        $('.datepicker-range').datepicker({
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            autoSize: true
+        });
+
+        $('#CountryId').change(function () {
+            var selectedCountryId = this.value;
+            if (selectedCountryId.length > 0) {
+                $('#provinceContainer').show();
+            }
+            $('#provinceContainer').load('@Url.Action("SearchAdvanceFilterProvinceByCountry")?Country=' + selectedCountryId);
+            $('#districtContainer').load('@Url.Action("SearchAdvanceFilterDistrictByProvince")?Province=');
+            $('#wardContainer').load('@Url.Action("SearchAdvanceFilterWardByDistrict")?District=');
+        });
+
+        $('#ProvinceId').change(function () {
+            var selectedProvinceId = this.value;
+            if (selectedProvinceId.length > 0) {
+                $('#districtContainer').show();
+            }
+            $('#districtContainer').load('@Url.Action("SearchAdvanceFilterDistrictByProvince")?Province=' + selectedProvinceId);
+            $('#wardContainer').load('@Url.Action("SearchAdvanceFilterWardByDistrict")?District=');
+        });
+        $('#DistrictId').change(function () {
+            var selectedDistrictId = this.value;
+            if (selectedDistrictId.length > 0) {
+                $('#wardContainer').show();
+            }
+            $('#wardContainer').load('@Url.Action("SearchAdvanceFilterWardByDistrict")?District=' + selectedDistrictId);
+        });
+
+        $("#AddressLine1").autocomplete({
+            source: '@Url.Action("AutocompleteAddress1", "Enterprise", "Economic")',
+            minLength: 2,
+            select: function (event, ui) {
+                //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+            }
+        });
+
+        $("#Keyword").autocomplete({
+            source: '@Url.Action("AutocompleteKeyword", "HouseHoldBusiness", "Economic")',
+            minLength: 2,
+            select: function (event, ui) {
+                //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+
+            }
+        });
+
+        
+        $('form').on('submit', function (e) {
+            // validation code here
+            var $inputs = $('#searchAdvanceForm :input');
+
+            var index = 0;
+            var paras = '';
+            $inputs.each(function () {
+                var value = $(this).val();
+                if (value != '') {
+                    if (index == 0) {
+                        paras += '?' + this.name + '=' + $(this).val();
+                    }
+                    else {
+                        paras += '&' + this.name + '=' + $(this).val();
+                    }
+                    index++;
+                }
+            });
+
+            if (paras.length > 0) {
+                window.location.href = $(this).attr('action') + paras;
+            }
+            else {
+                $.slidePanel.hide();
+            }
+            e.preventDefault();
+        });
+    });
+</script>

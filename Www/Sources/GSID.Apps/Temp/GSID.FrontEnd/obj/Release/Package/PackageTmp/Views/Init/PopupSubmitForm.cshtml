@@ -1,0 +1,111 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model ContactViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        using (Html.BeginForm("PopupSubmitForm", "Init", FormMethod.Post, new { @class = "newslettermodalform wow fadeInUp PopupSubmitForm", enctype = "multipart/form-data", data_wow_delay = "0.7s", style = "visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;" }))
+        {
+            @Html.HiddenFor(m => m.Language)
+            @Html.Hidden("confirmButtonText", "Thoát")
+            @Html.Hidden("ProcessMessage", "Đang xử lý dữ liệu")
+            @Html.Hidden("ErrorTitle", "Lỗi")
+            @Html.Hidden("ErrorMessage", "Hệ thống internet gặp vấn đề. Xin vui lòng kiểm tra")
+            <div class="subcribes">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control memail", @placeholder = "Nhập email của bạn tại đây..." })
+                <button class="btn btn_submit" type="submit">Gửi ngay</button>
+            </div>
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        using (Html.BeginForm("PopupSubmitForm", "Init", FormMethod.Post, new { @class = "newslettermodalform wow fadeInUp PopupSubmitForm", enctype = "multipart/form-data", data_wow_delay = "0.7s", style = "visibility: visible; animation-delay: 0.7s; animation-name: fadeInUp;" }))
+        {
+            @Html.HiddenFor(m => m.Language)
+            @Html.Hidden("confirmButtonText", "Close")
+            @Html.Hidden("ProcessMessage", "Processing")
+            @Html.Hidden("ErrorTitle", "Error")
+            @Html.Hidden("ErrorMessage", "There is a problem with the internet system. Please check")
+            <div class="subcribes">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control memail", @placeholder = "Enter your email..." })
+                <button class="btn btn_submit" type="submit">Send now</button>
+            </div>
+        }
+    }
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $('form.PopupSubmitForm').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                var processTitle = $('#ProcessMessage').val();
+                Swal.fire({
+                    title: processTitle,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    focusConfirm: false,
+                });
+            },
+            success: function (data, statusText) {
+                setTimeout(function () {
+                    if (data.Status == '2') {
+                        $('#FullName').val('');
+                        $('#Email').val('');
+                        $('#Subject').val('');
+                        $('#Message').val('');
+                        $.validator.unobtrusive.parse("form");
+                    }
+                    Swal.fire({
+                        title: data.Title,
+                        text: data.Message,
+                        showConfirmButton: true,
+                        confirmButtonText: $('#confirmButtonText').val(),
+                        confirmButtonColor: '#1a477fd6'
+                    });
+                }, 500);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var title = $('#ErrorTitle').val();
+                var message = $('#ErrorMessage').val();
+                Swal.fire(title, message);
+
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

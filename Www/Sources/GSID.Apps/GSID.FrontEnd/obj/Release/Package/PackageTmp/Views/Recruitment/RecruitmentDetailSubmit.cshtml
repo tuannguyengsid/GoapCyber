@@ -1,0 +1,182 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model RecruitmentDetailSubmitViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <section class="job_apply_area">
+            <div class="container">
+                <div class="job_apply_info">
+                    <div class="job_apply_content">
+                        <h2>Nộp hồ sơ</h2>
+                        <p>Hãy cung cấp thông tin của bạn để ứng tuyển vị trí này.</p>
+                    </div>
+                    @using (Html.BeginForm("RecruitmentDetailSubmit", "Recruitment", FormMethod.Post, new { @class = "apply-form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.HiddenFor(m => m.Language)
+                        @Html.HiddenFor(m => m.RecruitmentId)
+                        @Html.HiddenFor(m => m.CareerId)
+                        @Html.Hidden("confirmButtonText", "Thoát")
+                        @Html.Hidden("ProcessMessage", "Đang xử lý dữ liệu")
+                        @Html.Hidden("ErrorTitle", "Lỗi")
+                        @Html.Hidden("ErrorMessage", "Hệ thống internet gặp vấn đề. Xin vui lòng kiểm tra")
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Họ và tên (*)" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email (*)" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "Điện thoại (*)" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" id="FileUpload" name="FileUpload" required />
+                                </div>
+                            </div>
+                            <div class="col-md-12 btn-action">
+                                <button type="submit" class="btn-apply-now">Nộp đơn</button>
+                                <a href="@Model.returnUrl" class="btn-apply-back"><i class="fas fa-angle-left"></i> Trở về danh sách</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <section class="job_apply_area">
+            <div class="container">
+                <div class="job_apply_info">
+                    <div class="job_apply_content">
+                        <h2>Submit candidate's profile</h2>
+                        <p>Please provide your information to apply for this position.</p>
+                    </div>
+                    @using (Html.BeginForm("RecruitmentDetailSubmit", "Recruitment", FormMethod.Post, new { @class = "apply-form", enctype = "multipart/form-data" }))
+                    {
+                        @Html.HiddenFor(m => m.Language)
+                        @Html.HiddenFor(m => m.RecruitmentId)
+                        @Html.HiddenFor(m => m.CareerId)
+                        @Html.Hidden("confirmButtonText", "Close")
+                        @Html.Hidden("ProcessMessage", "Processing")
+                        @Html.Hidden("ErrorTitle", "Error")
+                        @Html.Hidden("ErrorMessage", "There is a problem with the internet system. Please check")
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Full name (*)" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email (*)" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", @placeholder = "Phone number (*)" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" id="FileUpload" name="FileUpload" required />
+                                </div>
+                            </div>
+                            <div class="col-md-12 btn-action">
+                                <button type="submit" class="btn-apply-now">Apply</button>
+                                <a href="@Model.returnUrl" class="btn-apply-back"><i class="fas fa-angle-left"></i> Back to list</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                var processTitle = $('#ProcessMessage').val();
+                Swal.fire({
+                    title: processTitle,
+                    showConfirmButton: false,
+                    showCloseButton: false,
+                    showCancelButton: false,
+                    focusConfirm: false,
+                });
+            },
+            success: function (data, statusText) {
+                setTimeout(function () {
+                    if (data.Status == '2') {
+                        $('#FullName').val('');
+                        $('#Email').val('');
+                        $('#PhoneNumber').val('');
+                        $('#FileUpload').val('');
+                        $.validator.unobtrusive.parse("form");
+                    }
+
+                    Swal.fire({
+                        title: data.Title,
+                        text: data.Message,
+                        showConfirmButton: true,
+                        confirmButtonText: $('#confirmButtonText').val(),
+                        confirmButtonColor: '#1a477fd6'
+                    });
+                }, 500);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var title = $('#ErrorTitle').val();
+                var message = $('#ErrorMessage').val();
+                Swal.fire(title, message);
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

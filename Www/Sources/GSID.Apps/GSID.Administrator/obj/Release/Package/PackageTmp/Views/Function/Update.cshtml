@@ -1,0 +1,205 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model PermissionEditViewModel
+
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", "Function", FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data" }))
+        {
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        @Html.HiddenFor(m => m.Id)
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Name) <span class="required">(*)</span></label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Tên..." })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Icon)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(model => model.Icon, new { @class = "form-control", @placeholder = "Cho phép thẻ html" })
+                                @Html.ValidationMessageFor(model => model.Icon)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(model => model.Description, new { @class = "form-control", @placeholder = "controller-action ví dụ: home-index" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Url)</label>
+                            <div class="col-sm-3">
+                                @Html.TextBoxFor(model => model.Url, new { @class = "form-control", @placeholder = "Http://..." })
+                                @Html.ValidationMessageFor(model => model.Url)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.ParentId) <span class="required">(*)</span></label>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="Postion" value="@ViewBag.ParentName" disabled>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-warning" onclick="ViewMore();">
+                                            Chọn chức năng
+                                        </button>
+                                    </span>
+                                </div>
+                                @Html.HiddenFor(m => m.ParentId)
+                                @Html.ValidationMessageFor(model => model.ParentId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IsMenu) <span class="required">(*)</span></label>
+                            <div class="col-sm-3">
+                                @Html.DropDownListFor(model => model.IsMenu, new List<SelectListItem>() {
+                                            new SelectListItem() { Value = "", Text = "Chọn định dạng" },
+                                            new SelectListItem() { Value = "True", Text = "Là menu" },
+                                            new SelectListItem() { Value = "False", Text = "Là chức năng" }
+                                        }, new { @class = "form-control select2 select-placeholder" })
+                                @Html.ValidationMessageFor(model => model.IsMenu)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Sort, new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-1">
+                                @Html.TextBoxFor(model => model.Sort, new { @class = "form-control", @placeholder = "Thứ tự ưu tiên" })
+                                @Html.ValidationMessageFor(model => model.Sort)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                            <div class="col-sm-2">
+                                @Html.CheckBoxFor(m => m.IsDeleted, new { @class = "bootstrap-switch", data_size = "mini", data_on_text = "<i class='fa fa-check'></i>", data_on_color = "success", data_off_text = "<i class='fa fa-times'></i>", data_off_color = "danger" })
+                                @Html.ValidationMessageFor(model => model.IsDeleted)
+                            </div>
+                        </div>
+
+                        <div class="clearfix pt20">
+                            <div class="pull-right">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                                    @*.IfRole("Update", "Function")*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã cập nhật thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#myModal .modal-footer .btn-alert-submit').click(function () {
+            window.location.href = '@Url.Action("Update", "Function", "")?gsid=' + $('#hdfid').val();
+        });
+    });
+    var flag = false;
+
+    function ViewMore() {
+        $('#bodymask').show();
+        var hid = $('#ParentId').val();
+        $.ajax({
+            url: '@Url.Action("GetListBySortLevel", "Function", "")',
+            type: 'GET',
+            data: { id: hid, disaple: '-1' },
+            success: function (data) {
+                $('#bodymask').hide();
+                $('#binding-modal').html(data);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                $('#bodymask').hide();
+                alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+            },
+            complete: function () {
+                $('#bodymask').hide();
+            }
+        });
+    }
+
+
+    $(function () {
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $("#hdfid").val(data.Id);
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

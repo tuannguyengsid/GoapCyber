@@ -1,0 +1,106 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model LoginViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Đăng nhập";
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="form-body">
+    <div class="website-logo">
+        <a href="/">
+            <div class="logo">
+                <img class="logo-size" src="@string.Format("{0}/{1}", httpStatic, SiteInformation.BlackLogoSrc)" alt="">
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+            <div class="info-holder">
+                <img src="/Content/Control/assets/img/graphic.svg" alt="">
+            </div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Hoàn thành nhiều việc hơn với nền tảng Quản trị GoapCyber.Com.</h3>
+                    <p>Truy cập vào công cụ mạnh mẽ nhất cho toàn bộ công việc của bạn</p>
+                    <div class="page-links">
+                        <a href="#" class="active">Đăng nhập</a>
+                    </div>
+                    @using (Html.BeginForm("Login", Request.RequestContext.RouteData.Values["controller"].ToString(), new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "m-t formLogin", role = "form" }))
+                    {
+                        @*@Html.AntiForgeryToken()*@
+                        @Html.HiddenFor(m => m.returnUrl)
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Nhập địa chỉ email" })
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control underline-input", @placeholder = "Nhập mật khẩu" })
+                        <div class="form-button">
+                            <button id="submit" type="submit" class="ibtn">Đăng nhập</button>
+                        </div>
+                        <p>Developed by <a href="http://goapcyber.com/">Goapcyber.Com</a></p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('form.formLogin').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+            },
+            success: function (data, statusText) {
+                console.log(JSON.stringify(data));
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                        window.location.href = data.Url;
+                    });
+                }
+                else {
+                    swal(data.Title, data.Message, "error");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                swal("Lỗi", "Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet", "error");
+                swal.close();
+            },
+            complete: function (data, xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

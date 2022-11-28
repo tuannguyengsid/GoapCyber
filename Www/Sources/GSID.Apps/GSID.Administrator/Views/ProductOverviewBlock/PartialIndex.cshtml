@@ -1,0 +1,50 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model List<ProductOverviewBlock>
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<table class="table table-bordered hoverTable tablesaw table-striped" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+    <thead>
+        <tr>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">#</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tên</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Số thứ tự hiển thị</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string editUrl = "";
+            <tr class="gradeX">
+                <td>
+                    <div class="air__utils__avatarGroup">
+                        <div class="air__utils__avatar air__utils__avatar--size64">
+                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <b><span><a href="@editUrl"><b>@item.Name</b></a></span></b>
+                </td>
+                <td><b>@item.Sort</b></td>
+                <td>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.RawActionLink("<i class='ion-android-create'></i>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn btn-success btn-xs", href = "javascript:;", onclick = "onUpdateOverview('" + item.Id.ToString() + "')" })
+                            @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger btn-xs", onclick = "onDeleteBlock('" + item.Id.ToString() + "', '" + ViewBag.Language + "');", href = "javascript:;" })
+                            @*.IfRole("Delete", "ProductColor")*@
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Content/Control/assets/plugins/tablesaw-master/dist/tablesaw-init.js"></script>

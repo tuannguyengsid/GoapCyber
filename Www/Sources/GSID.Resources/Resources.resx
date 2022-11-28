@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddressRequiredCustomerViewModel" xml:space="preserve">
+    <value>Địa chỉ buộc phải nhập.</value>
+  </data>
+  <data name="AgentPagePagingFirst" xml:space="preserve">
+    <value>Trang đầu</value>
+  </data>
+  <data name="AgentPagePagingLast" xml:space="preserve">
+    <value>Trang cuối</value>
+  </data>
+  <data name="AgentPagePagingNext" xml:space="preserve">
+    <value>Tiếp</value>
+  </data>
+  <data name="AgentPagePagingPrev" xml:space="preserve">
+    <value>Lùi</value>
+  </data>
+  <data name="AgentPageSelectAreaName" xml:space="preserve">
+    <value>Khu vực</value>
+  </data>
+  <data name="AgentPageSelectDistrictName" xml:space="preserve">
+    <value>Quận/Huyện</value>
+  </data>
+  <data name="AgentPageSelectProvinceName" xml:space="preserve">
+    <value>Tỉnh/thành</value>
+  </data>
+  <data name="ContactUsFormMesageError" xml:space="preserve">
+    <value>Vui lòng kiểm tra lại thông tin.</value>
+  </data>
+  <data name="ContactUsFormMesageSuccess" xml:space="preserve">
+    <value>Cảm ơn bạn đã liên hệ với chúng tôi!</value>
+  </data>
+  <data name="ContactUsFormTitleSuccess" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="DistrictIdRequiredCustomerViewModel" xml:space="preserve">
+    <value>Quận/huyện buộc phải nhập.</value>
+  </data>
+  <data name="EmailRegularExpressionCustomerViewModel" xml:space="preserve">
+    <value>Xin vui lòng nhập đúng định dạng email.</value>
+  </data>
+  <data name="EmailRequiredCustomerViewModel" xml:space="preserve">
+    <value>Email buộc phải nhập.</value>
+  </data>
+  <data name="NameRequiredCustomerViewModel" xml:space="preserve">
+    <value>Họ và tên buộc phải nhập.</value>
+  </data>
+  <data name="PhoneNumberRequiredCustomerViewModel" xml:space="preserve">
+    <value>Số điện thoại buộc phải nhập.</value>
+  </data>
+  <data name="ProvinceIdRequiredCustomerViewModel" xml:space="preserve">
+    <value>Tỉnh/thành phố buộc phải nhập.</value>
+  </data>
+  <data name="QualityRequiredCustomerViewModel" xml:space="preserve">
+    <value>Số lượng buộc phải nhập.</value>
+  </data>
+  <data name="RequestAQuoteMessageError" xml:space="preserve">
+    <value>Vui lòng kiểm tra lại thông tin.</value>
+  </data>
+  <data name="RequestAQuoteMessageSuccess" xml:space="preserve">
+    <value>Cảm ơn Quý Khách đã đặt đơn hàng &lt;br/&gt;Yêu cầu đặt hàng của Quý Khách đã gửi thành công đến Bộ phận kinh doanh của SuperStone.&lt;br/&gt;Chúng tôi sẽ liên hệ Quý Khách trong thời gian sớm nhất.&lt;br/&gt;Xin cảm ơn!</value>
+  </data>
+  <data name="RequestAQuoteTitleError" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="RequestAQuoteTitleSuccess" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="RequestFormProcessing" xml:space="preserve">
+    <value>Đang xử lý...</value>
+  </data>
+  <data name="RequestRegisterAgentFormMessageError" xml:space="preserve">
+    <value>Vui lòng kiểm tra lại thông tin.</value>
+  </data>
+  <data name="RequestRegisterAgentFormMessageSuccess" xml:space="preserve">
+    <value>Yêu cầu Đăng ký trở thành Đại Lý SUPERSTONE đã gửi thành công!</value>
+  </data>
+  <data name="RequestRegisterAgentFormTitleSuccess" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="RequestSubscriptionFormMessageError" xml:space="preserve">
+    <value>Vui lòng kiểm tra lại thông tin.</value>
+  </data>
+  <data name="RequestSubscriptionFormMessageSuccess" xml:space="preserve">
+    <value>Yêu cầu đăng ký Email thành công!</value>
+  </data>
+  <data name="RequestSubscriptionFormTitleSuccess" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+</root>

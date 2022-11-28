@@ -1,0 +1,61 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.ViewModels.MongoModels;
+@model MailTemplateFilterViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <div class="panel-ctrls"
+                         data-actions-container=""
+                         data-action-collapse='{"target": ".panel-body"}'
+                         data-action-refresh=''
+                         data-action-close=''>
+                    </div>
+                    <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                </div>
+                <div class="panel-editbox" data-widget-controls=""></div>
+                <div class="panel-body">
+                    <div class="table-inner">
+                        @{ Html.RenderAction("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "" }); }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    function onPagingList(page) {
+        var formData = $('form.Find').serializeObject();
+        addSerializeObject(formData, 'p', page);
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString())',
+            data: formData,
+            dataType: 'html',
+            success: function (data, status) {
+                $('.table-inner').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

@@ -1,0 +1,127 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+
+@using GSID.WebApp.Helpers;
+@model List<EnterpriseToRevenue>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Doanh thu</th>
+            <th>Năm</th>
+            <th>Thay đổi lần cuối</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string lastChanged = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("dd/MM/yyyy") : item.AddedByDate.Value.ToString("dd/MM/yyyy");
+            <tr class="gradeX">
+                <td>@item.TotalRevenue</td>
+                <td>@item.Year</td>
+                <td>@lastChanged</td>
+                <td>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.RawActionLink("<i class='ion-android-create'></i>", null, null, new { id = "update_" + item.Id.ToString() }, new { @class = "btn btn-default btn-xs", onclick = "onUpdateRevenue('" + item.Id.ToString() + "');", href = "javascript:;" })
+                            @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-default btn-xs", href = "javascript:;", id = item.Id.ToString(), data_toggle = "modal", data_target = "#myRevenueModal_" + item.Id.ToString() })
+
+                            <!-- Begin Alert Modal -->
+                            <div class="modal fade" id="myRevenueModal_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h2 class="modal-title">Xóa thông tin</h2>
+                                            <p>Hệ thống sẽ xóa vĩnh viễn các tệp mà bạn đã chọn</p>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-horizontal">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-12">Bạn có chắc chắn muốn xóa không?</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Hủy bỏ</button>
+                                            @Html.RawActionLink("<i class='ion-android-delete''></i> Xóa", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger", onclick = "onDeleteRevenue('" + item.Id.ToString() + "', '"+ item.EnterpriseId + "');", href = "javascript:;" })
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.End Alert Modal  -->
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div id="updateRevenue"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    });
+
+    function initGetListRevenue(enterprise) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("GetListRevenue", "Enterprise")',
+            type: 'GET',
+            data: {
+                enterpriseId: enterprise
+            },
+            dataType: 'html',
+            success: function (result) {
+                $('#revenueContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onDeleteRevenue(val, enterprise) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("DeleteRevenue", "Enterprise")',
+            type: 'POST',
+            data: { id: val },
+            dataType: 'JSON',
+            success: function (result) {
+                $('#bodymask').hide();
+                if (result.Status == '2') {
+                    $('#myRevenueModal_' + val).modal('hide');
+                    initGetListRevenue(enterprise);
+                }
+                else {
+                    alert(result.Message);
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onUpdateRevenue(val) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("UpdateRevenue", "Enterprise")',
+            type: 'GET',
+            data: { Id: val },
+            dataType: 'html',
+            success: function (result) {
+                $('#updateRevenue').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+</script>

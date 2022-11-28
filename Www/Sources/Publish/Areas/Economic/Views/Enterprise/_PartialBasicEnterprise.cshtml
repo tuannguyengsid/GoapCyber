@@ -1,0 +1,98 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+@using GSID.WebApp.Helpers;
+@model EnterpriseCreateViewModel
+
+<fieldset>
+    <legend><b>Thông tin doanh nghiệp cơ bản</b></legend>
+    <div data-row-span="5">
+        <div data-field-span="3">
+            @Html.DisplayNameFor(m => m.Name) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.Name, new { @placeholder = "Tên doanh nghiệp" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div data-field-span="2">
+            @Html.LabelFor(m => m.ShortName)
+            @Html.TextBoxFor(model => model.ShortName, new { @placeholder = "Tên viết tắt" })
+            @Html.ValidationMessageFor(model => model.ShortName)
+        </div>
+    </div>
+    <div data-row-span="2">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.TaxCode) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.TaxCode, new { @class = "form-control", @placeholder = "Mã số thuế" })
+            @Html.ValidationMessageFor(model => model.TaxCode)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.EnterpriseCode)
+            @Html.TextBoxFor(model => model.EnterpriseCode, new { @class = "form-control", @placeholder = "Mã số doanh nghiệp" })
+            @Html.ValidationMessageFor(model => model.EnterpriseCode)
+        </div>
+    </div>
+    <div data-row-span="2">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.EstablishmentDateString) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.EstablishmentDateString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.EstablishmentDateString)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.ChangeProfileDateString)
+            @Html.TextBoxFor(model => model.ChangeProfileDateString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.ChangeProfileDateString)
+        </div>
+    </div>
+
+    <div data-row-span="3">
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.CharterCapital)
+            @Html.TextBoxFor(model => model.CharterCapital, new { @class = "form-control mask", @data_inputmask = "'mask':'###.###.###.###.###.###.###.###.###.### VNĐ", placeholder = "1000000000000 vnđ" })
+            @Html.ValidationMessageFor(model => model.CharterCapital)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.CapitalOriginId) <span class="required">(*)</span>
+            @Html.DropDownListFor(model => model.CapitalOriginId, new SelectList(Model.CapitalOrigins, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+            @Html.ValidationMessageFor(model => model.CapitalOriginId)
+        </div>
+    </div>
+
+    <div data-row-span="3">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.BusinessTypeId) <span class="required">(*)</span>
+            @Html.DropDownListFor(model => model.BusinessTypeId, new SelectList(Model.BusinessTypes, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+            @Html.ValidationMessageFor(model => model.BusinessTypeId)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.BusinessStatusId) <span class="required">(*)</span>
+            @Html.DropDownListFor(model => model.BusinessStatusId, new SelectList(Model.BusinessStatus, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+            @Html.ValidationMessageFor(model => model.BusinessStatusId)
+        </div>
+    </div>
+    <div data-row-span="3">
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.Owner)
+            @Html.TextBoxFor(model => model.Owner, new { @class = "form-control", @placeholder = "Nhập chủ doanh nghiệp" })
+            @Html.ValidationMessageFor(model => model.Owner)
+        </div>
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+    $(function () {
+        $("#Name").autocomplete({
+            source: '@Url.Action("AutocompleteName", "Enterprise", "Economic")',
+            minLength: 2,
+            select: function (event, ui) {
+                //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+            }
+        });
+
+        $("#ShortName").autocomplete({
+            source: '@Url.Action("AutocompleteShortName", "Enterprise", "Economic")',
+            minLength: 2,
+            select: function (event, ui) {
+                //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+            }
+        });
+    });
+</script>

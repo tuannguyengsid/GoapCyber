@@ -1,0 +1,88 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model EnterpriseCreateViewModel
+
+<fieldset>
+    <legend><b>Ngành nghề</b></legend>
+    <div data-row-span="4">
+        <div data-field-span="2">
+            <div class="row">
+                @Html.LabelFor(m => m.CareerId)
+                @Html.TextBoxFor(model => model.CareerMain, new { @class = "form-control autocomplete", @placeholder = "Nhập ngành nghề chính" })
+                @Html.HiddenFor(m => m.CareerId)
+                @*@Html.DropDownListFor(model => model.CareerId, new SelectList(Model.Careers, "Id", "Name"), "---Chọn ngành nghề chính---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })*@
+                @Html.ValidationMessageFor(model => model.CareerId)
+            </div>
+        </div>
+    </div>
+
+    <div data-row-span="4">
+        <div data-field-span="3">
+            <div class="row">
+                <label>Danh sách ngành nghề phụ</label>
+                <div id="careerchild"></div>
+                <a href="javascript:;" id="addcareers"><span class="label label-primary">Thêm ngành nghề</span></a>
+                <br />
+                <span id="errorcareer">Lỗi</span>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CareerMain").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("AutocompleteCareer", "Enterprise", "Economic")',
+                    data: request,
+                    async: false,
+                    success: function (data) {
+                        $('#CareerId').val();
+                        response(data.slice(0, 10));
+                    }
+                });
+            },
+            minLength: 0,
+            select: function (event, ui) {
+                $('#CareerId').val(ui.item.Id);
+                $("#CareerMain").val(ui.item.Code + " : " + ui.item.Value);
+                return false;
+            },
+            focus: function (event, ui) {
+                $("#CareerMain").val(ui.item.Code + " : " + ui.item.Value);
+                return false;
+            },
+        })
+		.data("autocomplete")._renderItem = function (ul, item) {
+		    return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a>" + item.Code + " : " + item.Value + "</a>")
+				.appendTo(ul);
+		};
+
+        $('#addcareers').click(function () {
+            $('#bodymask').show();
+            $.ajax({
+                url: '@Url.Action("ChildCareers", "Enterprise")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#careerchild').append(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+    });
+
+    function onDeleteCarrer(val) {
+        $(val).remove();
+    }
+</script>

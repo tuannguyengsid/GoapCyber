@@ -1,0 +1,782 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Setting;
+@using GSID.Admin.Helpers;
+@using System.Web.Mvc;
+@model NewsCategoryEditViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+    string httpSite = SiteInformation != null ? SiteInformation.UrlAddressSite : "";
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object> { { "class", "toggle-input" } };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbcontent" data-toggle="tab"><span class="icon ion-ios-paper-outline"></span> Nội dung</a></li>
+                                <li><a href="#tbseo" data-toggle="tab"><span class="icon ion-ios-world"></span> Search Engine Optimization</a></li>
+                                <li><a href="#tbopengraphmeta" data-toggle="tab"><span class="icon ion-ios-color-filter-outline"></span> OpenGraph MetaData</a></li>
+                                <li><a href="#tbextratag" data-toggle="tab"><span class="icon ion-code-working"></span> Thẻ mở rộng</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active clearfix" id="tbcontent">
+                                    <div class="col-sm-9" data-step="1" data-intro="Nhập liệu nội dung" data-position='right'>
+                                        <div class="tab-container tab-default">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#vietnamese" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                <li><a href="#english" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="vietnamese">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.NameVn) <span class="required">(*)</span></label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                                                            @Html.ValidationMessageFor(model => model.NameVn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.FullSlugVn) <span class="required">(*)</span></label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.FullSlugVn, new { @class = "form-control", @placeholder = "Đường dẫn" })
+                                                            @Html.HiddenFor(model => model.SlugVn)
+                                                            @Html.ValidationMessageFor(model => model.SlugVn)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane" id="english">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.NameEn) <span class="required">(*)</span></label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                                                            @Html.ValidationMessageFor(model => model.NameEn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.FullSlugEn) <span class="required">(*)</span></label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.FullSlugEn, new { @class = "form-control", @placeholder = "Đường dẫn" })
+                                                            @Html.HiddenFor(model => model.SlugEn)
+                                                            @Html.ValidationMessageFor(model => model.SlugEn)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 tabular-border">
+                                        <div class="tab-container tab-default clearfix">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tbsocialmedia" data-toggle="tab">Thuộc tính</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active clearfix" id="tbsocialmedia">
+                                                    <div class="accordion-group clearfix" id="accordionGeneral">
+                                                        <div class="panel accordion-item" data-step="3" data-position='left' data-intro="Nhập các thuộc tính liên quan tới thẻ">
+                                                            <a class="accordion-title" data-toggle="collapse" data-parent="#accordionGeneral" href="#collapseaGeneral" aria-expanded="true"><h2><span class="icon ion-ios-settings"></span> Thông tin chung</h2></a>
+                                                            <div id="collapseaGeneral" class="collapse in" aria-expanded="true">
+                                                                <div class="accordion-body clearfix">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.ParentId) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.DropDownListWithAttributesFor(model => model.ParentId,
+                                                                                        new HtmlSelectListModel<NewsCategory>
+                                                                                             {
+                                                                                            DataObjects = Model.NewsCategories,
+                                                                                            EmptyValueText = " ",
+                                                                                            SelectAttributes = new Dictionary<string, string> { { "class", "select2tree" }, { "data-tree", "GSID" } },
+                                                                                            OptionAttributes = new Dictionary<string, string> { { "value", "Id" }, { "inner-text", "NameVn" }, { "data-parent", "ParentId" } }
+                                                                                        }
+                                                                                    )
+                                                                                    @Html.ValidationMessageFor(model => model.ParentId)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-6">@Html.DisplayNameFor(m => m.Sort) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-6">
+                                                                                    @Html.TextBoxFor(model => model.Sort, new { @class = "form-control", @placeholder = "Thứ tự hiển thị" })
+                                                                                    @Html.ValidationMessageFor(model => model.Sort)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsMenu) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-4 tabular-border pt-1">
+                                                                                    <span class="switch">
+                                                                                        @Html.CheckBoxFor(m => m.IsMenu, new { @class = "toggle-input" })
+                                                                                        @Html.LabelFor(m => m.IsMenu)
+                                                                                    </span>
+                                                                                    @Html.ValidationMessageFor(model => model.IsMenu)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-4 tabular-border pt-1">
+                                                                                    <span class="switch">
+                                                                                        @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                                                                        @Html.LabelFor(m => m.IsDeleted)
+                                                                                    </span>
+                                                                                    @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane clearfix" id="tbseo">
+                                    <div class="col-md-12">
+                                        <div class="tab-container tab-default">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#PageSEOVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                <li><a href="#PageSEOEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane clearfix active" id="PageSEOVn">
+                                                    @Html.HiddenFor(model => model.IsUrlRequiredVn)
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.TitleSEOVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                @Html.ValidationMessageFor(model => model.TitleSEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugSEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group date" id="dtp-2">
+                                                                    @Html.TextBoxFor(model => model.SlugSEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                    <span class="input-group-addon btn-clear-slugvn"><i class="ion-close-round"></i></span>
+                                                                </div>
+                                                                @Html.ValidationMessageFor(model => model.SlugSEOVn)
+                                                                @Html.HiddenFor(m => m.RouteDataUrlVnId)
+                                                                <div class="relative rounded-lg bg-yellow-50">
+                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                    <small>Đường dẫn canonical sẽ được đồng bộ theo đường dẫn đã được thiết lập trên đây</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextAreaFor(model => model.KeywordSEOVn, new { @class = "form-control autosize", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.KeywordSEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextAreaFor(model => model.DescriptionSEOVn, new { @class = "form-control autosize", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.DescriptionSEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H1SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H1SEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H2SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H2SEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H3SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H3SEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H4SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H4SEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H5SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H5SEOVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOVn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H6SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H6SEOVn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <section class="index-preview">
+                                                            <div class="index-preview__slide">
+                                                                <div class="index-metadata__content index-metadata__content-vn">
+                                                                    <div id="google" class="metadata-group__display is-active">
+                                                                        <h4 class="metadata-group__title"><span>Google</span></h4>
+                                                                        <div class="card-seo-google">
+                                                                            <span class="card-seo-google__title js-preview-title">GoapCyber – Wikipedia tiếng Việt</span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain">https://vi.wikipedia.org/wiki/GoapCyber</span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                Tất cả các sản phẩm GoapCyber được sản xuất và phát triển tại GoapCyber.
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="card-seo-google active">
+                                                                            <span class="card-seo-google__title js-preview-title"><span class="title">@Model.TitleSEOVn</span><span>@SiteInformation.Prefix@SiteInformation.SiteTitleVn</span></span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain"><span>@httpSite</span><span class="url">@Model.SlugSEOVn</span></span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                @Model.DescriptionSEOVn
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="card-seo-google">
+                                                                            <span class="card-seo-google__title js-preview-title">GoapCyber: Home Page</span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain">@httpSite</span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                Tất cả các sản phẩm GoapCyber được sản xuất và phát triển tại GoapCyber.
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane clearfix" id="PageSEOEn">
+                                                    @Html.HiddenFor(model => model.IsUrlRequiredEn)
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.TitleSEOEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                @Html.ValidationMessageFor(model => model.TitleSEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugSEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                <div class="input-group date" id="dtp-2">
+                                                                    @Html.TextBoxFor(model => model.SlugSEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                    <span class="input-group-addon btn-clear-slugen"><i class="ion-close-round"></i></span>
+                                                                </div>
+                                                                @Html.ValidationMessageFor(model => model.SlugSEOEn)
+                                                                @Html.HiddenFor(m => m.RouteDataUrlEnId)
+                                                                <div class="relative rounded-lg bg-yellow-50">
+                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                    <small>Đường dẫn canonical sẽ được đồng bộ theo đường dẫn đã được thiết lập trên đây</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextAreaFor(model => model.KeywordSEOEn, new { @class = "form-control autosize", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.KeywordSEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextAreaFor(model => model.DescriptionSEOEn, new { @class = "form-control autosize", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.DescriptionSEOEn)
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H1SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H1SEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H2SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H2SEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H3SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H3SEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H4SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H4SEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H5SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H5SEOEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOEn)</label>
+                                                            <div class="col-sm-12">
+                                                                @Html.TextBoxFor(model => model.H6SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.H6SEOEn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <section class="index-preview">
+                                                            <div class="index-preview__slide">
+                                                                <div class="index-metadata__content index-metadata__content-en">
+                                                                    <div id="google" class="metadata-group__display is-active">
+                                                                        <h4 class="metadata-group__title"><span>Google</span></h4>
+                                                                        <div class="card-seo-google">
+                                                                            <span class="card-seo-google__title js-preview-title">GoapCyber – Wikipedia tiếng Việt</span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain">https://vi.wikipedia.org/wiki/GoapCyber</span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                Tất cả các sản phẩm GoapCyber được sản xuất và phát triển tại GoapCyber.
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="card-seo-google active">
+                                                                            <span class="card-seo-google__title js-preview-title"><span class="title">@Model.TitleSEOEn</span><span>@SiteInformation.Prefix@SiteInformation.SiteTitleEn</span></span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain"><span>@httpSite</span><span class="url">@Model.SlugSEOEn</span></span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                @Model.DescriptionSEOEn
+                                                                            </span>
+                                                                        </div>
+                                                                        <div class="card-seo-google">
+                                                                            <span class="card-seo-google__title js-preview-title">GoapCyber: Home Page</span>
+                                                                            <div class="card-seo-google__url">
+                                                                                <span class="card-seo-google__url-title js-preview-domain">@httpSite</span>
+                                                                                <span class="card-seo-google__url-arrow"></span>
+                                                                            </div>
+                                                                            <span class="card-seo-google__description js-preview-description">
+                                                                                Tất cả các sản phẩm GoapCyber được sản xuất và phát triển tại GoapCyber.
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane clearfix" id="tbopengraphmeta">
+                                    <div class="col-md-7">
+                                        <div class="tab-container tab-default">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tbOpenGraphMetaDataVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                <li><a href="#tbOpenGraphMetaDataEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active clearfix" id="tbOpenGraphMetaDataVn">
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleVn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.OgTitleVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                            @Html.ValidationMessageFor(model => model.OgTitleVn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionVn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextAreaFor(model => model.OgDescriptionVn, new { @class = "form-control autosize", @placeholder = "" })
+                                                            @Html.ValidationMessageFor(model => model.OgDescriptionVn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameVn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.OgSite_nameVn, new { @class = "form-control", @placeholder = "" })
+                                                            @Html.ValidationMessageFor(model => model.OgSite_nameVn)
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane" id="tbOpenGraphMetaDataEn">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleEn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.OgTitleEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                            @Html.ValidationMessageFor(model => model.OgTitleEn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionEn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextAreaFor(model => model.OgDescriptionEn, new { @class = "form-control autosize", @placeholder = "" })
+                                                            @Html.ValidationMessageFor(model => model.OgDescriptionEn)
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameEn)</label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(model => model.OgSite_nameEn, new { @class = "form-control", @placeholder = "" })
+                                                            @Html.ValidationMessageFor(model => model.OgSite_nameEn)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" data-step="6" data-intro="Hình ảnh sẽ được đính vào thẻ meta property='og:image'.Chọn hình ảnh ta có thể làm như sau:<ul class='disc'><li>Chọn hình ảnh: Click để thêm ảnh &rarr; Chọn hình ảnh ở một thư mục bất kì bằng cách chọn ảnh và bấm 'Select Files'. </li><li>Upload hình ảnh: Click để thêm ảnh &rarr; Chọn thư mục cần up ảnh &rarr; Bấm chuột phải chọn upload file/hoặc kéo thả file ảnh vào. Trường hợp muốn resize ta chọn ảnh vừa upload  &rarr; Bấm chuột phải vào ảnh upload và chọn Resize & Rotate. Sau khi hoàn tất, bấm chuột phải vào ảnh và chọn 'Select files' để chọn ảnh hiển thị.</li></ul>" data-position='left'>
+                                            <label class="col-sm-12">Hình ảnh đại diện OpenGraph MetaData</label>
+                                            <div class="col-sm-12">
+                                                <div class="fileinputcrop">
+                                                    <div class="fileinputcrop-preview opengraph-img" style="height: 350px; max-width: 500px;" data-elbinding="#OgImageSrc" data-preview-el="#ogimgSrc" data-note="Kích thước hình ảnh: tùy chỉnh theo người nhập liệu." data-titlemodal="Hình ảnh đại diện OpenGraph MetaData" data-url="@Default.FileManagementConectDefault" data-urlstatic="@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia">
+                                                        <img class="rounded max-width" id="ogimgSrc" src="@StringExtension.ImageOrDefault(Model.OgImageSrc,"" , httpStatic)" alt="Preview">
+                                                        <div class="img-inner-text">
+                                                            <div class="shff">
+                                                                <span class="icon ion-image"></span>
+                                                                <p>Click để thêm ảnh</p>
+                                                            </div>
+                                                        </div>
+                                                        @Html.HiddenFor(m => m.OgImageSrc)
+                                                    </div>
+                                                    <div class="relative rounded-lg bg-yellow-50">
+                                                        <small>Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.</small>
+                                                        <small class="text-warning">Lưu ý: Đối với chọn tập tin có thể bấm click trái chuột. Sau khi đó bấm Select Files để chọn.</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" data-step="7" data-intro="Hình ảnh sẽ được đính vào thẻ meta property='og:type'" data-position='left'>
+                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgType)</label>
+                                            <div class="col-sm-12">
+                                                @Html.DropDownListFor(model => model.OgType, new List<SelectListItem>() {
+                                                        new SelectListItem() { Value = "website", Text = "Website" },
+                                                        new SelectListItem() { Value = "article", Text = "Article" },
+                                                        new SelectListItem() { Value = "video.other", Text = "Video.other" },
+                                                        new SelectListItem() { Value = "product", Text = "Product" },
+                                                    }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                                @Html.ValidationMessageFor(model => model.OgType)
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-12">@Html.DisplayName("Thẻ <meta property='og:url'")></label>
+                                            <div class="col-sm-12">
+                                                <div class="relative rounded-lg bg-yellow-50">
+                                                    <small>Hệ thống sẽ tự động đồng bộ Url trong phần Thiết lập SEO</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="tab-container tab-default">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tbOpenGraphMetaDataPreviewVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Xem trước</a></li>
+                                                <li><a href="#tbOpenGraphMetaDataPreviewEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Xem trước</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active  clearfix" id="tbOpenGraphMetaDataPreviewVn">
+                                                    <section class="index-preview index-preview-vn">
+                                                        <div class="index-preview__slide">
+                                                            <div class="index-metadata__content">
+                                                                <div id="facebook" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Facebook</span></h4>
+                                                                    <div class="card-seo-facebook">
+                                                                        <div class="card-seo-facebook__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-facebook__text">
+                                                                            <span class="card-seo-facebook__link js-preview-domain">GoapCyber.com</span>
+                                                                            <div class="card-seo-facebook__content">
+                                                                                <div style="margin-top:5px">
+                                                                                    <div class="card-seo-facebook__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</div>
+                                                                                </div>
+                                                                                <span class="card-seo-facebook__description js-preview-description">With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="twitter" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Twitter</span></h4>
+                                                                    <div class="card-seo-twitter">
+                                                                        <div class="card-seo-twitter__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-twitter__text">
+                                                                            <span class="card-seo-twitter__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</span>
+                                                                            <span class="card-seo-twitter__description js-preview-description">With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!</span>
+                                                                            <span class="card-seo-twitter__link js-preview-domain">GoapCyber.com</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="linkedin" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Linkedin</span></h4>
+                                                                    <div class="card-seo-linkedin">
+                                                                        <div class="card-seo-linkedin__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-linkedin__text">
+                                                                            <div class="card-seo-linkedin__content">
+                                                                                <div class="card-seo-linkedin__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</div>
+                                                                                <span class="card-seo-linkedin__link js-preview-domain">GoapCyber.com</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+
+                                                <div class="tab-pane" id="tbOpenGraphMetaDataPreviewEn">
+                                                    <section class="index-preview index-preview-en">
+                                                        <div class="index-preview__slide">
+                                                            <div class="index-metadata__content">
+                                                                <div id="facebook" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Facebook</span></h4>
+                                                                    <div class="card-seo-facebook">
+                                                                        <div class="card-seo-facebook__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-facebook__text">
+                                                                            <span class="card-seo-facebook__link js-preview-domain">GoapCyber.com</span>
+                                                                            <div class="card-seo-facebook__content">
+                                                                                <div style="margin-top:5px">
+                                                                                    <div class="card-seo-facebook__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</div>
+                                                                                </div>
+                                                                                <span class="card-seo-facebook__description js-preview-description">With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="twitter" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Twitter</span></h4>
+                                                                    <div class="card-seo-twitter">
+                                                                        <div class="card-seo-twitter__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-twitter__text">
+                                                                            <span class="card-seo-twitter__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</span>
+                                                                            <span class="card-seo-twitter__description js-preview-description">With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!</span>
+                                                                            <span class="card-seo-twitter__link js-preview-domain">GoapCyber.com</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div id="linkedin" class="metadata-group__display is-active">
+                                                                    <h4 class="metadata-group__title"><span>Linkedin</span></h4>
+                                                                    <div class="card-seo-linkedin">
+                                                                        <div class="card-seo-linkedin__image js-preview-image">
+                                                                            <img src="~/Content/Control/assets/img/preivew-social.jpg" />
+                                                                        </div>
+                                                                        <div class="card-seo-linkedin__text">
+                                                                            <div class="card-seo-linkedin__content">
+                                                                                <div class="card-seo-linkedin__title js-preview-title">Meta Tags —&nbsp;Preview, Edit and Generate</div>
+                                                                                <span class="card-seo-linkedin__link js-preview-domain">GoapCyber.com</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane clearfix" id="tbextratag">
+                                    <div class="col-md-12">
+                                        <div class="tab-container tab-default">
+                                            <ul class="nav nav-tabs">
+                                                <li class="active"><a href="#tbHtmlMetaRawVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                <li><a href="#tbHtmlMetaRawEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active" id="tbHtmlMetaRawVn">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            @Html.TextAreaFor(model => model.HtmlMetaRawVn, new { @class = "form-control autosize", @placeholder = "" })
+                                                            <div class="relative rounded-lg bg-yellow-50">
+                                                                <small class="text-warning">Nhập các nội dung các thẻ cần bổ sung vào đây, bao gồm: thẻ html, mã javascript</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="tbHtmlMetaRawEn">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+                                                            @Html.TextAreaFor(model => model.HtmlMetaRawVn, new { @class = "form-control autosize", @placeholder = "" })
+                                                            <div class="relative rounded-lg bg-yellow-50">
+                                                                <small class="text-warning">Nhập các nội dung các thẻ cần bổ sung vào đây, bao gồm: thẻ html, mã javascript</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2 action">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu & Phát hành", new { @class = "btn btn-primary", type = "submit", data_step = "8", data_intro = "Bấm Lưu để lưu dữ liệu đã nhập liệu.", data_position = "top" }).IfRole(Request.RequestContext.RouteData.Values["action"].ToString(), Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+@Html.Hidden("fmconnect", Default.FileManagementConectDefault)
+@Html.Hidden("fmconnecturlstatic", GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia)
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+
+        $("#NameVn").keyup(function () {
+            $('#SlugVn').val(convertToSlug(removeDiacritics($(this).val())));
+            $('#FullSlugVn').val('/vn/tin-tuc/' + convertToSlug(removeDiacritics($(this).val())));
+        });
+
+        $("#NameEn").keyup(function () {
+            $('#SlugEn').val(convertToSlug(removeDiacritics($(this).val())));
+            $('#FullSlugEn').val('/en/news/' + convertToSlug(removeDiacritics($(this).val())));
+        });
+
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                $(idmodal).modal();
+                $.validator.unobtrusive.parse("form");
+                swal.close();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                swal.close();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                swal.close();
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

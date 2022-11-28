@@ -1,0 +1,122 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model EnterpriseEditViewModel
+
+<fieldset>
+    <legend><b>Địa chỉ liên hệ công ty</b></legend>
+
+    @Html.HiddenFor(m => m.CountryId)
+        @Html.HiddenFor(m => m.ProvinceId)
+        @Html.HiddenFor(m => m.DistrictId)
+    @*<div data-row-span="3">
+        <div data-field-span="1">
+            <div>
+                @Html.LabelFor(m => m.CountryId)
+                @Html.DropDownListFor(model => model.CountryId, new SelectList(Model.Countries, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.CountryId)
+            </div>
+        </div>
+        <div data-field-span="1">
+            <div id="provinceContainer">
+                @Html.LabelFor(m => m.ProvinceId)
+                @Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.ProvinceId)
+            </div>
+        </div>
+
+        <div data-field-span="1">
+            <div id="districtContainer">
+                @Html.LabelFor(m => m.DistrictId)
+                @Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.Districts, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.DistrictId)
+            </div>
+        </div>
+    </div>*@
+
+    <div data-row-span="4">
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.AddressLine2)
+            @Html.TextBoxFor(model => model.AddressLine2, new { @class = "form-control", placeholder = "Lầu 9, tầng 10, chung cư Lô A" })
+            @Html.ValidationMessageFor(model => model.AddressLine2)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.AddressNumber)
+            @Html.TextBoxFor(model => model.AddressNumber, new { @class = "form-control", placeholder = "Số nhà" })
+            @Html.ValidationMessageFor(model => model.AddressNumber)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.AddressLine1) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.AddressLine1, new { @class = "form-control", placeholder = "Tên đường" })
+            @Html.ValidationMessageFor(model => model.AddressLine1)
+        </div>
+        <div data-field-span="1">
+            <div id="wardContainer">
+                @Html.DisplayNameFor(m => m.WardId) <span class="required">(*)</span>
+                @Html.DropDownListFor(model => model.WardId, new SelectList(Model.Wards, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+                @Html.ValidationMessageFor(model => model.WardId)
+            </div>
+        </div>
+    </div>
+
+    <div data-row-span="5">
+        <div data-field-span="2">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "tenemailcongty@tenmienemail.com" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.HomePhone)
+            @Html.TextBoxFor(model => model.HomePhone, new { @class = "form-control mask", data_inputmask = "'mask':'(999) 999-9999'", placeholder = "(999) 999-9999" })
+            @Html.ValidationMessageFor(model => model.HomePhone)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.PhoneNumber)
+            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control mask", data_inputmask = "'mask':'(999) 999-9999'", placeholder = "(999) 999-9999" })
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.Fax)
+            @Html.TextBoxFor(model => model.Fax, new { @class = "form-control mask", data_inputmask = "'mask':'(999) 999-9999'", placeholder = "(999) 999-9999" })
+            @Html.ValidationMessageFor(model => model.Fax)
+        </div>
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+    $(function () {
+        $("#AddressLine1").autocomplete({
+            source: '@Url.Action("AutocompleteAddress1", "Enterprise", "Economic")',
+            minLength: 2,
+            select: function (event, ui) {
+                //log("Selected: " + ui.item.value + " aka " + ui.item.id);
+            }
+        });
+
+        $('#CountryId').change(function () {
+            var selectedCountryId = this.value;
+            if (selectedCountryId.length > 0) {
+                $('#provinceContainer').show();
+            }
+            $('#provinceContainer').load('@Url.Action("FilterProvinceByCountry")?Country=' + selectedCountryId);
+        });
+
+        $('#ProvinceId').change(function () {
+            var selectedProvinceId = this.value;
+            if (selectedProvinceId.length > 0) {
+                $('#districtContainer').show();
+            }
+            $('#districtContainer').load('@Url.Action("FilterDistrictByProvince")?Province=' + selectedProvinceId);
+        });
+
+        $('#DistrictId').change(function () {
+            var selectedDistrictIdId = this.value;
+            if (selectedDistrictIdId.length > 0) {
+                $('#wardContainer').show();
+            }
+            $('#wardContainer').load('@Url.Action("FilterWardByDistrict")?District=' + selectedDistrictIdId);
+        });
+    });
+</script>

@@ -1,0 +1,193 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Helpers;
+@model List<BusinessType>
+
+@{
+    var TotalPage   = (int)ViewBag.TotalPage;
+    var PageVisit   = (int)ViewBag.PageVisit;
+    var PageSize    = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal  = (int)ViewBag.CountTotal;
+    var SecondRecord = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+}
+
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <div class="panel-ctrls"
+                         data-actions-container=""
+                         data-action-collapse='{"target": ".panel-body"}'
+                         data-action-refresh=''
+                         data-action-close=''>
+                    </div>
+                    <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                </div>
+                <div class="panel-editbox" data-widget-controls=""></div>
+                <div class="panel-body">
+                    <div class="panel-ctrls">
+                        <div class="pull-left">
+                            <div class="btn-group">
+                                @Html.RawActionLinkIfRole("<i class='ion-plus'></i><span> Tạo mới</span>", "Create", "BusinessType", null, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="table-flipscroll">
+                        <table class="table table-bordered hoverTable tablesaw" data-tablesaw-mode="columntoggle"  data-tablesaw-minimap>
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tên loại hình doanh nghiệp</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Số lượng doanh nghiệp</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-sortable-default-col data-tablesaw-priority="3">Kích hoạt</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string actived = (item.IsDeleted.HasValue && !item.IsDeleted.Value) ? "<span class='label label-success'>Kích hoạt</span>" : "<span class='label bg-danger'>Ngưng kích hoạt</span>";
+
+                                    <tr class="gradeX">
+                                        @*<td class="inbox-msg-check" width="5%">
+                                                <input type="checkbox" value="@item.Id" name="ham">
+                                            </td>*@
+                                        <td>
+                                            <a class="mytooltip" href="javascript:void(0)">
+                                                <b>@item.Name</b>
+                                                @*<span class="tooltip-content5">
+                                                    <span class="tooltip-text3">
+                                                        <span class="tooltip-inner2">
+                                                            Howdy, Ben!<br /> There are 13 unread messages in your inbox.
+                                                        </span>
+                                                    </span>
+                                                </span>*@
+                                            </a>
+                                        </td>
+                                        <td>@item.EnterPrises.Count</td>
+                                        <td>@Html.Raw(actived)</td>
+                                        <td>
+                                            <div class="pull-right">
+                                                <div class="btn-group">
+                                                    @Html.RawActionLinkIfRole("<i class='ion-android-create'></i>", "Update", "BusinessType", new { gsid = item.Id.ToString() }, new { @class = "btn btn-default btn-xs", id = item.Id.ToString() })
+                                                    @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-danger btn-xs", href = "javascript:;", id = item.Id.ToString(), data_toggle = "modal", data_target = "#myModal_" + item.Id.ToString() }).IfRole("Delete", "BusinessType")
+
+                                                    <!-- Begin Alert Modal -->
+                                                    <div class="modal fade" id="myModal_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                    <h2 class="modal-title">Xóa thông tin</h2>
+                                                                    <p>Hệ thống sẽ xóa vĩnh viễn các tệp mà bạn đã chọn</p>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-horizontal">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-md-12">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-md-3">Tên loại hình kinh doanh</label>
+                                                                                    <div class="col-md-9">@item.Name</div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Hủy bỏ</button>
+                                                                    @Html.RawActionLink("<i class='ion-android-delete''></i> Xóa", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Delete", "BusinessType")
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div><!-- /.End Alert Modal  -->
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+                                    @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap">
+                                    <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    window.location.href = '@Url.Action("Index", "BusinessType")?p=' + page;
+                }
+            });
+        }
+    });
+
+    function onDelete(val) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("Delete", "BusinessType")',
+            type: 'POST',
+            data: { id: val },
+            dataType: 'json',
+            success: function (result) {
+                $('#bodymask').hide();
+                if (result.Status == '2') {
+                    $('#myModal_' + val).modal('hide');
+                    window.location.href = window.location.href;
+                }
+                else {
+                    alert(result.Message);
+                }
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+</script>

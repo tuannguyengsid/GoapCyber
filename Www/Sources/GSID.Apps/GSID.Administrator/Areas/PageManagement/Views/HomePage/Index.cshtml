@@ -1,0 +1,1141 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model HomePageViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("EditHomePage", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form EditHomePage", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="col-12">
+                            <div class="tab-container tab-default">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#buildform" data-toggle="tab">Thiết lập trang</a></li>
+                                    <li><a href="#informationpage" data-toggle="tab">Thông tin chung</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="buildform">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-12">
+                                                <div class="accordion-group" id="accordionShowRoom">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionShowRoom" href="#collapseaShowRoom" aria-expanded="true"><h2>Banner</h2></a>
+                                                        <div id="collapseaShowRoom" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="panel panel-default alt no-boxshadow" data-widget='{"id" : "wiget1"}'>
+                                                                        <div class="panel-body">
+                                                                            <div class="panel-ctrls">
+                                                                                <div class="pull-left">
+                                                                                    <div class="btn-group">
+                                                                                        @Html.RawActionLink("<i class='ion-plus'></i><span> Thêm mới</span>", null, null, null, new { @class = "btn btn-default btn-xs create_banner", href = "javascript:;" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+
+                                                                            <div id="tbBanners">
+                                                                                @if (Model.Banners != null)
+                                                                                {
+                                                                                    <ul class="ul-img">
+                                                                                        @foreach (var item in Model.Banners)
+                                                                                        {
+                                                                                            if (item.Type == 2)
+                                                                                            {
+                                                                                                <li class="li-25">
+                                                                                                    <div class="img-wrap">
+                                                                                                        <div class="img-cover">
+                                                                                                            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/@item.Source" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                                                                        </div>
+                                                                                                        <div class="img-action">
+                                                                                                            <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateBanner('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                                                                                                            <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteBanner('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <li class="li-25">
+                                                                                                    <div class="img-wrap">
+                                                                                                        <div class="img-cover">
+                                                                                                            <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                                                                                                                <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                                                                                                            </a>
+                                                                                                        </div>
+                                                                                                        <div class="img-action">
+                                                                                                            <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateBanner('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                                                                                                            <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteBanner('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </li>
+                                                                                            }
+                                                                                        }
+                                                                                    </ul>
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionProducts">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionProducts" href="#collapseaProducts" aria-expanded="true"><h2>Danh mục sản phẩm</h2></a>
+                                                        <div id="collapseaProducts" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#ProductTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề Tiếng Việt</a></li>
+                                                                                <li><a href="#ProductTitleVnTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiêu đề Tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="ProductTitleVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.ProductCategoryTitleVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.ProductCategoryTitleVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.ProductCategoryTitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="ProductTitleVnTitleEn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.ProductCategoryTitleEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.ProductCategoryTitleEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.ProductCategoryTitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý danh mục sản phẩm: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Sản phẩm => Nhóm sản phẩm hoặc <a href="@Url.Action("Index", "ProductCategory", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý sản phẩm: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Sản phẩm => Sản phẩm hoặc <a href="@Url.Action("Index", "Product", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionWhyChoose">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionWhyChoose" href="#collapseaWhyChoose" aria-expanded="true"><h2>Tại sao chọn chúng tôi</h2></a>
+                                                        <div id="collapseaWhyChoose" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbWhyChooseTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề Tiếng Việt</a></li>
+                                                                                <li><a href="#tbWhyChooseTitleEn" data-toggle="tab">Tiêu đề Tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbWhyChooseTitleVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.WhyChooseTitleVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.WhyChooseTitleVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.WhyChooseTitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="tbWhyChooseTitleEn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.WhyChooseTitleEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.WhyChooseTitleEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.WhyChooseTitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbWhyChooseBackgroundVn" data-toggle="tab">Hình nền</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbWhyChooseBackgroundVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-12">Hình nền</label>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="fileinputcrop">
+                                                                                                <div class="fileinputcrop-preview" style="height: 400px;" data-elbinding="#SectionWhyChooseBackgroundSrc" data-preview-el="#imgwhychoosebgSrc" data-note="Size: 1270px x 850px.">
+                                                                                                    <img class="rounded max-width" id="imgwhychoosebgSrc" src="@StringExtension.ImageOrDefault(Model.CareerBackgroundSrc, "", httpStatic)" alt="Preview">
+                                                                                                    <div class="img-inner-text">
+                                                                                                        <div class="shff">
+                                                                                                            <span class="icon ion-image"></span>
+                                                                                                            <p>Click để thêm ảnh</p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    @Html.HiddenFor(m => m.SectionWhyChooseBackgroundSrc)
+                                                                                                </div>
+                                                                                                <br />
+                                                                                                <small>Size: 1270px x 850px</small>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="panel panel-default alt no-boxshadow" data-widget='{"id" : "wiget2"}'>
+                                                                        <div class="panel-body">
+                                                                            <div class="panel-ctrls">
+                                                                                <div class="pull-left">
+                                                                                    <div class="btn-group">
+                                                                                        @Html.RawActionLink("<i class='ion-plus'></i><span> Thêm mới</span>", null, null, null, new { @class = "btn btn-default btn-xs create_whychoose", href = "javascript:;" })
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+
+                                                                            <div id="tbWhychooses">
+                                                                                @if (Model.WhyChooseUss != null)
+                                                                                {
+                                                                                    <ul class="ul-img">
+                                                                                        @foreach (var item in Model.WhyChooseUss)
+                                                                                        {
+                                                                                            <li class="li-24">
+                                                                                                <div class="img-wrap">
+                                                                                                    <div class="img-cover">
+                                                                                                        <h4>@item.NameVn</h4>
+                                                                                                        <p>@item.DescriptionVn</p>
+                                                                                                    </div>
+                                                                                                    <div class="img-action">
+                                                                                                        <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateWhyChose('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                                                                                                        <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteWhyChose('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </li>
+                                                                                        }
+                                                                                    </ul>
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionNews">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionNews" href="#collapseaNews" aria-expanded="true"><h2>Tin tức</h2></a>
+                                                        <div id="collapseaNews" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbPostTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề Tiếng Việt</a></li>
+                                                                                <li><a href="#tbPostTitleVnTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiêu đề Tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbPostTitleVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.PostTitleVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.PostTitleVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.PostTitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="tbPostTitleVnTitleEn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.PostTitleEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.PostTitleEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.PostTitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý thẻ tin tức: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Bài viết => Thẻ bài viết hoặc <a href="@Url.Action("Index", "TagPost", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý Bài viết: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Bài viết => Bài viết hoặc <a href="@Url.Action("Index", "News", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionCareer">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionCareer" href="#collapseaCareer" aria-expanded="true"><h2>Tuyển dụng</h2></a>
+                                                        <div id="collapseaCareer" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbCareerTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề Tiếng Việt</a></li>
+                                                                                <li><a href="#tbCareerTitleEn" data-toggle="tab">Tiêu đề Tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbCareerTitleVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CareerTitleVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CareerTitleVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CareerTitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="tbCareerTitleEn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CareerTitleEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CareerTitleEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CareerTitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbxxxx" data-toggle="tab">Thiết lập</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbxxxx">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-12">Hình nền</label>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="fileinputcrop">
+                                                                                                <div class="fileinputcrop-preview" style="height: 400px;" data-elbinding="#CareerBackgroundSrc" data-preview-el="#imgcareerbgSrc" data-note="Size: 1270px x 850px.">
+                                                                                                    <img class="rounded max-width" id="imgcareerbgSrc" src="@StringExtension.ImageOrDefault(Model.CareerBackgroundSrc, "", httpStatic)" alt="Preview">
+                                                                                                    <div class="img-inner-text">
+                                                                                                        <div class="shff">
+                                                                                                            <span class="icon ion-image"></span>
+                                                                                                            <p>Click để thêm ảnh</p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    @Html.HiddenFor(m => m.CareerBackgroundSrc)
+                                                                                                </div>
+                                                                                                <br />
+                                                                                                <small>Size: 1270px x 850px</small>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.CareerTakeItem)</label>
+                                                                                        <div class="col-sm-2">
+                                                                                            @Html.TextBoxFor(model => model.CareerTakeItem, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CareerTakeItem)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý thông tin các tin tuyển dụng </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Tuyển dụng => Tin tuyển dụng hoặc <a href="@Url.Action("Index", "Recruitment", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý hồ sơ ứng viên ứng tuyển: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Tuyển dụng => Hồ sơ ứng viên hoặc <a href="@Url.Action("Index", "CurriculumVitae", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý thông tin liên quan đến tin tuyển dụng: </label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Tuyển dụng => các menu con
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionCustomer">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionCustomer" href="#collapseaCustomer" aria-expanded="true"><h2>Đối tác</h2></a>
+                                                        <div id="collapseaCustomer" class="collapse in" aria-expanded="true">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#tbCustomerTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề Tiếng Việt</a></li>
+                                                                                <li><a href="#tbCustomerTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiêu đề Tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="tbCustomerTitleVn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CustomerTitleVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CustomerTitleVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CustomerTitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CustomerDescriptionVn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CustomerDescriptionVn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CustomerDescriptionVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="tbCustomerTitleEn">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CustomerTitleEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CustomerTitleEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CustomerTitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-1 control-label">@Html.DisplayNameFor(m => m.CustomerDescriptionEn)</label>
+                                                                                        <div class="col-sm-6">
+                                                                                            @Html.TextBoxFor(model => model.CustomerDescriptionEn, new { @class = "form-control", @placeholder = "" })
+                                                                                            @Html.ValidationMessageFor(model => model.CustomerDescriptionEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="form-group">
+                                                                            <label class="col-sm-2 control-label">Quản lý đối tác</label>
+                                                                            <div class="col-sm-10">
+                                                                                Truy cập tại Menu => Đối tác hoặc <a href="@Url.Action("Index", "Partner", new { Area = "" })">Click tại đây</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="informationpage">
+                                        <div class="row row-flex">
+                                            <div class="col-md-9">
+                                                <div class="row row-flex">
+                                                    <div class="col-sm-12">
+                                                        <div class="tab-container tab-default">
+                                                            <ul class="nav nav-tabs">
+                                                                <li class="active"><a href="#activemenu" data-toggle="tab">Kích hoạt menu</a></li>
+                                                            </ul>
+                                                            <div class="tab-content">
+                                                                <div class="tab-pane active" id="activemenu">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-1 control-label">Chọn menu</label>
+                                                                        <div class="col-sm-8">
+                                                                            <div class="row">
+                                                                                @if (Model.MenuNodes != null)
+                                                                                {
+                                                                                    string check = (!string.IsNullOrEmpty(Model.MenuActiveId) && Model.MenuActiveId == "home") ? "checked" : "";
+                                                                                    <div class="col-sm-12 radio">
+                                                                                        <input type="radio" @check class="tectonic" id="menu_home" value="home" name="menuactives">
+                                                                                        <label for="menu_home"> Trang chủ</label>
+                                                                                    </div>
+                                                                                    foreach (var item in Model.MenuNodes)
+                                                                                    {
+                                                                                        check = (!string.IsNullOrEmpty(Model.MenuActiveId) && item.Id == Model.MenuActiveId) ? "checked" : "";
+                                                                                        <div class="col-sm-12 radio">
+                                                                                            <input type="radio" @check class="tectonic" id="menu_@item.Id.ToString()" value="@item.Id.ToString()" name="menuactives">
+                                                                                            <label for="menu_@item.Id.ToString()"> @item.NameVn</label>
+                                                                                        </div>
+                                                                                    }
+                                                                                }
+                                                                                @Html.HiddenFor(m => m.MenuActiveId)
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="tab-container tab-default">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#tbpropertice" data-toggle="tab">Thuộc tính</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="tbpropertice">
+                                                            <div class="accordion-group clearfix" id="accordionSEOGeneral">
+                                                                <div class="panel accordion-item">
+                                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionSEOGeneral" href="#collapseaSEOGeneral" aria-expanded="true"><h2>Thiết lập SEO</h2></a>
+                                                                    <div id="collapseaSEOGeneral" class="collapse in" aria-expanded="true">
+                                                                        <div class="accordion-body clearfix">
+                                                                            <div class="row">
+                                                                                <div class="tab-container tab-default">
+                                                                                    <ul class="nav nav-tabs">
+                                                                                        <li class="active"><a href="#PageSEOVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                                        <li><a href="#PageSEOEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                                    </ul>
+                                                                                    <div class="tab-content">
+                                                                                        <div class="tab-pane active" id="PageSEOVn">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.TitleVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                                    @Html.ValidationMessageFor(model => model.TitleVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @Html.HiddenFor(m => m.RouteDataUrlVnId)
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.SlugVn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.SlugVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.KeywordVn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.KeywordVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.DescriptionVn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.DescriptionVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H1Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H1Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H2Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H2Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H3Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H3Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H4Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H4Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H5Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H5Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6Vn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H6Vn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H6Vn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="tab-pane" id="PageSEOEn">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                                    @Html.ValidationMessageFor(model => model.TitleEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            @Html.HiddenFor(m => m.RouteDataUrlEnId)
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.SlugEn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.SlugEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.KeywordEn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.KeywordEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H1En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H1En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H2En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H2En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H3En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H3En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H4En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H4En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H5En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H5En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6En)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.H6En, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.H6En)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="accordion-group clearfix" id="accordionOpenGraphMetaData">
+                                                                <div class="panel accordion-item">
+                                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionOpenGraphMetaData" href="#collapseaOpenGraphMetaData" aria-expanded="true"><h2>Thiết lập OpenGraph MetaData</h2></a>
+                                                                    <div id="collapseaOpenGraphMetaData" class="collapse in" aria-expanded="true">
+                                                                        <div class="accordion-body clearfix">
+                                                                            <div class="row">
+
+                                                                                <div class="tab-container tab-default">
+                                                                                    <ul class="nav nav-tabs">
+                                                                                        <li class="active"><a href="#tbOpenGraphMetaDataVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                                        <li><a href="#tbOpenGraphMetaDataEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                                    </ul>
+                                                                                    <div class="tab-content">
+                                                                                        <div class="tab-pane active  clearfix" id="tbOpenGraphMetaDataVn">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.OgTitleVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgTitleVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.OgDescriptionVn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameVn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.OgSite_nameVn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameVn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="tab-pane" id="tbOpenGraphMetaDataEn">
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.OgTitleEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgTitleEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextAreaFor(model => model.OgDescriptionEn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameEn)</label>
+                                                                                                <div class="col-sm-12">
+                                                                                                    @Html.TextBoxFor(model => model.OgSite_nameEn, new { @class = "form-control", @placeholder = "" })
+                                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameEn)
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="form-group">
+                                                                                    <label class="col-sm-12">Hình ảnh đại diện OpenGraph MetaData</label>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="fileinputcrop">
+                                                                                            <div class="fileinputcrop-preview" style="height:200px;" data-elbinding="#OgImageSrc" data-preview-el="#ogimgSrc" data-note="Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.">
+                                                                                                <img class="rounded max-width" id="ogimgSrc" src="@StringExtension.ImageOrDefault(Model.OgImageSrc, "", httpStatic)" alt="Preview">
+                                                                                                <div class="img-inner-text">
+                                                                                                    <div class="shff">
+                                                                                                        <span class="icon ion-image"></span>
+                                                                                                        <p>Click để thêm ảnh</p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                @Html.HiddenFor(m => m.OgImageSrc)
+                                                                                            </div>
+                                                                                            <br />
+                                                                                            <small>Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgType)</label>
+                                                                                        <div class="col-sm-12">
+                                                                                            @Html.DropDownListFor(model => model.OgType, new List<SelectListItem>() {
+                                                                                                    new SelectListItem() { Value = "website", Text = "Website" },
+                                                                                                    new SelectListItem() { Value = "article", Text = "Article" },
+                                                                                                    new SelectListItem() { Value = "video.other", Text = "Video.other" },
+                                                                                                    new SelectListItem() { Value = "product", Text = "Product" },
+                                                                                                }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                                                                            @Html.ValidationMessageFor(model => model.OgType)
+                                                                                            <br />
+                                                                                            @Html.ValidationMessageFor(model => model.OgType)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-sm-12">og:url</label>
+                                                                                        <div class="col-sm-12">
+                                                                                            <small>Hệ thống sẽ tự động đồng bộ Url trong phần Thiết lập SEO</small>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript" src="/Content/Control/assets/plugins/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script> <!-- Color Picker -->
+<script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function onLoadBanner() {
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialListBanner", "HomePage", new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#tbBanners').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onUpdateBanner(val) {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialUpdateBanner", "HomePage", new { Area = "PageManagement"})',
+            data: { gsid : val},
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onDeleteBanner(val) {
+        if (val.length > 0) {
+            swal({
+                title: 'Bạn đã chắc chứ?',
+                text: "Bạn có chắc muốn xóa dữ liệu này không",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xóa",
+                cancelButtonText: "Đóng",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        url: '@Url.Action("DeleteBanner", "HomePage", new { Area = "PageManagement"})',
+                        type: 'POST',
+                        data: { id: val },
+                        dataType: 'json',
+                        success: function (result) {
+                            swal.close();
+                            if (result.Status == '2') {
+                                onLoadBanner();
+                            }
+                            else {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        },
+                        error: function () {
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                        }
+                    });
+                }
+                else {
+                    swal.close();
+                }
+            });
+        }
+    }
+
+    function onLoadWhyChoose() {
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialListWhyChooseUs", "HomePage", new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#tbWhychooses').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onUpdateWhyChose(val) {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialUpdateWhyChooseUs", "HomePage", new { Area = "PageManagement"})',
+            data: { gsid : val},
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onDeleteWhyChose(val) {
+        if (val.length > 0) {
+            swal({
+                title: 'Bạn đã chắc chứ?',
+                text: "Bạn có chắc muốn xóa dữ liệu này không",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xóa",
+                cancelButtonText: "Đóng",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        url: '@Url.Action("DeleteWhyChooseUs", "HomePage", new { Area = "PageManagement"})',
+                        type: 'POST',
+                        data: { id: val },
+                        dataType: 'json',
+                        success: function (result) {
+                            swal.close();
+                            if (result.Status == '2') {
+                                onLoadWhyChoose();
+                            }
+                            else {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        },
+                        error: function () {
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                        }
+                    });
+                }
+                else {
+                    swal.close();
+                }
+            });
+        }
+    }
+
+    $(function () {
+        "use strict";
+
+        $('.fileinputcrop-preview').fmGSIDModal({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            titleModal: 'Ảnh đại diện',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            multiple: false,
+            folders: false,
+        });
+        menuActive('.user-interface');
+
+        $('.cpicker').colorpicker();
+
+        $('.create_banner').click(function () {
+            swal({
+                title: "Đang xử lý dữ liệu",
+                html: true,
+                showConfirmButton: false
+            });
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("PartialCreateBanner", "HomePage", new { Area = "PageManagement"})',
+                data: { },
+                dataType: 'html',
+                success: function (data, status) {
+                    swal.close();
+                    $('#binding-modal').html(data);
+                },
+                error: function (error) {
+                    console.log('Error in sending ajax data');
+                }
+            });
+        });
+
+        $('.create_whychoose').click(function () {
+            swal({
+                title: "Đang xử lý dữ liệu",
+                html: true,
+                showConfirmButton: false
+            });
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("PartialCreateWhyChooseUs", "HomePage", new { Area = "PageManagement"})',
+                data: { },
+                dataType: 'html',
+                success: function (data, status) {
+                    swal.close();
+                    $('#binding-modal').html(data);
+                },
+                error: function (error) {
+                    console.log('Error in sending ajax data');
+                }
+            });
+        });
+
+        $('form.EditHomePage').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                $('#MenuActiveId').val($("input[name='menuactives']:checked").val());
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>

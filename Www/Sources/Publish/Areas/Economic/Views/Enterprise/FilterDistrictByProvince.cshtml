@@ -1,0 +1,23 @@
+﻿@using GSID.WebApp.ViewModels;
+@using GSID.WebApp.Helpers;
+@model DistrictFilterModel
+@Html.LabelFor(m => m.DistrictId)
+@Html.DropDownListFor(model => model.DistrictId, new SelectList(Model.Districts, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+@Html.ValidationMessageFor(model => model.DistrictId)
+<script>
+    $(function () {
+    //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+
+        $('#DistrictId').change(function () {
+            var selectedDistrictIdId = this.value;
+            if (selectedDistrictIdId.length > 0) {
+                $('#wardContainer').show();
+            }
+            $('#wardContainer').load('@Url.Action("FilterWardByDistrict")?District=' + selectedDistrictIdId);
+        });
+    });
+</script>

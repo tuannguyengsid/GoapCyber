@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - Carel.com.vn</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="author" content="g-sid.com">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/login-style.css">
+    <link rel="stylesheet" type="text/css" href="/Content/Control/assets/css/login-theme.css">
+
+    <!-- <script type="text/javascript" src="~/Content/Control/assets/js/main.js"></script>
+    End loading site level scripts -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+    <link type="text/css" href="assets/css/ie8.css" rel="stylesheet">
+    <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+</head>
+<body>
+    @RenderBody()
+    @{ Html.RenderAction("PopupForm", "init", new { language = currentLan != null ? currentLan.Parent : "" }); }
+
+    <script src="/Content/Control/assets/js/jquery.min.js"></script>
+    <script src="/Content/Control/assets/js/popper.min.js"></script>
+    <script src="/Content/Control/assets/js/bootstrap.min.js"></script>
+    <script src="/Content/Control/assets/js/login.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

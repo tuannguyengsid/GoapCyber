@@ -1,0 +1,80 @@
+﻿@using GSID.Setting;
+
+<div class="el-wrap">
+    <div id="el"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dheight = $(document).height();
+        var topnavheight = $('#topnav').height();
+        var widget_leftbarheight = $('#widget-leftbar').height();
+        var fheight = $('.contentinfo').height();
+
+        var elheight = dheight - topnavheight - widget_leftbarheight - fheight -20;
+
+
+        var elfinder = $('#el').elfinder({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            resizable: false,
+            width: '100%',
+            height: elheight + 'px',
+            /*       commands: myCommands,*/
+            commands: [
+                'custom', 'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
+                'download', 'rm', 'duplicate', 'rename', 'mkdir', 'mkfile', 'upload', 'copy',
+                'cut', 'paste', 'edit', 'extract', 'archive', 'search', 'info', 'view', 'resize', 'sort', 'netmount'
+            ],
+            contextmenu: {
+                // navbarfolder menu
+                navbar: ['open', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'info'],
+                // current directory menu
+                cwd: ['reload', 'back', '|', 'upload', 'mkdir', 'mkfile', 'paste', '|', 'sort', '|', 'info'],
+                // current directory file menu
+                files: ['getfile', '|', 'custom', 'quicklook', '|', 'download', '|', 'copy', 'cut', 'paste', 'duplicate', '|', 'rm', '|', 'edit', 'rename', 'resize', '|', 'archive', 'extract', '|', 'info']
+            },
+            uiOptions: {
+                toolbar: [
+                    // toolbar configuration
+                    ['open'],
+                    ['back', 'forward'],
+                    ['reload'],
+                    ['home', 'up'],
+                    ['mkfile', 'upload'],
+                    ['info'],
+                    ['quicklook'],
+                    ['copy', 'cut', 'paste'],
+                    ['rm'],
+                    ['duplicate', 'rename', 'edit', 'resize'],
+                    ['extract', 'archive'],
+                    ['search'],
+                    ['view'],
+                ]
+            },
+            commandsOptions: {
+                getfile: {
+                    onlyPath: true,
+                    folders: false,
+                    multiple: false,
+                    oncomplete: 'close'
+                }
+            },
+            mimeDetect: 'internal',
+            onlyMimes: [
+                'image/jpeg',
+                'image/jpg',
+                'image/png',
+                'image/gif'
+            ],
+            /*                        soundPath: '{{ asset('packages/ barryvdh / elfinder / sounds') }}',*/
+            handlers: {
+                dblclick: function (event, elfinderInstance) {
+                },
+                destroy: function (event, elfinderInstance) {
+                }
+            },
+            getFileCallback: function (file, fm) {
+            }
+        });
+    });
+</script>

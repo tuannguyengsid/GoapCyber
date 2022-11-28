@@ -1,0 +1,213 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model AboutPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<div class="accordion-group" id="accordionAboutVision">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionAboutVision" href="#collapseaAboutVision" aria-expanded="true"><h2>Tầm nhìn và sứ mệnh</h2></a>
+        <div id="collapseaAboutVision" class="collapse in" aria-expanded="true">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbSectionVisionTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#tbSectionVisionTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbSectionVisionTitleVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionVisionTitleNameVn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.SectionVisionTitleNameVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                            @Html.ValidationMessageFor(model => model.SectionVisionTitleNameVn)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tbSectionVisionTitleEn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SectionVisionTitleNameEn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.SectionVisionTitleNameEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                            @Html.ValidationMessageFor(model => model.SectionVisionTitleNameEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-12">Hình nền</label>
+                            <div class="col-sm-12">
+                                <div class="fileinputcrop">
+                                    <div class="fileinputcrop-preview" style="height: 400px;" data-elbinding="#SectionVisionBackgroundSrc" data-preview-el="#imgVisionbgSrc" data-note="Kích thước hình ảnh: 1280px x 850px.">
+                                        <img class="rounded max-width" id="imgVisionbgSrc" src="@StringExtension.ImageOrDefault(Model.SectionVisionBackgroundSrc, "", httpStatic)" alt="Preview">
+                                        <div class="img-inner-text">
+                                            <div class="shff">
+                                                <span class="icon ion-image"></span>
+                                                <p>Click để thêm ảnh</p>
+                                            </div>
+                                        </div>
+                                        @Html.HiddenFor(m => m.SectionVisionBackgroundSrc)
+                                    </div>
+                                    <br />
+                                    <small>Kích thước hình ảnh: 1280px x 850px.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="panel panel-default alt no-boxshadow" data-widget='{"id" : "wiget1"}'>
+                            <div class="panel-body">
+                                <div class="panel-ctrls">
+                                    <div class="pull-left">
+                                        <div class="btn-group">
+                                            @Html.RawActionLink("<i class='ion-plus'></i><span> Thêm mới</span>", null, null, null, new { @class = "btn btn-default btn-xs", href = "javascript:;", onclick = "onCreateVision();" })
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <div id="tbVisions">
+                                    @if (Model.Visions != null)
+                                    {
+                                        <ul class="ul-img">
+                                            @foreach (var item in Model.Visions)
+                                            {
+                                                <li class="li-24">
+                                                    <div class="img-wrap">
+                                                        <div class="img-cover text-center">
+                                                            <h5>@item.NameVn</h5>
+                                                            <p>@item.DescriptionVn</p>
+                                                        </div>
+                                                        <div class="img-action">
+                                                            <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateVision('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                                                            <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteVision('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function onLoadVision() {
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialListVision", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#tbVisions').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onCreateVision() {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialCreateVision", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onUpdateVision(val) {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialUpdateVision", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { gsid : val},
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onDeleteVision(val) {
+        if (val.length > 0) {
+            swal({
+                title: 'Bạn đã chắc chứ?',
+                text: "Bạn có chắc muốn xóa dữ liệu này không",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Xóa",
+                cancelButtonText: "Đóng",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },function (isConfirm) {
+                if (isConfirm) {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        url: '@Url.Action("DeleteVision", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+                        type: 'POST',
+                        data: { id: val },
+                        dataType: 'json',
+                        success: function (result) {
+                            swal.close();
+                            if (result.Status == '2') {
+                                onLoadVision();
+                            }
+                            else {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        },
+                        error: function () {
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                        }
+                    });
+                }
+                else {
+                    swal.close();
+                }
+            });
+        }
+    }
+</script>

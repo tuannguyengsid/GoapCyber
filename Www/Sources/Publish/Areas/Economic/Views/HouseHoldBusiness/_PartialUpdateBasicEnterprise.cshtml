@@ -1,0 +1,52 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model HouseHoldBusinessEditViewModel
+
+<fieldset>
+    <legend><b>Thông tin hộ kinh doanh cơ bản</b></legend>
+    <div data-row-span="2">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.TaxCode) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.TaxCode, new { @class = "form-control", @placeholder = "Mã số thuế" })
+            @Html.ValidationMessageFor(model => model.TaxCode)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.EnterpriseCode)
+            @Html.TextBoxFor(model => model.EnterpriseCode, new { @class = "form-control", @placeholder = "Mã số doanh nghiệp" })
+            @Html.ValidationMessageFor(model => model.EnterpriseCode)
+        </div>
+    </div>
+    <div data-row-span="2">
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.EstablishmentDateString) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.EstablishmentDateString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.EstablishmentDateString)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.ChangeProfileDateString) <span class="required">(*)</span>
+            @Html.TextBoxFor(model => model.ChangeProfileDateString, new { @class = "form-control datepicker", data_inputmask = "'alias': 'date'", placeholder = "ngày/tháng/năm" })
+            @Html.ValidationMessageFor(model => model.ChangeProfileDateString)
+        </div>
+    </div>
+
+    <div data-row-span="3">
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.Owner)
+            @Html.TextBoxFor(model => model.Owner, new { @class = "form-control", @placeholder = "Nhập chủ doanh nghiệp" })
+            @Html.ValidationMessageFor(model => model.Owner)
+        </div>
+        <div data-field-span="1">
+            @Html.LabelFor(m => m.CharterCapital)
+            @Html.TextBoxFor(model => model.CharterCapital, new { @class = "form-control mask", @data_inputmask = "'mask':'###.###.###.###.###.###.###.###.###.### VNĐ", placeholder = "1000000000000 vnđ" })
+            @Html.ValidationMessageFor(model => model.CharterCapital)
+        </div>
+        <div data-field-span="1">
+            @Html.DisplayNameFor(m => m.BusinessStatusId) <span class="required">(*)</span>
+            @Html.DropDownListFor(model => model.BusinessStatusId, new SelectList(Model.BusinessStatus, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+            @Html.ValidationMessageFor(model => model.BusinessStatusId)
+        </div>
+    </div>
+</fieldset>

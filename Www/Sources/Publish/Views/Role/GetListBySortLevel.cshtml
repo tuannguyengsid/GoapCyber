@@ -1,0 +1,56 @@
+﻿@model List<GSID.Model.Models.Permission>
+@{
+    string SelectNode = (string)ViewBag.SelectNode;
+}
+<div id="listf">
+    <ul>
+        <li class="jstree-open" id="0">Tất cả @Html.Action("Children", "Role", new { ParentID = string.Empty })</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var tree = $('#listf');
+        var c = [], u = [];
+        tree.on('changed.jstree', function (e, data) {
+            var i, j;
+            c = [];
+            for (i = 0, j = data.selected.length; i < j; i++) {
+                if (data.instance.get_node(data.selected[i]).id != 0) {
+                    c.push(data.instance.get_node(data.selected[i]).id);
+                }
+            }
+        }).on("loaded.jstree", function (e, data) {
+            var ids = $('#ListPermisison').val().split(',');
+            data.instance.select_node(ids);
+        });
+
+        tree.jstree({
+            'core': {
+                'check_callback': true,
+                'multiple': true
+            },
+            'checkbox': {
+                'keep_selected_style': false
+            },
+            'plugins': ['checkbox', 'real_checkboxes'],
+            'types': {
+                'default': {
+                    'icon': 'fa fa-folder'
+                }
+            }
+        });
+
+        $('#btnpuaccept').click(function () {
+            tree.find(".jstree-undetermined").each(function (i, element) {
+                if ($(element).closest('.jstree-node').attr("id") != 0) {
+                    u.push($(element).closest('.jstree-node').attr("id"));
+                }
+            });
+
+            $('#ListPermisison').val(c.join(','));
+            $('#Listundetermined').val(u.join(','));
+        });
+    });
+
+</script>

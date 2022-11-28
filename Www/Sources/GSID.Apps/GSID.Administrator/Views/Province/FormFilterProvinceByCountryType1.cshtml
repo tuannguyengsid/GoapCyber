@@ -1,0 +1,23 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model ProvinceFilterModel
+@Html.DropDownListFor(model => model.ProvinceId, new SelectList(Model.Provinces, "Id", "NameVn"), "---Tỉnh/thành---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })
+@Html.ValidationMessageFor(model => model.ProvinceId)
+
+<script>
+    $(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+
+        $('#ProvinceId').change(function () {
+            var selectedProvinceId = this.value;
+            if (selectedProvinceId.length > 0) {
+                $('#districtContainer').show();
+            }
+            $('#districtContainer').load('@Url.Action("FormFilterDistrictByProvinceType1", "District")?Province=' + selectedProvinceId);
+        });
+    });
+</script>

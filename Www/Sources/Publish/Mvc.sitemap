@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+  <!--https://github.com/maartenba/MvcSiteMapProvider-->
+
+  <mvcSiteMapNode title="Trang chủ" controller="Home" action="Index">
+    <mvcSiteMapNode title="Quản trị viên" controller="User" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Quản trị viên" controller="User" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Quản trị viên" controller="User" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Tổ dân phố" controller="Borough" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Tổ dân phố" controller="Borough" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Tổ dân phố" controller="Borough" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Ngành nghề" controller="Career" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Ngành nghề" controller="Career" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Ngành nghề" controller="Career" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quốc gia" controller="Country" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Quốc gia" controller="Country" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Quốc gia" controller="Country" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quận/Huyện" controller="District" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Quận/Huyện" controller="District" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Quận/Huyện" controller="District" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Tỉnh/Thành phố" controller="Province" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Tỉnh/Thành phố" controller="Province" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Tỉnh/Thành phố" controller="Province" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Phường/xã" controller="Ward" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Phường/xã" controller="Ward" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Phường/xã" controller="Ward" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Tình trạng hoạt động" controller="BusinessStatus" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Tình trạng hoạt động" controller="BusinessStatus" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Tình trạng hoạt động" controller="BusinessStatus" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Loại hình doanh nghiệp" controller="BusinessType" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Loại hình doanh nghiệp" controller="BusinessType" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Loại hình doanh nghiệp" controller="BusinessType" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Nguồn vốn doanh nghiệp" controller="CapitalOrigin" action="Index">
+      <mvcSiteMapNode title="Tạo mới - Nguồn vốn doanh nghiệp" controller="CapitalOrigin" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật - Nguồn vốn doanh nghiệp" controller="CapitalOrigin" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <!-- Begin Economic-->
+    <mvcSiteMapNode title="Vai trò trong doanh nghiệp" controller="EnterpriseRole" action="Index" area="Economic">
+      <mvcSiteMapNode title="Tạo mới - Vai trò trong doanh nghiệp" controller="EnterpriseRole" action="Create" area="Economic"/>
+      <mvcSiteMapNode title="Cập nhật - Vai trò trong doanh nghiệp" controller="EnterpriseRole" action="Update" area="Economic"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Phân quyền chức năng" controller="Role" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới - Phân quyền chức năng" controller="Role" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật - Phân quyền chức năng" controller="Role" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản lý doanh nghiệp" controller="Enterprise" action="Index" area="Economic">
+      <mvcSiteMapNode title="Tạo mới - Quản lý doanh nghiệp" controller="Enterprise" action="Create" area="Economic"/>
+      <mvcSiteMapNode title="Cập nhật - Quản lý doanh nghiệp" controller="Enterprise" action="Update" area="Economic"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản lý hộ kinh doanh" controller="HouseHoldBusiness" action="Index" area="Economic">
+      <mvcSiteMapNode title="Tạo mới - Quản lý hộ kinh doanh" controller="HouseHoldBusiness" action="Create" area="Economic"/>
+      <mvcSiteMapNode title="Cập nhật - Quản lý hộ kinh doanh" controller="HouseHoldBusiness" action="Update" area="Economic"/>
+    </mvcSiteMapNode>
+    
+    
+      
+
+    <mvcSiteMapNode title="Quản lý lĩnh vực" controller="Field" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="Field" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="Field" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+
+    <mvcSiteMapNode title="Quản lý loại vi phạm" controller="ReportViolationCategory" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="ReportViolationCategory" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="ReportViolationCategory" action="Update" area=""/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Phân quyền dữ liệu phường" controller="WardRole" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="WardRole" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="WardRole" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản lý vi phạm - Doanh nghiệp" controller="ReportViolation" action="Index" area="">
+      <mvcSiteMapNode title="Quản lý vi phạm - Hộ kinh doanh" controller="ReportViolation" action="HouseHoldBusiness" area=""/>
+      <mvcSiteMapNode title="Tạo mới" controller="ReportViolation" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="ReportViolation" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+
+    <!-- End Economic-->
+  </mvcSiteMapNode>
+</mvcSiteMap>

@@ -1,0 +1,227 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.ViewModels;
+@using GSID.Setting;
+@using GSID.WebApp.Helpers;
+@model UserEditViewModel
+
+@{
+    List<Role> Roles = (List<Role>)ViewBag.Roles;
+    List<WardRole> WardRoles = (List<WardRole>)ViewBag.WardRoles;
+}
+
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", "User", FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data" }))
+        {
+            string imageUrl = Default.Image_Default;
+            string fileinput_class = "fileinput-new";
+            if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                imageUrl = Model.ImageUrl;
+                fileinput_class = "fileinput-exists";
+            }
+
+            <div class="col-md-3">
+                <div class="panel panel-profile">
+                    <div class="panel-body">
+                        <div class="user-card">
+                            <div class="avatar">
+                                <div class="fileinput @fileinput_class" style="width: 100%;" data-provides="fileinput">
+                                    <div class="fileinput-preview thumbnail mb20" data-trigger="fileinput" style="width: 150px; height: 150px;">
+                                        <img src="@imageUrl" class="img-responsive" />
+                                    </div>
+                                    <div>
+                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new">Chọn ảnh</span>
+                                            <span class="fileinput-exists">Thay đổi</span>
+                                            <input type="file" id="file" name="file" value="1">
+                                        </span>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(m => m.ImageChange)
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(m => m.Id)
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @Html.LabelFor(m => m.Noted, new { @class = "control-label" })
+                                @Html.TextAreaFor(model => model.Noted, new { @class = "form-control fullscreen", @placeholder = "Ghi chú" })
+                                @Html.ValidationMessageFor(model => model.Noted)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-heading">
+                        <div class="panel-ctrls"
+                             data-actions-container=""
+                             data-action-collapse='{"target": ".panel-body"}'
+                             data-action-refresh=''
+                             data-action-close=''>
+                        </div>
+                        <h2>Thông tin hồ sơ</h2>
+                    </div>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.LastName) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Họ" })
+                                @Html.ValidationMessageFor(model => model.LastName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MiddleName, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.MiddleName, new { @class = "form-control", @placeholder = "Tên đệm" })
+                                @Html.ValidationMessageFor(model => model.MiddleName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.FirstName) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @placeholder = "Tên" })
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Email) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Email", disabled = "disabled" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Password) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.RoleId) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.RoleId, new SelectList(Roles, "Id", "Name"), "Chọn quyền chức năng ", new { @class = "form-control select2 select-placeholder" })
+                                @Html.ValidationMessageFor(model => model.RoleId)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.WardRoleId) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(m => m.WardRoleId, new SelectList(WardRoles, "Id", "Name"), "Chọn quyền dữ liệu ", new { @class = "form-control select2 select-placeholder" })
+                                @Html.ValidationMessageFor(model => model.WardRoleId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                            <div class="col-sm-4">
+                                @Html.DropDownListFor(model => model.IsDeleted, new List<SelectListItem>() {
+                                        new SelectListItem() { Value = "False", Text = "Kích hoạt" },
+                                        new SelectListItem() { Value = "True", Text = "Ngưng kích hoạt" }
+                                    }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                @Html.ValidationMessageFor(model => model.IsDeleted)
+                            </div>
+                        </div>
+
+
+                        <div class="clearfix pt20">
+                            <div class="pull-right">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" }).IfRole("Update", "User")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myModal .modal-footer .btn-alert-submit').click(function () {
+            window.location.href = '@Url.Action("Update", "User")?gsid=' + $('#hdfid').val();
+        });
+    });
+    $(function () {
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                if ($('.avatar .fileinput-preview img').length <= 0) {
+                    $("#ImageChange").attr("value", "2");
+                }
+                else if ($('.avatar .fileinput-preview img').length > 0) {
+                    $("#ImageChange").attr("value", "1");
+                }
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                $(idmodal).modal();
+                $.validator.unobtrusive.parse("form");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"a2c2d55bd5874144ab563ba8abfff0fc","collectionName":"DistrictGSIDX","type":"collection"}

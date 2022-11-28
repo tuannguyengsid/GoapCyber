@@ -1,0 +1,67 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<MenuNode>
+
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@foreach (var item in Model)
+{
+    string editUrl = Url.Action("Update", "Menu", new { gsid = item.Id.ToString() });
+    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+    string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+
+    var _hasAttrCheckbox = new Dictionary<string, object>{
+                                        { "class", "bootstrap-switch status_trash"},
+                                        {"data-size", "mini"},
+                                        {"data-on-text", "<i class='fa fa-check'></i>"},
+                                        {"data-on-color", "success"},
+                                        {"data-off-text", "<i class='fa fa-times'></i>"},
+                                        {"data-off-color", "danger"},
+                                        {"data-val", item.Id}
+                                    };
+    if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        _hasAttrCheckbox.Add("disabled", "disabled");
+    }
+<tr class="gradeX" data-tt-id="@item.Id.ToString()" data-tt-parent-id="@item.ParentId.ToString()">
+    <td class="flex">
+        <div class="language-block">
+            <div class="language">
+                <label class="lblanguage"><img src="~/Content/Control/assets/flags/vn.svg" /></label>
+                <span><a href="@editUrl"><b>@item.NameVn</b></a></span>
+            </div>
+            <div class="language">
+                <label class="lblanguage"><img src="~/Content/Control/assets/flags/en.svg" /></label>
+                <span><a href="@editUrl"><b>@item.NameEn</b></a></span>
+            </div>
+        </div>
+    </td>
+    <td>@item.Sort</td>
+    <td>
+        <i class="ion-plus"></i>: <b>@addDate</b>
+        <br />
+        <i class="ion-ios-body"></i>: <b>@addBy</b>
+    </td>
+    <td>
+        <i class="ion-android-create"></i>: <b>@editDate</b>
+        <br />
+        <i class="ion-ios-body"></i>: <b>@editBy</b>
+    </td>
+    <td>
+        @Html.CheckBox(string.Format("Item_trash_{0}", item.Id), !item.IsDeleted, _hasAttrCheckbox)
+        <div class="pull-right">
+            <div class="btn-group">
+                @Html.RawActionLinkIfRole("<i class='ion-android-create'></i>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn btn-success btn-xs", id = item.Id.ToString() })
+                @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger btn-xs", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())
+            </div>
+        </div>
+    </td>
+</tr>
+
+    @Html.Action("PartialIndexChildren", Request.RequestContext.RouteData.Values["controller"].ToString(), new { ParentId = item.Id })
+}

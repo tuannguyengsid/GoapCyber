@@ -1,0 +1,285 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model CategoryPageViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+@{
+    var SiteInformation = (SiteInformationConfig)ViewBag.SiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("EditPage", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form EditAgentPage", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-heading">
+                        <div class="panel-ctrls"
+                             data-actions-container=""
+                             data-action-collapse='{"target": ".panel-body"}'
+                             data-action-refresh=''
+                             data-action-close=''>
+                        </div>
+                        <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                    </div>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="col-12">
+                            <div class="tab-container tab-default">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#buildform" data-toggle="tab">Thiết lập trang</a></li>
+                                    <li><a href="#informationpage" data-toggle="tab">Thông tin chung</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="buildform">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-12">
+                                                <div class="accordion-group" id="accordionBackground">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionBackground" href="#collapseaBackground" aria-expanded="false"><h2>Hình nền</h2></a>
+                                                        <div id="collapseaBackground" class="collapse" aria-expanded="false" style="height: 0px;">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-12">
+                                                                            <div class="fileinput fileinput-new BackgroundImg" style="width: 100%;" data-provides="fileinput">
+                                                                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="max-width:100%; width:100%; height: 261px;">
+                                                                                    @if (!string.IsNullOrEmpty(Model.BackgroundSrc))
+                                                                                    {
+                                                                                        <img src="@string.Format("{0}/{1}", httpStatic, Model.BackgroundSrc)" class="img-responsive" />
+                                                                                    }
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                                <center>
+                                                                                    <small>Size: 2000px x 400px</small>
+                                                                                    <div>
+                                                                                        <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Xóa</a>
+                                                                                        <span class="btn btn-default btn-file">
+                                                                                            <span class="fileinput-new">Chọn hình ảnh</span>
+                                                                                            <span class="fileinput-exists">Thay đổi</span>
+                                                                                            <input type="file" id="Backgroundfile" name="Backgroundfile">
+                                                                                        </span>
+                                                                                        @Html.HiddenFor(m => m.BackgroundImageChange)
+                                                                                    </div>
+                                                                                </center>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="accordion-group" id="accordionContent">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionContent" href="#collapseaContent" aria-expanded="false"><h2>Tiêu đề mặc định</h2></a>
+                                                        <div id="collapseaContent" class="collapse" aria-expanded="false" style="height: 0px;">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12 mt-e-10">
+                                                                        <div class="tab-container tab-default">
+                                                                            <ul class="nav nav-tabs">
+                                                                                <li class="active"><a href="#InspirationContentVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiêu đề tiếng Việt</a></li>
+                                                                                <li><a href="#InspirationContentEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiêu đề tiếng Anh</a></li>
+                                                                            </ul>
+                                                                            <div class="tab-content">
+                                                                                <div class="tab-pane active" id="InspirationContentVn">
+                                                                                    <div class="form-group clearfix">
+                                                                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.TitleVn)</label>
+                                                                                        <div class="col-sm-3 tabular-border">
+                                                                                            @Html.TextBoxFor(model => model.TitleVn, new { @class = "form-control", @placeholder = "Tiêu đề tiếng Việt" })
+                                                                                            @Html.ValidationMessageFor(model => model.TitleVn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="tab-pane" id="InspirationContentEn">
+                                                                                    <div class="form-group clearfix">
+                                                                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.TitleEn)</label>
+                                                                                        <div class="col-sm-3 tabular-border">
+                                                                                            @Html.TextBoxFor(model => model.TitleEn, new { @class = "form-control", @placeholder = "Tiêu đề tiếng Việt" })
+                                                                                            @Html.ValidationMessageFor(model => model.TitleEn)
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="informationpage">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-6">
+                                                <div class="tab-container tab-default">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#PageVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                        <li><a href="#PageEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="PageVn">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameVn)</label>
+                                                                <div class="col-sm-8">
+                                                                    @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên trang web" })
+                                                                    @Html.ValidationMessageFor(model => model.NameVn)
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SlugVn)</label>
+                                                                <div class="col-sm-8">
+                                                                    @Html.TextBoxFor(model => model.SlugVn, new { @class = "form-control", @placeholder = "/...", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.SlugVn)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="tab-pane" id="PageEn">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameEn)</label>
+                                                                <div class="col-sm-8">
+                                                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên trang web" })
+                                                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.SlugEn)</label>
+                                                                <div class="col-sm-8">
+                                                                    @Html.TextBoxFor(model => model.SlugEn, new { @class = "form-control", @placeholder = "/...", @readonly = "readonly" })
+                                                                    @Html.ValidationMessageFor(model => model.SlugEn)
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row row-flex">
+                                            <div class="col-sm-6">
+                                                <div class="tab-container tab-default">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a href="#activemenu" data-toggle="tab">Kích hoạt menu</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane active" id="activemenu">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Chọn menu</label>
+                                                                <div class="col-sm-8">
+                                                                    <div class="row">
+                                                                        @if (Model.MenuNodes != null)
+                                                                        {
+                                                                            foreach (var item in Model.MenuNodes)
+                                                                            {
+                                                                                string check = (!string.IsNullOrEmpty(Model.MenuActiveId) && item.Id == Model.MenuActiveId) ? "checked" : "";
+                                                                                <div class="col-sm-12 radio">
+                                                                                    <input type="radio" @check class="tectonic" id="menu_@item.Id.ToString()" value="@item.Id.ToString()" name="menuactives">
+                                                                                    <label for="menu_@item.Id.ToString()"> @item.NameVn</label>
+                                                                                </div>
+                                                                            }
+                                                                        }
+                                                                        @Html.HiddenFor(m => m.MenuActiveId)
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        "use strict";
+
+        menuActive('.user-interface');
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                $('#MenuActiveId').val($("input[name='menuactives']:checked").val());
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>

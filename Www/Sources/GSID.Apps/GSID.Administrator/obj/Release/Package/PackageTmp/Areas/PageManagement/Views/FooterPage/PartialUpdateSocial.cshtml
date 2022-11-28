@@ -1,0 +1,254 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@model SocialNetworkConfigEditViewModel
+<!-- .modal for add task -->
+<!-- .modal for add task -->
+<div class="modal draggable fade config" id="formconfigUpdateSocial" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-40" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-plus"></i> Cập nhật liên kết mạng xã hội</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("PartialUpdateSocial", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form PartialUpdateSocial", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="panel panel-default alt no-boxshadow">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Group) <span class="required">(*)</span></label>
+                                    <div class="col-sm-4">
+                                        @Html.DropDownListFor(model => model.Group, new List<SelectListItem>() {
+                                                new SelectListItem() { Value = "1", Text = "Facebook" },
+                                                new SelectListItem() { Value = "2", Text = "Youtube" },
+                                                new SelectListItem() { Value = "3", Text = "Instagram" },
+                                                new SelectListItem() { Value = "6", Text = "Pinterest" },
+                                                new SelectListItem() { Value = "7", Text = "Linkedin" },
+                                                new SelectListItem() { Value = "8", Text = "Tiktok" },
+                                                new SelectListItem() { Value = "9", Text = "Zalo" }
+                                            }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                        @Html.ValidationMessageFor(model => model.Group)
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                    <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.IsRedirect) <span class="required">(*)</span></label>
+                                    <div class="col-sm-4">
+                                        @Html.DropDownListFor(model => model.IsRedirect, new List<SelectListItem>() {
+                                                new SelectListItem() { Value = "1", Text = "Link" },
+                                                new SelectListItem() { Value = "2", Text = "Share" }
+                                            }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                        @Html.ValidationMessageFor(model => model.IsRedirect)
+                                    </div>
+                                </div>*@
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Slug)</label>
+                                    <div class="col-sm-9 tabular-border">
+                                        @Html.TextBoxFor(model => model.Slug, new { @class = "form-control", @placeholder = "http://..." })
+                                        @Html.ValidationMessageFor(model => model.Slug)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Sort)</label>
+                                    <div class="col-sm-2 tabular-border">
+                                        @Html.TextBoxFor(model => model.Sort, new { @class = "form-control", @placeholder = "Thứ tự hiển thị", onkeypress = "return isNumber(event)" })
+                                        @Html.ValidationMessageFor(model => model.Sort)
+                                    </div>
+                                </div>
+                                <div class="form-group last">
+                                    <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                    <div class="col-sm-2 tabular-border">
+                                        @Html.CheckBoxFor(m => m.IsDeleted, new { @class = "bootstrap-switch", data_size = "small", data_on_text = "<i class='fa fa-check'></i>", data_on_color = "success", data_off_text = "<i class='fa fa-times'></i>", data_off_color = "danger" })
+                                        @Html.ValidationMessageFor(model => model.IsDeleted)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm waves-effect waves-light btn-danger" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Đóng</button>
+                        @Html.Button("<i class='fa fa-save'></i> Cập nhật", new { @class = "btn btn-primary", type = "submit" })
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript" src="~/Content/Control/assets/plugins/bootstrap-switch/bootstrap-switch.js"></script>		<!-- Swith/Toggle Button -->
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    // Jquery Dependency
+    $("input[data-type='currency']").on({
+        keyup: function () {
+            formatCurrency($(this));
+        },
+        blur: function () {
+            formatCurrency($(this), "blur");
+        }
+    });
+
+    function formatNumber(n) {
+        // format number 1000000 to 1,234,567
+        return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    }
+
+    function formatCurrency(input, blur) {
+        // appends $ to value, validates decimal side
+        // and puts cursor back in right position.
+
+        // get input value
+        var input_val = input.val();
+
+        // don't validate empty input
+        if (input_val === "") { return; }
+
+        // original length
+        var original_len = input_val.length;
+
+        // initial caret position
+        var caret_pos = input.prop("selectionStart");
+
+        // check for decimal
+        if (input_val.indexOf(",") >= 0) {
+
+            // get position of first decimal
+            // this prevents multiple decimals from
+            // being entered
+            var decimal_pos = input_val.indexOf(",");
+
+            // split number by decimal point
+            var left_side = input_val.substring(0, decimal_pos);
+            var right_side = input_val.substring(decimal_pos);
+
+            // add commas to left side of number
+            left_side = formatNumber(left_side);
+
+            // validate right side
+            right_side = formatNumber(right_side);
+
+            // On blur make sure 2 numbers after decimal
+            if (blur === "blur") {
+                right_side += "00";
+            }
+
+            // Limit decimal to only 2 digits
+            right_side = right_side.substring(0, 2);
+
+            // join number by .
+            input_val = "" + left_side + "," + right_side;
+
+        } else {
+            // no decimal entered
+            // add commas to number
+            // remove all non-digits
+            input_val = formatNumber(input_val);
+            input_val = "" + input_val;
+
+            // final formatting
+            if (blur === "blur") {
+                input_val += ",00";
+            }
+        }
+
+        // send updated string to input
+        input.val(input_val);
+
+        // put caret back in the right position
+        var updated_len = input_val.length;
+        caret_pos = updated_len - original_len + caret_pos;
+        input[0].setSelectionRange(caret_pos, caret_pos);
+    }
+
+    $(function () {
+        "use strict";
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#formconfigUpdateSocial').modal('show');
+
+        $('form.PartialUpdateSocial').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                        $('#formconfigUpdateSocial').modal('hide');
+                        onLoadSocial();
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>
+
+

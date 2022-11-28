@@ -1,0 +1,67 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model RecruitmentPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="accordion-group" id="accordionGallery">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionGallery" href="#collapseaGallery" aria-expanded="true"><h2>Hình ảnh</h2></a>
+        <div id="collapseaGallery" class="collapse in" aria-expanded="true">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbSectionGalleryTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#tbSectionGalleryTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbSectionGalleryTitleVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.GalleryTitleVn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.GalleryTitleVn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.GalleryTitleVn)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tbSectionGalleryTitleEn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.GalleryTitleEn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.GalleryTitleEn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.GalleryTitleEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mt-e-10">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quản lý thư viện hình ảnh: </label>
+                            <div class="col-sm-10">
+                                Truy cập tại Menu => Hình ảnh => Thư viện hình ảnh hoặc <a href="@Url.Action("Index", "ImageLibrary", new { Area = "" })">Click tại đây</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Quản lý hình ảnh: </label>
+                            <div class="col-sm-10">
+                                Truy cập tại Menu => Hình ảnh => Hình ảnh hoặc <a href="@Url.Action("Index", "Image", new { Area = "" })">Click tại đây</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

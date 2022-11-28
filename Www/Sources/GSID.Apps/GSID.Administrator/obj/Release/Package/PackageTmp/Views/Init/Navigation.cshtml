@@ -1,0 +1,68 @@
+﻿@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<Permission>
+<div class="static-leftbar-wrapper leftbar-bunting">
+    <div class="static-leftbar">
+        <div class="leftbar">
+            <div class="widget hide-on-horizontal hide-on-small">
+                <div class="widget-body">
+                    <div class="userinfo clearfix">
+                        <div class="avatar">
+                            <img class="img-responsive img-circle" src="/Content/Control/assets/demo/avatar/avatar_06.png">
+                            <!-- <span class="status online"></span> -->
+                        </div>
+                        <div class="info">
+                            <span class="name">Nguyễn Minh Tuấn</span>
+                            <span class="email">eddynguyen@g-sid.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="widget stay-on-collapse" id="widget-leftbar">
+                <nav role="navigation" class="widget-body">
+                    <ul class="acc-menu visible" style="background: rgb(255, 255, 255); height: auto; margin-left: 0px;">
+                    @{
+                        var xxx = Model.Where(c => c.ParentId == string.Empty);
+
+                        foreach (var x in xxx)
+                        {
+                            var yyy = Model.Where(c => c.ParentId == x.Id);
+
+                            <li class="root_@x.Id">
+                                <a href="@x.Url">
+                                    <span class="icon">
+                                        @Html.Raw(x.Icon)
+                                    </span>
+                                    <span class="text" data-localize="nav_options">@x.Name</span>
+                                </a>
+                                @if (yyy.Count() > 0)
+                                {
+                                    <ul class="acc-menu">
+                                        @foreach (var y in yyy)
+                                        {
+                                            var zzz = Model.Where(c => c.ParentId == y.Id);
+                                            var hasChildClass = zzz.Count() > 0 ? "hasChild" : "";
+                                            <li class="@hasChildClass">
+                                                <a href="@y.Url"><span class="text" data-localize="nav_options_leftbar_scroll">@y.Name</span></a>
+                                                @if (zzz.Count() > 0)
+                                                {
+                                                    <ul class="sub-menu">
+                                                        @foreach (var z in zzz)
+                                                        {
+                                                            <li><a href="@z.Url"><span class="text" data-localize="nav_options_leftbar_scroll">@z.Name</span></a></li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

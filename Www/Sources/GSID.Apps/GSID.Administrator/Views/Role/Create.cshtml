@@ -1,0 +1,209 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model RoleCreateViewModel
+
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Create", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="tab-container tab-default" data-step="1" data-intro="Nhập liệu nội dung" data-position='top'>
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbInfo" data-toggle="tab">Thông tin chung</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbInfo">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Name) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border">
+                                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Nhập tên quyền" })
+                                            @Html.ValidationMessageFor(model => model.Name)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Description)</label>
+                                        <div class="col-sm-2 tabular-border">
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Mô tả" })
+                                            @Html.ValidationMessageFor(model => model.Description)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IsSysAdmin) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border">
+                                            @Html.DropDownListFor(model => model.IsSysAdmin, new List<SelectListItem>() {
+                                                        new SelectListItem() { Value = "False", Text = "Người dùng" },
+                                                        new SelectListItem() { Value = "True", Text = "Quản trị viên" }
+                                                    }, new { @class = "form-control select2 select-placeholder" })
+                                            @Html.ValidationMessageFor(model => model.IsSysAdmin)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.ListPermisison) <span class="required">(*)</span></label>
+                                        <div class="col-sm-3 tabular-border">
+                                            <button type="button" class="btn btn-warning" onclick="ViewMore();"> Chức năng phân quyền</button>
+                                            <br />
+                                            @Html.ValidationMessageFor(model => model.ListPermisison)
+                                            @Html.HiddenFor(m => m.ListPermisison)
+                                            @Html.HiddenFor(m => m.Listundetermined)
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                        <div class="col-sm-2 tabular-border pt-1">
+                                            @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                            @Html.ValidationMessageFor(model => model.IsDeleted)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit", data_step = "2", data_intro = "Bấm Lưu để lưu dữ liệu đã nhập liệu.", data_position = "left" }).IfRole("Create", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Tạo mới dữ liệu thành công/p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-success btn-alert-submit" style="display:none;">Đến cập nhật</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    function ViewMore() {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        var hid = $('#ListPermisison').val();
+
+        $.ajax({
+            url: '@Url.Action("GetListBySortLevel", Request.RequestContext.RouteData.Values["controller"].ToString(), "")',
+            type: "GET",
+            data: { id: hid},
+            success: function (data) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (jqXhr, textStatus, errorThrown) {
+                swal.close();
+                alert("Error '" + jqXhr.status + "' (textStatus: '" + textStatus + "', errorThrown: '" + errorThrown + "')");
+            },
+            complete: function () {
+                swal.close();
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#myModal .modal-footer .btn-alert-submit').click(function () {
+            window.location.href = '@Url.Action("Update", Request.RequestContext.RouteData.Values["controller"].ToString())?gsid=' + $('#hdfid').val();
+        });
+    });
+
+    $(function () {
+        menuActive('.hrinformation');
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $.validator.unobtrusive.parse("form");
+                    $("#hdfid").val(data.Id);
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                swal.close();
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

@@ -1,0 +1,283 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model FooterContentViewModel
+@{
+    var SiteInformation = (SiteInformationConfig)ViewBag.SiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="container-fluid">
+    @using (Html.BeginForm("EditPage",  Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form EditPage", enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-heading">
+                        <div class="panel-ctrls"
+                             data-actions-container=""
+                             data-action-collapse='{"target": ".panel-body"}'
+                             data-action-refresh=''
+                             data-action-close=''>
+                        </div>
+                        <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                    </div>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="col-12">
+                            <div class="tab-container tab-default">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#buildform" data-toggle="tab">Thiết lập trang</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="buildform">
+                                        <div class="row row-flex">
+                                            <div class="col-sm-12">
+                                                <div class="accordion-group" id="accordionBackground">
+                                                    <div class="panel accordion-item">
+                                                        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionBackground" href="#collapseaBackground" aria-expanded="false"><h2>Nội dung</h2></a>
+                                                        <div id="collapseaBackground" class="collapse" aria-expanded="false" style="height: 0px;">
+                                                            <div class="accordion-body">
+                                                                <div class="row">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-4 mt-e-10">
+                                                                            <div class="panel-ctrls">
+                                                                                <div class="pull-left">
+                                                                                    <div class="btn-group">
+                                                                                        @Html.RawActionLink("<i class='ion-plus'></i><span> Thêm</span>", null, null, null, new { @class = "btn btn-default btn-sm create-social", href = "javascript:;" }).IfRole("PartialCreateSocial", Request.RequestContext.RouteData.Values["controller"].ToString())
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="clearfix"></div>
+                                                                            </div>
+                                                                            <div class="table-flipscroll" id="tbBlockSocials">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@{
+    if (RBACUser.HasPermission("PartialListSocial", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            $(function () {
+                "use strict";
+
+                onLoadSocial();
+            });
+
+            function onLoadSocial() {
+                $.ajax({
+                    method: 'GET',
+                    url: '@Url.Action("PartialListSocial", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+                    data: { },
+                    dataType: 'html',
+                    success: function (data, status) {
+                        $('#tbBlockSocials').html(data);
+                    },
+                    error: function (error) {
+                        console.log('Error in sending ajax data');
+                    }
+                });
+            }
+        </script>
+    }
+
+    if (RBACUser.HasPermission("PartialCreateSocial", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            $(function () {
+                "use strict";
+
+                $('.create-social').click(function () {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                    $.ajax({
+                        method: 'GET',
+                        url: '@Url.Action("PartialCreateSocial", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+                        data: { },
+                        dataType: 'html',
+                        success: function (data, status) {
+                            swal.close();
+                            $('#binding-modal').html(data);
+                        },
+                        error: function (error) {
+                            console.log('Error in sending ajax data');
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+
+    if (RBACUser.HasPermission("PartialUpdateSocial", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            function onUpdateSocial(val) {
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+                $.ajax({
+                    method: 'GET',
+                    url: '@Url.Action("PartialUpdateSocial", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+                    data: { gsid : val},
+                    dataType: 'html',
+                    success: function (data, status) {
+                        swal.close();
+                        $('#binding-modal').html(data);
+                    },
+                    error: function (error) {
+                        console.log('Error in sending ajax data');
+                    }
+                });
+            }
+        </script>
+    }
+
+    if (RBACUser.HasPermission("DeleteSocial", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            function onDeleteSocial(val) {
+                swal({
+                    title: 'Bạn đã chắc chứ?',
+                    text: "Bạn có chắc muốn xóa dữ liệu này không",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Xóa",
+                    cancelButtonText: "Đóng",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },function (isConfirm) {
+                    if (isConfirm) {
+                        swal({
+                            title: "Đang xử lý dữ liệu",
+                            html: true,
+                            showConfirmButton: false
+                        });
+                        $.ajax({
+                            url: '@Url.Action("DeleteSocial", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+                            type: 'POST',
+                            data: { id: val },
+                            dataType: 'json',
+                            success: function (result) {
+                                swal.close();
+                                if (result.Status == '2') {
+                                    onLoadSocial();
+                                }
+                                else {
+                                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                }
+                            },
+                            error: function () {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        });
+                    } else {
+                        swal.close();
+                    }
+                });
+            }
+        </script>
+    }
+}
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+        onLoadSocial();
+
+        menuActive('.user-interface');
+
+
+
+        $('form.EditPage').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                var imgChangeValue = ($('.BackgroundImg .fileinput-preview img').length <= 0) ? "2" : "1";
+                $("#ImageChange").attr("value", imgChangeValue);
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>

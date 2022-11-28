@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+  <!--https://github.com/maartenba/MvcSiteMapProvider-->
+
+  <mvcSiteMapNode title="Trang chủ" controller="Home" action="Index">
+
+    <mvcSiteMapNode title="Quản lý liên kết nhanh" controller="QuickLink" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="QuickLink" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="QuickLink" action="Update"/>
+    </mvcSiteMapNode>
+	  <mvcSiteMapNode title="Danh mục dự án" controller="ProjectCategory" action="Index" area="">
+		  <mvcSiteMapNode title="Tạo mới" controller="ProjectCategory" action="Create" area=""/>
+		  <mvcSiteMapNode title="Cập nhật" controller="ProjectCategory" action="Update" area=""/>
+	  </mvcSiteMapNode>
+	  <mvcSiteMapNode title="Kĩ năng" controller="ProjectSkill" action="Index" area="">
+		  <mvcSiteMapNode title="Tạo mới" controller="ProjectSkill" action="Create" area=""/>
+		  <mvcSiteMapNode title="Cập nhật" controller="ProjectSkill" action="Update" area=""/>
+	  </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Mail mẫu" controller="MailTemplate" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="MailTemplate" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="MailTemplate" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản lý khách hàng" controller="Customer" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Customer" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Customer" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản trị viên" controller="User" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="User" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="User" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Chức năng" controller="Function" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="Function" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="Function" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản trị vai trò" controller="Role" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Role" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Role" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý đối tác" controller="Partner" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Partner" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Partner" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Quản lý hình ảnh" controller="Image" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Image" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Image" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý thư viện hình ảnh" controller="ImageLibrary" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="ImageLibrary" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="ImageLibrary" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quản lý tin tuyển dụng" controller="Recruitment" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Recruitment" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Recruitment" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quản lý ngành nghề" controller="Career" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Career" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Career" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý danh bạ" controller="Contact" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Contact" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Contact" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quản lý thẻ tuyển dụng" controller="RecruitmentTag" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="RecruitmentTag" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="RecruitmentTag" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quản lý thẻ bài viết" controller="TagPost" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="TagPost" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="TagPost" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Thể loại" controller="NewsCategory" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="NewsCategory" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="NewsCategory" action="Update" area=""/>
+    </mvcSiteMapNode>
+	  <mvcSiteMapNode title="Quản lý nhắn tin liên hệ" controller="ContactMessage" action="Index"></mvcSiteMapNode>
+	  <mvcSiteMapNode title="Quản lý hồ sơ ứng viên" controller="CurriculumVitae" action="Index"></mvcSiteMapNode>
+
+	  <mvcSiteMapNode title="Thiết lập trang chi tiết tuyển dụng" controller="RecruitmentDetailPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang sản phẩm" controller="ProductDetailPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang tuyển dụng" controller="RecruitmentPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang tin tức" controller="PostPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang chi tiết tin tức" controller="PostDetailPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang giới thiệu" controller="AboutPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập trang liên hệ" controller="ContactUs" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Mạng xã hội" controller="FooterPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý trang chủ" controller="HomePage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý trang danh mục sản phẩm" controller="CategoryPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý trang thư viện hình ảnh" controller="ImageLibraryPage" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Quản lý Popup" controller="PopupSubcribes" action="Index" area="PageManagement"></mvcSiteMapNode>
+    <mvcSiteMapNode title="Thiết lập hệ thống" controller="Config" action="Index" area=""></mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quốc gia" controller="Country" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Country" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Country" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Tỉnh/Thành phố" controller="Province" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Province" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Province" action="Update"/>
+    </mvcSiteMapNode>
+    
+    <mvcSiteMapNode title="Quận/Huyện" controller="District" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="District" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="District" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Thể loại" controller="ProductCategory" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="ProductCategory" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="ProductCategory" action="Update" area=""/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Sản phẩm" controller="Product" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="Product" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="Product" action="Update" area=""/>
+    </mvcSiteMapNode>
+
+    
+    <mvcSiteMapNode title="Tin tức" controller="News" action="Index" area="">
+      <mvcSiteMapNode title="Tạo mới" controller="News" action="Create" area=""/>
+      <mvcSiteMapNode title="Cập nhật" controller="News" action="Update" area=""/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Nơi làm việc" controller="Site" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Site" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Site" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Phòng ban" controller="Department" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Department" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Department" action="Update"/>
+    </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Vị trí" controller="Position" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Position" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Position" action="Update"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Menu" controller="Menu" action="Index">
+      <mvcSiteMapNode title="Tạo mới" controller="Menu" action="Create"/>
+      <mvcSiteMapNode title="Cập nhật" controller="Menu" action="Update"/>
+    </mvcSiteMapNode>
+    
+
+    <!-- End Economic-->
+  </mvcSiteMapNode>
+</mvcSiteMap>

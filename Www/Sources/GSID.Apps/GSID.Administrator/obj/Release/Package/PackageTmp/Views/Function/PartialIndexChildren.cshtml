@@ -1,0 +1,41 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<Permission>
+
+@foreach (var item in Model)
+{
+    string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+    string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+    string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+<tr class="gradeX" data-tt-id="@item.Id.ToString()" data-tt-parent-id="@item.ParentId.ToString()">
+    <td><span class="icon"><b>@Html.Raw(item.Icon)</b></span><b> @item.Name</b></td>
+    <td><b>@item.Url</b></td>
+    <td><b>@item.Description</b></td>
+    <td>@Html.CheckBox(string.Format("Item_menu_{0}", item.Id), item.IsMenu.Value, new { @class = "bootstrap-switch status_trash", data_size = "mini", data_on_text = "<i class='fa fa-check'></i>", data_on_color = "success", data_off_text = "<i class='fa fa-times'></i>", data_off_color = "warning", data_val = item.Id })</td>
+    <td><b>@item.Sort</b></td>
+    <td>
+        <i class="ion-plus"></i>: <b>@addDate</b>
+        <br />
+        <i class="ion-ios-body"></i>: <b>@addBy</b>
+    </td>
+    <td>
+        <i class="ion-android-create"></i>: <b>@editDate</b>
+        <br />
+        <i class="ion-ios-body"></i>: <b>@editBy</b>
+    </td>
+    <td>
+        <div class="pull-right">
+            @Html.CheckBox(string.Format("Item_trash_{0}", item.Id), !item.IsDeleted, new { @class = "bootstrap-switch status_trash", data_size = "mini", data_on_text = "<i class='fa fa-check'></i>", data_on_color = "success", data_off_text = "<i class='fa fa-times'></i>", data_off_color = "danger", data_val = item.Id })
+            <div class="btn-group">
+                @Html.RawActionLink("<i class='ion-android-create'></i>", "Update", "Function", new { gsid = item.Id.ToString() }, new { @class = "btn btn-success btn-xs", id = item.Id.ToString() })
+                @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-danger btn-xs", href = "javascript:;", id = item.Id.ToString(), onclick = "onDelete('" + item.Id.ToString() + "');" })
+                @*.IfRole("Delete", "Size")*@
+            </div>
+        </div>
+    </td>
+</tr>
+
+    @Html.Action("PartialIndexChildren", "Function", new { ParentId = item.Id })
+}

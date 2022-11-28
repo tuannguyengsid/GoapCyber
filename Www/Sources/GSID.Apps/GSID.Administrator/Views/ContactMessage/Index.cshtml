@@ -1,0 +1,198 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.ViewModels.MongoModels;
+@model ContactMessageFilterViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                <div class="panel-heading">
+                    <div class="panel-ctrls"
+                         data-actions-container=""
+                         data-action-collapse='{"target": ".panel-body"}'
+                         data-action-refresh=''
+                         data-action-close=''>
+                    </div>
+                    <h2>@Html.MvcSiteMap().SiteMapTitle()</h2>
+                </div>
+                <div class="panel-editbox" data-widget-controls=""></div>
+                <div class="panel-body">
+                    <div class="panel-ctrls">
+                        <div class="row">
+                            <div class="col-md-12" >
+                                @if (RBACUser.HasPermission("Filter", Request.RequestContext.RouteData.Values["controller"].ToString()))
+                                {
+                                    using (Html.BeginForm("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Get, new { @class = "form-horizontal row-border tabular-form Find", enctype = "multipart/form-data" }))
+                                    {
+                                        <div class="panel-form end" data-step="1" data-intro="Bộ lọc dữ liệu" data-position='top'>
+                                            <div class="col-tt-2">
+                                                @Html.TextBoxFor(model => model.Keyword, new { @class = "form-control", @placeholder = "Từ khóa" })
+                                            </div>
+                                            <div class="col-tt-1">
+                                                @Html.TextBoxFor(model => model.BeginAddDateString, new { @class = "form-control datepicker-range", @placeholder = "Ngày bắt đầu tạo:dd/MM/yyyy" })
+                                            </div>
+                                            <div class="col-tt-1">
+                                                @Html.TextBoxFor(model => model.EndAddDateString, new { @class = "form-control datepicker-range", @placeholder = "Ngày kết thúc tạo:dd/MM/yyyy" })
+                                            </div>
+                                            <div class="col-tt-1 col-max-100">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-find" type="submit"><i class="fa fa-search"></i> Tra cứu</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="table-inner">
+                        @{ Html.RenderAction("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString(), new { area = "" }); }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@{
+    if (RBACUser.HasPermission("Delete", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            function onDelete(val) {
+                if (val.length > 0) {
+                    swal({
+                        title: 'Bạn đã chắc chứ?',
+                        text: "Bạn có chắc muốn xóa dữ liệu này không",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Xóa",
+                        cancelButtonText: "Đóng",
+                        closeOnConfirm: false,
+                        closeOnCancel: false
+                    },function (isConfirm) {
+                        if (isConfirm) {
+                            swal({
+                                title: "Đang xử lý dữ liệu",
+                                html: true,
+                                showConfirmButton: false
+                            });
+                            $.ajax({
+                                url: '@Url.Action("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                                type: 'POST',
+                                data: { id: val },
+                                dataType: 'json',
+                                success: function (result) {
+                                    swal.close();
+                                    if (result.Status == '2') {
+                                        onPagingList('1');
+                                    }
+                                    else {
+                                        swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                    }
+                                },
+                                error: function () {
+                                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                }
+                            });
+                        }
+                        else {
+                            swal.close();
+                        }
+                    });
+                }
+            }
+        </script>
+    }
+}
+<script type="text/javascript">
+    //initializing
+    $(function () {
+        "use strict";
+        $('form.Find').submit(function () {
+            var options = {};
+            options = {
+                url: '@Url.Action("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                type: 'GET',
+                delegation: true,
+                beforeSubmit: showRequest,  // pre-submit callback
+                success: showResponseMonitor,  // post-submit callback
+                timeout: 10000,
+                error: function (xhr, textStatus, errorThrown) {
+                    alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                    console.log("in ajaxForm error");
+                    swal.close();
+                },
+                complete: function (xhr) {
+                    console.log("in ajaxForm complete");
+                    //status.html(xhr.responseText);
+                }
+            };
+            // submit the form
+            $(this).ajaxSubmit(options);
+            // return false to prevent normal browser submit and page navigation
+            return false;
+        });
+    });
+
+    function onPagingList(page) {
+        var formData = $('form.Find').serializeObject();
+        addSerializeObject(formData, 'p', page);
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialIndex", Request.RequestContext.RouteData.Values["controller"].ToString())',
+            data: formData,
+            dataType: 'html',
+            success: function (data, status) {
+                $('.table-inner').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    // pre-submit callback
+    function showRequest(arr, form, options) {
+        var validator = form.validate(); // obtain validator
+        var anyError = false;
+        try {
+            form.find("input,select").each(function () {
+                if (!validator.element(this)) { // validate every input element inside this step
+                    anyError = true;
+                }
+            });
+        } catch (e) {
+        }
+        if (anyError) {
+            return false; // exit if any error found
+        }
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+    }
+
+    // post-submit callback
+    function showResponseMonitor(result, statusText, xhr) {
+        $('.table-inner').html(result);
+        swal.close();
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

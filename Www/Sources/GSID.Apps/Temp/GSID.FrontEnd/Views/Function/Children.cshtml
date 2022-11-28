@@ -1,0 +1,7 @@
+﻿@model List<GSID.Model.Models.Permission>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="jstree-open" id="@item.Id"> @item.Name @Html.Action("Children", "Function", new { ParentID = item.Id }) </li>
+    }
+</ul>

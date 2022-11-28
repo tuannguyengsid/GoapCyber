@@ -1,0 +1,17 @@
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapPathHelperModel
+@using System.Web.Mvc.Html
+@using System.Linq
+@using MvcSiteMapProvider.Web.Html.Models
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div>TEsst</div>
+    @foreach (var node in Model)
+    {
+        @Html.DisplayFor(m => node);
+
+        if (node != Model.Last())
+        {
+        <text> &gt; ffdgdfg </text>
+        }
+    }
+</div>

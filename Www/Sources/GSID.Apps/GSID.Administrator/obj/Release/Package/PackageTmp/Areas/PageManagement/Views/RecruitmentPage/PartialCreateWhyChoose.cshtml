@@ -1,0 +1,256 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Setting;
+@model CreateWhyChooseRecruitmentPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<!-- .modal for add task -->
+<div class="modal draggable fade config" id="formconfigCreateWhyChoose" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-70" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="fa fa-plus"></i> Thêm mới</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("PartialCreateWhyChoose", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form PartialCreateAboutCompany", enctype = "multipart/form-data" }))
+                {
+                    <div class="panel panel-default alt no-boxshadow">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label">Hình ảnh đại diện</label>
+                                        <div class="col-sm-12 tabular-border">
+                                            <div class="fileinputcrop">
+                                                <div class="fileinputcrop-preview" style="height: 120px;" data-elbinding="#ImageWhyChooseRecruitmentSrc" data-preview-el="#imgWhyChooseRecruitmentSrc" data-note="Kích thước hình ảnh: 120px x 120px">
+                                                    <img class="rounded max-width" id="imgWhyChooseRecruitmentSrc" src="@StringExtension.ImageOrDefault(Model.ImageWhyChooseRecruitmentSrc, "", httpStatic)" alt="Preview">
+                                                    <div class="img-inner-text">
+                                                        <div class="shff">
+                                                            <span class="icon ion-image"></span>
+                                                            <p>Click để thêm ảnh</p>
+                                                        </div>
+                                                    </div>
+                                                    @Html.HiddenFor(m => m.ImageWhyChooseRecruitmentSrc)
+                                                </div>
+                                                <br />
+                                                <small>Kích thước hình ảnh: 120px x 120px</small>
+                                                @Html.ValidationMessageFor(model => model.ImageWhyChooseRecruitmentSrc)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="tab-container tab-default">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#language-vi" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                            <li><a href="#language-en" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="language-vi">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.ShortDescriptionVn)</label>
+                                                            <div class="col-sm-12 tabular-border">
+                                                                @Html.TextAreaFor(model => model.ShortDescriptionVn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.ShortDescriptionVn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="language-en">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-12">@Html.DisplayNameFor(m => m.ShortDescriptionEn)</label>
+                                                            <div class="col-sm-12 tabular-border">
+                                                                @Html.TextAreaFor(model => model.ShortDescriptionEn, new { @class = "form-control gsideditormini", @placeholder = "" })
+                                                                @Html.ValidationMessageFor(model => model.ShortDescriptionEn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-container tab-default">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#configGeneralIconVi" data-toggle="tab" aria-expanded="true">Thông tin chung</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="configGeneralIconVi">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Index)</label>
+                                                    <div class="col-sm-1 tabular-border">
+                                                        @Html.TextBoxFor(model => model.Index, new { @class = "form-control", @placeholder = "Thứ tự hiển thị", onkeypress = "return isNumber(event)" })
+                                                        @Html.ValidationMessageFor(model => model.Index)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm waves-effect waves-light btn-danger" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Đóng</button>
+                        @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<script src="~/Content/ckfinder/ckfinder.js"></script>
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<script src="~/Content/ckeditor/config.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    $(function () {
+        "use strict";
+
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#formconfigCreateWhyChoose').modal('show');
+
+        $('.fileinputcrop-preview').fmGSIDModal({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            titleModal: 'Ảnh ',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            multiple: false,
+            folders: false,
+        });
+
+        // TinyMCE init
+        tinymce.init({
+            selector: ".gsideditormini",
+            height: 300,
+            menubar: false,
+            plugins: 'preview searchreplace autolink directionality code visualblocks visualchars fullscreen image link media codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount charmap emoticons',
+            toolbar: 'code fullscreen preview | undo redo | forecolor backcolor removeformat link | bold italic underline strikethrough',
+            toolbar_sticky: true,
+            relative_urls: false,
+            table_toolbar: 'tableprops tabledelete | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+
+            image_caption: true,
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+            noneditable_class: 'mceNonEditable',
+            toolbar_mode: 'sliding',
+            contextmenu: 'link image table',
+            remove_script_host: false,
+            paste_data_images: false,
+            image_advtab: true,
+            image_uploadtab: false,
+            fullscreen_native: true,
+            remove_script_host: false,
+        });
+
+        $('form.PartialCreateAboutCompany').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                        $('#formconfigCreateWhyChoose').modal('hide');
+                        onLoadWhyChoose();
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>
+
+

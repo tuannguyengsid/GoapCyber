@@ -1,0 +1,163 @@
+﻿@using GSID.WebApp.ViewModels;
+@using GSID.WebApp.Helpers;
+@model ReportViolationEditViewModel
+@{
+}
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="Update_ReportViolation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="min-width: 200px; width:70%; max-width:1200px;">
+        <div class="modal-content">
+            @using (Html.BeginForm("Update", "ReportViolation", FormMethod.Post, new { @class = "form-horizontal update_reportViolation", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="modal-title">Cập nhật vi phạm</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            @Html.HiddenFor(m => m.Id)
+                            @Html.HiddenFor(m => m.EnterpriseId)
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Name) <span class="required">(*)</span></label>
+                                <div class="col-sm-5">
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                    @Html.ValidationMessageFor(model => model.Name)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.ReportViolationCategoryId) <span class="required">(*)</span></label>
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.ReportViolationCategoryId, new SelectList(Model.ReportViolationCategories, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", width = "100%" })
+                                    @Html.ValidationMessageFor(model => model.ReportViolationCategoryId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.BusinessStatusId) <span class="required">(*)</span></label>
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.BusinessStatusId, new SelectList(Model.BusinessStatuss, "Id", "Name"), "---Chọn---", new { @class = "form-control select2 select-placeholder", width = "100%" })
+                                    @Html.ValidationMessageFor(model => model.BusinessStatusId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Description, new { @class = "col-sm-3 control-label" })
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control summernote", @placeholder = "Mô tả" })
+                                    @Html.ValidationMessageFor(model => model.Description)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.Status) <span class="required">(*)</span></label>
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.Status, new List<SelectListItem>() {
+                                        new SelectListItem() { Value = "1", Text = "Đợi duyệt" },
+                                        new SelectListItem() { Value = "2", Text = "Đã kiểm tra" }
+                                    }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                    @Html.ValidationMessageFor(model => model.Status)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                <div class="col-sm-5">
+                                    @Html.DropDownListFor(model => model.IsDeleted, new List<SelectListItem>() {
+                                        new SelectListItem() { Value = "False", Text = "Kích hoạt" },
+                                        new SelectListItem() { Value = "True", Text = "Ngưng kích hoạt" }
+                                    }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                    @Html.ValidationMessageFor(model => model.IsDeleted)
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <label class="col-sm-3 control-label">Tập tin nạp dữ liệu</label>
+                                    <div class="col-sm-9">
+                                        @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary btn" id="btnsave" type="submit"><i class="fa fa-save"></i> Cập nhật</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+@Html.HiddenFor(m => m.FormType)
+@Html.HiddenFor(m => m.returnUrl)
+
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.js")'></script>
+<script type='text/javascript' src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //placeholder
+            $(".select-placeholder").select2({
+                placeholder: $(this).attr('data-placeholder'),
+                allowClear: true
+            });
+        $('.summernote').summernote({
+            height: 160,
+            placeholder: 'start typing',
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['height', ['height']]
+            ]
+        });
+
+        initCreateModal();
+    });
+
+    function initCreateModal() {
+        $('#Update_ReportViolation').modal();
+    }
+
+    $(function () {
+        $('form.update_reportViolation').ajaxForm({
+            delegation: true,
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    $('#Report_ReportViolation').modal('hide');
+                    $('#bodymask').hide();
+                    var type = $('#FormType').val();
+                    if (type == "1") {
+                        location.reload();
+                    }
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>

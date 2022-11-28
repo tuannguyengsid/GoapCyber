@@ -1,0 +1,169 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+
+@using GSID.WebApp.Helpers;
+@model EnterpriseEditViewModel
+@{ 
+    Random r = new Random();
+}
+
+<fieldset>
+    <legend><b>Ngành nghề</b></legend>
+    <div data-row-span="4" class="career-main">
+        <div data-field-span="3">
+            <div class="row">
+                @Html.LabelFor(m => m.CareerId)
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.CareerMain, new { @class = "form-control autocomplete", @placeholder = "Nhập ngành nghề chính" })
+                            @Html.HiddenFor(m => m.CareerId)
+                            @*@Html.DropDownListFor(model => model.CareerId, new SelectList(Model.Careers, "Id", "Name"), "---Chọn ngành nghề chính---", new { @class = "form-control select2 select-placeholder", style = "width: 100%" })*@
+                            @Html.ValidationMessageFor(model => model.CareerId)
+                        </div>
+                        <div class="col-sm-3">
+                            <ul>
+                                @if (!string.IsNullOrEmpty(Model.CareerId))
+                                {
+                                    <li><a href="javascript:;" class="career-advance" data-career="@Model.CareerId" data-enterprise="@Model.Id" data-direction="right" data-skin="box-search-advance"><i class="fa fa-edit"></i></a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-row-span="4">
+        <div data-field-span="3">
+            <div class="row">
+                <label>Danh sách ngành nghề phụ</label>
+                <div id="careerchild">
+                    @foreach (var item in Model.ChildCareers)
+                    {
+                        var numberid = r.Next(5, 999999999);
+
+                        <div class="col-sm-12 child_@numberid.ToString()">
+                            <div class="row">
+                                <div class="col-sm-9" style="padding-left:0px;">
+                                    @Html.TextBox(string.Format("careerchildchild_{0}", numberid.ToString()), string.Format("{0}{1}", (!string.IsNullOrEmpty(item.Code) ? string.Format("{0}: ", item.Code) : ""), item.Name), new { @class = "form-control", @placeholder = "Nhập ngành nghề phụ", disabled = "disabled" })
+                                    @Html.Hidden(string.Format("careerchild_{0}", numberid.ToString()), item.Id, new { @class = "childcareer" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <ul>
+                                        @*<li><a href="javascript:;"><i class="fa fa-check"></i></a></li>*@
+                                        <li><a href="javascript:;" class="career-advance" data-career="@item.Id" data-enterprise="@Model.Id" data-direction="right" data-skin="box-search-advance"><i class="fa fa-edit"></i></a></li>
+                                        <li><a href="javascript:;" onclick="onDeleteCarrer('.child_@numberid.ToString()');"><i class="fa fa-trash-o"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <a href="javascript:;" id="addcareers"><span class="label label-primary">Thêm ngành nghề</span></a>
+                <br />
+                <span id="errorcareer">Lỗi</span>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CareerMain").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("AutocompleteCareer", "Enterprise", "Economic")',
+                    data: request,
+                    async: false,
+                    success: function (data) {
+                        $('#CareerId').val();
+                        response(data.slice(0, 10));
+                    }
+                });
+            },
+            max: 10,
+            minLength: 0,
+            select: function (event, ui) {
+                $('#CareerId').val(ui.item.Id);
+                $("#CareerMain").val(ui.item.Code + " : " + ui.item.Value);
+                $('.career-main .career-advance').hide();
+                return false;
+            },
+            focus: function (event, ui) {
+                $("#CareerMain").val(ui.item.Code + " : " + ui.item.Value);
+                return false;
+            },
+        })
+		.data("autocomplete")._renderItem = function (ul, item) {
+		    return $("<li></li>")
+				.data("item.autocomplete", item)
+				.append("<a>" + item.Code + " : " + item.Value + "</a>")
+				.appendTo(ul);
+		};
+
+        $('#addcareers').click(function () {
+            $('#bodymask').show();
+            $.ajax({
+                url: '@Url.Action("ChildCareersUpdate", "Enterprise")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#careerchild').append(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+
+        $('.career-advance').on('click', function () {
+            var direction   = $(this).data('direction');
+            var skin        = $(this).data('skin');
+            var career      = $(this).data('career');
+            var enterprise  = $(this).data('enterprise');
+            
+
+            $.slidePanel.show({
+                url: '@Url.Action("CareerAdvance", "Enterprise")',
+                dataType: 'html',
+                settings: {
+                    method: 'GET',
+                    data: {
+                        enterprise: enterprise,
+                        career: career
+                    }
+                }
+            }, {
+                direction: direction,
+                skin: skin,
+                mouseDragHandler: '.handler',
+                closeSelector: '.close',
+            });
+        });
+
+        $('#btn-importdata').click(function () {
+            $('#bodymask').show();
+            $.ajax({
+                url: '@Url.Action("ImportData", "Enterprise")',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) {
+                    $('#show-importdata').html(result);
+                    $('#bodymask').hide();
+                },
+                error: function () {
+                    $('#bodymask').hide();
+                    alert('Error!');
+                }
+            });
+        });
+    });
+
+    function onDeleteCarrer(val) {
+        $(val).remove();
+    }
+</script>

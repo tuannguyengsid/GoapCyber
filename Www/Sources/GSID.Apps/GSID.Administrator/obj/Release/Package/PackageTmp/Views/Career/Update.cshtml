@@ -1,0 +1,523 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Setting;
+@using GSID.Admin.Helpers;
+@using GSID.Model.ExtraEntities;
+@model CareerEditViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border UpdateForm", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+
+            @Html.HiddenFor(m => m.Id)
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-9" data-step="1" data-intro="Nhập liệu nội dung ngành nghề" data-position='right'>
+                                <div class="tab-container tab-default">
+                                    <ul class="nav nav-tabs" data-step="2" data-intro="Lựa chọn ngôn ngữ để <br/>nhập nội dung phù hợp theo ngôn ngữ" data-position='right'>
+                                        <li class="active"><a href="#vietnamese" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                        <li><a href="#english" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="vietnamese">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameVn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên ngành nghề" })
+                                                    @Html.ValidationMessageFor(model => model.NameVn)
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="english">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameEn) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border">
+                                                    @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên nhóm sản phẩm" })
+                                                    @Html.ValidationMessageFor(model => model.NameEn)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 tabular-border">
+                                <div class="tab-container tab-default clearfix">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#tbsocialmedia" data-toggle="tab">Thuộc tính</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active clearfix" id="tbsocialmedia">
+                                            <div class="accordion-group clearfix" id="accordionGeneral">
+                                                <div class="panel accordion-item" data-step="3" data-position='left' data-intro="Nhập các thuộc tính liên quan ngành nghề">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionGeneral" href="#collapseaGeneral" aria-expanded="true"><h2>Thông tin chung</h2></a>
+                                                    <div id="collapseaGeneral" class="collapse in" aria-expanded="true">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-6">@Html.DisplayNameFor(m => m.Sort) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-4 tabular-border">
+                                                                            @Html.TextBoxFor(model => model.Sort, new { @class = "form-control", @placeholder = "0", onkeypress = "return isNumber(event)" })
+                                                                            @Html.ValidationMessageFor(model => model.Sort)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsShowRecruitmentPage) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-4 tabular-border pt-1">
+                                                                            @Html.CheckBoxFor(m => m.IsShowRecruitmentPage, new { @class = "bootstrap-switch", data_size = "mini", data_on_text = "<i class='fa fa-check'></i>", data_on_color = "success", data_off_text = "<i class='fa fa-times'></i>", data_off_color = "warning" })
+                                                                            @Html.ValidationMessageFor(model => model.IsShowRecruitmentPage)
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                                                        <div class="col-sm-4 tabular-border pt-1">
+                                                                            @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                                                            @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-group clearfix" id="accordionSEOGeneral">
+                                                <div class="panel accordion-item" data-step="4" data-intro="Khu vực thiết lập nội dung SEO theo ngôn ngữ." data-position='left'>
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionSEOGeneral" href="#collapseaSEOGeneral" aria-expanded="true"><h2>Thiết lập SEO</h2></a>
+                                                    <div id="collapseaSEOGeneral" class="collapse in" aria-expanded="true">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+                                                                <div class="tab-container tab-default">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#PageSEOVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                        <li><a href="#PageSEOEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active  clearfix" id="PageSEOVn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOVn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.TitleSEOVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.TitleSEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            @Html.HiddenFor(m => m.RouteDataUrlVnId)
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugVn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.SlugVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                                    <br />
+                                                                                    @Html.ValidationMessageFor(model => model.SlugVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.KeywordSEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.KeywordSEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.DescriptionSEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.DescriptionSEOVn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H1SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H1SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H2SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H2SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H3SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H3SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H4SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H4SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H5SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H5SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H6SEOVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H6SEOVn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="PageSEOEn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.TitleSEOEn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.TitleSEOEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.TitleSEOEn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            @Html.HiddenFor(m => m.RouteDataUrlEnId)
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.SlugEn) <span class="required">(*)</span></label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.SlugEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    <small>Nhập nội dung dạng "/duong-dan-thu". Mỗi cấp độ cách nhau bởi dấu "/".</small>
+                                                                                    <br />
+                                                                                    @Html.ValidationMessageFor(model => model.SlugEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.KeywordSEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.KeywordSEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.KeywordSEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.DescriptionSEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.DescriptionSEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.DescriptionSEOEn)
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H1SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H1SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H1SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H2SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H2SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H2SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H3SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H3SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H3SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H4SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H4SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H4SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H5SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H5SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H5SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.H6SEOEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.H6SEOEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.H6SEOEn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="accordion-group clearfix" id="accordionOpenGraphMetaData" data-step="5" data-intro="Khu vực thiết lập OpenGraph MetaData" data-position='left'>
+                                                <div class="panel accordion-item">
+                                                    <a class="accordion-title" data-toggle="collapse" data-parent="#accordionOpenGraphMetaData" href="#collapseaOpenGraphMetaData" aria-expanded="true"><h2>Thiết lập OpenGraph MetaData</h2></a>
+                                                    <div id="collapseaOpenGraphMetaData" class="collapse in" aria-expanded="true">
+                                                        <div class="accordion-body clearfix">
+                                                            <div class="row">
+
+                                                                <div class="tab-container tab-default">
+                                                                    <ul class="nav nav-tabs">
+                                                                        <li class="active"><a href="#tbOpenGraphMetaDataVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                                                        <li><a href="#tbOpenGraphMetaDataEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane active  clearfix" id="tbOpenGraphMetaDataVn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgTitleVn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgTitleVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.OgDescriptionVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionVn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameVn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgSite_nameVn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameVn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="tab-pane" id="tbOpenGraphMetaDataEn">
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgTitleEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgTitleEn, new { @class = "form-control", @placeholder = "Tiêu đề" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgTitleEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgDescriptionEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextAreaFor(model => model.OgDescriptionEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgDescriptionEn)
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgSite_nameEn)</label>
+                                                                                <div class="col-sm-12">
+                                                                                    @Html.TextBoxFor(model => model.OgSite_nameEn, new { @class = "form-control", @placeholder = "" })
+                                                                                    @Html.ValidationMessageFor(model => model.OgSite_nameEn)
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group" data-step="6" data-intro="Hình ảnh sẽ được đính vào thẻ meta property='og:image'.Chọn hình ảnh ta có thể làm như sau:<ul class='disc'><li>Chọn hình ảnh: Click để thêm ảnh &rarr; Chọn hình ảnh ở một thư mục bất kì bằng cách chọn ảnh và bấm 'Select Files'. </li><li>Upload hình ảnh: Click để thêm ảnh &rarr; Chọn thư mục cần up ảnh &rarr; Bấm chuột phải chọn upload file/hoặc kéo thả file ảnh vào. Trường hợp muốn resize ta chọn ảnh vừa upload  &rarr; Bấm chuột phải vào ảnh upload và chọn Resize & Rotate. Sau khi hoàn tất, bấm chuột phải vào ảnh và chọn 'Select files' để chọn ảnh hiển thị.</li></ul>" data-position='left'>
+                                                                    <label class="col-sm-12">Hình ảnh đại diện OpenGraph MetaData</label>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="fileinputcrop">
+                                                                            <div class="fileinputcrop-preview" style="height:200px;" data-elbinding="#OgImageSrc" data-preview-el="#ogimgSrc" data-note="Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.">
+                                                                                <img class="rounded max-width" id="ogimgSrc" src="@StringExtension.ImageOrDefault(Model.OgImageSrc,"" , httpStatic)" alt="Preview">
+                                                                                <div class="img-inner-text">
+                                                                                    <div class="shff">
+                                                                                        <span class="icon ion-image"></span>
+                                                                                        <p>Click để thêm ảnh</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @Html.HiddenFor(m => m.OgImageSrc)
+                                                                            </div>
+                                                                            <br />
+                                                                            <small>Kích thước hình ảnh: tùy chỉnh theo người nhập liệu.</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group" data-step="7" data-intro="Hình ảnh sẽ được đính vào thẻ meta property='og:type'" data-position='left'>
+                                                                    <label class="col-sm-12">@Html.DisplayNameFor(m => m.OgType)</label>
+                                                                    <div class="col-sm-12">
+                                                                        @Html.DropDownListFor(model => model.OgType, new List<SelectListItem>() {
+                                                                                new SelectListItem() { Value = "website", Text = "Website" },
+                                                                                new SelectListItem() { Value = "article", Text = "Article" },
+                                                                                new SelectListItem() { Value = "video.other", Text = "Video.other" },
+                                                                                new SelectListItem() { Value = "product", Text = "Product" },
+                                                                            }, "---Chọn---", new { @class = "form-control select2 select-placeholder" })
+                                                                        @Html.ValidationMessageFor(model => model.OgType)
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-12">@Html.DisplayName("Thẻ <meta property='og:url'")></label>
+                                                                    <div class="col-sm-12">
+                                                                        <small>Hệ thống sẽ tự động đồng bộ Url trong phần Thiết lập SEO</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit", data_step = "8", data_intro = "Bấm Lưu để lưu dữ liệu đã nhập liệu.", data_position = "top" }).IfRole("Update", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã lưu thông tin thành công</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    $(function () {
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+
+        $('.fileinputcrop-preview').fmGSIDModal({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            titleModal: 'Ảnh đại diện',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            multiple: false,
+            folders: false,
+        });
+
+        $('form.UpdateForm').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+                if ($('.fileinput-preview img').length <= 0) {
+                    $("#ImageChange").attr("value", "2");
+                }
+                else if ($('.fileinput-preview img').length > 0) {
+                    $("#ImageChange").attr("value", "1");
+                }
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+            },  // pre-submit callback
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $("#hdfid").val(data.Id);
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                swal.close();
+            },  // post-submit callback
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                swal.close();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                swal.close();
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

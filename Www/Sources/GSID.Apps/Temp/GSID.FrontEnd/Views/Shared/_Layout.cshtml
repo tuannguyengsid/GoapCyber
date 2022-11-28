@@ -1,0 +1,181 @@
+﻿@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@{
+    var languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language viLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        viLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    string Title = SiteInformation != null ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? SiteInformation.SiteTitleVn : SiteInformation.SiteTitleEn) : "";
+    string Keyword = SiteInformation != null ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? SiteInformation.KeywordSEOVn : SiteInformation.KeywordSEOEn) : "";
+    string DescriptionSEO = SiteInformation != null ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? SiteInformation.DescriptionSEOVn : SiteInformation.DescriptionSEOEn) : "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store,must-revalidate, proxy-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="-1" />
+    @if (SiteInformation != null && !string.IsNullOrEmpty(SiteInformation.IconSrc))
+    {
+        <link rel="shortcut icon" type="image/x-icon" href="@string.Format("{0}/{1}", httpStatic, SiteInformation.IconSrc)">
+    }
+    <meta name="robots" content="index, follow" />
+    <title>@Context.Request.RequestContext.RouteData.Values["TitleSEO"]@SiteInformation.Prefix@Title</title>
+    <meta name="keywords" content="@Context.Request.RequestContext.RouteData.Values["KeywordSEO"]" />
+    <meta name="description" content="@Context.Request.RequestContext.RouteData.Values["DescriptionSEO"]" />
+    <meta name="author" content="GoapCyber.Com" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="@Context.Request.RequestContext.RouteData.Values["OgLocaleOpenGraph"]">
+    <meta property="og:type" content="@Context.Request.RequestContext.RouteData.Values["OgTypeOpenGraph"]">
+    <meta property="og:url" content="@Context.Request.RequestContext.RouteData.Values["OgUrlOpenGraph"]">
+    <meta property="og:title" content="@Context.Request.RequestContext.RouteData.Values["OgTitleOpenGraph"]">
+    <meta property="og:site_name" content="@Context.Request.RequestContext.RouteData.Values["OgSite_nameOpenGraph"]">
+    <meta property="og:description" content="@Context.Request.RequestContext.RouteData.Values["OgDescriptionOpenGraph"]">
+    <meta property="og:image" content="@Context.Request.RequestContext.RouteData.Values["OgImageOpenGraph"]">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="@Context.Request.RequestContext.RouteData.Values["OgUrlOpenGraph"]">
+    <meta property="twitter:title" content="@Context.Request.RequestContext.RouteData.Values["OgTitleOpenGraph"]">
+    <meta property="twitter:description" content="@Context.Request.RequestContext.RouteData.Values["OgDescriptionOpenGraph"]">
+    <meta property="twitter:image" content="@Context.Request.RequestContext.RouteData.Values["OgImageOpenGraph"]">
+
+    @Html.Raw(SiteInformation.TagHeader)
+
+    <link rel="stylesheet" type="text/css" href="/Content/css/bootstrap.min.css" /><!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/animate/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/bootstrap-selector/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/font-awesome/css/all.css" /><!--icon font css-->
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/elagent/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/themify-icon/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/flaticon/flaticon.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/averta/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/fontawesome5.10.1/css/fontawesome.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/fontawesome5.10.1/css/brands.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/fontawesome5.10.1/css/solid.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/fontawesome4.7.0/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/Linearicons_v1.0.0/style.css" />
+    <script defer type="text/javascript" src="/Content/fonts/fontawesome5.10.1/js/fontawesome.min.js"></script> <!--load all styles -->
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/icomoon/icomoon.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/Ionicons/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/flaticon/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/fonts/iconfont/style.css" />
+
+    <link rel="preload" as="font" href="/Content/fonts/icomoon/fonts/icomoon543e.ttf?x9i9xv" type="font/ttf" crossorigin="anonymous" /><!-- Vendor CSS --><!--custom font-->
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/animation/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/owl-carousel/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/magnify-pop/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/nice-select/nice-select.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/font-awesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/elagent/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/scroll/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/vendors/themepunch//css/settings.min.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/Content/js/sweetalert2@11/sweetalert2.min.css" />
+    <link href="~/Content/js/swiper/css/swiper.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/responsive.css" />
+
+    @Html.Raw(SiteInformation.CssHeader)
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="/Content/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.form.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/Content/js/sweetalert2@11/sweetalert2.min.js"></script>
+    <script type="text/javascript" src="/Content/js/propper.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.twbsPagination.js"></script>
+    <script type="text/javascript" src="/Content/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Content/js/initjs.js"></script>
+    <script type="text/javascript" src="/Scripts/moment.js"></script>
+    <script type="text/javascript" src="/Scripts/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/wow/wow.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/counterup/jquery.counterup.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/sckroller/jquery.parallax-scroll.js"></script>
+    <script type="text/javascript" src="/Content/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/isotope/isotope-min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/bootstrap-selector/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript" src="/Content/js/plugins.js"></script>
+    <script src="~/Content/js/popper.js/popper.min.js"></script>
+    <script src="~/Content/js/appear/appear.min.js"></script>
+    <script src="~/Content/js/tween-max/tween-max.js"></script>
+    <script src="~/Content/js/wow/js/wow.min.js"></script>
+    <script src="~/Content/js/swiper/js/swiper.min.js"></script>
+
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/jquery.themepunch.revolution.min.js"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="/Content/vendors/themepunch5.4.1/js/revolution.extension.video.js"></script>
+
+    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB13ZAvCezMx5TETYIiGlzVIq65Mc2FG5g"></script>--> <!--gmaps Js-->
+    <!--<script type="text/javascript" src="/Content/js/gmaps.min.js"></script>--> <!--gmaps Js-->
+    @Html.Raw(SiteInformation.ScriptHeader)
+    <!-- End loading page level scripts-->
+    <!-- jqueryui -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
+    <!--[if lt IE 9]>
+        <link type="text/css" href="~/Content/Control/assets/css/ie8.css" rel="stylesheet">
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.1.0/respond.min.js"></script>
+        <script type="text/javascript" src="~/Content/Control/assets/plugins/charts-flot/excanvas.min.js"></script>
+        <script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- The following CSS are included as plugins and can be removed if unused-->
+    <!--[if lt IE 10]>
+        <script type="text/javascript" src="~/Content/Control/assets/js/media.match.min.js"></script>
+        <script type="text/javascript" src="~/Content/Control/assets/js/placeholder.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <h1 class="none">@Context.Request.RequestContext.RouteData.Values["H1SEO"]</h1>
+    <h2 class="none">@Context.Request.RequestContext.RouteData.Values["H2SEO"]</h2>
+    <h3 class="none">@Context.Request.RequestContext.RouteData.Values["H3SEO"]</h3>
+    <h4 class="none">@Context.Request.RequestContext.RouteData.Values["H4SEO"]</h4>
+    <h5 class="none">@Context.Request.RequestContext.RouteData.Values["H5SEO"]</h5>
+    <h6 class="none">@Context.Request.RequestContext.RouteData.Values["H6SEO"]</h6>
+
+    @Html.Partial("_LoadingPartial")
+    <div class="body_wrapper">
+        @Html.Partial("_HeaderPatial")
+        @RenderBody()
+        @Html.Partial("_FooterPatial")
+    </div>
+
+    @{ Html.RenderAction("PopupForm", "init", new { language = currentLan != null ? currentLan.Parent : "" }); }
+    @Html.Raw(SiteInformation.TagFooter)
+    <a class="back-to-top js-back-to-top compensate-for-scrollbar" href="#" title="Scroll To Top"><i class="icon icon-angle-up"></i></a>
+    <script type="text/javascript" src="/Content/js/rrssb.min.js"></script><!-- share social-->
+    <script type="text/javascript" src="/Content/js/main.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @Html.Raw(SiteInformation.ScriptFooter)
+</body>
+</html>

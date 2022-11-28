@@ -1,0 +1,64 @@
+﻿@using GSID.WebApp.ViewModels;
+@using GSID.WebApp.Helpers;
+@model SearchReportViolationViewModel
+<div class="panel panel-default alt">
+    <div class="panel-heading">
+        <h2>Tìm kiếm</h2>
+    </div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Index", "ReportViolation", new { area = "Economic" }, FormMethod.Post, new { @class = "form-horizontal row-border", enctype = "multipart/form-data", @id = "searchAdvanceForm" }))
+        {
+            <div class="form-group">
+                <div class="row">
+                    @Html.LabelFor(m => m.EnterpriseCode, new { @class = "col-sm-12" })
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(model => model.EnterpriseCode, new { @class = "form-control", @placeholder = "Nhập từ khóa như tên công ty, mã số thuế, tên viết tắt" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    @Html.LabelFor(m => m.Name, new { @class = "col-sm-12" })
+                    <div class="col-sm-12">
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Nhập tiêu đề cần tìm" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    @Html.LabelFor(m => m.ReportViolationCategoryId, new { @class = "col-sm-12" })
+                    <div class="col-sm-12">
+                        @Html.DropDownListFor(model => model.ReportViolationCategoryId, new SelectList(Model.ReportViolationCategories, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    @Html.LabelFor(m => m.BusinessStatusId, new { @class = "col-sm-12" })
+                    <div class="col-sm-12">
+                        @Html.DropDownListFor(model => model.BusinessStatusId, new SelectList(Model.BusinessStatuss, "Id", "Name"), new { @class = "form-control select2 select-placeholder" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <button type="submit" class="btn btn-outline-info pull-right"><i class="ion-ios-search-strong"></i> Tìm kiếm</button>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+
+<div class="handler"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //placeholder
+        $(".select-placeholder").select2({
+            placeholder: $(this).attr('data-placeholder'),
+            allowClear: true
+        });
+    });
+</script>

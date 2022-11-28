@@ -1,0 +1,295 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model ProductViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+    var HomePageConfig = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+    var ProductDetailPageConfig = (ProductDetailPageManagementAdminConfig)ViewBag.ProductDetailPageConfig;
+
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <section class="slider_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 d-flex align-items-center">
+                        <div class="slider_content">
+                            <h2 class="breadcrumb_title">@Model.Product.NameVn</h2>
+                            <p>@Model.Product.ShortDescriptionVn</p>
+                            <p class="breadcrumb_desc">
+                                @Html.Raw(Model.Product.DescriptionVn)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="mobile_img">
+                            <img class="mobile wow fadeInRight" data-wow-delay="0.1s" src="@string.Format("{0}/{1}", httpStatic, Model.Product.ImageSrc)" alt="@Model.Product.NameVn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="leaf l_left" src="/content/img/shape_02.png" alt=""/>
+            <img class="leaf l_right" src="/content/img/shape_03.png" alt=""/>
+            <img class="middle_shape" src="/content/img/shape_01.png" alt=""/>
+            <img class="bottom_shoape" src="/content/img/shape.png" alt=""/>
+        </section>
+
+        <section class="app_screenshot_area sec_pad">
+            <div class="container custom_container p0">
+                <div class="sec_title text-center mb_70">
+                    <h2 class="f_p f_size_30 l_height30 f_700 t_color3 mb_20 wow fadeInUp" data-wow-delay="0.2s">Hình ảnh ứng dụng</h2>
+                </div>
+                <div class="app_screen_info">
+                    <div class="app_screenshot_slider owl-carousel">
+                        @if (Model.Product.Images != null)
+                        {
+                            foreach (var item in Model.Product.Images)
+                            {
+                                <div class="item">
+                                    <div class="screenshot_img">
+                                        <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" class="image-link"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@Model.Product.NameVn"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pos_features_area sec_pad">
+            <div class="container">
+                @if (Model.Product.OverviewViewTypeVn == Product.IsOverviewViewType.Editor)
+                {
+                    @Html.Raw(Model.Product.OverviewVn);
+                }
+                else if (Model.Product.OverviewViewTypeVn == Product.IsOverviewViewType.Block)
+                {
+                    if (Model.Product.ProductOverviewBlockVn.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Product.ProductOverviewBlockVn.Count; i++)
+                        {
+                            var item = Model.Product.ProductOverviewBlockVn.ElementAt(i);
+                            if (i % 2 == 0)
+                            {
+                                <div class="row flex-row-reverse pos_item">
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_img">
+                                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_content">
+                                            <h2>@item.Name</h2>
+                                            <div class="media h_features_item">
+                                                @Html.Raw(item.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (i % 2 != 0)
+                            {
+                                <div class="row pos_item">
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_img">
+                                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_content">
+                                            <h2>@item.Name</h2>
+                                            <div class="media h_features_item">
+                                                @Html.Raw(item.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </section>
+        if (Model.RelatedProducts != null && Model.RelatedProducts.Count > 0)
+        {
+            <section class="chat_core_features_area sec_pad">
+                <div data-parallax='{"x": 0, "y": 100}'><div class="pattern_shap" style="background: url(content/img/pos/pattern_02.png);"></div></div>
+                <div class="container">
+                    <div class="sec_title text-left">
+                        <h4 class="title wow fadeInUp" data-wow-delay="0.1s">Sản phẩm & Dịch vụ liên quan</h4>
+                    </div>
+                    <div class="row justify-content-center clearfix">
+                        @foreach (var item in Model.RelatedProducts)
+                        {
+                            string url = (item.RouteDataUrlVn != null && !string.IsNullOrEmpty(item.RouteDataUrlVn.Url)) ? item.RouteDataUrlVn.Url : Url.Action("Detail", "Product", new { language = currentLan != null ? currentLan.Parent : "", cateslug = item.ProductCategory.SlugVn ?? "", prdslug = item.SlugVn ?? "" });
+
+                            <div class="col-lg-3 col-md-6 col-sm-12 service-block">
+                                <div class="service-block-three wow flipInY animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                                    <div class="inner-box">
+                                        <h3><a href="@url">@item.NameVn</a></h3>
+                                        <figure class="image-box"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn"></figure>
+                                        <p>@item.ShortDescriptionVn</p>
+                                        <div class="link"><a href="@url">Xem thêm<i class="fas fa-angle-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </section>
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <section class="slider_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 d-flex align-items-center">
+                        <div class="slider_content">
+                            <h2 class="breadcrumb_title">@Model.Product.NameEn</h2>
+                            <p>@Model.Product.ShortDescriptionEn</p>
+                            <p class="breadcrumb_desc">
+                                @Html.Raw(Model.Product.DescriptionEn)
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="mobile_img">
+                            <img class="mobile wow fadeInRight" data-wow-delay="0.1s" src="@string.Format("{0}/{1}", httpStatic, Model.Product.ImageEnSrc)" alt="@Model.Product.NameEn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img class="leaf l_left" src="/content/img/shape_02.png" alt="" />
+            <img class="leaf l_right" src="/content/img/shape_03.png" alt="" />
+            <img class="middle_shape" src="/content/img/shape_01.png" alt="" />
+            <img class="bottom_shoape" src="/content/img/shape.png" alt="" />
+        </section>
+
+        <section class="app_screenshot_area sec_pad">
+            <div class="container custom_container p0">
+                <div class="sec_title text-center mb_70">
+                    <h2 class="f_p f_size_30 l_height30 f_700 t_color3 mb_20 wow fadeInUp" data-wow-delay="0.2s">Galleries</h2>
+                </div>
+                <div class="app_screen_info">
+                    <div class="app_screenshot_slider owl-carousel">
+                        @if (Model.Product.ImageEns != null)
+                        {
+                            foreach (var item in Model.Product.ImageEns)
+                            {
+                                <div class="item">
+                                    <div class="screenshot_img">
+                                        <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" class="image-link"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@Model.Product.NameEn"></a>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="pos_features_area sec_pad">
+            <div class="container">
+                @if (Model.Product.OverviewViewTypeEn == Product.IsOverviewViewType.Editor)
+                {
+                    @Html.Raw(Model.Product.OverviewEn);
+                }
+                else if (Model.Product.OverviewViewTypeEn == Product.IsOverviewViewType.Block)
+                {
+                    if (Model.Product.ProductOverviewBlockEn.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Product.ProductOverviewBlockEn.Count; i++)
+                        {
+                            var item = Model.Product.ProductOverviewBlockEn.ElementAt(i);
+                            if (i % 2 == 0)
+                            {
+                                <div class="row flex-row-reverse pos_item">
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_img">
+                                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_content">
+                                            <h2>@item.Name</h2>
+                                            <div class="media h_features_item">
+                                                @Html.Raw(item.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (i % 2 != 0)
+                            {
+                                <div class="row pos_item">
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_img">
+                                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="pos_features_content">
+                                            <h2>@item.Name</h2>
+                                            <div class="media h_features_item">
+                                                @Html.Raw(item.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </section>
+        if (Model.RelatedProducts != null && Model.RelatedProducts.Count > 0)
+        {
+            <section class="chat_core_features_area sec_pad">
+                <div data-parallax='{"x": 0, "y": 100}'><div class="pattern_shap" style="background: url(/content/img/pos/pattern_02.png);"></div></div>
+                <div class="container">
+                    <div class="sec_title text-left">
+                        <h4 class="title wow fadeInUp" data-wow-delay="0.1s">Related</h4>
+                    </div>
+                    <div class="row justify-content-center clearfix">
+                        @foreach (var item in Model.RelatedProducts)
+                        {
+                            string url = (item.RouteDataUrlEn != null && !string.IsNullOrEmpty(item.RouteDataUrlEn.Url)) ? item.RouteDataUrlEn.Url : Url.Action("Detail", "Product", new { language = currentLan != null ? currentLan.Parent : "", cateslug = item.ProductCategory.SlugEn ?? "", prdslug = item.SlugEn ?? "" });
+                        <div class="col-lg-3 col-md-6 col-sm-12 service-block">
+                                <div class="service-block-three wow flipInY animated" data-wow-delay="00ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: flipInY;">
+                                    <div class="inner-box">
+                                        <h3><a href="@url">@item.NameEn</a></h3>
+                                        <figure class="image-box"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageEnSrc)" alt="@item.NameEn"></figure>
+                                        <p>@item.ShortDescriptionVn</p>
+                                        <div class="link"><a href="@url">View more<i class="fas fa-angle-right"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+    }
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        menuActive('@ProductDetailPageConfig.MenuActiveId');
+    });
+</script>

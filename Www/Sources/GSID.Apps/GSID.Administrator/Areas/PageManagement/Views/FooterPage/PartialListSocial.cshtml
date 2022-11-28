@@ -1,0 +1,67 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model SocialNetworkManagementAdminConfig
+
+<table class="table table-bordered hoverTable tablesaw table-striped" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+    <thead>
+        <tr>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Mạng xã hội</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Thứ tự</th>
+            <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Social != null && Model.Social.Count > 0)
+        {
+            foreach (var item in Model.Social)
+            {
+                string name = "";
+                switch (item.Group)
+                {
+                    case SocialNetworkConfig.SocialIsGroup.Facebook:
+                        name = "facebook";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Instagram:
+                        name = "Instagram";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Youtube:
+                        name = "Youtube";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Pinterest:
+                        name = "Pinterest";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Linkedin:
+                        name = "Linkedin";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Tiktok:
+                        name = "Tiktok";
+                        break;
+                    case SocialNetworkConfig.SocialIsGroup.Zalo:
+                        name = "Zalo";
+                        break;
+                    default:
+                        name = "";
+                        break;
+                }
+
+                    <tr>
+                        <td>@name</td>
+                        <td>@item.Sort</td>
+                    <td>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                @Html.RawActionLink("<i class='ion-android-create'></i>", null, null, null, new { @class = "btn btn-success btn-xs", id = item.Id.ToString(), href = "javascript:;", onclick = "onUpdateSocial('" + item.Id.ToString()+ "')" }).IfRole("PartialUpdateSocial", Request.RequestContext.RouteData.Values["controller"].ToString())
+                                @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, null, new { @class = "btn btn-danger btn-xs", href = "javascript:;", onclick = "onDeleteSocial('" + item.Id.ToString() + "')" }).IfRole("DeleteSocial", "FooterPage")
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<script type="text/javascript" src="~/Content/Control/assets/plugins/bootstrap-switch/bootstrap-switch.js"></script>		<!-- Swith/Toggle Button -->
+<script src="/Content/Control/assets/plugins/tablesaw-master/dist/tablesaw-init.js"></script>

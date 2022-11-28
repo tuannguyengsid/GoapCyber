@@ -1,0 +1,120 @@
+﻿@using GSID.Admin.Helpers;
+
+<div class="col-12">
+    <div class="tab-container tab-default">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#link" data-toggle="tab">Liên kết mạng xã hội</a></li>
+            <li><a href="#api" data-toggle="tab">Cấu hình Api</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="link">
+                <div class="panel-body">
+                    <div class="panel-ctrls">
+                        <div class="pull-left">
+                            <div class="btn-group">
+                                @Html.RawActionLink("<i class='ion-plus'></i><span> Tạo mới</span>", "", "", null, new { @class = "btn btn-default btn-sm" })
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="table-flipscroll">
+                        <table class="table table-bordered hoverTable tablesaw table-striped" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                            <thead>
+                                <tr>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Icon</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Liên kết</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Kích hoạt</th>
+                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" role="status" aria-live="polite">
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_bootstrap">
+                                    <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="tab-pane" id="api">
+
+            </div>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+        $('form.ConfigSiteInformation').ajaxForm({
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>
+

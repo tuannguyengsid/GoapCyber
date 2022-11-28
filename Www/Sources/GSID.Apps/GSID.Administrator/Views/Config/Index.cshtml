@@ -1,0 +1,70 @@
+﻿@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2">
+            <a href="javascript:;" class="tectonic-shortcut-tile alt primary config-logo">
+                <span class="icon"><i class="ion-pricetags"></i></span>
+                <span class="title">Cấu hình chung</span>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="@Url.Action("Index", "MailTemplate", new { Area = ""})" class="tectonic-shortcut-tile alt primary">
+                <span class="icon"><i class="ion-ios-email"></i></span>
+                <span class="title">Mail mẫu</span>
+            </a>
+        </div>
+    </div>
+
+
+    @*<div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    @{ Html.RenderAction("EmailImapConfig", "Config", new { area = "" }); }
+                    @{ Html.RenderAction("EmailSTMPConfig", "Config", new { area = "" }); }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    @{ Html.RenderAction("EmailFollowConfig", "Config", new { area = "" }); }
+                    @{ Html.RenderAction("SmsBranchCmcConfig", "Config", new { area = "" }); }
+                </div>
+            </div>
+        </div>
+    *@
+    <!-- .container-fluid -->
+</div>
+<script type="text/javascript">
+	//initializing
+    $(function () {
+        "use strict";
+        $('.config-logo').click(function () {
+            swal({
+                title: "Đang xử lý dữ liệu",
+                html: true,
+                showConfirmButton: false
+            });
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("PartialConfigInformation", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = ""})',
+                data: { },
+                dataType: 'html',
+                success: function (data, status) {
+                    swal.close();
+                    $('#binding-modal').html(data);
+                },
+                error: function (error) {
+                    console.log('Error in sending ajax data');
+                }
+            });
+        });
+    });
+</script>

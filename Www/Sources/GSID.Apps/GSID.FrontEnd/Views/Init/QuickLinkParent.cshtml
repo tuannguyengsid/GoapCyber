@@ -1,0 +1,41 @@
+﻿@using GSID.Model.MongodbModels;
+@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model List<QuickLink>
+
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language viLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        viLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+
+    var QuickLinkParent = (QuickLink)ViewBag.QuickLinkParent;
+}
+@if (Model != null && Model.Count > 0)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <ul class="list-unstyled f_list">
+            @foreach (var item in Model)
+            {
+                <li><i class="icon-angle-right"></i> <a href="@item.SlugVn">@item.NameVn</a></li>
+            }
+        </ul>
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <ul class="list-unstyled f_list">
+            @foreach (var item in Model)
+            {
+                <li><i class="icon-angle-right"></i> <a href="@item.SlugEn">@item.NameEn</a></li>
+            }
+        </ul>
+    }
+}

@@ -1,0 +1,258 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.ViewModels.MongoModels;
+@model List<News>
+@{
+    var TotalPage = (int)ViewBag.TotalPage;
+    var PageVisit = (int)ViewBag.PageVisit;
+    var PageSize = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal = (int)ViewBag.CountTotal;
+    var SecondRecord = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    string recycleBinClass = "active";
+    if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        recycleBinClass = "disabled";
+    }
+}
+<div class="table-flipscroll" data-step="3" data-intro="Danh sách" data-position='top'>
+    <table class="table table-bordered hoverTable tablesaw table-striped table-language" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+        <thead>
+            <tr>
+                <th class="@recycleBinClass" scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist" width="30">
+                    <span class="checkbox inline">
+                        <input type="checkbox" class="tectonic" id="select_all" name="ham">
+                        <label for="select_all"></label>
+                    </span>
+                </th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Tên</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Danh mục</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày tạo</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày sửa</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string cateNameVn = item.NewsCategory != null ? item.NewsCategory.NameVn : "";
+                string cateNameEn = item.NewsCategory != null ? item.NewsCategory.NameEn : "";
+                string editUrl = Url.Action("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() });
+                string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+                string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+
+                var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "toggle-input status_trash well well-sm tooltips"},
+                                                    {"data-val", item.Id},
+                                                    {recycleBinClass,recycleBinClass}
+                                                };
+                <tr class="gradeX">
+                    <td class="@recycleBinClass">
+                        <span class="checkbox inline">
+                            <input type="checkbox" class="tectonic check" id="icheck_@item.Id" value="@item.Id" name="ham">
+                            <label for="icheck_@item.Id"></label>
+                        </span>
+                    </td>
+                    <td class="flex">
+                        <div class="air__utils__avatarGroup">
+                            <div class="air__utils__avatar air__utils__avatar--size64">
+                                <img src="@StringExtension.ImageOrDefault(item.ImageSrc, GSID.Setting.Default.Image_Default, httpStatic)" />
+                            </div>
+                        </div>
+                        <div>
+                            <div class="language">
+                                <label class="lblanguage"><img src="~/Content/Control/assets/flags/vn.svg" /></label>
+                                <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameVn"><a href="@editUrl"><b>@item.NameVn</b></a></span>
+                            </div>
+                            <div class="language">
+                                <label class="lblanguage"><img src="~/Content/Control/assets/flags/en.svg" /></label>
+                                <span class="name tooltips" data-trigger="hover" data-original-title="@item.NameEn"><a href="@editUrl"><b>@item.NameEn</b></a></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="language">
+                            <label class="lblanguage"><img src="~/Content/Control/assets/flags/vn.svg" /></label>
+                            <span><b>@cateNameVn</b></span>
+                        </div>
+                        <div class="language">
+                            <label class="lblanguage"><img src="~/Content/Control/assets/flags/en.svg" /></label>
+                            <span><b>@cateNameEn</b></span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="name tooltips" data-trigger="hover" data-original-title="@addDate"><i class="ion-plus"></i>: @addDate</span>
+                        <span class="name tooltips" data-trigger="hover" data-original-title="@addBy"><i class="ion-person"></i>: @addBy</span>
+                    </td>
+                    <td>
+                        <span class="name tooltips" data-trigger="hover" data-original-title="@editDate"><i class="ion-compose"></i>: @editDate</span>
+                        <span class="name tooltips" data-trigger="hover" data-original-title="@editBy"><i class="ion-person"></i>: @editBy</span>
+                    </td>
+                    <td>
+                        <div class="handle">
+                            <div class="pull-left">
+                                <span class="switch">
+                                    @Html.CheckBox(string.Format("Item_trash_{0}", item.Id), !item.IsDeleted, _hasAttrCheckbox)
+                                    @Html.Label(string.Format("Item_trash_{0}", item.Id))
+                                </span>
+                            </div>
+                            <div class="pull-right">
+                                <div class="btn-group-hover">
+                                    @Html.RawActionLink("<i class='fa fa-files-o'></i>", null, null, null, new { @class = "btn btn-duplicate btn-xs", onclick = "onDuplicate('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Duplicate", Request.RequestContext.RouteData.Values["controller"].ToString())
+                                    @Html.RawActionLink("<span class='ion-compose'></span>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn text-success btn-xs well well-sm tooltips", id = item.Id.ToString(), data_trigger = "hover", data_original_title = "Cập nhật" })
+                                    @Html.RawActionLink("<span class='ion-trash-a'></span>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn delete text-danger btn-xs well well-sm tooltips", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;", data_trigger = "hover", data_original_title = "Xóa" }).IfRole("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="panel-footer">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_info" role="status" aria-live="polite" data-step="4" data-intro="Thông tin số dữ liệu" data-position='top'>
+                @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_bootstrap" data-step="5" data-intro="Chuyển trang" data-position='top'>
+                <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+
+<script src="~/Content/Control/assets/plugins/tablesaw-master/dist/tablesaw-init.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    onPagingList(page);
+                }
+            });
+        }
+
+        $("#select_all").change(function () {  //"select all" change
+            var status = this.checked; // "select all" checked status
+            $('.tectonic.check').each(function () { //iterate all listed checkbox items
+                this.checked = status; //change ".checkbox" checked status
+            });
+        });
+
+        $('.tectonic.check').change(function () { //".checkbox" change
+            //uncheck "select all", if one of the listed checkbox item is unchecked
+            if (this.checked == false) { //if this item is unchecked
+                $("#select_all")[0].checked = false; //change "select all" checked status to false
+            }
+
+            //check "select all" if all checkbox items are checked
+            if ($('.tectonic.check:checked').length == $('.tectonic.check').length) {
+                $("#select_all")[0].checked = true; //change "select all" checked status to true
+            }
+        });
+    });
+
+    //initializing
+    $(function () {
+        "use strict";
+
+        $('.popovers').popover({ container: 'body', trigger: 'hover', placement: 'top' }); //bootstrap's popover
+        $('.tooltips').tooltip(); //bootstrap's tooltip
+
+        $('input.status_trash').change(function (e) {
+            var $checkSwitch = $(this);
+            const data  = $checkSwitch.is(':checked');
+            const id = $checkSwitch.attr('data-val');
+
+            if (data == false) {
+                swal({
+                    title: 'Bạn đã chắc chứ?',
+                    text: "Bạn có chắc muốn ẩn dữ liệu này không",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Ẩn đi",
+                    cancelButtonText: "Đóng",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal({
+                                title: "Đang xử lý dữ liệu",
+                                html: true,
+                                showConfirmButton: false
+                            });
+                            $.ajax({
+                                url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                                type: 'POST',
+                                data: { id: id, isDeleted: data },
+                                dataType: 'json',
+                                success: function (result) {
+                                    if (result.Status == '2')
+                                        swal.close();
+                                    else {
+                                        $checkSwitch.prop("checked", !data);
+                                        swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                    }
+                                },
+                                error: function () {
+                                    $checkSwitch.prop("checked", !data);
+                                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                }
+                            });
+                        } else {
+                            $checkSwitch.prop("checked", !data);
+                            swal.close();
+                        }
+                    });
+            }
+            else {
+                swal({
+                    title: "Đang xử lý dữ liệu",
+                    html: true,
+                    showConfirmButton: false
+                });
+                $.ajax({
+                    url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                    type: 'POST',
+                    data: { id: id, isDeleted: data },
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.Status == '2')
+                            swal.close();
+                        else
+                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                    },
+                    error: function () {
+                        swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                    }
+                });
+            }
+        });
+    });
+</script>

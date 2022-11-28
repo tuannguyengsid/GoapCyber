@@ -1,0 +1,147 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@model EmailSTMPConfigViewModel
+
+<div class="col-12">
+    <div class="tab-container tab-default">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#stmp" data-toggle="tab">STMP</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="stmp">
+                @using (Html.BeginForm("PartialSTMPConfig", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form EmailSTMPConfig", enctype = "multipart/form-data" }))
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.FullName)</label>
+                                <div class="col-sm-4 tabular-border">
+                                    @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", @placeholder = "Tên gửi" })
+                                    @Html.ValidationMessageFor(model => model.FullName)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.UserName)</label>
+                                <div class="col-sm-4 tabular-border">
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.UserName)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Password)</label>
+                                <div class="col-sm-4 tabular-border">
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu" })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.STMPSever)</label>
+                                <div class="col-sm-3 tabular-border">
+                                    @Html.TextBoxFor(model => model.STMPSever, new { @class = "form-control", @placeholder = "Địa chỉ máy chủ STMP" })
+                                </div>
+                                <div class="col-sm-1 tabular-border">
+                                    @Html.TextBoxFor(model => model.STMPPort, new { @class = "form-control", @placeholder = "Cổng truy cập" })
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.IMAPSever)</label>
+            <div class="col-sm-3 tabular-border">
+                @Html.TextBoxFor(model => model.IMAPSever, new { @class = "form-control", @placeholder = "Địa chỉ máy chủ STMP" })
+            </div>
+            <div class="col-sm-1 tabular-border">
+                @Html.TextBoxFor(model => model.IMAPPort, new { @class = "form-control", @placeholder = "Cổng truy cập" })
+            </div>
+        </div>*@
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.EmailNotification)</label>
+                                <div class="col-sm-4 tabular-border">
+                                    @Html.TextBoxFor(model => model.EmailNotification, new { @class = "form-control", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(model => model.EmailNotification)
+                                    <br />
+                                   
+                                </div>
+                                <div class="col-sm-6 tabular-border"><small>Đây là email để nhận thông báo tin liên hệ và thông báo hồ sơ ứng viên mới nhất.</small></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-12">Lưu ý: Nếu không nhận được email. Bạn vui lòng kiểm tra lại đã nhập đúng thông tin hay chưa? Khi lưu một email mới. Hệ thống sẽ gửi bạn email test để kiểm chứng rằng tài khoản gửi email đã thực hiện được. Trường hợp bạn sử dụng goole mail, vui lòng mở bảo mật trước khi nhập tài khoản email vào hệ thống.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm waves-effect waves-light btn-danger" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Đóng</button>
+                        @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit" })
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        "use strict";
+
+        $('form.EmailSTMPConfig').ajaxForm({
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>
+

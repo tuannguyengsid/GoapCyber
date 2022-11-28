@@ -1,0 +1,176 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model RecruitmentPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="accordion-group" id="accordionWhyChoose">
+    <div class="panel accordion-item">
+        <a class="accordion-title" data-toggle="collapse" data-parent="#accordionWhyChoose" href="#collapseaWhyChoose" aria-expanded="true"><h2>Tại sao chọn Công ty</h2></a>
+        <div id="collapseaWhyChoose" class="collapse in" aria-expanded="true">
+            <div class="accordion-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tbSectionWhyChooseTitleVn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                <li><a href="#tbSectionWhyChooseTitleEn" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/en.svg"> Tiếng Anh</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tbSectionWhyChooseTitleVn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.WhyChooseTitleVn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.WhyChooseTitleVn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.WhyChooseTitleVn)
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="tbSectionWhyChooseTitleEn">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.WhyChooseTitleEn)</label>
+                                        <div class="col-sm-8">
+                                            @Html.TextBoxFor(model => model.WhyChooseTitleEn, new { @class = "form-control", @placeholder = "" })
+                                            @Html.ValidationMessageFor(model => model.WhyChooseTitleEn)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="panel panel-default alt no-boxshadow" data-widget='{"id" : "wiget1"}'>
+                        <div class="panel-body">
+                            <div class="panel-ctrls">
+                                <div class="pull-left">
+                                    <div class="btn-group">
+                                        @Html.RawActionLink("<i class='ion-plus'></i><span> Thêm mới</span>", null, null, null, new { @class = "btn btn-success btn-xs", href = "javascript:;", onclick = "onCreateWhyChoose();" })
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div id="tbWhyChooses">
+                                @if (Model.WhyChooseItems != null)
+                                {
+                                    <ul class="ul-img">
+                                        @foreach (var item in Model.WhyChooseItems)
+                                        {
+                                            <li class="li-24">
+                                                <div class="img-wrap">
+                                                    <div class="img-cover">
+                                                        <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                                                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                                                        </a>
+                                                        <h5>@Html.Raw(item.ShortDescriptionVn)</h5>
+                                                    </div>
+                                                    <div class="img-action">
+                                                        <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateWhyChoose('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                                                        <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteWhyChoose('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function onLoadWhyChoose() {
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialListWhyChoose", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#tbWhyChooses').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onCreateWhyChoose() {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialCreateWhyChoose", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { },
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onUpdateWhyChoose(val) {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            method: 'GET',
+            url: '@Url.Action("PartialUpdateWhyChoose", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            data: { gsid : val},
+            dataType: 'html',
+            success: function (data, status) {
+                swal.close();
+                $('#binding-modal').html(data);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    function onDeleteWhyChoose(val) {
+        swal({
+            title: "Đang xử lý dữ liệu",
+            html: true,
+            showConfirmButton: false
+        });
+        $.ajax({
+            url: '@Url.Action("DeleteWhyChoose", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement"})',
+            type: 'POST',
+            data: { id: val },
+            dataType: 'json',
+            success: function (result) {
+                swal.close();
+                if (result.Status == '2') {
+                    onLoadWhyChoose();
+                }
+                else {
+                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                }
+            },
+            error: function () {
+                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+            }
+        });
+    }
+</script>

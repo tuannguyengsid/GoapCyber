@@ -1,0 +1,49 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model HomePageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+
+@if (Model.Banners != null)
+{
+<ul class="ul-img">
+    @foreach (var item in Model.Banners)
+    {
+        if (item.Type == 2)
+        {
+            <li class="li-25">
+                <div class="img-wrap">
+                    <div class="img-cover">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/@item.Source" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="img-action">
+                        <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateBanner('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                        <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteBanner('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                    </div>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li class="li-25">
+                <div class="img-wrap">
+                    <div class="img-cover">
+                        <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                            <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)">
+                        </a>
+                    </div>
+                    <div class="img-action">
+                        <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateBanner('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                        <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteBanner('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+</ul>
+}

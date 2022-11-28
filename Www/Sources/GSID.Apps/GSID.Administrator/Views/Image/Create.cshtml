@@ -1,0 +1,243 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@using GSID.Setting;
+@model ImageCreateViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        @using (Html.BeginForm("Create", Request.RequestContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { @class = "form-horizontal row-border tabular-form ImageForm", enctype = "multipart/form-data" }))
+        {
+            var _hasAttrCheckbox = new Dictionary<string, object>{
+                                                    { "class", "bootstrap-switch"},
+                                                    {"data-size", "mini"},
+                                                    {"data-on-text", "<i class='fa fa-check'></i>"},
+                                                    {"data-on-color", "success"},
+                                                    {"data-off-text", "<i class='fa fa-times'></i>"},
+                                                    {"data-off-color", "danger"}
+                                                };
+            if (!RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+            {
+                _hasAttrCheckbox.Add("disabled", "disabled");
+            }
+            <div class="col-md-12">
+                <div class="panel panel-default alt" data-widget='{"id" : "wiget1"}'>
+                    <div class="panel-editbox" data-widget-controls=""></div>
+                    <div class="panel-body">
+                        <div class="row row-flex">
+                            <div class="col-sm-9" data-step="1" data-intro="Nhập liệu nội dung" data-position='right'>
+                                <ul class="img-wrap" data-step="2" data-position='bottom' data-intro="Hiển thị danh sách hình ảnh sản phẩm, ta có thể làm như sau:<ul class='disc'><li>Chọn hình ảnh: Click để thêm ảnh &rarr; Chọn hình ảnh ở một thư mục bất kì bằng cách chọn ảnh và bấm 'Select Files'. </li><li>Upload hình ảnh: Click để thêm ảnh &rarr; Chọn thư mục cần up ảnh &rarr; Bấm chuột phải chọn upload file/hoặc kéo thả file ảnh vào. Trường hợp muốn resize ta chọn ảnh vừa upload  &rarr; Bấm chuột phải vào ảnh upload và chọn Resize & Rotate. Sau khi hoàn tất, bấm chuột phải vào ảnh và chọn 'Select files' để chọn ảnh hiển thị.</li><li>Chọn nhiều ảnh: Click để thêm ảnh &rarr; Chọn thư mục cần chọn ảnh &rarr; Chọn nhiều ảnh bằng cách nhấn giữ Ctrl và click chuột vào từng tập tin muốn chọn &rarr; Bấm chuột phải vào ảnh và chọn Select Files.</li></ul>">
+                                    <li class="add" data-note="Kích thước hình ảnh: chiều rộng tối thiểu 1000px" data-urlstatic="">
+                                        <div class="img-inner-text">
+                                            <div class="shff">
+                                                <span class="icon ion-image"></span>
+                                                <p>Click để thêm ảnh</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <span class="field-validation-error" id="ProductItemFiles" style="display:none;"><span for="ProductItemFiles" generated="true" class="">Vui lòng chọn hình ảnh trước khi lưu.</span></span>
+                            </div>
+
+                            <div class="col-sm-3 tabular-border">
+                                <div class="tab-container tab-default">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#info" data-toggle="tab">Thông tin chung</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="info" data-step="3" data-position='left' data-intro="Nhập các thuộc tính liên quan hình ảnh">
+                                            <div class="form-group">
+                                                <label class="col-sm-12">@Html.DisplayNameFor(m => m.ImageLibraryIds) <span class="required">(*)</span></label>
+                                                <div class="col-sm-12">
+                                                    @Html.DropDownListFor(model => model.ImageLibraryIds, new SelectList(Model.ImageLibraries, "Id", "NameVn"), "---Chọn thư viện---", new { @class = "form-control select2 select-placeholder", multiple = "multiple" })
+                                                    @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-6">@Html.DisplayNameFor(m => m.IsDeleted) <span class="required">(*)</span></label>
+                                                <div class="col-sm-6 tabular-border pt-1">
+                                                    @Html.CheckBoxFor(m => m.IsDeleted, _hasAttrCheckbox)
+                                                    @Html.ValidationMessageFor(model => model.IsDeleted)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                @Html.Button("<i class='fa fa-save'></i> Lưu", new { @class = "btn btn-primary", type = "submit", data_step = "4", data_intro = "Bấm Lưu để lưu dữ liệu đã nhập liệu.", data_position = "top" }).IfRole("Create", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- .container-fluid -->
+</div>
+
+<!-- Begin Alert Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2 class="modal-title">Thông báo</h2>
+            </div>
+            <div class="modal-body">
+                <p>Hệ thống đã tạo mới thành công!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+            <input type="hidden" id="hdfid" />
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.End Alert Modal  -->
+@Html.Hidden("SwalProductTitle", "")
+@Html.Hidden("SwalProductText", "")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+    function onDelete(obj) {
+        swal({
+            title: 'Bạn đã chắc chứ?',
+            text: "Bạn có chắc muốn xóa dữ liệu này không",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Xóa",
+            cancelButtonText: "Đóng",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },function (isConfirm) {
+            if (isConfirm) {
+                swal.close();
+                $(obj).closest("li.img-si").remove();
+            }
+            else {
+                swal.close();
+            }
+        });
+    }
+
+    $(function () {
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+
+        $(".img-wrap").sortable({
+            items: "li:not(.add)",
+            placeholder: "highlight",
+            start: function (event, ui) {
+                ui.item.toggleClass("highlight");
+            },
+            stop: function (event, ui) {
+                ui.item.toggleClass("highlight");
+            }
+        });
+        $("#items").disableSelection();
+        $('.img-wrap>.add').fmGSIDModal({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            titleModal: 'Ảnh đại diện',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            multiple: true,
+            folders: false,
+            getCallBack: function (files, fm, $element, opts) {
+                $.map(files, function (f) {
+                    var temp = '';
+                    temp += '<li class="img-si" data-url="' + f.url +'">';
+                    temp += '   <div class="img-item">';
+                    temp += '        <div class="img-inner">';
+                    temp += '           <img src="' + opts.urlstatic + f.url + '" />';
+                    temp += '       </div>';
+                    temp += '       <div class="img-footer">';
+                    temp += '           <a href="javascript:;" class="btn btn-sm text-danger" onclick="onDelete(this);"><i class="ion-android-close"></i></a>';
+                    temp += '       </div>';
+                    temp += '   </div>';
+                    temp += '</li>';
+
+                    $element.before(temp);
+                });
+
+            }
+        });
+
+        $('form').ajaxForm({
+            delegation: true,
+            beforeSerialize: function ($form, options) {
+                //var imgSiteMapChangeValue = ($('.sitemapImg .fileinput-preview img').length <= 0) ? "2" : "1";
+                //$("#SiteMapImageChange").attr("value", imgSiteMapChangeValue);
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+
+                var imgUrls = [];
+                $.each($('.img-wrap>li:not(.add)'), function (index, value) {
+                    var url = $(value).attr('data-url');
+                    imgUrls.push(url);
+                });
+                arr.push({ name: 'ImagePaths', value: imgUrls });
+
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $("#hdfid").val(data.Id);
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                swal.close();
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    //~/Scripts/custom.js
+        menuActive('@ViewBag.ActiveMenu');
+    });
+</script>

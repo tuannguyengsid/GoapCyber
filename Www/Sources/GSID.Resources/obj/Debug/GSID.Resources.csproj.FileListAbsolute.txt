@@ -1,0 +1,245 @@
+D:\PhongkinhteQuan\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PhongkinhteQuan\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PhongkinhteQuan\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PhongkinhteQuan\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PhongkinhteQuan\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csprojResolveAssemblyReference.cache
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PhongkinhteQuanMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb - Copy\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csprojResolveAssemblyReference.cache
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PublishPhuNhuan\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\PublishPhuNhuan\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\PublishPhuNhuan\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.csprojResolveAssemblyReference.cache
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\PublishPhuNhuan\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.Cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Projects\PhongkinhteMongodb\Sources_Mongodb\GSID.Resources\obj\Debug\GSID.Resources.csprojAssemblyReference.cache
+C:\Sms\GSID.Resources\bin\Debug\GSID.Resources.dll
+C:\Sms\GSID.Resources\bin\Debug\GSID.Resources.pdb
+C:\Sms\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+C:\Sms\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.dll
+C:\Sms\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Test\Sms\Source\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Test\Sms\Source\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Test\Sms\Source\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Test\Sms\Source\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Test\VietCeramics\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csprojAssemblyReference.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Test\Toppstiles.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\Sources\Code\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csprojAssemblyReference.cache
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\SuperStone.com.vn\Sources\Code\GSID.Resources\obj\Debug\GSID.Resources.csprojAssemblyReference.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\tottosi.com\Code\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\MsM\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\GSID.Resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\GSID.Resources.pdb
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.dll
+E:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(1-8-2022)\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\TTCGroup\Msm\Sources\New(21-10-2022)\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Test\GSID.Resources\obj\Debug\GSID.Resources.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+D:\Project Implements\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\GSID.Resources.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\GSID.Resources.pdb
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\bin\Debug\en-US\GSID.Resources.resources.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.AssemblyReference.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.resources
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.Resources.en-US.resources
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.GenerateResource.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.csproj.CoreCompileInputs.cache
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\en-US\GSID.Resources.resources.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.dll
+E:\Project implement\Goap\GoapCyber\Www\Sources\GSID.Resources\obj\Debug\GSID.Resources.pdb

@@ -1,0 +1,42 @@
+body{
+	padding:10px;
+}
+a:focus,a:active{outline:0;}
+a img{border:none;}
+#preview{ 
+	background-image: url(../img/Google-YouTube-128.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	height: 325px;
+}
+#insert-btn{
+	margin-left: 5px;
+}
+.alert{
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.form-group{
+    margin-bottom: 0;
+}
+.alert-info{
+    font-size: 12px;
+}
+
+.form-group{
+	margin-bottom:10px;
+}
+.form-control{
+	border: 1px solid #edeff0;
+	padding: 5px 3px;
+	color: rgba(27, 34, 44, 0.72);
+	height: 25px;
+	background: #fff;
+	box-shadow: inset 0 1px 1px rgb(0 0 0 / 2%) !important;
+}
+.modal-footer {
+	padding: 15px 0 0;
+}
+	.modal-footer .btn {
+		padding: 15px 0 0;
+	}

@@ -1,0 +1,523 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model RecruitmentViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    var HomePagePage = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+    var RecruitmentPage = (RecruitmentPageManagementAdminConfig)ViewBag.RecruitmentPage;
+    var Images = (List<Image>)ViewBag.Images;
+
+    ViewBag.Title = string.Format("{0}", (Model != null ? (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese ? RecruitmentPage.NameVn : RecruitmentPage.NameEn) : ""));
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        if (RecruitmentPage.Slider != null)
+        {
+            <section class="breadcrumb_area_sec">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <div class="custom_container p0">
+                    <div class="app_screen_info">
+                        <div class="breadcrumb_area_slider owl-carousel">
+                            @foreach (var item in RecruitmentPage.Slider)
+                            {
+                                <div class="item"><a href="javascript:;"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt=""></a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="sliderwrap">
+                    <div class="container">
+                        <div class="breadcrumb_content text-center">
+                            <h1 class="breadcrumb_title">@RecruitmentPage.NameVn</h1>
+                        </div>
+                        <div class="breadcrumb_nav">
+                            <ul class="breadcrumb rounded shadow">
+                                @if (HomePagePage != null && HomePagePage.RouteDataUrlVn != null)
+                                {
+                                    <li class="breadcrumb-item"><a href="@HomePagePage.RouteDataUrlVn.Url">@HomePagePage.RouteDataUrlVn.Title</a></li>
+                                }
+                                <li class="breadcrumb-item" aria-current="page">@RecruitmentPage.NameVn</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><title>turquoise_blue_waves</title><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+        }
+
+        <section class="job_about_sec">
+            <div class="container">
+                <div class="sec_title text-center">
+                    <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@RecruitmentPage.AboutCompanyTitleVn</h2>
+                </div>
+                <div class="row statistical_inner">
+                    <p>@Html.Raw(RecruitmentPage.AboutCompanyDescriptionVn)</p>
+                </div>
+                <div class="row statistical_content">
+                    @if (RecruitmentPage.AboutCompanyItems != null)
+                    {
+                        foreach (var item in RecruitmentPage.AboutCompanyItems)
+                        {
+                            <div class="statistic_item wow fadeIn col-lg-4 col-sm-4 col-6">
+                                <div class="text">
+                                    <div class="counter one">@item.Count</div>
+                                    <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn" />
+                                    <p>@item.NameVn</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="job_choose_sec">
+            <div class="container">
+                <div class="sec_title text-center">
+                    <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.WhyChooseTitleVn</h2>
+                </div>
+                <div class="row">
+                    @if (RecruitmentPage.WhyChooseItems != null)
+                    {
+                        foreach (var item in RecruitmentPage.WhyChooseItems)
+                        {
+                            <div class="col-lg-6">
+                                <div class="media h_job-choose_item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                    <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="">
+                                    <div class="media-body">
+                                        <p>@Html.Raw(item.ShortDescriptionVn)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        if (Images != null && Images.Count > 0)
+        {
+            <section class="portfolio_area sec_pad ">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.GalleryTitleVn</h2>
+                    </div>
+                </div>
+                <div class="portfolio_gallery">
+                    <div class="row " id="work-portfolio">
+                        @foreach (var item in Images)
+                        {
+                            <div class="col-lg-3 col-sm-6 portfolio_item">
+                                <div class="portfolio_img">
+                                    <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" class="img_popup"><img class="img_rounded" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)"></a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <a href="@Url.Action("Index", "Gallery", new { language = currentLan != null ? currentLan.Parent : ""})" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">Xem thêm <i class="ti-arrow-right"></i></a>
+                    </div>
+                </div>
+            </section>
+        }
+
+        <section class="job_listing_area sec_pad">
+            <div class="container">
+                <div class="job_listing">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.RecruitmentTitleVn</h2>
+                    </div>
+                    <div class="job_list_tab">
+                        <div data-filter="*" class="list_item_tab">Tất cả</div>
+                        @if (Model.Careers != null)
+                        {
+                            foreach (var item in Model.Careers)
+                            {
+                                string careerSlugVn = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                                string careerSlugEn = item.RouteDataUrlEn != null ? item.RouteDataUrlEn.Url : "";
+                                string classActive = item.Id == Model.Career.Id ? "active" : "";
+                                <div data-filter="@item.RouteDataUrlVnId" data-lan="@careerSlugVn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" class="list_item_tab @classActive">@item.NameVn</div>
+                            }
+                        }
+                        @Html.Hidden("jobRootUrl", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobRootUrlVn", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobRootUrlEn", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobCareerUrl", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobFilterUrl", Url.Action("GetAllByFilterCareer", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "" }))
+                    </div>
+                    <div id="job-result">
+                        <div class="listing_tab row">
+                            @if (Model.Recruitments != null && Model.Recruitments.Count > 0)
+                            {
+                                foreach (var item in Model.Recruitments)
+                                {
+                                    string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : "";
+                                    string url = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                                    string siteName = item.Site != null ? item.Site.NameVn : "";
+                                    string careerName = item.Career != null ? item.Career.NameVn : "";
+                                    string careerSlugVn = item.Career != null ? item.Career.RouteDataUrlVnId : "";
+                                    string careerSlugEn = item.Career != null ? item.Career.RouteDataUrlEnId : "";
+                                    string recruitmentTagName = item.RecruitmentTag != null ? item.RecruitmentTag.NameVn : "";
+                                    string styleCss = item.RecruitmentTag != null ? string.Format("background-color:{0}; color:{1};", item.RecruitmentTag.BackgroundColor, item.RecruitmentTag.TextColor) : "";
+
+                                    <div class="col-lg-6 item">
+                                        <div class="list_item">
+                                            <figure><a href="@url"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn"></a></figure>
+                                            <div class="joblisting_text">
+                                                <div class="job_list_table">
+                                                    <div class="jobsearch-table-cell">
+                                                        <div class="jobsearch-content">
+                                                            <h4><a href="@url" class="f_500 t_color3">@item.NameVn</a></h4>
+                                                            <span></span>
+                                                            <time datetime="@expirationDate"><i class="icon-clock"></i> @expirationDate</time>
+                                                        </div>
+                                                        <div class="job-featured-listing-options">
+                                                            <ul class="list-unstyled">
+                                                                <li><i class="icon-location1"></i> @siteName</li>
+                                                                <li><a href="javascript:;" class="careerfilter" data-filter="@careerSlugVn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" title="@careerName">@careerName</a></li>
+                                                            </ul>
+                                                            <div class="rectag">
+                                                                <a href="#" class="job-option-btn" style="@styleCss">@recruitmentTagName</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        @if (Model.CountTotal > Model.PageSize)
+                        {
+                            @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+                            @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+                            @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+                            <!-- /Products Grid -->
+                            <div class="navigation pagination text-center" role="navigation">
+                                <ul class="pagination" id="pagination"></ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        Html.RenderAction("RecruitmentSubmit", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "", });
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        if (RecruitmentPage.Slider != null)
+        {
+            <section class="breadcrumb_area_sec">
+                <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+                <div class="custom_container p0">
+                    <div class="app_screen_info">
+                        <div class="breadcrumb_area_slider owl-carousel">
+                            @foreach (var item in RecruitmentPage.Slider)
+                            {
+                                <div class="item"><a href="javascript:;"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt=""></a></div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="sliderwrap">
+                    <div class="container">
+                        <div class="breadcrumb_content text-center">
+                            <h1 class="breadcrumb_title">@RecruitmentPage.NameEn</h1>
+                        </div>
+                        <div class="breadcrumb_nav">
+                            <ul class="breadcrumb rounded shadow">
+                                @if (HomePagePage != null && HomePagePage.RouteDataUrlEn != null)
+                                {
+                                    <li class="breadcrumb-item"><a href="@HomePagePage.RouteDataUrlEn.Url">@HomePagePage.RouteDataUrlEn.Title</a></li>
+                                }
+                                <li class="breadcrumb-item" aria-current="page">@RecruitmentPage.NameEn</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><title>turquoise_blue_waves</title><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+            </section>
+        }
+
+        <section class="job_about_sec">
+            <div class="container">
+                <div class="sec_title text-center">
+                    <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@RecruitmentPage.AboutCompanyTitleEn</h2>
+                </div>
+                <div class="row statistical_inner">
+                    <p>@Html.Raw(RecruitmentPage.AboutCompanyDescriptionEn)</p>
+                </div>
+                <div class="row statistical_content">
+                    @if (RecruitmentPage.AboutCompanyItems != null)
+                    {
+                        foreach (var item in RecruitmentPage.AboutCompanyItems)
+                        {
+                            <div class="statistic_item wow fadeIn col-lg-4 col-sm-4 col-6">
+                                <div class="text">
+                                    <div class="counter one">@item.Count</div>
+                                    <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn" />
+                                    <p>@item.NameEn</p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        <section class="job_choose_sec">
+            <div class="container">
+                <div class="sec_title text-center">
+                    <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.WhyChooseTitleEn</h2>
+                </div>
+                <div class="row">
+                    @if (RecruitmentPage.WhyChooseItems != null)
+                    {
+                        foreach (var item in RecruitmentPage.WhyChooseItems)
+                        {
+                            <div class="col-lg-6">
+                                <div class="media h_job-choose_item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                                    <img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="">
+                                    <div class="media-body">
+                                        <p>@Html.Raw(item.ShortDescriptionEn)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        if (Images != null && Images.Count > 0)
+        {
+            <section class="portfolio_area sec_pad ">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.GalleryTitleEn</h2>
+                    </div>
+                </div>
+
+                <div class="portfolio_gallery">
+                    <div class="row" id="work-portfolio">
+                        @foreach (var item in Images)
+                        {
+                            <div class="col-lg-3 col-sm-6 portfolio_item">
+                                <div class="portfolio_img">
+                                    <a href="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" class="img_popup"><img class="img_rounded" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)"></a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <a href="@Url.Action("Index", "Gallery", new { language = currentLan != null ? currentLan.Parent : ""})" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">View more <i class="ti-arrow-right"></i></a>
+                </div>
+            </section>
+        }
+
+        <section class="job_listing_area sec_pad">
+            <div class="container">
+                <div class="job_listing">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.2s">@RecruitmentPage.RecruitmentTitleEn</h2>
+                    </div>
+                    <div class="job_list_tab">
+                        <div data-filter="*" class="list_item_tab active">All</div>
+                        @if (Model.Careers != null)
+                        {
+                            foreach (var item in Model.Careers)
+                            {
+                                string careerSlugVn = item.RouteDataUrlVn != null ? item.RouteDataUrlVn.Url : "";
+                                string careerSlugEn = item.RouteDataUrlEn != null ? item.RouteDataUrlEn.Url : "";
+                                string classActive = item.Id == Model.Career.Id ? "active" : "";
+                                <div data-filter="@item.RouteDataUrlEnId" data-lan="@careerSlugEn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" class="list_item_tab @classActive">@item.NameEn</div>
+                            }
+                        }
+                        @Html.Hidden("jobRootUrl", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobRootUrlVn", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobRootUrlEn", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobCareerUrl", Request.Url.AbsoluteUri)
+                        @Html.Hidden("jobFilterUrl", Url.Action("GetAllByFilterCareer", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "" }))
+                    </div>
+                    <div id="job-result">
+                        <div class="listing_tab row">
+                            @if (Model.Recruitments != null && Model.Recruitments.Count > 0)
+                            {
+                                foreach (var item in Model.Recruitments)
+                                {
+                                    string expirationDate = item.ExpirationDate.HasValue ? item.ExpirationDate.Value.ToString("dd/MM/yyyy") : "";
+                                    string url = item.RouteDataUrlEn != null ? item.RouteDataUrlVn.Url : "";
+                                    string siteName = item.Site != null ? item.Site.NameEn : "";
+                                    string careerName = item.Career != null ? item.Career.NameEn : "";
+                                    string careerSlugVn = item.Career != null ? item.Career.RouteDataUrlVnId : "";
+                                    string careerSlugEn = item.Career != null ? item.Career.RouteDataUrlEnId : "";
+                                    string recruitmentTagName = item.RecruitmentTag != null ? item.RecruitmentTag.NameEn : "";
+                                    string styleCss = item.RecruitmentTag != null ? string.Format("background-color:{0}; color:{1};", item.RecruitmentTag.BackgroundColor, item.RecruitmentTag.TextColor) : "";
+
+                                    <div class="col-lg-6 item">
+                                        <div class="list_item">
+                                            <figure><a href="@url"><img src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn"></a></figure>
+                                            <div class="joblisting_text">
+                                                <div class="job_list_table">
+                                                    <div class="jobsearch-table-cell">
+                                                        <div class="jobsearch-content">
+                                                            <h4><a href="@url" class="f_500 t_color3">@item.NameEn</a></h4>
+                                                            <span></span>
+                                                            <time datetime="@expirationDate"><i class="icon-clock"></i> @expirationDate</time>
+                                                        </div>
+                                                        <div class="job-featured-listing-options">
+                                                            <ul class="list-unstyled">
+                                                                <li><i class="icon-location1"></i> @siteName</li>
+                                                                <li><a href="javascript:;" class="careerfilter" data-filter="@careerSlugEn" data-lanvn="@careerSlugVn" data-lanen="@careerSlugEn" title="@careerName">@careerName</a></li>
+                                                            </ul>
+                                                            <div class="rectag">
+                                                                <a href="#" class="job-option-btn" style="@styleCss">@recruitmentTagName</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        @if (Model.CountTotal > Model.PageSize)
+                        {
+                            @Html.Hidden("TotalPage", (string)Model.TotalPage.ToString())
+                            @Html.Hidden("PageVisit", (string)Model.PageVisit.ToString())
+                            @Html.Hidden("CurrentPage", (string)Model.CurrentPage.ToString())
+                            <!-- /Products Grid -->
+                            <div class="navigation pagination text-center" role="navigation">
+                                <ul class="pagination" id="pagination"></ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        Html.RenderAction("RecruitmentSubmit", "Recruitment", new { language = currentLan != null ? currentLan.Parent : "", });
+    }
+}
+
+<script type="text/javascript">
+    function switchtab(slugfilter, slug, slugfilterVn, slugfilterEn) {
+        var $joblist = $('.job_list_tab');
+        $joblist.children('.list_item_tab').removeClass('active');
+        $('.job_list_tab div[data-filter="' + slugfilter + '"]').addClass('active');
+
+        if (slugfilter == '*' || slugfilter == '') {
+            $('#VnLanguage').val(slugfilterVn);
+            $('#EnLanguage').val(slugfilterEn);
+        }
+        else {
+            $('#VnLanguage').val(slugfilterVn);
+            $('#EnLanguage').val(slugfilterEn);
+        }
+        var hdfJobFilterUrl = $('#jobFilterUrl').val();
+        var jobFilterUrl = replaceUrlParam(hdfJobFilterUrl, 'careerurlid', slugfilter);
+        $('#jobFilterUrl').val(jobFilterUrl);
+
+        $.ajax({
+            method: 'GET',
+            url: jobFilterUrl,
+            data: {},
+            dataType: 'html',
+            success: function (data, status) {
+                $('#job-result').html(data);
+                $('#jobCareerUrl').val(slug);
+                history.replaceState({ url: slug }, 'category', slug);
+            },
+            error: function (error) {
+                console.log('Error in sending ajax data');
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        menuActive('@RecruitmentPage.MenuActiveId');
+
+        $('.careerfilter').click(function () {
+            var slugfilter = $(this).attr('data-filter');
+            var slug = $(this).attr('data-lan');
+            var slugfilterVn = $(this).attr('data-lanvn');
+            var slugfilterEn = $(this).attr('data-lanen');
+            switchtab(slugfilter, slug,  slugfilterVn, slugfilterEn);
+        });
+
+        $('.job_list_tab .list_item_tab').click(function () {
+            var slugfilter = $(this).attr('data-filter');
+            var slug = $(this).attr('data-lan');
+            var slugfilterVn = $(this).attr('data-lanvn');
+            var slugfilterEn = $(this).attr('data-lanen');
+            switchtab(slugfilter, slug, slugfilterVn, slugfilterEn);
+        });
+
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: '<i class="fa fa-angle-double-left"></i>',
+                prev: '<i class="fa fa-angle-left"></i>',
+                next: '<i class="fa fa-angle-right"></i>',
+                last: '<i class="fa fa-angle-double-right"></i>',
+                onPageClick: function (event, page) {
+                    var jobFilterUrl = $('#jobFilterUrl').val();
+                    jobFilterUrl = replaceUrlParam(jobFilterUrl, 'p', page);
+
+                    $.ajax({
+                        method: 'GET',
+                        url: jobFilterUrl,
+                        data: {},
+                        dataType: 'html',
+                        success: function (data, status) {
+                            $('#job-result').html(data);
+
+                            var jobCareerUrl = $('#jobCareerUrl').val();
+                            jobCareerUrl = replaceUrlParam(jobCareerUrl, 'p', page);
+
+                            history.replaceState({ url: jobCareerUrl }, 'category', jobCareerUrl);
+
+                            var rootUrlVn = $('#VnLanguage').val();
+                            rootUrlVn = replaceUrlParam(rootUrlVn, 'p', page);
+                            $('#VnLanguage').val(rootUrlVn);
+
+                            var rootUrlEn = $('#EnLanguage').val();
+                            rootUrlEn = replaceUrlParam(rootUrlEn, 'p', page);
+                            $('#EnLanguage').val(rootUrlEn);
+                        },
+                        error: function (error) {
+                            console.log('Error in sending ajax data');
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,242 @@
+﻿@using GSID.Admin.ViewModels.MongoModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Setting;
+@model EditSectionCoreValueAboutPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<!-- .modal for add task -->
+<!-- .modal for add task -->
+<div class="modal draggable fade config" id="formconfigUpdateCoreValue" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog w-70" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title"><i class="ion-android-create"></i> Cập nhật</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("PartialUpdateCoreValue", Request.RequestContext.RouteData.Values["controller"].ToString(), new { Area = "PageManagement" }, FormMethod.Post, new { @class = "form-horizontal row-border tabular-form PartialUpdateCoreValue", enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="panel panel-default alt no-boxshadow">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="fileinputcrop">
+                                        <div class="fileinputcrop-preview" style="height: 400px;" data-elbinding="#ImageCoreValueSrc" data-preview-el="#imgcorevalueSrc" data-note="Kích thước hình ảnh: 40px x 40px">
+                                            <img class="rounded max-width" id="imgcorevalueSrc" src="@StringExtension.ImageOrDefault(Model.ImageCoreValueSrc, "", httpStatic)" alt="Preview">
+                                            <div class="img-inner-text">
+                                                <div class="shff">
+                                                    <span class="icon ion-image"></span>
+                                                    <p>Click để thêm ảnh</p>
+                                                </div>
+                                            </div>
+                                            @Html.HiddenFor(m => m.ImageCoreValueSrc)
+                                        </div>
+                                        <br />
+                                        <small>Kích thước hình ảnh: 40px x 40px</small>
+                                        @Html.ValidationMessageFor(model => model.ImageCoreValueSrc)
+                                    </div>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="tab-container tab-default">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#language-vi" data-toggle="tab"><img class="flag-language" src="/Content/Control/assets/flags/vn.svg"> Tiếng Việt</a></li>
+                                            <li><a href="#language-en" data-toggle="tab">Tiếng Anh</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="language-vi">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameVn)</label>
+                                                            <div class="col-sm-6 tabular-border">
+                                                                @Html.TextBoxFor(model => model.NameVn, new { @class = "form-control", @placeholder = "Tên tiếng Việt" })
+                                                                @Html.ValidationMessageFor(model => model.NameVn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.DescriptionVn)</label>
+                                                            <div class="col-sm-6 tabular-border">
+                                                                @Html.TextAreaFor(model => model.DescriptionVn, new { @class = "form-control", @placeholder = "Mô tả ngắn" })
+                                                                @Html.ValidationMessageFor(model => model.DescriptionVn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="language-en">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.NameEn)</label>
+                                                            <div class="col-sm-6 tabular-border">
+                                                                @Html.TextBoxFor(model => model.NameEn, new { @class = "form-control", @placeholder = "Tên tiếng Anh" })
+                                                                @Html.ValidationMessageFor(model => model.NameEn)
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.DescriptionEn)</label>
+                                                            <div class="col-sm-6 tabular-border">
+                                                                @Html.TextAreaFor(model => model.DescriptionEn, new { @class = "form-control", @placeholder = "Mô tả ngắn" })
+                                                                @Html.ValidationMessageFor(model => model.DescriptionEn)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-container tab-default">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#configGeneralIconVi" data-toggle="tab" aria-expanded="true">Thông tin chung</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="configGeneralIconVi">
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">Icon</label>
+                                                    <div class="col-sm-10 tabular-border">
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-2 control-label">@Html.DisplayNameFor(m => m.Index)</label>
+                                                    <div class="col-sm-2 tabular-border">
+                                                        @Html.TextBoxFor(model => model.Index, new { @class = "form-control", @placeholder = "Thứ tự hiển thị", onkeypress = "return isNumber(event)" })
+                                                        @Html.ValidationMessageFor(model => model.Index)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm waves-effect waves-light btn-danger" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Đóng</button>
+                        @Html.Button("<i class='fa fa-save'></i> Cập nhật", new { @class = "btn btn-primary", type = "submit" })
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    $(function () {
+        "use strict";
+        $('.modal').on('show.bs.modal', function (event) {
+            var idx = $('.modal:visible').length;
+            $(this).css('z-index', 1040 + (10 * idx));
+        });
+        $('.modal').on('shown.bs.modal', function (event) {
+            var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+            $('.modal-backdrop').not('.stacked').css('z-index', 1039 + (10 * idx));
+            $('.modal-backdrop').not('.stacked').addClass('stacked');
+        });
+
+        $('.modal.draggable>.modal-dialog').draggable({
+            cursor: 'move',
+            handle: '.modal-header'
+        });
+        $('.modal.draggable>.modal-dialog>.modal-content>.modal-header').css('cursor', 'move');
+
+        $('#formconfigUpdateCoreValue').modal('show');
+        $('.fileinputcrop-preview').fmGSIDModal({
+            url: '@Default.FileManagementConectDefault', // connector URL (REQUIRED)
+            titleModal: 'Ảnh',
+            urlstatic: '@GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation.UrlAddressSiteMultimedia',
+            multiple: false,
+            folders: false,
+        });
+
+        $('form.PartialUpdateCoreValue').ajaxForm({
+            delegation: true,
+            beforeSerialize: function (form, opts) {
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                $('.tab-container .nav-tabs > li').each(function (index, value) {
+                    var $tab = $(this);
+                    var elName = $tab.find('a').attr('href');
+                    var _hasValid = $(elName).find('.input-validation-error');
+                    if (_hasValid.length > 0) {
+                        $tab.addClass('input-validation-error');
+                    }
+                    else {
+                        $tab.removeClass('input-validation-error');
+                    }
+                });
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                else {
+                    swal({
+                        title: "Đang xử lý dữ liệu",
+                        html: true,
+                        showConfirmButton: false
+                    });
+                }
+            },
+            success: function (data, statusText) {
+                if (data.Status == '2') {
+                    swal({
+                        title: data.Title,
+                        text: data.Message,
+                        type: "success"
+                    }, function () {
+                        $('#formconfigUpdateCoreValue').modal('hide');
+                        onLoadCoreValue();
+                    });
+                }
+                else {
+                    swal(
+                        data.Title,
+                        data.Message,
+                        'error'
+                    )
+                }
+            },
+            complete: function (xhr) {
+                //status.html(xhr.responseText);
+            },
+            error: function () {
+                swal(
+                    'Tạo dữ liệu không thành công',
+                    'Hệ thống bị gián đoạn internet hoặc mất kết nối đến máy chủ :)',
+                    'error'
+                )
+            }
+        });
+    });
+</script>
+
+

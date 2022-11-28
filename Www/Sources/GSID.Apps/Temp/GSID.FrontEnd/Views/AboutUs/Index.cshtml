@@ -1,0 +1,267 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model AboutPageManagementAdminConfig
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+
+    var HomePageConfig = (HomePageManagementAdminConfig)ViewBag.HomePageConfig;
+}
+
+@if (Model != null)
+{
+    if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+    {
+        <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, Model.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+            <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+            <div class="container">
+                <div class="breadcrumb_content text-center">
+                    <h1 class="breadcrumb_title">@Model.NameVn</h1>
+                    <p class="breadcrumb_desc">@Model.DescriptionPageVn</p>
+                </div>
+                <div class="breadcrumb_nav">
+                    <ul class="breadcrumb rounded shadow">
+                        @if (HomePageConfig != null && HomePageConfig.RouteDataUrlVn != null)
+                        {
+                            <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlVn.Url">@HomePageConfig.RouteDataUrlVn.Title</a></li>
+                        }
+                        <li class="breadcrumb-item" aria-current="page">@Model.NameVn</li>
+                    </ul>
+                </div>
+
+            </div>
+            <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+        </section>
+
+        <section class="about_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="h_about_img text-right">
+                            <img class="wow fadeInUp" src="@string.Format("{0}/{1}", httpStatic, Model.AvatarCEOImageSrc)" alt="@Model.SectionAboutFullNameCEOVn" />
+                        </div>
+                        <div class="h_about_person">
+                            <span class="name">@Model.SectionAboutFullNameCEOVn</span>
+                            <div class="title">@Model.SectionAboutPositionCEOVn</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="h_about_content">
+                            <div class="sec_title text-left">
+                                <h2 class="title wow fadeInUp" data-wow-delay="0.1s">
+                                    @Model.SectionAboutTitleNameVn
+                                </h2>
+                            </div>
+                            <div class="h_content_short">
+                                @Html.Raw(Model.SectionAboutContentVn)
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.SectionAboutContentMoreVn))
+                            {
+                                <div class="h_content_short more" id="more-option">
+                                    @Html.Raw(Model.SectionAboutContentMoreVn)
+                                </div>
+                                <div class="col-lg-12 text-right">
+                                    <a href="javascript:;" id="more" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;" onClick="toggleText();">Xem thêm <i class="ti-arrow-down"></i></a>
+                                    <a href="javascript:;" id="less" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;" onClick="toggleText();">Thu gọn <i class="ti-arrow-up"></i></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        if (Model.Visions != null && Model.Visions.Count > 0)
+        {
+            <section class="vision_area" style="background-image: url(@string.Format("{0}/{1}", httpStatic, Model.SectionVisionBackgroundSrc))">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.SectionVisionTitleNameVn</h2>
+                    </div>
+                    <div class="row app_service_info">
+                        @foreach (var item in Model.Visions)
+                        {
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="app_service_item">
+                                    <h5 class="title">@item.NameVn</h5>
+                                    <p class="app_service_item_inner">@item.DescriptionVn</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+
+        if (Model.CoreValues != null && Model.CoreValues.Count > 0)
+        {
+            <section class="customer_area sec_pad parallax parallax-image-3">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.SectionCoreValueTitleNameVn</h2>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.CoreValues)
+                        {
+                            <div class="shape-image-six">
+                                <img src="/content/img/shape-3.png" class="img-fluid" alt=""/>
+                            </div>
+                            <div class="col-lg-3 col-md-6 software_featured">
+                                <div class="software_featured_item">
+                                    <div class="s_icon">
+                                        <img src="/content/img/icon_shape.png" alt=""/>
+                                        <img class="icon" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameVn">
+                                    </div>
+                                    <h3>@item.NameVn</h3>
+                                    <p class="content">@item.DescriptionVn</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+    }
+    else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+    {
+        <section class="breadcrumb_area" style="background-image: url('@string.Format("{0}/{1}", httpStatic, Model.BreakScrumBackgroundSrc)'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+            <div class="pattern-layer" style="background-image: url(/Content/img/breadcrumb/shape-62.png);"></div>
+            <div class="container">
+                <div class="breadcrumb_content text-center">
+                    <h1 class="breadcrumb_title">@Model.NameEn</h1>
+                    <p class="breadcrumb_desc">@Model.DescriptionPageEn</p>
+                </div>
+                <div class="breadcrumb_nav">
+                    <ul class="breadcrumb rounded shadow">
+                        @if (HomePageConfig != null && HomePageConfig.RouteDataUrlEn != null)
+                        {
+                            <li class="breadcrumb-item"><a href="@HomePageConfig.RouteDataUrlEn.Url">@HomePageConfig.RouteDataUrlEn.Title</a></li>
+                        }
+                        <li class="breadcrumb-item" aria-current="page">@Model.NameEn</li>
+                    </ul>
+                </div>
+
+            </div>
+            <span class="mad-separator"><svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" data-name="Слой 1" viewBox="0 0 1920 104" class="svg replaced-svg"><defs></defs><path class="cls-1" d="M1920,104H0V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path><g class="cls-2"><path class="cls-3" d="M1920,38.23s-54.77,10.48-154,34.4c-130,31.35-342.26,20.83-408,9.94-60-9.94-112-15.36-250-26.76-113.85-9.41-216-9.72-304.68-4.08-47.54,3-82.75,4.62-121.32,10.2C572.66,77.74,499.23,104.85,374,104,227.24,103,0,42.82,0,42.82V0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g><g class="cls-4"><path class="cls-5" d="M1920,68.81s-119,25-221.87,24.14C1451,91,1428,57.34,1224,49.7,816.21,34.41,569.23,97.2,444,96.33,297.24,95.31,0,0,0,0H0S89,3.82,156,16.82c38.2,7.41,65.14,14.23,92.26,19.54,89.8,17.59,163.48,41.57,232,41.57,125.69,0,283-58.17,482.61-56.9,105,.66,165.46,6.25,211.4,9.81,191.2,14.82,270.78,44.85,417.69,41.79,146.42-3,239.64-34.51,266-45.87L1920,0h0Z"></path></g></svg></span>
+        </section>
+
+        <section class="about_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="h_about_img text-right">
+                            <img class="wow fadeInUp" src="@string.Format("{0}/{1}", httpStatic, Model.AvatarCEOImageSrc)" alt="@Model.SectionAboutFullNameCEOEn" />
+                        </div>
+                        <div class="h_about_person">
+                            <span class="name">@Model.SectionAboutFullNameCEOEn</span>
+                            <div class="title">@Model.SectionAboutPositionCEOEn</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="h_about_content">
+                            <div class="sec_title text-left">
+                                <h2 class="title wow fadeInUp" data-wow-delay="0.1s">
+                                    @Model.SectionAboutTitleNameEn
+                                </h2>
+                            </div>
+                            <div class="h_content_short">
+                                @Html.Raw(Model.SectionAboutContentEn)
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.SectionAboutContentMoreEn))
+                            {
+                                <div class="h_content_short more" id="more-option">
+                                    @Html.Raw(Model.SectionAboutContentMoreEn)
+                                </div>
+                                <div class="col-lg-12 text-right">
+                                    <a href="javascript:;" id="more" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;" onClick="toggleText();">View more <i class="ti-arrow-down"></i></a>
+                                    <a href="javascript:;" id="less" class="learn_btn wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;" onClick="toggleText();">View less <i class="ti-arrow-up"></i></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        if (Model.Visions != null && Model.Visions.Count > 0)
+        {
+            <section class="vision_area" style="background-image: url(@string.Format("{0}/{1}", httpStatic, Model.SectionVisionBackgroundSrc))">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.SectionVisionTitleNameEn</h2>
+                    </div>
+                    <div class="row app_service_info">
+                        @foreach (var item in Model.Visions)
+                        {
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="app_service_item">
+                                    <h5 class="title">@item.NameEn</h5>
+                                    <p class="app_service_item_inner">@item.DescriptionEn</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+
+        if (Model.CoreValues != null && Model.CoreValues.Count > 0)
+        {
+            <section class="customer_area sec_pad parallax parallax-image-3">
+                <div class="container">
+                    <div class="sec_title text-center">
+                        <h2 class="title wow fadeInUp" data-wow-delay="0.1s">@Model.SectionCoreValueTitleNameEn</h2>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.CoreValues)
+                        {
+                            <div class="shape-image-six">
+                                <img src="/content/img/shape-3.png" class="img-fluid" alt=""/>
+                            </div>
+                            <div class="col-lg-3 col-md-6 software_featured">
+                                <div class="software_featured_item">
+                                    <div class="s_icon">
+                                        <img src="/content/img/icon_shape.png" alt="" />
+                                        <img class="icon" src="@string.Format("{0}/{1}", httpStatic, item.ImageSrc)" alt="@item.NameEn">
+                                    </div>
+                                    <h3>@item.NameEn</h3>
+                                    <p class="content">@item.DescriptionEn</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </section>
+        }
+    }
+}
+
+<script type="text/javascript">
+    function toggleText() {
+        if (!$("#more-option").is(':visible')) {
+            $("#more").hide();
+            $("#less").show();
+        } else {
+            $("#less").hide();
+            $("#more").show();
+        }
+        $("#more-option").slideToggle();
+    }
+
+    $(document).ready(function () {
+        toggleText();
+        menuActive('@Model.MenuActiveId');
+    });
+</script>

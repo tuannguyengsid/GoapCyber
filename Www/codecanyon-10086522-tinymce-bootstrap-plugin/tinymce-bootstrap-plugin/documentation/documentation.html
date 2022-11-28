@@ -1,0 +1,1515 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="canonical" content="https://tinymce-bootstrap-plugin.com/documentation/index">
+
+    <link rel="preload" href="assets/stylesheets/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript><link type="text/css" media="screen" rel="stylesheet" href="assets/stylesheets/all.min.css" /></noscript>
+    <script type="text/javascript">
+        /*! loadCSS. [c]2017 Filament Group, Inc. MIT License - https://github.com/filamentgroup/loadCSS */
+        (function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+    var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=!1}
+    return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+    if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+    setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+    var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",!0);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}
+    if(typeof exports!=="undefined"){exports.loadCSS=loadCSS}
+    else{w.loadCSS=loadCSS}}(typeof global!=="undefined"?global:this))
+    </script>
+
+    <title>TinyMCE Bootstrap Plugin - Documentation</title>
+</head>
+
+<body data-spy="scroll" data-target="#sidebar-main" data-offset="240">
+    <header id="header-main" class="container pt-4 pb-sm-4 px-5">
+        <div class="text-center px-md-5 mx-auto">
+            <svg version="1.1" id="vector" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 447.6 72.7" enable-background="new 0 0 447.6 72.7" xml:space="preserve">
+                <path fill="#1976D2" d="M12.9,42.3V5.7H0V0h32.4v5.7H19.5v36.6H12.9z" />
+                <path fill="#1976D2" d="M36,13.7c0-1.5,1.2-2.7,2.7-2.7c1.5,0,2.7,1.2,2.7,2.7c0,1.5-1.2,2.6-2.7,2.6C37.2,16.4,36,15.2,36,13.7z
+	 M36.3,19.7H41v22.6h-4.6V19.7z" />
+                <path fill="#1976D2" d="M45.7,19.7h4.4v3.8h0.1c1.2-2.6,3.6-4.2,7.1-4.2c5,0,7.8,3.2,7.8,8.4v14.6h-4.7V28.5c0-3.4-1.6-5.3-4.8-5.3
+	c-3.3,0-5.4,2.3-5.4,5.8v13.2h-4.6V19.7z" />
+                <path fill="#1976D2" d="M70,50.6v-3.8c0.3,0.1,1.1,0.1,1.5,0.1c2.2,0,3.3-0.9,4-3.2c0,0,0.4-1.4,0.4-1.4l-8.2-22.6h5l5.7,18.4h0.1
+	l5.7-18.4h4.9l-8.5,23.8c-1.9,5.5-4.1,7.2-8.9,7.2C71.5,50.7,70.3,50.7,70,50.6z" />
+                <path fill="#9EC4E9" d="M91.9,19.7h4.4v3.8h0.1c1-2.5,3.4-4.2,6.4-4.2c3.1,0,5.4,1.6,6.3,4.4h0.1c1.2-2.8,3.8-4.4,7-4.4
+	c4.5,0,7.4,3,7.4,7.5v15.5h-4.7V27.9c0-2.9-1.6-4.6-4.3-4.6s-4.7,2-4.7,4.9v14.1h-4.6V27.5c0-2.6-1.7-4.3-4.3-4.3
+	c-2.8,0-4.7,2.1-4.7,5v14h-4.6V19.7z" />
+                <path fill="#9EC4E9" d="M143.2,27.5c-0.5-2.4-2.3-4.3-5.3-4.3c-3.6,0-6,3-6,7.8c0,5,2.4,7.8,6,7.8c2.9,0,4.7-1.6,5.3-4.2h4.5
+	c-0.5,4.8-4.3,8.1-9.8,8.1c-6.5,0-10.7-4.4-10.7-11.7c0-7.2,4.2-11.7,10.6-11.7c5.8,0,9.4,3.7,9.8,8.2H143.2z" />
+                <path fill="#9EC4E9" d="M170.3,35.6c-0.6,4.1-4.6,7.1-9.7,7.1c-6.6,0-10.7-4.5-10.7-11.6c0-7.1,4.1-11.8,10.5-11.8
+	c6.3,0,10.2,4.4,10.2,11.3v1.6h-16v0.3c0,3.9,2.4,6.5,6.1,6.5c2.6,0,4.6-1.3,5.2-3.3H170.3z M154.7,28.9H166
+	c-0.1-3.5-2.3-5.9-5.5-5.9S154.9,25.5,154.7,28.9z" />
+                <path fill="#563D7C" d="M184.8,42.3V0h16.9c7.5,0,12.4,4.2,12.4,10.5c0,4.5-3.3,8.5-7.5,9.2V20c5.7,0.6,9.6,4.7,9.6,10.3
+	c0,7.4-5.4,12-14.4,12H184.8z M191.3,18h7.4c5.7,0,8.8-2.3,8.8-6.5c0-3.9-2.7-6.1-7.4-6.1h-8.7V18z M200.4,36.9c5.9,0,9.1-2.4,9.1-7
+	S206.2,23,200,23h-8.7v13.9H200.4z" />
+                <path fill="#563D7C" d="M219.2,31c0-7.3,4.3-11.7,10.7-11.7s10.7,4.4,10.7,11.7c0,7.3-4.3,11.7-10.7,11.7S219.2,38.3,219.2,31z
+	 M235.9,31c0-5-2.4-7.9-6-7.9s-6,2.9-6,7.9c0,5,2.4,7.9,6,7.9C233.6,38.9,235.9,36,235.9,31z" />
+                <path fill="#563D7C" d="M243.2,31c0-7.3,4.3-11.7,10.7-11.7s10.7,4.4,10.7,11.7c0,7.3-4.3,11.7-10.7,11.7S243.2,38.3,243.2,31z
+	 M259.9,31c0-5-2.4-7.9-6-7.9s-6,2.9-6,7.9c0,5,2.4,7.9,6,7.9C257.6,38.9,259.9,36,259.9,31z" />
+                <path fill="#563D7C" d="M274.3,14.3v5.3h4.3v3.7h-4.3v12.5c0,2,0.9,2.8,2.8,2.8c0.5,0,1.2,0,1.5-0.1v3.7c-0.5,0.1-1.5,0.2-2.6,0.2
+	c-4.6,0-6.4-1.7-6.4-6.1v-13h-3.3v-3.7h3.3v-5.3H274.3z" />
+                <path fill="#563D7C" d="M290.8,19.3c5,0,8.6,2.8,8.7,6.8h-4.4c-0.2-2-1.9-3.3-4.5-3.3c-2.5,0-4.2,1.2-4.2,3c0,1.4,1.1,2.3,3.5,2.9
+	l3.8,0.9c4.6,1.1,6.3,2.8,6.3,6.1c0,4.1-3.8,7-9.4,7c-5.3,0-8.9-2.8-9.3-6.9h4.6c0.4,2.2,2,3.4,4.9,3.4c2.8,0,4.5-1.2,4.5-3
+	c0-1.4-0.9-2.2-3.2-2.8l-4-1c-4.1-1-6.1-3.1-6.1-6.3C282,22,285.5,19.3,290.8,19.3z" />
+                <path fill="#563D7C" d="M309.6,14.3v5.3h4.3v3.7h-4.3v12.5c0,2,0.9,2.8,2.8,2.8c0.5,0,1.2,0,1.5-0.1v3.7c-0.5,0.1-1.5,0.2-2.6,0.2
+	c-4.6,0-6.4-1.7-6.4-6.1v-13h-3.3v-3.7h3.3v-5.3H309.6z" />
+                <path fill="#563D7C" d="M317.7,19.7h4.4v3.8h0.1c0.8-2.6,2.8-4.2,5.4-4.2c0.7,0,1.2,0.1,1.6,0.2v4.3c-0.4-0.2-1.2-0.3-2.1-0.3
+	c-3,0-4.8,2-4.8,5.2v13.5h-4.6V19.7z" />
+                <path fill="#563D7C" d="M330.8,35.9c0-4,3-6.4,8.4-6.7l6.2-0.4v-1.7c0-2.5-1.7-4-4.5-4c-2.7,0-4.4,1.3-4.8,3.3h-4.4
+	c0.3-4.1,3.7-7.1,9.3-7.1c5.5,0,9,2.9,9,7.4v15.6h-4.4v-3.7h-0.1c-1.3,2.5-4.2,4.1-7.1,4.1C333.9,42.7,330.8,39.9,330.8,35.9z
+	 M345.4,33.8V32l-5.6,0.3c-2.8,0.2-4.3,1.4-4.3,3.4c0,2,1.6,3.3,4.1,3.3C342.9,39,345.4,36.8,345.4,33.8z" />
+                <path fill="#563D7C" d="M375.8,31c0,7.2-3.8,11.7-9.4,11.7c-3.2,0-5.8-1.6-7.1-4.1h-0.1v11.2h-4.6V19.7h4.5v3.9h0.1
+	c1.3-2.6,3.9-4.3,7.2-4.3C372,19.3,375.8,23.8,375.8,31z M371,31c0-4.7-2.3-7.8-6-7.8c-3.5,0-5.9,3.1-5.9,7.8c0,4.7,2.4,7.8,5.9,7.8
+	C368.7,38.7,371,35.7,371,31z" />
+                <path fill="#563D7C" d="M10.6,69V53.5h5.6c2.7,0,4.5,1.5,4.5,3.8c0,1.7-1.2,3.2-2.8,3.5v0.1c2.1,0.3,3.6,1.7,3.6,3.9
+	c0,2.6-2,4.3-5.2,4.3H10.6z M12.1,60.4h3.4c2.4,0,3.7-1.1,3.7-2.9c0-1.7-1.2-2.7-3.3-2.7h-3.8V60.4z M16,67.7c2.5,0,3.9-1.1,3.9-3
+	c0-1.9-1.5-3-4.1-3h-3.7v6H16z" />
+                <path fill="#563D7C" d="M22.8,63.5c0-3.6,2.1-5.8,5.1-5.8c3,0,5.1,2.2,5.1,5.8c0,3.5-2.1,5.8-5.1,5.8S22.8,67,22.8,63.5z M31.5,63.5
+	c0-2.8-1.5-4.5-3.7-4.5s-3.6,1.7-3.6,4.5s1.5,4.5,3.6,4.5S31.5,66.3,31.5,63.5z" />
+                <path fill="#563D7C" d="M34.3,63.5c0-3.6,2.1-5.8,5.1-5.8c3,0,5.1,2.2,5.1,5.8c0,3.5-2.1,5.8-5.1,5.8S34.3,67,34.3,63.5z M43,63.5
+	c0-2.8-1.5-4.5-3.7-4.5s-3.6,1.7-3.6,4.5s1.5,4.5,3.6,4.5S43,66.3,43,63.5z" />
+                <path fill="#563D7C" d="M48.4,55.1v2.8h2.2v1.2h-2.2v7.2c0,1.1,0.5,1.6,1.5,1.6c0.2,0,0.7,0,0.8,0V69c-0.2,0-0.8,0.1-1.1,0.1
+	c-1.9,0-2.6-0.8-2.6-2.8v-7.2h-1.7v-1.2H47v-2.8H48.4z" />
+                <path fill="#563D7C" d="M56.4,57.7c2.3,0,3.9,1.3,4.1,3.3h-1.4c-0.2-1.3-1.2-2.1-2.7-2.1c-1.5,0-2.6,0.8-2.6,1.9
+	c0,0.9,0.7,1.5,2.1,1.8l1.7,0.4c2.2,0.6,3.1,1.4,3.1,3c0,1.9-1.8,3.2-4.3,3.2c-2.4,0-4.1-1.3-4.3-3.3h1.4c0.2,1.3,1.3,2.1,3,2.1
+	s2.8-0.8,2.8-2c0-1-0.6-1.5-2.1-1.8l-1.8-0.5c-2-0.5-3-1.5-3-2.9C52.4,59,54.1,57.7,56.4,57.7z" />
+                <path fill="#563D7C" d="M64.6,55.1v2.8h2.2v1.2h-2.2v7.2c0,1.1,0.5,1.6,1.5,1.6c0.2,0,0.7,0,0.8,0V69c-0.2,0-0.8,0.1-1.1,0.1
+	c-1.9,0-2.6-0.8-2.6-2.8v-7.2h-1.7v-1.2h1.7v-2.8H64.6z" />
+                <path fill="#563D7C" d="M68.8,57.9h1.3v2h0c0.4-1.4,1.5-2.2,2.8-2.2c0.4,0,0.7,0.1,0.9,0.1v1.4c-0.2-0.1-0.6-0.2-1.1-0.2
+	c-1.6,0-2.6,1.2-2.6,3v7h-1.4V57.9z" />
+                <path fill="#563D7C" d="M74.7,65.9c0-1.9,1.4-3.1,4-3.2l3.5-0.2v-1c0-1.6-1-2.6-2.8-2.6c-1.6,0-2.7,0.8-2.9,2.2h-1.4
+	c0.2-2,1.8-3.4,4.4-3.4s4.1,1.4,4.1,3.7V69h-1.4v-2.1h0c-0.6,1.4-2.1,2.3-3.8,2.3C76.2,69.2,74.7,67.9,74.7,65.9z M82.2,64.8v-1.2
+	l-3.3,0.2c-1.8,0.1-2.7,0.9-2.7,2.1c0,1.2,1,2.1,2.6,2.1C80.6,68,82.2,66.6,82.2,64.8z" />
+                <path fill="#563D7C" d="M96,63.5c0,3.5-1.9,5.8-4.7,5.8c-1.8,0-3.2-1-3.8-2.5h0v6H86V57.9h1.3v2.4h0c0.6-1.5,2-2.5,3.8-2.5
+	C94,57.7,96,60,96,63.5z M94.5,63.5c0-2.7-1.4-4.5-3.6-4.5c-2.1,0-3.6,1.8-3.6,4.5c0,2.7,1.5,4.5,3.6,4.5
+	C93.1,68,94.5,66.2,94.5,63.5z" />
+                <path fill="#563D7C" d="M109.8,65.5H102v-1.3c1.7-2.8,3.7-5.9,7.1-10.7h2.1v10.7h2.3v1.3h-2.3V69h-1.4V65.5z M103.4,64.2h6.4v-9.4h0
+	C106.9,58.8,105,61.7,103.4,64.2L103.4,64.2z" />
+                <path fill="#A6A6A6" d="M126.5,55.1v2.8h2.2v1.2h-2.2v7.2c0,1.1,0.5,1.6,1.5,1.6c0.2,0,0.7,0,0.8,0V69c-0.2,0-0.8,0.1-1.1,0.1
+	c-1.9,0-2.6-0.8-2.6-2.8v-7.2h-1.7v-1.2h1.7v-2.8H126.5z" />
+                <path fill="#A6A6A6" d="M129.7,63.5c0-3.6,2.1-5.8,5.1-5.8c3,0,5.1,2.2,5.1,5.8c0,3.5-2.1,5.8-5.1,5.8S129.7,67,129.7,63.5z
+	 M138.5,63.5c0-2.8-1.5-4.5-3.7-4.5s-3.6,1.7-3.6,4.5s1.5,4.5,3.6,4.5S138.5,66.3,138.5,63.5z" />
+                <path fill="#A6A6A6" d="M141.2,63.5c0-3.6,2.1-5.8,5.1-5.8c3,0,5.1,2.2,5.1,5.8c0,3.5-2.1,5.8-5.1,5.8S141.2,67,141.2,63.5z
+	 M150,63.5c0-2.8-1.5-4.5-3.7-4.5s-3.6,1.7-3.6,4.5s1.5,4.5,3.6,4.5S150,66.3,150,63.5z" />
+                <path fill="#A6A6A6" d="M153.4,53.5h1.4V69h-1.4V53.5z" />
+                <path fill="#A6A6A6" d="M158.9,66.7L158.9,66.7l0,2.4h-1.4V53.5h1.4v6.7h0c0.6-1.5,2.1-2.5,3.8-2.5c2.8,0,4.7,2.3,4.7,5.8
+	s-1.9,5.8-4.7,5.8C161,69.2,159.5,68.2,158.9,66.7z M158.9,63.5c0,2.7,1.5,4.5,3.6,4.5c2.1,0,3.5-1.8,3.5-4.5c0-2.7-1.4-4.5-3.5-4.5
+	C160.4,58.9,158.9,60.8,158.9,63.5z" />
+                <path fill="#A6A6A6" d="M169,65.9c0-1.9,1.4-3.1,4-3.2l3.5-0.2v-1c0-1.6-1-2.6-2.8-2.6c-1.6,0-2.7,0.8-2.9,2.2h-1.4
+	c0.2-2,1.8-3.4,4.4-3.4s4.1,1.4,4.1,3.7V69h-1.4v-2.1h0c-0.6,1.4-2.1,2.3-3.8,2.3C170.5,69.2,169,67.9,169,65.9z M176.5,64.8v-1.2
+	l-3.3,0.2c-1.8,0.1-2.7,0.9-2.7,2.1c0,1.2,1,2.1,2.6,2.1C174.9,68,176.5,66.6,176.5,64.8z" />
+                <path fill="#A6A6A6" d="M180.3,57.9h1.3v2h0c0.4-1.4,1.5-2.2,2.8-2.2c0.4,0,0.7,0.1,0.9,0.1v1.4c-0.2-0.1-0.6-0.2-1.1-0.2
+	c-1.6,0-2.6,1.2-2.6,3v7h-1.4V57.9z" />
+                <path fill="#A6A6A6" d="M191.9,59.1h-1.6v-1.2h1.6v-1.4c0-2,1-2.9,2.9-2.9c0.4,0,0.8,0,1,0.1v1.2c-0.2,0-0.5-0.1-0.8-0.1
+	c-1.1,0-1.6,0.5-1.6,1.8v1.4h2.4v1.2h-2.4v10h-1.4V59.1z" />
+                <path fill="#A6A6A6" d="M196.4,63.5c0-3.6,2.1-5.8,5.1-5.8c3,0,5.1,2.2,5.1,5.8c0,3.5-2.1,5.8-5.1,5.8S196.4,67,196.4,63.5z
+	 M205.2,63.5c0-2.8-1.5-4.5-3.7-4.5s-3.6,1.7-3.6,4.5s1.5,4.5,3.6,4.5S205.2,66.3,205.2,63.5z" />
+                <path fill="#A6A6A6" d="M208.5,57.9h1.3v2h0c0.4-1.4,1.5-2.2,2.8-2.2c0.4,0,0.7,0.1,0.9,0.1v1.4c-0.2-0.1-0.6-0.2-1.1-0.2
+	c-1.6,0-2.6,1.2-2.6,3v7h-1.4V57.9z" />
+                <path fill="#1976D2" d="M228.4,69V54.9h-5.1v-1.3H235v1.3h-5.1V69H228.4z" />
+                <path fill="#1976D2" d="M236.1,54.7c0-0.5,0.4-0.9,0.9-0.9c0.5,0,1,0.4,1,0.9c0,0.5-0.4,0.9-1,0.9C236.5,55.6,236.1,55.2,236.1,54.7
+	z M236.3,57.9h1.4V69h-1.4V57.9z" />
+                <path fill="#1976D2" d="M240.3,57.9h1.3v2.1h0c0.6-1.4,1.9-2.2,3.7-2.2c2.4,0,4,1.6,4,4.1V69h-1.4v-7c0-2-1.1-3.1-2.9-3.1
+	c-1.9,0-3.2,1.4-3.2,3.5V69h-1.4V57.9z" />
+                <path fill="#1976D2" d="M251.8,73v-1.2c0.2,0,0.5,0.1,0.7,0.1c1,0,1.6-0.5,2.1-1.9l0.3-0.8l-4.2-11.2h1.5l3.4,9.8h0l3.4-9.8h1.5
+	l-4.4,11.8c-1,2.6-1.8,3.4-3.6,3.4C252.3,73.1,252,73.1,251.8,73z" />
+                <path fill="#1976D2" d="M261.9,57.9h1.3v2.1h0c0.5-1.3,1.6-2.2,3.3-2.2c1.6,0,2.8,0.9,3.2,2.4h0c0.5-1.4,1.8-2.4,3.5-2.4
+	c2.2,0,3.6,1.5,3.6,3.7V69h-1.4v-7.3c0-1.7-1-2.8-2.6-2.8c-1.7,0-2.8,1.3-2.8,3.1v7h-1.4v-7.4c0-1.6-1-2.6-2.6-2.6
+	c-1.6,0-2.8,1.3-2.8,3.2V69h-1.4V57.9z" />
+                <path fill="#1976D2" d="M287,61.4c-0.3-1.4-1.4-2.5-3.2-2.5c-2.2,0-3.6,1.8-3.6,4.5c0,2.8,1.4,4.5,3.6,4.5c1.7,0,2.9-0.9,3.2-2.4
+	h1.4c-0.3,2.1-2.1,3.6-4.6,3.6c-3.1,0-5.1-2.2-5.1-5.8c0-3.5,2-5.8,5-5.8c2.6,0,4.3,1.7,4.6,3.7H287z" />
+                <path fill="#1976D2" d="M299.3,65.9c-0.3,1.9-2.1,3.4-4.6,3.4c-3.1,0-5.1-2.2-5.1-5.7c0-3.5,2-5.8,5-5.8c3,0,4.8,2.2,4.8,5.5v0.6
+	h-8.4v0.1c0,2.5,1.4,4.1,3.7,4.1c1.7,0,2.9-0.9,3.2-2.1H299.3z M291.1,62.7h6.9c0-2.2-1.4-3.7-3.4-3.7
+	C292.6,58.9,291.2,60.5,291.1,62.7z" />
+                <path fill="#CBBDE2" d="M396,24.3c3.2,0,5.4,2.1,5.4,5.3s-2.2,5.3-5.4,5.3h-4.1v6.4h-1.6V24.3H396z M391.8,33.5h3.8
+	c2.6,0,4.2-1.4,4.2-3.8s-1.5-3.8-4.2-3.8h-3.8V33.5z" />
+                <path fill="#CBBDE2" d="M403.6,24.3h1.5v16.9h-1.5V24.3z" />
+                <path fill="#CBBDE2" d="M417.7,41.3h-1.5V39h0c-0.6,1.5-2.1,2.5-4,2.5c-2.6,0-4.3-1.7-4.3-4.5v-7.9h1.6v7.7c0,2.2,1.1,3.4,3.2,3.4
+	c2.1,0,3.6-1.5,3.6-3.8v-7.2h1.5V41.3z" />
+                <path fill="#CBBDE2" d="M420.3,42.4h1.6c0.4,1.2,1.7,2.1,3.5,2.1c2.3,0,3.7-1.3,3.7-3.3v-2.4h0c-0.7,1.6-2.2,2.7-4.2,2.7
+	c-3.1,0-5.1-2.5-5.1-6.2c0-3.8,2.1-6.3,5.2-6.3c1.9,0,3.5,1.1,4.2,2.8h0v-2.6h1.5v12c0,2.8-2.1,4.7-5.3,4.7
+	C422.6,45.8,420.6,44.3,420.3,42.4z M429.1,35.1c0-2.9-1.6-4.9-3.9-4.9c-2.3,0-3.8,1.9-3.8,4.9c0,2.9,1.5,4.9,3.8,4.9
+	C427.5,40,429.1,38,429.1,35.1z" />
+                <path fill="#CBBDE2" d="M433.1,25.6c0-0.6,0.5-1,1-1c0.6,0,1,0.5,1,1c0,0.6-0.5,1-1,1C433.6,26.6,433.1,26.1,433.1,25.6z
+	 M433.4,29.1h1.5v12.2h-1.5V29.1z" />
+                <path fill="#CBBDE2" d="M437.7,29.1h1.5v2.3h0c0.6-1.5,2.1-2.4,4-2.4c2.7,0,4.3,1.7,4.3,4.5v7.9H446v-7.7c0-2.1-1.2-3.4-3.2-3.4
+	c-2.1,0-3.5,1.5-3.5,3.8v7.2h-1.5V29.1z" />
+            </svg>
+        </div>
+    </header>
+
+    <section class="container-fluid bg-light text-body pt-3">
+
+        <h1 class="text-secondary text-center font-weight-normal mb-5">TinyMCE Bootstrap Plugin - Documentation</h1>
+
+        <div class="row">
+            <div class="col-md-9 order-2">
+
+                <article id="about-tinymce-bootstrap-plugin" class="px-3 pb-3">
+
+                    <h2 class="text-danger mb-4">About TinyMCE Bootstrap Plugin</h2>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Why this plugin?</h3>
+                    <p><strong>TinyMCE</strong> and <strong>Bootstrap</strong> are among the most popular components of the web.</p>
+                    <p>TinyMCE is <q cite="https://www.tiny.cloud/"><strong>The Most Advanced WYSIWYG HTML Editor</strong></q>, often used to edit the content of web pages.</p>
+                    <p>Bootstrap is <q cite="https://getbootstrap.com"><strong>The most popular HTML, CSS, and JS library in the world</strong></q>
+                    </p>
+                    <p>Unfortunately, TinyMCE does not natively allow the use of Bootstrap components, which are however the essential part of our HTML pages:<br>containers, rows, columns and all the others Bootstrap components like alerts, buttons, cards, images, ...</p>
+                    <p>In addition, Bootstrap 4 provides many CSS classes to manage margins, fills, colors, backgrounds and more.</p>
+                    <p class="lead text-center d-inline-flex flex-column"><span>***</span><strong>The Bootstrap Plugin for TinyMCE transforms TinyMCE into a true Bootstrap 4 content editor.</strong></p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="requirements" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Requirements</h2>
+
+                    <ul>
+                        <li>TinyMCE 5+</li>
+                        <li>Bootstrap 4</li>
+                    </ul>
+                    <p>No dependency</p>
+                    <p>Work on any server (PHP, Node, IIS, ...)</p>
+                    <p>The plugin is written in pure HTML/Javascript - it can be used with or without jQuery.</p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="package-structure" class="p-3">
+
+                    <h2 class="text-danger mb-4">Package structure</h2>
+
+                    <p class="h5">Legend:</p>
+
+                    <dl class="d-flex">
+                        <dt class="px-4"><strong class="text-danger">*</strong></dt>
+                        <dd>Required files / folders</dd>
+                    </dl>
+                    <div class="tree">
+
+                        <ul class="tree-list">
+                            <li><a href="#" class="folder">tinymce-bootstrap-plugin <i class="far fa-plus-square ml-1"></i><i class="far fa-minus-square d-none ml-1"></i></a>
+
+                                <ul class="tree-list">
+                                    <li>
+                                        <a href="#" class="folder">demo <i class="far fa-plus-square ml-1"></i><i class="far fa-minus-square d-none ml-1"></i></a>
+
+                                        <ul class="tree-list">
+                                            <li><a href="#" class="file">index.html</a> <small class="text-muted ml-2">Open this file in your browser to see the plugin in action.</small></li>
+                                            <li><a href="#" class="folder">php-form-demo</a> <small class="text-muted ml-2">TinyMCE with Bootstrap plugin - PHP Form example</small></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="folder">plugin<strong class="text-danger ml-1">*</strong> <i class="far fa-plus-square ml-1"></i><i class="far fa-minus-square d-none ml-1"></i> <small class="text-muted ml-2">The main <em>Bootstrap Plugin for TinyMCE</em> folder</small></a>
+
+                                        <ul class="tree-list">
+                                            <li><a href="#" class="folder">assets</a></li>
+                                            <li><a href="#" class="folder">dialogs</a></li>
+                                            <li><a href="#" class="folder">langs</a> <small class="text-muted ml-2">Language files for translation (<a href="#i18n">i18n</a>)</small></li>
+                                            <li><a href="#" class="folder">lib</a> <small class="text-muted ml-2">External libraries</small></li>
+                                            <li><a href="#" class="folder">snippets <i class="far fa-plus-square ml-1"></i><i class="far fa-minus-square d-none ml-1"></i></a>
+
+                                                <ul class="tree-list">
+                                                    <li><a href="#" class="file">snippets-manager.html</a> <small class="text-muted ml-2">Open this file in your browser to create / edit / delete the snippets.</small></li>
+                                                    <li><a href="#" class="file">snippets.json</a> <small class="text-muted ml-2">Snippets in JSON format used internally by the plugin</small></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#" class="folder">templates <i class="far fa-plus-square ml-1"></i><i class="far fa-minus-square d-none ml-1"></i></a>
+
+                                                <ul class="tree-list">
+                                                    <li><a href="#" class="file">templates-manager.html</a> <small class="text-muted ml-2">Open this file in your browser to create / edit / delete the templates.</small></li>
+                                                    <li><a href="#" class="file">templates.json</a> <small class="text-muted ml-2">Templates in JSON format used internally by the plugin</small></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#" class="file">plugin.min.js</a> <small class="text-muted ml-2">The main plugin loaded by TinyMCE</small></li>
+                                            <li><a href="#" class="file">version.txt</a> <small class="text-muted ml-2">The plugin current version</small></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#" class="file">register.html</a> <small class="text-muted ml-2">Open in browser to get your registration key</small></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="demo" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Demo</h2>
+                    <p>The package includes two demo pages, which allow you to test the plugin.</p>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>TinyMCE editor with the Bootstrap 4 plugin</h3>
+                    <p>This demo just loads the editor with the plugin.</p>
+                    <p><a href="../demo/index.html" class="btn btn-sm btn-outline-primary">Open the TinyMCE editor demo</a></p>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Form with a TinyMCE textarea including the Bootstrap 4 plugin</h3>
+                    <p>This demo allows you to post the content of the editor, which will be displayed on the page.<br>
+                        It allows to test the Javascript functionalities of the Bootstrap components (alert, modal, collapse, dropdown, ...).</p>
+                    <p>It also uses <a href="https://github.com/kesar/HTMLawed">HTMLawed</a>, a small PHP tool to secure and sanitize the posted HTML</p>
+                    <p>To open it in your browser you need a running PHP server.</p>
+                    <p>If you don't use a PHP server, this demo is available online here:<br><a href="https://www.tinymce-bootstrap-plugin.com/demo/php-form-demo/index.php">https://www.tinymce-bootstrap-plugin.com/demo/php-form-demo/index.php</a></p>
+                    <p><a href="../demo/php-form-demo/index.php" class="btn btn-sm btn-outline-primary">Open the Form TinyMCE textarea demo</a></p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="quick-start" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Quick start</h2>
+
+                    <h3 class="text-purple-400 mb-3" id="register"><i class="fas fa-square mr-4"></i>Register the plugin to get your key</h3>
+                    <p>A Regular license allows 2 registration slots: 1 for localhost, 1 for your production server.</p>
+                    <p>You must register the plugin on each hostname that you use. If you work on localhost and production server, register the plugin on both and use the corresponding registration key.</p>
+
+                    <ol class="numbered ml-5 mb-5 pb-3">
+                        <li>Upload <span class="bg-gray-200 border mr-2 px-2">register.html</span> on your server then open it in your browser</li>
+                        <li>Enter your email &amp; purchase code to get your registration key</li>
+                    </ol>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Instanciate the Bootstrap plugin</h3>
+
+                    <ol class="numbered ml-5 mb-3">
+                        <li>Upload the <span class="bg-gray-200 border mr-2 px-2">plugin</span> folder somewhere on your server,<br>for instance <em>/lib/tinymce-bootstrap-plugin/plugin</em></li>
+                        <li>
+                            Add the Bootstrap plugin to your <code class="bg-gray-200 px-2">tinymce.init()</code> function:
+                            <pre class="language-javascript"><code>&lt;script&gt;
+    if (typeof (base_url) == "undefined") {
+        var base_url = location.protocol + '//' + location.host + '/';
+    }
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'bootstrap',
+        toolbar: ['bootstrap'],
+        contextmenu: "bootstrap",
+        bootstrapConfig: {
+            url: base_url + 'lib/tinymce-bootstrap-plugin/',
+            iconFont: 'fontawesome5',
+            imagesPath: '/demo/demo-images',
+            key: 'your-key-here'
+        },
+    });
+&lt;/script&gt;</code></pre>
+                        </li>
+                    </ol>
+                    <p class="text-center">***<br>Refer to <a href="#configuration">configuration</a> for a comprehensive list of all the available settings.</p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="configuration" class="p-3">
+
+                    <h2 class="text-danger mb-4">Configuration</h2>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>List of the <code class="bg-gray-200 px-2">bootstrapConfig</code> properties<br><small class="ml-5">(sorted in alphabetical order)</small></h3>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-striped table-sm">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="py-2 font-weight-normal">Property</th>
+                                    <th class="py-2 font-weight-normal">Description</th>
+                                    <th class="py-2 font-weight-normal">Possible values</th>
+                                    <th class="py-2 font-weight-normal">Required</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <tr>
+                                    <td>bootstrapColumns</td>
+                                    <td><span class="badge badge-info rounded-0 mr-2">number</span>The number of Bootstrap columns in each row</td>
+                                    <td>Any number.<br>
+                                        <small class="text-secondary">Default: 12</small>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>bootstrapCss</td>
+                                    <td><span class="badge badge-info rounded-0 mr-2">string</span>The url leading to your Bootstrap css</td>
+                                    <td>
+                                        Any valid url, absolute or relative.<br>
+                                        <small class="text-secondary">Default: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'</small>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>editorStyleFormats</td>
+                                    <td>
+                                        <span class="badge badge-info rounded-0 mr-2">Javascript object</span>TinyMCE's custom formats for Bootstrap<br>
+                                        Refer to <a href="#custom-styles-overview">Bootstrap Styles</a> for details
+                                    </td>
+                                    <td><pre class="language-javascript"><code>{
+    textStyles: true,
+    blockStyles: true,
+    containerStyles: true,
+    responsive: ['xs', 'sm'], // xs sm md lg
+    spacing: ['all', 'x', 'y', 'top', 'right', 'bottom', 'left']
+}
+</code></pre>
+                                        <span class="text-secondary">Default: like in the sample code above.</span>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>elements</td>
+                                    <td>
+                                        <span class="badge badge-info rounded-0 mr-2">Javascript object</span>List of the enabled Bootstrap components.<br>
+                                        Set the values to <code class="bg-gray-200 px-2">false</code> or remove the items from the list to disable them.
+                                    </td>
+                                    <td>
+                                        <pre class="language-javascript"><code>{
+    btn: true,
+    icon: true,
+    image: true,
+    table: true,
+    template: true,
+    breadcrumb: true,
+    pagination: true,
+    badge: true,
+    alert: true,
+    card: true,
+    snippet: true
+}</code></pre>
+                                        <span class="text-secondary">Default: All components enabled like in the sample code above.</span>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>enableTemplateEdition</td>
+                                    <td>
+                                        <span class="badge badge-info rounded-0 mr-2">boolean</span>Enable / disable the live template edition<br>
+                                        Refer to the <a href="#live-template-editing-tool">Live template editing tool</a> for details
+                                    </td>
+                                    <td>
+                                        true / false<br>
+                                        <span class="text-secondary">Default: true</span>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>iconFont</td>
+                                    <td><span class="badge badge-info rounded-0 mr-2">string</span>The icon font for the <code class="bg-gray-200 px-2">icon</code> &amp; <code class="bg-gray-200">button</code> dialogs</td>
+                                    <td>
+                                        elusiveicon<br>
+                                        flagicon<br>
+                                        fontawesome5<br>
+                                        ionicon<br>
+                                        mapicon<br>
+                                        materialdesign<br>
+                                        octicon<br>
+                                        typicon<br>
+                                        weathericon<br>
+                                        <span class="text-secondary">Default: 'fontawesome5'</span>
+                                    </td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>imagesPath</td>
+                                    <td><span class="badge badge-info rounded-0 mr-2">string</span>The url leading to your images folder for the <code class="bg-gray-200 px-2">image</code> dialog</td>
+                                    <td>
+                                        Any valid url, root relative or relative. ie: <span class="bg-gray-200 border mr-2 px-2">/images</span> or <span class="bg-gray-200 border mr-2 px-2">../images</span><br>
+                                        <span class="badge badge-warning">Don't enter the full url with http://</span><br>
+                                        <span class="text-secondary">Default: '/assets/images/'</span>
+                                    </td>
+                                    <td>Required if you use the <code class="bg-gray-200 px-2">image</code> dialog</td>
+                                </tr>
+                                <tr>
+                                    <td>key</td>
+                                    <td>Your <a href="#register">registration key</a></td>
+                                    <td>Your key registered on the active domain name</td>
+                                    <td><span class="badge badge-danger">Yes</span></td>
+                                </tr>
+                                <tr>
+                                    <td>language</td>
+                                    <td>
+                                        Language for translation<br>
+                                        Refer to the <a href="#i18n">Language (translation)</a> for details
+                                    </td>
+                                    <td>The 2 translation files must exist in <span class="bg-gray-200 border mr-2 px-2">plugin/langs/</span><br><span class="text-secondary">Default: 'en'</span></td>
+                                    <td><span class="badge badge-secondary">No</span></td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td><span class="badge badge-info rounded-0 mr-2">string</span>The url leading to <span class="bg-gray-200 border mr-2 px-2">plugin/plugin.min.js</span></td>
+                                    <td>
+                                        Any valid url, absolute or relative.<br>
+                                        <span class="text-secondary">Default: no default value</span>
+                                    </td>
+                                    <td><span class="badge badge-danger">Yes</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="configuration-example" class="bg-white p-3">
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Configuration example</h3>
+                    <p>The following example shows a classic configuration code with comments.</p>
+                    <p><strong>The code detects if you're on localhost or production server and uses the corresponding key to keep the same code between the 2 servers</strong>.</p>
+                    <p>It also replaces the default TinyMCE <code class="bg-gray-200 px-2">formats</code> (alignleft, aligncenter, ...) with the Bootstrap CSS classes (text-left, text-center, ...)</p>
+                    <pre class="language-javascript"><code>&lt;script&gt;
+    if (typeof (base_url) == "undefined") {
+        // detect the root url
+        var base_url = location.protocol + '//' + location.host + '/';
+
+        // detect localhost
+        // you may change the LOCAL_DOMAINS depending on your localhost url
+        // the value must include your local window.location.hostname
+        const LOCAL_DOMAINS = ["localhost", "127.0.0.1"];
+        if (LOCAL_DOMAINS.includes(window.location.hostname)) {
+            var tbpKey = 'localhost-key-here'; // replace with your localhost key
+        } else {
+            var tbpKey = 'production-key-here'; // replace with your production server key
+        }
+    }
+    // uncomment the following line to test if your key is properly set
+    // console.log(tbpKey);
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink bootstrap code link image lists charmap print preview code help table',
+        toolbar: [
+        'undo redo | bootstrap',
+        'cut copy paste | styleselect | alignleft aligncenter alignright alignjustify | bold italic | link image | code | help'],
+        contextmenu: "link image imagetools table spellchecker | bootstrap",
+        file_picker_types: 'file image media',
+        bootstrapConfig: {
+            url: base_url + 'tinymce-bootstrap-plugin/',
+            iconFont: 'fontawesome5',
+            imagesPath: '/demo/demo-images',
+            // tinymce custom formats dropdown content
+            // with all the options enabled the dropdown menu takes a few seconds to show
+            // disable some options you don't need if you want the dropdown menu to go faster
+            editorStyleFormats: {
+                textStyles: true,
+                blockStyles: true,
+                containerStyles: true,
+                responsive: ['xs', 'sm', 'md', 'lg'], // all the responsive options enabled
+                spacing: ['all', 'x', 'y', 'top', 'right', 'bottom', 'left']
+            },
+            key: tbpKey
+        },
+        formats: { // replace the default tinymce inline styles with Bootstrap css classes & appropriate tags
+            alignleft: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-left'},
+            aligncenter: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-center'},
+            alignright: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-right'},
+            alignjustify: {selector : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', classes : 'text-justify'},
+            bold: {inline : 'strong'},
+            italic: {inline : 'em'},
+            underline: {inline : 'u'},
+            sup: {inline : 'sup'},
+            sub: {inline : 'sub'},
+            strikethrough: {inline : 'del'}
+        },
+        style_formats: [
+            { title: 'Headings', items: [
+                { title: 'Heading 1', format: 'h1' },
+                { title: 'Heading 2', format: 'h2' },
+                { title: 'Heading 3', format: 'h3' },
+                { title: 'Heading 4', format: 'h4' },
+                { title: 'Heading 5', format: 'h5' },
+                { title: 'Heading 6', format: 'h6' }
+            ]},
+            { title: 'Blocks', items: [
+                { title: 'Paragraph', format: 'p' },
+                { title: 'Blockquote', format: 'blockquote' },
+                { title: 'Div', block: 'div', wrapper: true }
+            ]},
+            { title: 'Containers', items: [
+                { title: 'Container fluid', block: 'div', classes: 'container-fluid', wrapper: true },
+                { title: 'Container', block: 'div', classes: 'container', wrapper: true },
+                { title: 'Section', block: 'section', wrapper: true },
+                { title: 'Article', block: 'article', wrapper: true }
+            ]}
+        ],
+        style_formats_merge: false, // if true, add TinyMce's default style formats to the user's style_formats
+        style_formats_autohide: true // hide the custom formats that don't match the selected element in the editor
+    });
+&lt;/script&gt;
+</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="choose-bootstrap-css" class="p-3">
+
+                    <h2 class="text-danger mb-4">Choose Bootstrap CSS</h2>
+                    <pre class="language-javascript"><code>&lt;script&gt;
+    tinymce.init({
+        selector: 'textarea',
+        // ...
+        bootstrapConfig: {
+            url: base_url + 'tinymce-bootstrap-plugin/',
+            bootstrapCss: '/url/to/bootstrap.min.css',
+            // ...
+        },
+        // ...
+    });
+&lt;/script&gt;</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="custom-bootstrap-grid" class="p-3">
+
+                    <h2 class="text-danger mb-4">Custom Bootstrap grid with 24 columns</h2>
+                    <pre class="language-javascript"><code>&lt;script&gt;
+    tinymce.init({
+        selector: 'textarea',
+        // ...
+        bootstrapConfig: {
+            url: base_url + 'tinymce-bootstrap-plugin/',
+            bootstrapColumns: 24,
+            // ...
+        },
+        // ...
+    });
+&lt;/script&gt;</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="choose-toolbar-components" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Choose Toolbar components</h2>
+                    <pre class="language-javascript"><code>&lt;script&gt;
+    tinymce.init({
+        selector: 'textarea',
+        // ...
+        bootstrapConfig: {
+            url: base_url + 'tinymce-bootstrap-plugin/',
+            elements: { // only the following elements will be added to the toolbar
+                btn: true,
+                icon: true,
+                template: true,
+                alert: true,
+                card: true
+            },
+            // ...
+        },
+        // ...
+    });
+&lt;/script&gt;
+</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="special-keys-features" class="p-3">
+
+                    <h2 class="text-danger mb-4">Special keys &amp; features</h2>
+
+                    <dl class="row pl-5 mb-5">
+                        <dt class="col-sm-3"><kbd class="badge badge-secondary">Enter</kbd></dt>
+                        <dd class="col-sm-9">Add a new paragraph after the current element</dd>
+                        <dt class="col-sm-3"><kbd class="badge badge-secondary">Shift + Enter</kbd></dt>
+                        <dd class="col-sm-9">Insert a line break</dd>
+                        <dt class="col-sm-3"><kbd class="badge badge-secondary">Right-click</kbd></dt>
+                        <dd class="col-sm-9">Shows the context menu to add a new paragraph before or after the current element</dd>
+                    </dl>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="custom-styles-overview" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Custom Styles - overview</h2>
+                    <p>The plugin adds the following Bootstrap CSS classes from Bootstrap 4 utilities:</p>
+
+                    <dl class="row pl-5 mb-5">
+                        <dt class="col-sm-3">Margin</dt>
+                        <dd class="col-sm-9">ie: .m-2, .mx-2, .my-2, .m-sm-2, ...
+                        </dd>
+                        <dt class="col-sm-3">Padding</dt>
+                        <dd class="col-sm-9">ie: .p-2, .px-2, .py-2, .p-sm-2, ...</dd>
+                        <dt class="col-sm-3">Color</dt>
+                        <dd class="col-sm-9">ie: .text-dark, .text-danger, ...</dd>
+                        <dt class="col-sm-3">Background</dt>
+                        <dd class="col-sm-9">ie: .bg-dark, .bg-danger, ...</dd>
+                        <dt class="col-sm-3">Border</dt>
+                        <dd class="col-sm-9">ie: .border .border .border-primary, .border-bottom .border-primary, ...</dd>
+                    </dl>
+
+                    <p><strong>The Text styles will be applied:</strong></p>
+
+                    <ul>
+                        <li>on the selected content if some content is selected</li>
+                        <li>on the current node from the cursor position if nothing is selected</li>
+                    </ul>
+
+                    <hr>
+
+                    <p>The Bootstrap CSS classes are available from TinyMCE's <code class="bg-gray-200 px-2">custom_formats</code> dropdown menu.</p>
+                    <p><strong>The dropdown menu is structured as follows:</strong></p>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered bg-gray-100 table-sm small">
+                            <thead class="bg-gray text-white">
+                                <tr>
+                                    <th>Main</th>
+                                    <th>Nested 1</th>
+                                    <th>Nested 2</th>
+                                    <th>Nested 3</th>
+                                    <th>Nested 4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th rowspan="2">Text styles</th>
+                                    <td>Margin<br>Padding<br>Border</td>
+                                    <td>All screens<br>Small screens &amp; larger<br>Medium screens &amp; larger<br>Large screens</td>
+                                    <td>All<br>x<br>y<br>top<br>right<br>bottom<br>left</td>
+                                    <td>ml-sm-0<br>ml-sm-1<br>ml-sm-2<br>...<br><span class="text-secondary">[available CSS classes]</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Color<br>Background</td>
+                                    <td>text-primary<br>text-secondary<br>...<br><span class="text-secondary">[available CSS classes]</span></td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <th>Block styles</th>
+                                    <td class="text-center text-secondary" colspan="4">Same as above</td>
+                                </tr>
+                                <tr>
+                                    <th>Container styles</th>
+                                    <td class="text-center text-secondary" colspan="4">Same as above</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <hr class="mb-5">
+
+                    <p class="d-flex mb-5"><i class="far fa-lightbulb mr-3 text-info fa-2x"></i><span>Tip: init TinyMCE with <code class="bg-gray-200 px-2">style_formats_autohide: true</code> to hide the styles that don't match the selected editor elements.ie: the <em>container</em> dropdown will not be shown if the cursor is not inside a container.</span></p>
+
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/custom-styles.png" class="figure-img img-fluid img-thumbnail" alt="TinyMCE custom_formats dropdown menu">
+                        <figcaption class="figure-caption">The Bootstrap CSS classes are available from TinyMCE's custom_formats dropdown menu.</figcaption>
+                    </figure>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="custom-styles-options" class="p-3">
+
+                    <h2 class="text-danger mb-4">Options &amp; configuration</h2>
+                    <p><strong>The <code class="bg-gray-200 px-2">custom_formats</code> dropdown menu can be configured with the following options:</strong></p>
+                    <pre class="language-javascript"><code>&lt;script&gt;
+    tinymce.init({
+        selector: 'textarea',
+        // ...
+        bootstrapConfig: {
+            url: base_url + 'tinymce-bootstrap-plugin/',
+            editorStyleFormats: {
+                textStyles: true, // true or false
+                blockStyles: true, // true or false
+                containerStyles: true, // true or false
+                responsive: ['xs', 'sm'], // xs sm md lg
+                spacing: ['all', 'x', 'y', 'top', 'right', 'bottom', 'left'] // all x y top right bottom left
+            },
+            // ...
+        },
+        // ...
+    });
+&lt;/script&gt;</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="templates-overview" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Templates - overview</h2>
+                    <p>Bootstrap Plugin for TinyMCE allows you to create and edit your responsive layout at any time.</p>
+                    <p>The layouts (templates) use the <strong>Bootstrap 4 Grid System</strong> (container / container-fluid, row, col)</p>
+                    <p><strong>The plugin offers 2 different ways to create / edit / remove the template elements:</strong></p>
+
+                    <ul>
+                        <li>the <a href="#live-template-editing-tool"><em>Live template editing</em> tool</a></li>
+                        <li>the <a href="#templates-dialog"><em>Templates</em> dialog</a></li>
+                    </ul>
+                    <p>The available templates in the <em>templates</em> dialog are all stored in a simple JSON file.<br>
+                        You can customize them using the <a href="#templates-manager">Templates manager</a>.</p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="live-template-editing-tool" class="p-3">
+
+                    <h2 class="text-danger mb-4">Live template editing tool</h2>
+
+                    <p class="lead">The Live template editing tool allows to create / edit / remove Bootstrap rows and columns straight from the editor.</p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/live-template-editing-tool.png" class="figure-img img-fluid img-thumbnail" alt="Live template editing tool">
+                        <figcaption class="figure-caption">The Live template editing tool appears in the editor when a template element is clicked.</figcaption>
+                    </figure>
+
+                    <hr class="my-5">
+
+                    <p class="lead">Click the toolbar buttons to add / edit / remove rows &amp; cols.</p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/live-template-editing-tool-legend.png" class="figure-img img-fluid img-thumbnail" alt="Live template editing tool legend">
+                        <figcaption class="figure-caption">Click to add / edit / remove rows &amp; cols.</figcaption>
+                    </figure>
+
+                    <hr class="my-5">
+
+                    <p class="lead">The <span class="bg-gray-200 border mr-2 px-2">edit</span> buttons show the available options for rows / columns</p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/live-template-row-edit.png" class="figure-img img-fluid img-thumbnail" alt="Edit Bootstrap row">
+                        <figcaption class="figure-caption">Flexbox options for Bootstrap row edition</figcaption>
+                    </figure>
+
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/live-template-col-edit.png" class="figure-img img-fluid img-thumbnail" alt="Edit Bootstrap row">
+                        <figcaption class="figure-caption">Set the Bootstrap columns responsive sizes</figcaption>
+                    </figure>
+
+                    <hr class="my-5">
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Enable / disable the Live template editing tool</h3>
+                    <p>The Live template editing tool is default enabled.</p>
+                    <p>It can be toggled on / off with a right click using the context menu.</p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/context-menu.png" class="figure-img img-fluid img-thumbnail" alt="Toggle the Live template editing tool">
+                        <figcaption class="figure-caption">Use the context menu to enable / disable the Live template edition</figcaption>
+                    </figure>
+
+                </article>
+
+                <hr class="my-5">
+
+                <article id="templates-dialog" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Template dialog</h2>
+                    <p>The template dialog popup shows different layouts for 2, 3 and 4 columns templates distributed 3 tabs</p>
+                    <p>Options are available to insert the template at the beginning / end of the document.</p>
+                    <p>You can also wrap your template in a container or container fluid.</p>
+                    <p>The <a href="#templates-manager"><strong>Template manager</strong></a> allows to add / edit / remove templates and tabs to build and organize them the way you want.</p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/template-dialog.png" class="figure-img img-fluid img-thumbnail" alt="Template dialog popup">
+                        <figcaption class="figure-caption">Template dialog tabs with the available templates in each</figcaption>
+                    </figure>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="templates-manager" class="p-3">
+
+                    <h2 class="text-danger mb-4">Templates manager</h2>
+                    <p class="lead">The Templates manager allows to add / edit / remove Bootstrap 4 templates and organize them into categories (tabs).</p>
+
+                    <ol class="numbered mb-5">
+                        <li class="mb-4">
+
+                            <ul>
+                                <li>Open <code>/plugin/templates/templates-manager.html</code> in your browser</li>
+                                <li>Click the right carets to expand / collapse the categories &amp; templates</li>
+                                <li>Edit the titles and code</li>
+                                <li>Click the buttons to add / delete categories / templates</li>
+                                <li>Drag &amp; drop to organize the categories &amp; templates</li>
+                            </ul>
+                        </li class="mb-3">
+                        <li class="mb-3">Click the <span class="bg-gray-200 border mr-2 px-2">Generate JSON</span> button</li>
+                        <li>Click the <span class="bg-gray-200 border mr-2 px-2">Download JSON</span class="bg-gray-200 border mr-2 px-2"> button &amp; save the file to <span class="bg-gray-200 border mr-2 px-2">plugin/templates/templates.json</span><br>or copy/paste the JSON code into it.</li>
+                    </ol>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/templates-manager.png" class="figure-img img-fluid img-thumbnail" alt="Template manager">
+                        <figcaption class="figure-caption">The templates manager</figcaption>
+                    </figure>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="snippets-overview" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Snippet Tool - overview</h2>
+                    <p class="lead">The Snippet tool allows you to create, organize and use custom code snippets at will.</p>
+                    <p>Bootstrap Plugin for TinyMCE comes with different Bootstrap 4 components code snippets: Card group, Card deck, Accordion, Jumbotron, media, modal, ...</p>
+                    <p>Some others are complete layout components, such as Footer, Pricing table, Team, Cover page, ...</p>
+                    <p>The available snippets in the <a href="#snippets-dialog"><em>snippet</em> dialog</a> are all stored in a simple JSON file.<br>
+                        You can customize them using the <a href="#snippets-manager">Snippets manager</a>.</p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="snippets-dialog" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Snippet dialog</h2>
+                    <p>The snippet dialog popup shows all the available snippets distributed tabs</p>
+                    <p>Options are available to insert the snippets at the current position or at the beginning / end of the document.</p>
+                    <p>The <a href="#snippets-manager"><strong>Snippet manager</strong></a> allows to add / edit / remove snippets and tabs to build and organize them the way you want.</p>
+                    <p class="d-flex mb-5"><i class="far fa-lightbulb mr-3 text-info fa-2x"></i><span>Tip: Start the snippet title with <span class="bg-gray-200 border mr-2 px-2">[w-100]</span> to show the snippet in 100% with in the snippet dialog window</span></p>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/snippet-dialog.png" class="figure-img img-fluid img-thumbnail" alt="Template dialog popup">
+                        <figcaption class="figure-caption">Snippet dialog tabs with the available snippets in each</figcaption>
+                    </figure>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="snippets-manager" class="p-3">
+
+                    <h2 class="text-danger mb-4">Snippets manager</h2>
+                    <p class="lead">The Snippets manager allows to add / edit / remove code snippets and organize them into categories (tabs).</p>
+
+                    <ol class="numbered mb-5">
+                        <li class="mb-4">
+
+                            <ul>
+                                <li>Open <code>/plugin/snippets/snippets-manager.html</code> in your browser</li>
+                                <li>Click the right carets to expand / collapse the categories &amp; snippets</li>
+                                <li>Edit the titles and code</li>
+                                <li>Click the buttons to add / delete categories / snippets</li>
+                                <li>Drag &amp; drop to organize the categories &amp; snippets</li>
+                            </ul>
+                        </li class="mb-3">
+                        <li class="mb-3">Click the <span class="bg-gray-200 border mr-2 px-2">Generate JSON</span> button</li>
+                        <li>Click the <span class="bg-gray-200 border mr-2 px-2">Download JSON</span class="bg-gray-200 border mr-2 px-2"> button &amp; save the file to <span class="bg-gray-200 border mr-2 px-2">plugin/snippets/snippets.json</span><br>or copy/paste the JSON code into it.</li>
+                    </ol>
+                    <figure class="figure text-center d-block mx-auto">
+                        <img src="https://www.tinymce-bootstrap-plugin.com/assets/images/screenshots/snippets-manager.png" class="figure-img img-fluid img-thumbnail" alt="Template manager">
+                        <figcaption class="figure-caption">The snippets manager</figcaption>
+                    </figure>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="i18n" class="p-3">
+
+                    <h2 class="text-danger mb-4">Language / translation (i18n)</h2>
+                    <p class="lead">Bootstrap Plugin for TinyMCE can be translated in any <dfn title="Left to right">LTR</dfn> language.</p>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>To translate the plugin:</h3>
+
+                    <ol class="numbered ml-5">
+                        <li>Duplicate the 2 language files <span class="bg-gray-200 border mr-2 px-2">en.js</span> and <span class="bg-gray-200 border mr-2 px-2">en-dialogs.js</span> in <span class="bg-gray-200 border mr-2 px-2">plugin/langs/</span></li>
+                        <li>Init the plugin in your own language
+                            <pre class="language-javascript"><code>&lt;script&gt;
+    // sample code with for instance fr_FR.js + fr_FR-dialog.js
+    tinymce.init({
+        language: 'fr_FR',
+        language_url :'/url/leading/to/plugin/langs/fr_FR.js',
+        selector: 'textarea',
+        // [...]
+        bootstrapConfig: {
+            // [...],
+            language: 'fr_FR'
+        },
+    });
+&lt;/script&gt;</code></pre>
+                        </li>
+                        <li>Please <a href="https://www.miglisoft.com/#contact">contact us</a> &amp; share your language files! Thanks!</li>
+                        </ul>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="need-help" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Need help?</h2>
+                    <p>For any request please contact us at <a href="https://www.miglisoft.com/#contact">https://www.miglisoft.com/#contact</a></p>
+                    <p>Feel free to send your FTP access, page URL and any information that might be useful to help you.</p>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="changelog" class="p-3">
+
+                    <h2 class="text-danger mb-4">Changelog</h2>
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Version 3 for Bootstrap 4 + TinyMCE 5</h3>
+
+                    <!-- A PUBLIER
+                    <p class="h4">Version 3.4.8 (2021-12)</p>
+                    <pre><code class="language-php">New Features :
+    -
+Improvements :
+    -
+</code></pre>
+-->
+
+                    <p class="h4">Version 3.5.1 (2022-02)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - Fix Styles applied to the selected content as well as to the selected node (bug due to Tinymce API recent changes)
+</code></pre>
+
+                    <p class="h4">Version 3.5 (2021-12)</p>
+                    <pre><code class="language-php">New Features :
+    - Add new "bootstrapColumns" (number) setting to allow to use custom Bootstrap grids with more or less than 12 columns (which is the default value)
+Improvements :
+    - Sort files and folders alphabetically in the Bootstrap images browser
+</code></pre>
+
+                    <p class="h4">Version 3.4.7 (2021-12)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - Fix non-working Bootstrap image browser when some folders were empty
+</code></pre>
+
+                    <p class="h4">Version 3.4.6 (2021-12)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - Fix Tinymce's custom formats dropdown which were not always showing the correct chosen responsive sizes
+</code></pre>
+                    <p class="h4">Version 3.4.5 (2021-11)</p>
+                    <pre><code class="language-php">Improvements:
+    - Move the 'styleFormatConfig' setting into 'bootstrapConfig' in documentation => settings => configuration example
+Bug Fix :
+    - Fix the regex in styleFormatConfig for CSS classes without orientation nor breakpoint (ie: m-5, m-auto, p-3, ...)
+</code></pre>
+
+                    <p class="h4">Version 3.4.4 (2021-11)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - Fix snippets &amp; templates insert position for the latests Tinymce version (>= 5.7)
+      (Tinymce API changed its setCursorLocation() behavior since v5.7,
+      it requires now the 2nd argument. Same fix as Version 3.4.3)
+</code></pre>
+                    <p class="h4">Version 3.4.3 (2021-11)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - Fix template live edition for the latests Tinymce version (>= 5.7)
+</code></pre>
+
+                    <p class="h4">Version 3.4.2 (2021-08)</p>
+                    <pre><code class="language-php">Improvements :
+    - Add a paragraph inside new columns created by the template tool
+    - Styles can now be applied to the selected content as well as to the selected node
+</code></pre>
+
+                    <p class="h4">Version 3.4.1 (2020-11)</p>
+                    <pre><code class="language-php">Improvements :
+    - Auto-sanitize folder names / id conversion in the file tree explorer
+Bug Fix :
+    - fix Bootstrap cards plugin Javascript errors depending on their HTML content
+</code></pre>
+
+                    <p class="h4">Version 3.4 (2020-08)</p>
+                    <pre><code class="language-php">New Features :
+    - Management of user styles and merging with TinyMce default styles
+Bug Fix :
+    - fix UI buttons activation with several simultaneous instances of TinyMce
+</code></pre>
+
+                    <h4>Version 3.3 (2020-07)</h4>
+                    <pre><code class="language-php">New Features :
+    - support for TinyMCE inline mode
+Improvements :
+    - The URL of the images is now relative or absolute according to the "relative_urls" setting of TinyMCE
+Bug Fix :
+    - the file explorer (file-tree) in the Bootstrap image dialog now accepts folders named with a number
+</code></pre>
+
+                    <p class="h4">Version 3.2.4 (2020-03)</p>
+                    <pre><code class="language-php">
+Improvements :
+    - remove the Live Template Editing markup from the editor on submit
+Bug Fix :
+    - fix the registration with composed TLDs (.com.xx, ...)
+</code></pre>
+
+                    <p class="h4">Version 3.2.3 (2020-02)</p>
+                    <pre><code class="language-php">Improvements :
+    - enable TinyMCE's table plugin in demo and sample codes to avoid any confusion
+Bug Fix :
+    - fix language compatibility with the new TinyMCE V5.2.0
+</code></pre>
+
+                    <p class="h4">Version 3.2.2 (2020-02)</p>
+                    <pre><code class="language-php">Improvements :
+    - improve domain management in the registration system
+Bug Fix :
+    - fix non-working Bootstrap settings with boolean values to false
+</code></pre>
+
+                    <p class="h4">Version 3.2.1 (2020-01)</p>
+                    <pre><code class="language-php">New Features :
+    - add French translation
+Improvements :
+    - add Bootstrap Table bordered / borderless options
+Bug Fix :
+    - fix custom language loading
+    - fix missing scrollbar in the image browser
+</code></pre>
+
+                    <p class="h4">Version 3.2 (2020-01)</p>
+                    <pre><code class="language-php">Improvements :
+    - update for TinyMCE V5.1+ API (V5.1 broke the Toolbar)
+Bug Fix :
+    - fix the dialogs height for others dialogs than Bootstrap's
+</code></pre>
+
+                    <p class="h4">Version 3.1 (2020-01)</p>
+                    <pre><code class="language-php">New Features :
+    - add a new PHP Form demo
+Improvements :
+    - change the HTML cleaner/beautifier
+Bug Fix :
+    - the Snippets with Javascript now work as intended (Bootstrap Modal, Collapsible)
+</code></pre>
+
+                    <p class="h4">Version 3.0 (2019-12)</p>
+                    <pre><code class="language-php">New Major version 3.0 totally rewritten in Typescript
+</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article class="bg-white p-3">
+
+                    <h3 class="text-purple-400 mb-3"><i class="fas fa-square mr-4"></i>Older versions for Bootstrap 3 + TinyMCE 4</h3>
+
+                    <p class="h4">Version 2.3.2 (2016-10)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix error when editing same element several times
+</code></pre>
+
+                    <p class="h4">Version 2.3.1 (2016-10)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix js error with new TinyMCE 4.4.3
+Improvements :
+    - update to latest TinyMCE 4.4.3
+    - add $.noConflict() to fix conflicts with other libraries
+</code></pre>
+
+                    <p class="h4">Version 2.3 (2016-09)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix https warnings
+    - fix table &amp; breadcrumb edition
+Improvements :
+    - add option to switch from toolbar to dropdown list
+    - replace Google Pretiffy with Prism (syntax highlighter)
+    - add conf file (bootstrap/conf/conf.php) to allow custom paths for jQuery, Bootstrap's js, codemirror &amp; Prism
+    - add font icon libraries :
+        glyphicon
+        ionicon
+        fontawesome
+        weathericon
+        mapicon
+        octicon
+        typicon
+        elusiveicon
+        materialdesign
+</code></pre>
+
+                    <p class="h4">Version 2.2.8 (2016-08)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix random js issue on getBootstrapStyles() function
+    - fix non-working snippets add due to previous update
+Improvements :
+    - add italian translation (Thanks to Gubithouse)
+</code></pre>
+
+                    <p class="h4">Version 2.2.7 (2016-07)</p>
+                    <pre><code class="language-php">Improvements :
+    - add shortcuts :
+        - ctrl+enter => &lt;br&gt;
+        - alt+enter  => new paragraph after Bootstrap element
+    - prevent from stripping empty <p>
+    - add uppercase extensions image support
+Bug Fix :
+    - fix issue with absolute images paths in some particular cases
+</code></pre>
+
+                    <p class="h4">Version 2.2.6 (2016-06)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix insertion of Bootstrap elements in Bootstrap tables
+</code></pre>
+
+                    <p class="h4">Version 2.2.5 (2016-05)</p>
+                    <pre><code class="language-php">Improvement :
+    - prevent from stripping empty <p>
+    - add uppercase extensions image support
+Bug Fix :
+    - fix issue with absolute images paths in some particular cases
+    - fix cursor focus in Bootstrap tables (2nd fix)
+</code></pre>
+
+                    <p class="h4">Version 2.2.4 (2015-12)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix cursor focus in Bootstrap tables
+</code></pre>
+
+                    <p class="h4">Version 2.2.3 (2015-12)</p>
+                    <pre><code class="language-php">Improvements :
+    - prevent from stripping empty <p>
+    - add codemirror to Snippets add/edit forms
+Bug Fix :
+    - fix snippets preg_match_all php warning with php < 5.4.0
+</code></pre>
+
+                    <p class="h4">Version 2.2.2 (2015-10)</p>
+                    <pre><code class="language-php">Improvement :
+    - improved templates usage
+Bug Fix :
+    - fix error using very big snippets
+</code></pre>
+
+                    <p class="h4">Version 2.2.1 (2015-08)</p>
+                    <pre><code class="language-php">Bug Fix :
+    - fix Uncaught SecurityError when used with external iframe on same page
+</code></pre>
+
+                    <p class="h4">Version 2.2 (2015-08)</p>
+                    <pre><code class="language-php">Improvements :
+    - prevent plugin form jQuery conflicts
+</code></pre>
+
+                    <p class="h4">Version 2.1 (2015-07)</p>
+                    <pre><code class="language-php">Improvements :
+    - update to latest TinyMCE 4.2.2
+    - add templates visual aid
+</code></pre>
+
+                    <p class="h4">Version 2.0 (2015-05)</p>
+                    <pre><code class="language-php">New Features :
+    - add snippet tool
+Improvements :
+    - jshint javascript code
+</code></pre>
+
+                    <p class="h4">Version 1.1.2 (2015-03)</p>
+                    <pre><code class="language-php">New Features :
+    - add TinyMCE inline full support
+Bug Fix :
+    - Fix alert edit
+</code></pre>
+
+                    <p class="h4">Version 1.1.1 (2015-02)</p>
+                    <pre><code class="language-php">New Features :
+    - add tinymceBackgroundColor option
+</code></pre>
+
+                    <p class="h4">Version 1.1.0 (2015-02)</p>
+                    <pre><code class="language-php">New Features :
+    - add Bootstrap images plugin with Filebrowser
+    - all plugins are fully responsive
+</code></pre>
+
+                    <p class="h4">Version 1.0.0 (2015-01)</p>
+                    <pre><code class="language-php">Initial Release
+</code></pre>
+                </article>
+
+                <hr class="my-5">
+
+                <article id="credits" class="bg-white p-3">
+
+                    <h2 class="text-danger mb-4">Credits</h2>
+                    <p class="lead">Many thanks to:</p>
+
+                    <ul>
+                        <li><a href="http://olado.github.io/doT/">http://olado.github.io/doT/</a></li>
+                        <li><a href="http://victor-valencia.github.io/bootstrap-iconpicker/">http://victor-valencia.github.io/bootstrap-iconpicker/</a></li>
+                        <li><a href="https://ace.c9.io/">https://ace.c9.io/</a></li>
+                        <li><a href="https://getbootstrap.com/">https://getbootstrap.com/</a></li>
+                        <li><a href="https://github.com/brix/crypto-js">https://github.com/brix/crypto-js</a></li>
+                        <li><a href="https://github.com/claviska/jquery-minicolors">https://github.com/claviska/jquery-minicolors</a></li>
+                        <li><a href="https://github.com/kesar/HTMLawed">https://github.com/kesar/HTMLawed</a></li>
+                        <li><a href="https://github.com/muicss/loadjs">https://github.com/muicss/loadjs</a></li>
+                        <li><a href="https://prismjs.com/">https://prismjs.com/</a></li>
+                        <li><a href="https://www.tiny.cloud/">https://www.tiny.cloud/</a></li>
+                    </ul>
+                </article>
+
+            </div>
+            <div class="col-md-3 order-1 sidebar-container">
+                <div id="sidebar-wrapper">
+                    <!-- Main sidebar -->
+                    <!-- toggler only for small screens -->
+                    <a href="#" class="sidebar-toggler m-2 bg-white d-inline-block d-md-none" data-toggle="collapse" data-target="#sidebar-main" aria-controls="sidebar-main" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="sidebar-toggler-icon"></span>
+</a>
+
+                    <nav id="sidebar-main" class="sidebar sidebar-main sidebar-default show">
+                        <div class="sidebar-content">
+                            <div class="sidebar-category sidebar-default">
+                                <div class="category-content" id="sb-main">
+
+                                    <ul class="nav flex-column p-0 mb-1">
+                                        <li class="nav-item">
+                                            <a href="#about-tinymce-bootstrap-plugin" title="" class="nav-link"> About </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#requirements" title="" class="nav-link"> Requirements </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#package-structure" title="" class="nav-link"> Package structure </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#demo" title="" class="nav-link"> Demo </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#quick-start" title="" class="nav-link"> Quick start </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="#sb-settings" title="" class="nav-link d-flex align-items-center justify-content-between dropdown-toggle collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sb-settings"> Settings<span class="caret"></span> </a>
+
+                                            <ul id="sb-settings" class="flex-column collapse">
+                                                <li class="nav-item">
+                                                    <a href="#configuration" title="" class="nav-link"> Configuration </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#configuration-example" title="" class="nav-link"> Configuration example </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#choose-bootstrap-css" title="" class="nav-link"> Choose Bootstrap CSS </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#custom-bootstrap-grid" title="" class="nav-link"> Custom Bootstrap grid </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#choose-toolbar-components" title="" class="nav-link"> Choose Toolbar components </a>
+                                                </li>
+                                            </ul>
+                                            <!-- /Sub Nav -->
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#special-keys-features" title="" class="nav-link"> Special keys &amp; features </a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="#sb-custom-styles" title="" class="nav-link d-flex align-items-center justify-content-between dropdown-toggle collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sb-custom-styles"> Bootstrap Styles<span class="caret"></span> </a>
+
+                                            <ul id="sb-custom-styles" class="flex-column collapse">
+                                                <li class="nav-item">
+                                                    <a href="#custom-styles-overview" title="" class="nav-link"> Overview </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#custom-styles-options" title="" class="nav-link"> Options &amp; configuration </a>
+                                                </li>
+                                            </ul>
+                                            <!-- /Sub Nav -->
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="#sb-templates" title="" class="nav-link d-flex align-items-center justify-content-between dropdown-toggle collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sb-templates"> Layout / Templates<span class="caret"></span> </a>
+
+                                            <ul id="sb-templates" class="flex-column collapse">
+                                                <li class="nav-item">
+                                                    <a href="#templates-overview" title="" class="nav-link"> Overview </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#live-template-editing-tool" title="" class="nav-link"> Live template editing tool </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#templates-dialog" title="" class="nav-link"> Templates dialog </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#templates-manager" title="" class="nav-link"> Templates manager </a>
+                                                </li>
+                                            </ul>
+                                            <!-- /Sub Nav -->
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a href="#sb-snippets" title="" class="nav-link d-flex align-items-center justify-content-between dropdown-toggle collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sb-snippets">
+                            Snippets<span class="caret"></span>
+                        </a>
+
+                                            <ul id="sb-snippets" class="flex-column collapse">
+                                                <li class="nav-item">
+                                                    <a href="#snippets-overview" title="" class="nav-link"> Overview </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#snippets-dialog" title="" class="nav-link"> Snippets dialog </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#snippets-manager" title="" class="nav-link"> Snippets manager </a>
+                                                </li>
+                                            </ul>
+                                            <!-- /Sub Nav -->
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#i18n" title="" class="nav-link"> Language (translation) </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#need-help" title="" class="nav-link"> Need help? </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#changelog" title="" class="nav-link"> Changelog </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#credits" title="" class="nav-link"> Credits </a>
+                                        </li>
+                                    </ul>
+                                    <!-- /Nav -->
+                                </div>
+                                <!-- /Category Content -->
+                            </div>
+                            <!-- /Sidebar Category -->
+                        </div>
+                        <!-- /main sidebar -->
+                    </nav>
+                </div>
+            </div>
+    </section>
+
+    <footer id="main-footer" class="container-fluid bg-dark">
+        <div class="row justify-content-center">
+            <div class="col">
+                <p class="text-white text-center m-0 py-3">Copyright © www.tinymce-bootstrap-plugin.com</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/javascripts/loadjs.min.js"></script>
+    <script>
+        /* global define, console, $, jQuery, lazyload, loadjs */
+'use strict';
+
+var resizeTimer;
+
+// main core events
+var coreFunctions = function () {
+
+    /*===============================
+    =            Sidebar            =
+    ===============================*/
+
+    if ($('.sidebar')[0]) {
+        $(window)
+            .on('resize', function () {
+                setTimeout(function () {
+                    if ($(window).width() > 768) {
+                        $('.sidebar')
+                            .removeClass('collapse')
+                            .addClass('show');
+                        $('.sidebar-toggler')
+                            .removeClass('collapsed')
+                            .attr('aria-expanded', 'true');
+                    } else {
+                        $('.sidebar')
+                            .addClass('collapse')
+                            .removeClass('show');
+                        $('.sidebar-toggler')
+                            .addClass('collapsed')
+                            .attr('aria-expanded', 'false');
+                    }
+                }, 100);
+            })
+            .resize();
+
+        loadjs(['assets/javascripts/plugins/nicescroll/jquery.nicescroll.min.js'], function () {
+            loadjs.done('bundleB');
+        });
+    }
+
+    var $div = $("#sidebar-main .nav > .dropdown ul li a.nav-link");
+    var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+            if (mutation.attributeName === "class") {
+                var $collapsible = $(mutation.target).closest('ul');
+                if ($collapsible.find('.active')[0]) {
+                    $collapsible.collapse('show');
+                } else {
+                    $collapsible.collapse('hide');
+                }
+                $('#sidebar-wrapper').getNiceScroll().resize();
+            }
+        });
+    });
+    for (let index = 0; index < $div.length; index++) {
+        const element = $div[index];
+        observer.observe(element, {
+            attributes: true
+        });
+    }
+
+    /*===============================
+    =           File tree           =
+    ===============================*/
+    if ($('.tree')[0]) {
+        $('.tree li li li').hide();
+        // $('.tree li li:first').show();
+        $('.tree li a').on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var children = $(this).closest('li').find('> ul > li');
+            if (children.is(":visible")) {
+                children.hide('fast');
+                $(this).find('.fa-plus-square').closest('i').removeClass('d-none');
+                $(this).find('.fa-minus-square').closest('i').addClass('d-none');
+            } else {
+                children.show('fast');
+                $(this).find('.fa-plus-square').closest('i').addClass('d-none');
+                $(this).find('.fa-minus-square').closest('i').removeClass('d-none');
+            }
+        });
+    }
+
+    $('a[href^="#"]').on('click', function (e) {
+        var anchor = $.attr(this, 'href').substr(1);
+        if (anchor.length < 1) {
+            e.preventDefault();
+            return;
+        }
+        var $targetLink = $('#' + $.attr(this, 'href').substr(1)),
+            dataToggle = $(this).attr('data-toggle');
+        if ($targetLink[0] && dataToggle != 'modal' && dataToggle != 'collapse') {
+            $('html, body').animate(
+                {
+                    scrollTop: $targetLink.offset().top - 56
+                },
+                500
+            );
+        }
+
+        return;
+    });
+};
+
+loadjs([
+    'assets/javascripts/jquery-3.3.1.min.js',
+    'assets/javascripts/popper.min.js',
+    'assets/javascripts/bootstrap.min.js',
+    'assets/javascripts/plugins/loaders/pace.min.js'
+], 'core',
+    {
+        async: false
+    }
+);
+
+loadjs([
+    'assets/javascripts/fontawesome-free-5.8.1-web/css/fontawesome.min.css',
+    'assets/javascripts/fontawesome-free-5.8.1-web/css/solid.min.css'
+]);
+
+loadjs([
+    'assets/javascripts/plugins/prism/prism.min.css',
+    'assets/javascripts/plugins/prism/prism.min.js',
+]);
+
+loadjs.ready('core', function () {
+    coreFunctions();
+
+    loadjs([
+        'assets/javascripts/plugins/loaders/lozad.min.js'
+    ], function () {
+        loadjs.done('bundleC');
+    });
+});
+
+// core + nicescroll loaded
+loadjs.ready(['bundleB'], function () {
+    // nav scroller
+    $('#sidebar-wrapper').niceScroll();
+    var niceScroll = $('#sidebar-wrapper').getNiceScroll();
+
+    $('#sidebar-wrapper .dropdown-toggle').on('click', function () {
+        $('#sidebar-wrapper').getNiceScroll().resize();
+    })
+
+    if ($(document).width() < 768) {
+        niceScroll.hide();
+    }
+});
+
+// core + lozad loaded
+loadjs.ready(['bundleC'], function () {
+    const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+    observer.observe();
+});
+
+    </script>
+</body>
+
+</html>

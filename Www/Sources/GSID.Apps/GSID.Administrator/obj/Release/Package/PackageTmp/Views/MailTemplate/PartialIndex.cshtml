@@ -1,0 +1,116 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Admin.ViewModels.MongoModels;
+@model List<MailTemplate>
+
+@{
+    var TotalPage = (int)ViewBag.TotalPage;
+    var PageVisit = (int)ViewBag.PageVisit;
+    var PageSize = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal = (int)ViewBag.CountTotal;
+    var SecondRecord = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="table-flipscroll">
+    <table class="table table-bordered hoverTable tablesaw table-striped table-language" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+        <thead>
+            <tr>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Mã</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Tên mail</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Tiêu đề</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày tạo</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày sửa</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                string editUrl = Url.Action("Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() });
+                string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                string addBy = item.AddBy != null ? string.Format("{0} {1}", item.AddBy.FirstName, item.AddBy.LastName) : "";
+                string editDate = item.EditedByDate.HasValue ? item.EditedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+                string editBy = item.EditBy != null ? string.Format("{0} {1}", item.EditBy.FirstName, item.EditBy.LastName) : "";
+
+            <tr class="gradeX">
+                <td><b>@item.Code</b></td>
+                <td><b>@item.NameVn</b></td>
+                <td>
+                    <div class="language">
+                        <label class="lblanguage"><img src="~/Content/Control/assets/flags/vn.svg" /></label>
+                        <span><a href="@editUrl"><b>@item.SubjectVn</b></a></span>
+                    </div>
+                    <div class="language">
+                        <label class="lblanguage"><img src="~/Content/Control/assets/flags/en.svg" /></label>
+                        <span><a href="@editUrl"><b>@item.SubjectEn</b></a></span>
+                    </div>
+                </td>
+                <td>
+                    <i class="ion-plus"></i>: <b>@addDate</b>
+                    <br />
+                    <i class="ion-ios-body"></i>: <b>@addBy</b>
+                </td>
+                <td>
+                    <i class="ion-android-create"></i>: <b>@editDate</b>
+                    <br />
+                    <i class="ion-ios-body"></i>: <b>@editBy</b>
+                </td>
+                <td>
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.RawActionLink("<i class='ion-android-create'></i>", "Update", Request.RequestContext.RouteData.Values["controller"].ToString(), new { gsid = item.Id.ToString() }, new { @class = "btn btn-success btn-xs", id = item.Id.ToString() })
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="panel-footer">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_info" role="status" aria-live="polite">
+                @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_bootstrap">
+                <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+
+<script src="~/Content/Control/assets/plugins/tablesaw-master/dist/tablesaw-init.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    onPagingList(page);
+                }
+            });
+        }
+    });
+</script>

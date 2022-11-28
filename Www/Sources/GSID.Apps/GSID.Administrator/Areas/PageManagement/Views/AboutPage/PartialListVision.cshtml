@@ -1,0 +1,30 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@using GSID.Admin.Areas.PageManagement.ViewModels;
+@using GSID.Model.ExtraEntities;
+@model AboutPageViewModel
+@{
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@if (Model.Visions != null)
+{
+    <ul class="ul-img">
+        @foreach (var item in Model.Visions)
+        {
+            <li class="li-24">
+                <div class="img-wrap">
+                    <div class="img-cover">
+                        <h5>@item.NameVn</h5>
+                        <p>@item.DescriptionVn</p>
+                    </div>
+                    <div class="img-action">
+                        <a href="javascript:;" class"btn btn-default btn-xs" onclick="onUpdateVision('@item.Id.ToString()')"><i class="ion-android-create"></i></a>
+                        <a href="javascript:;" class"btn btn-danger btn-xs" onclick="onDeleteVision('@item.Id.ToString()')"><i class="ion-android-close"></i></a>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+}

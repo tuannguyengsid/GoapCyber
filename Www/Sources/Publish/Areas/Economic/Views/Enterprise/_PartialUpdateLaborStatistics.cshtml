@@ -1,0 +1,61 @@
+﻿
+@using GSID.WebApp.Helpers;
+@model Guid
+<div class="inbox-mail-heading">
+    <div class="clearfix">
+        <div class="pull-left">
+            <div class="btn-group">
+                <a href="javascript:;" class="btn btn-success btn-label" onclick="CreateLaborStatistic('@Model');"><i class="ion-plus-round"></i>Thêm </a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div id="laborstatisticsContent"></div>
+
+<div id="createlaborstatisticsContent"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        initLaborStatistic();
+    });
+
+    function initLaborStatistic() {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("GetListLaborStatistics", "Enterprise")',
+            type: 'GET',
+            data: {
+                enterpriseId : '@Model'
+            },
+            dataType: 'html',
+            success: function (result) {
+                $('#laborstatisticsContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function CreateLaborStatistic(enterprise) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("CreateLaborStatistics", "Enterprise")',
+            type: 'GET',
+            data: {
+                enterpriseId: '@Model'
+            },
+            dataType: 'html',
+            success: function (result) {
+                $('#createlaborstatisticsContent').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+</script>

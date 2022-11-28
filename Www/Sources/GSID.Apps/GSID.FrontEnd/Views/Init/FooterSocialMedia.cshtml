@@ -1,0 +1,48 @@
+﻿@using GSID.Model.MongodbModels;
+@using GSID.FrontEnd.Controllers;
+@using GSID.Model.ExtraEntities;
+@using GSID.Setting;
+@model SocialNetworkManagementAdminConfig
+
+@{
+    var SiteInformation = GSID.FrontEnd.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+@if (Model.Social != null)
+{
+<div class="f_social_icon_two text-right">
+    @foreach (var item in Model.Social)
+    {
+        switch (item.Group)
+        {
+            case SocialNetworkConfig.SocialIsGroup.Facebook:
+                <a href="@item.Slug" class="ti-facebook"></a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Instagram:
+                <a href="@item.Slug" class="ti-instagram"></a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Youtube:
+                <a href="@item.Slug" class="ti-youtube"></a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Pinterest:
+                <a href="@item.Slug" class="ti-pinterest"></a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Linkedin:
+                <a href="@item.Slug" class="ti-linkedin"></a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Tiktok:
+                <a href="@item.Slug" class="icon-tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2859 3333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M2081 0c55 473 319 755 778 785v532c-266 26-499-61-770-225v995c0 1264-1378 1659-1932 753-356-583-138-1606 1004-1647v561c-87 14-180 36-265 65-254 86-398 247-358 531 77 544 1075 705 992-358V1h551z"></path></svg>
+                </a>
+                break;
+            case SocialNetworkConfig.SocialIsGroup.Zalo:
+                <a href="@item.Slug" class="icon-zalo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1249 439">
+                        <path class="shp0" d="m649.69 129.68v-23.37h70.02v328.67h-40.06c-16.49 0-29.87-13.32-29.96-29.78-0.01 0.01-0.02 0.01-0.03 0.02-28.2 20.62-63.06 32.87-100.71 32.87-94.3 0-170.76-76.41-170.76-170.65s76.46-170.64 170.76-170.64c37.65 0 72.51 12.24 100.71 32.86 0.01 0.01 0.02 0.01 0.03 0.02zm-289.64-129.06v10.65c0 19.88-2.66 36.1-15.57 55.14l-1.56 1.78c-2.82 3.2-9.44 10.71-12.59 14.78l-224.76 282.11h254.48v39.94c0 16.55-13.43 29.96-29.98 29.96h-329.73v-18.83c0-23.07 5.73-33.35 12.97-44.07l239.61-296.57h-242.59v-74.89h349.72zm444.58 434.36c-13.77 0-24.97-11.19-24.97-24.94v-409.42h74.94v434.36h-49.97zm271.56-340.24c94.95 0 171.91 76.98 171.91 171.79 0 94.9-76.96 171.88-171.91 171.88-94.96 0-171.91-76.98-171.91-171.88 0-94.81 76.95-171.79 171.91-171.79zm-527.24 273.1c55.49 0 100.46-44.94 100.46-100.4 0-55.37-44.97-100.32-100.46-100.32s-100.47 44.95-100.47 100.32c0 55.46 44.98 100.4 100.47 100.4zm527.24-0.17c55.82 0 101.12-45.27 101.12-101.14 0-55.78-45.3-101.05-101.12-101.05-55.91 0-101.13 45.27-101.13 101.05 0 55.87 45.22 101.14 101.13 101.14z" fill-rule="evenodd" />
+                    </svg>
+                </a>
+                break;
+        }
+    }
+</div>
+}

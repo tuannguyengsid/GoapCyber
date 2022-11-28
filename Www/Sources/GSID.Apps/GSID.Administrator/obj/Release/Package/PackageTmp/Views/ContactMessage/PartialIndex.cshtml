@@ -1,0 +1,238 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.MongodbModels;
+@using GSID.Admin.Helpers;
+@model List<ContactMessage>
+
+@{
+    var TotalPage = (int)ViewBag.TotalPage;
+    var PageVisit = (int)ViewBag.PageVisit;
+    var PageSize = (int)ViewBag.PageSize;
+    var CurrentPage = (int)ViewBag.CurrentPage;
+    var CountTotal = (int)ViewBag.CountTotal;
+    var SecondRecord = CountTotal > 0 ? ((CurrentPage * PageSize) <= CountTotal ? (CurrentPage * PageSize) : CountTotal) : 0;
+    var FirstRecord = CountTotal > 0 ? (CurrentPage == 1 ? 1 : ((CurrentPage > 1 && CurrentPage <= TotalPage) ? (((CurrentPage - 1) * PageSize) + 1) : CountTotal)) : 0;
+    var SiteInformation = GSID.Admin.Controllers.BaseController.GSIDSessionSiteInformation;
+    string httpStatic = SiteInformation != null ? SiteInformation.UrlAddressSiteMultimedia : "";
+}
+<div class="table-flipscroll" data-step="2" data-intro="Danh sách tin liên hệ được sắp xếp mới nhất" data-position='top'>
+    <table class="table table-bordered hoverTable tablesaw table-striped" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+        <thead>
+            <tr>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="persist">Họ và tên</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Email</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Số điện thoại</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Nội dung</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Thời gian</th>
+                <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var contact = item.Contact;
+                string fullName = contact != null ? contact.FullName : "";
+                string email = contact != null ? contact.Email : "";
+                string phoneNumber = contact != null ? contact.PhoneNumber : "";
+                string editUrl = Url.Action("Update", "ContactMessage", new { gsid = item.Id.ToString() });
+                string addDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("hh:mm:ss tt dd/MM/yyyy") : "";
+
+                <tr class="gradeX">
+                    <td><a href="javascript:;" id="@item.Id.ToString()" data-toggle="modal" data-target="#myModalInfo_@item.Id.ToString()"><b>@fullName</b></a></td>
+                    <td><b>@email</b></td>
+                    <td><b>@phoneNumber</b></td>
+                    <td><b>@item.Message</b></td>
+                    <td>
+                        <i class="ion-plus"></i>: <b>@addDate</b>
+                    </td>
+                    <td>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                @if (RBACUser.HasPermission("viewdetail", Request.RequestContext.RouteData.Values["controller"].ToString()))
+                                {
+                                    @Html.RawActionLink("<i class='ion-clipboard'></i>", null, null, null, new { @class = "btn btn-default btn-xs", href = "javascript:;", id = item.Id.ToString(), data_toggle = "modal", data_target = "#myModalInfo_" + item.Id.ToString() })
+                                    <!-- Begin Alert Modal -->
+                                    <div class="modal fade" id="myModalInfo_@item.Id.ToString()" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h2 class="modal-title">Thông tin liên hệ</h2>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-horizontal">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3">Họ và tên</label>
+                                                                    <div class="col-md-9">@fullName</div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3">Email</label>
+                                                                    <div class="col-md-9">@email</div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3">Số điện thoại</label>
+                                                                    <div class="col-md-9">@phoneNumber</div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="col-xs-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3">Tin nhắn</label>
+                                                                    <div class="col-md-9">@item.Message</div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ion-android-cancel"></i> Đóng</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.End Alert Modal  -->
+                                }
+                                @Html.RawActionLink("<i class='ion-android-close'></i>", null, null, new { id = "dele_" + item.Id.ToString() }, new { @class = "btn btn-danger btn-xs", onclick = "onDelete('" + item.Id.ToString() + "');", href = "javascript:;" }).IfRole("Delete", Request.RequestContext.RouteData.Values["controller"].ToString())
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="panel-footer">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="dataTables_info" role="status" aria-live="polite" data-step="3" data-intro="Thông tin số dữ liệu" data-position='top'>
+                @string.Format("Hiển thị {0} đến {1} của {2} dữ liệu", FirstRecord.ToString(), SecondRecord.ToString(), CountTotal.ToString())
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dataTables_paginate paging_bootstrap" data-step="4" data-intro="Chuyển trang" data-position='top'>
+                <ul id="pagination" class="pagination-sm pull-right m0"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("TotalPage", (string)TotalPage.ToString())
+@Html.Hidden("PageVisit", (string)PageVisit.ToString())
+@Html.Hidden("CurrentPage", (string)CurrentPage.ToString())
+
+<script src="~/Content/Control/assets/plugins/tablesaw-master/dist/tablesaw-init.js"></script>
+
+@{
+    if (RBACUser.HasPermission("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString()))
+    {
+        <script type="text/javascript">
+            $(function () {
+                "use strict";
+
+                $('input.status_trash').on('switchChange.bootstrapSwitch', function (e, data) {
+                    //delete
+                    var bootstrapSwitch = $(this);
+                    var id = bootstrapSwitch.attr('data-val');
+                    if (data == false) {
+                        swal({
+                            title: 'Bạn đã chắc chứ?',
+                            text: "Bạn có chắc muốn ẩn dữ liệu này không",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Ẩn đi",
+                            cancelButtonText: "Đóng",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    swal({
+                                        title: "Đang xử lý dữ liệu",
+                                        html: true,
+                                        showConfirmButton: false
+                                    });
+                                    $.ajax({
+                                        url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                                        type: 'POST',
+                                        data: { id: id, isDeleted: data },
+                                        dataType: 'json',
+                                        success: function (result) {
+                                            if (result.Status == '2')
+                                                swal.close();
+                                            else {
+                                                bootstrapSwitch.bootstrapSwitch('state', !data, true);
+                                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                            }
+                                        },
+                                        error: function () {
+                                            bootstrapSwitch.bootstrapSwitch('state', !data, true);
+                                            swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                                        }
+                                    });
+                                } else {
+                                    bootstrapSwitch.bootstrapSwitch('state', !data, true);
+                                    swal.close();
+                                }
+                            });
+                    }
+                    else {
+                        swal({
+                            title: "Đang xử lý dữ liệu",
+                            html: true,
+                            showConfirmButton: false
+                        });
+                        $.ajax({
+                            url: '@Url.Action("RecycleBin", Request.RequestContext.RouteData.Values["controller"].ToString())',
+                            type: 'POST',
+                            data: { id: id, isDeleted: data },
+                            dataType: 'json',
+                            success: function (result) {
+                                if (result.Status == '2')
+                                    swal.close();
+                                else
+                                    swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            },
+                            error: function () {
+                                swal("Lỗi", "Hệ thống gặp vấn đề", "error");
+                            }
+                        });
+                    }
+                });
+            })
+        </script>
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var totalPage = parseInt($('#TotalPage').val());
+        if (totalPage > 0) {
+            $('#pagination').twbsPagination({
+                totalPages: totalPage,
+                visiblePages: parseInt($('#PageVisit').val()),
+                startPage: parseInt($('#CurrentPage').val()),
+                initiateStartPageClick: false,
+                first: 'Trang đầu',
+                prev: 'Lùi',
+                next: 'Tiếp',
+                last: 'Trang cuối',
+                onPageClick: function (event, page) {
+                    onPagingList(page);
+                }
+            });
+        }
+    });
+    //initializing
+    $(function () {
+        "use strict";
+        //Bootstrap Switch
+        $('input.bootstrap-switch').bootstrapSwitch();
+    });
+</script>

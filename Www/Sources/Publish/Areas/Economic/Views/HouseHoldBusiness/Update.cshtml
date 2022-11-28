@@ -1,0 +1,369 @@
+﻿@using MvcSiteMapProvider.Web.Html;
+@using GSID.Model.Models;
+@using GSID.WebApp.Areas.Economic.ViewModels;
+@using GSID.WebApp.Helpers;
+@model HouseHoldBusinessEditViewModel
+@Html.MvcSiteMap().SiteMapPath("MyBreadscrum")
+<div class="page-heading">
+    <h1>@Html.MvcSiteMap().SiteMapTitle()</h1>
+    <div class="options">
+        <div class="btn-toolbar"></div>
+    </div>
+</div>
+
+@*<div class="aside-wrapper">
+    <div class="aside-body">
+        <div class="aside-cell">
+            <div class="p-md">*@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div data-widget-group="group1">
+                <div class="panel panel-default alt">
+                    <div class="panel-heading">
+                    </div>
+                    <div class="panel-body" id="faLoadingContainer">
+                        <div class="tab-container tab-default">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#profile" data-toggle="tab">Hồ sơ hộ kinh doanh</a></li>
+                                <li><a href="#file" data-toggle="tab">Lịch sử & Giấy tờ liên quan</a></li>
+                                @*<li><a href="#laborstatistics" data-toggle="tab">Lao động</a></li>*@
+                                @*<li><a href="#revenue" data-toggle="tab">Doanh thu</a></li>*@
+                                <li><a href="#violate" data-toggle="tab">Vi phạm</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <!--Begin profile -->
+                                <div class="tab-pane active" id="profile">
+                                    @using (Html.BeginForm("Update", "HouseHoldBusiness", FormMethod.Post, new { @class = "form-horizontal row-border update_householdbusiness", enctype = "multipart/form-data" }))
+                                    {
+                                        <div class="grid-form">
+                                            @Html.HiddenFor(m => m.Id)
+                                            @Html.Partial("_PartialUpdateBasicEnterprise", Model)
+                                            <br />
+                                            <br />
+                                            @Html.Partial("_PartialUpdateContactEnterprise", Model)
+                                            <br />
+                                            <br />
+                                            <div class="tab-container tab-default">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#tabrepresentative" data-toggle="tab">Người đại diện</a></li>
+                                                    <li><a href="#tabcareers" data-toggle="tab">Ngành nghề</a></li>
+                                                    <li><a href="#tabnote" data-toggle="tab">Thông tin bổ sung</a></li>
+                                                    <li><a href="#tabattachfile" data-toggle="tab">Tập tin đính kèm</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="tabrepresentative">
+                                                        @Html.Partial("_PartialUpdateRepresentativeEnterprise", Model)
+                                                    </div>
+                                                    <div class="tab-pane" id="tabcareers">
+                                                        @Html.Partial("_PartialUpdateCareerEnterprise", Model)
+                                                    </div>
+                                                    <div class="tab-pane" id="tabattachfile">
+                                                        <fieldset>
+                                                            <legend><b>Tập tin</b></legend>
+
+                                                            <div data-row-span="1">
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.files)
+                                                                    @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+                                                                </div>
+                                                            </div>
+                                                            <div data-row-span="2">
+                                                                <div data-field-span="1">
+                                                                    <h4>Tập tin đã upload:</h4>
+                                                                    <ul>
+                                                                        @foreach (var item in Model.DocumentInRevision)
+                                                                        {
+                                                                            <li><a href="@item.FileName">@item.Title</a></li>
+                                                                        }
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </fieldset>
+                                                    </div>
+                                                    <div class="tab-pane" id="tabnote">
+                                                        <fieldset>
+                                                            <legend><b>Doanh thu</b></legend>
+                                                            <div data-row-span="4">
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.Revenue)
+                                                                    @Html.TextBoxFor(model => model.Revenue, new { @placeholder = "Tiền doanh thu" })
+                                                                    @Html.ValidationMessageFor(model => model.Revenue)
+                                                                </div>
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.RevenueYear)
+                                                                    @Html.DropDownListFor(model => model.RevenueYear, (List<SelectListItem>)ViewBag.Years, "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width:100%" })
+                                                                    @Html.ValidationMessageFor(model => model.RevenueYear)
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+
+                                                        <fieldset>
+                                                            <legend><b>Đóng thuế</b></legend>
+                                                            <div data-row-span="4">
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.TaxCost)
+                                                                    @Html.TextBoxFor(model => model.TaxCost, new { @placeholder = "Tiền thuế" })
+                                                                    @Html.ValidationMessageFor(model => model.TaxCost)
+                                                                </div>
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.TaxCostYear)
+                                                                    @Html.DropDownListFor(model => model.TaxCostYear, (List<SelectListItem>)ViewBag.Years, "---Chọn---", new { @class = "form-control select2 select-placeholder", style = "width:100%" })
+                                                                    @Html.ValidationMessageFor(model => model.TaxCostYear)
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+
+                                                        <fieldset>
+                                                            <legend><b>Thông tin bổ sung</b></legend>
+                                                            <div data-row-span="1">
+                                                                <div data-field-span="1">
+                                                                    @Html.LabelFor(m => m.Note)
+                                                                    @Html.TextBoxFor(model => model.Note, new { @class = "summernote" })
+                                                                    @Html.ValidationMessageFor(model => model.Note)
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End labor statistics -->
+                                        <div class="clearfix pt20">
+                                            <div class="pull-right">
+                                                @*<button class="btn-default btn">Hủy bỏ</button>*@
+                                                <button class="btn-primary btn" id="btnsave" type="submit"><i class="fa fa-save"></i> Lưu</button>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <!--End Profile -->
+                                <!--Begin file -->
+                                <div class="tab-pane" id="file">
+                                    @Html.Partial("_PartailUpdateTabProfileEnterprise", Model.EnterpriseToProfiles)
+                                </div>
+                                <!--End file -->
+                                <!--Begin labor statistics -->
+                                @*<div class="tab-pane" id="laborstatistics">
+                                        @Html.Partial("_PartialUpdateLaborStatistics", Model.Id)
+                                    </div>*@
+
+                                @*<div class="tab-pane" id="revenue">
+                                        @Html.Partial("_PartialUpdaterevenue", Model.Id)
+                                    </div>*@
+
+                                <div class="tab-pane" id="violate">
+                                    <div class="panel-ctrls">
+                                        <div class="pull-left">
+                                            <div class="btn-group">
+                                                @Html.RawActionLink("<i class='ion-alert-circled'></i><span> Báo cáo vi phạm</span>", null, null, new { id = "reportViolation_" + Model.Id.ToString() }, new { @class = "btn btn-warning", onclick = "onReportViolation('" + Model.Id.ToString() + "', '1');", href = "javascript:;" })
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="table-flipscroll">
+                                        <table class="table table-bordered hoverTable tablesaw" data-tablesaw-mode="columntoggle" data-tablesaw-minimap>
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Tiêu đề</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Loại vi phạm</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Ngày lập</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2">Trạng thái</th>
+                                                    <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.ReportViolations)
+                                                {
+                                                    string enterpriseName = item.Enterprise != null ? item.Enterprise.Name : "";
+                                                    string reportViolationCategories = item.ReportViolationCategory != null ? item.ReportViolationCategory.Name : "";
+                                                    string addedByDate = item.AddedByDate.HasValue ? item.AddedByDate.Value.ToString("dd/MM/yyyy") : string.Empty;
+                                                    string status = item.Status.HasValue ? (item.Status.Value == 1 ? "Đợi duyệt" : "Đã duyệt") : "";
+
+                                                    <tr class="gradeX">
+                                                        <td><b>@item.Name</b></td>
+                                                        <td>@reportViolationCategories</td>
+                                                        <td>@addedByDate</td>
+                                                        <td>@status</td>
+                                                        <td>
+                                                            <div class="pull-right">
+                                                                <div class="btn-group">
+                                                                    @Html.RawActionLink("<i class='ion-android-create'></i>", null, null, new { id = "updatereportViolation_" + item.Id.ToString() }, new { @class = "btn btn-default btn-xs", onclick = "onUpdateViolation('" + item.Id.ToString() + "', '1', '0');", href = "javascript:;" })
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- .container-fluid -->
+    @* </div>
+               </div>
+            </div>
+            <div class="aside-cell aside-col">
+                <div class="aside-bar">
+                    <div class="aside-bar-header p-md">
+                        <h4 class="m-n">Thông tin hệ thống</h4>
+                    </div>
+                    <div class="aside-bar-body">
+                        <p class="p-md">
+
+                        </p>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <!-- Begin Alert Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="modal-title"></h2>
+                </div>
+                <div class="modal-body">
+                    <p>Hệ thống đã lưu thông tin thành công</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-alert-submit" style="display:none;">Cập nhật</button>
+                </div>
+                <input type="hidden" id="hdfid" />
+                <input type="hidden" id="hdfChangeNumber" />
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.End Alert Modal  -->
+
+    <div id="show-reportviolation"></div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".form-control").change(function () {
+            $('#btnsave').show();
+        });
+        $('#myModal .modal-footer .btn-alert-submit').click(function () {
+            window.location.href = '@Url.Action("Update", "HouseHoldBusiness")?gsid=' + $('#hdfid').val() + '&revision=' + $('#hdfChangeNumber').val();
+        });
+    });
+
+    function onReportViolation(val, type) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("Report", "ReportViolation", new { area =""})',
+            data: { id: val, formType: type },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#show-reportviolation').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    function onUpdateViolation(val, type, returnUrl) {
+        $('#bodymask').show();
+        $.ajax({
+            url: '@Url.Action("UpdateModal", "ReportViolation", new { area =""})',
+            data: { gsid: val, formType: type, returnUrl: returnUrl },
+            type: 'GET',
+            dataType: 'html',
+            success: function (result) {
+                $('#show-reportviolation').html(result);
+                $('#bodymask').hide();
+            },
+            error: function () {
+                $('#bodymask').hide();
+                alert('Error!');
+            }
+        });
+    }
+
+    $(function () {
+        var hash = window.location.hash;
+        hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+        $('.nav-tabs a').click(function (e) {
+            $(this).tab('show');
+            var scrollmem = $('body').scrollTop();
+            window.location.hash = this.hash;
+            $('html,body').scrollTop(scrollmem);
+        });
+        $('form.update_householdbusiness').ajaxForm({
+            delegation: true,
+            beforeSerialize: function ($form, options) {
+                var career = parseInt($('#CareerId option:selected').val());
+                var carees = new Array();
+                $('.childcareer').each(function () {
+                    var $val = parseInt($("option:selected", this).val());
+                    if ($val > 0 && $val != career) {
+                        carees.push($val);
+                    }
+                    else {
+                        //error
+                        $('#errorcareer').show();
+                        return false;
+                    }
+                });
+                options.data = { ListCareer: carees };
+            },
+            beforeSubmit: function (arr, form, options) {
+                var validator = form.validate(); // obtain validator
+                var anyError = false;
+                try {
+                    form.find("input,select").each(function () {
+                        if (!validator.element(this)) { // validate every input element inside this step
+                            anyError = true;
+                        }
+                    });
+                } catch (e) {
+                }
+                if (anyError) {
+                    return false; // exit if any error found
+                }
+                $('#bodymask').show();
+            },
+            success: function (data, statusText) {
+                var idmodal = '#myModal';
+                $(idmodal + ' .modal-header .modal-title').text(data.Title);
+                $(idmodal + ' .modal-body p').text(data.Message);
+                if (data.Status == '2') {
+                    $("#hdfid").val(data.Id);
+                    $("#hdfChangeNumber").val(data.ChangeNumber);
+                    $(idmodal + ' .modal-footer .btn-alert-submit').show();
+                    $.validator.unobtrusive.parse("form");
+                }
+                $(idmodal).modal();
+                $('#bodymask').hide();
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert('Hệ thống gặp vấn đề. Xin vui lòng kiểm tra lại mạng Internet');
+                console.log("in ajaxForm error");
+                $('#bodymask').hide();
+            },
+            complete: function (xhr) {
+                console.log("in ajaxForm complete");
+                //status.html(xhr.responseText);
+            }
+        });
+    });
+    </script>

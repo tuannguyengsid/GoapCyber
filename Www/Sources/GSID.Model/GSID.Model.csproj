@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5BA19ABF-3BC9-4445-86EA-CC3598027229}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GSID.Model</RootNamespace>
+    <AssemblyName>GSID.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
+      <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.5.0\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.5.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtraEntities\BFOAPIConfig.cs" />
+    <Compile Include="ExtraEntities\FilterMenuConfig.cs" />
+    <Compile Include="ExtraEntities\PageManagementAdminConfig.cs" />
+    <Compile Include="MongodbModels\Contact.cs" />
+    <Compile Include="MongodbModels\ContactMessage.cs" />
+    <Compile Include="MongodbModels\CurriculumVitae.cs" />
+    <Compile Include="MongodbModels\Customer.cs" />
+    <Compile Include="MongodbModels\Image.cs" />
+    <Compile Include="MongodbModels\ImageLibrary.cs" />
+    <Compile Include="MongodbModels\MailTemplate.cs" />
+    <Compile Include="MongodbModels\Partner.cs" />
+    <Compile Include="MongodbModels\Product.cs" />
+    <Compile Include="MongodbModels\ProductOverviewBlock.cs" />
+    <Compile Include="MongodbModels\Project.cs" />
+    <Compile Include="MongodbModels\ProjectCategory.cs" />
+    <Compile Include="MongodbModels\ProjectSkill.cs" />
+    <Compile Include="MongodbModels\QuickLink.cs" />
+    <Compile Include="Enums\EnumTables.cs" />
+    <Compile Include="ExtraEntities\SaveFilePathConfig.cs" />
+    <Compile Include="ExtraEntities\Config.cs" />
+    <Compile Include="ExtraEntities\EmailFollowConfig.cs" />
+    <Compile Include="ExtraEntities\EmailImapConfig.cs" />
+    <Compile Include="ExtraEntities\EmailSTMPConfig.cs" />
+    <Compile Include="ExtraEntities\SmsBranchCmcConfig.cs" />
+    <Compile Include="MongodbModels\Borough.cs" />
+    <Compile Include="MongodbModels\Company.cs" />
+    <Compile Include="MongodbModels\Country.cs" />
+    <Compile Include="MongodbModels\Department.cs" />
+    <Compile Include="MongodbModels\District.cs" />
+    <Compile Include="MongodbModels\MenuNode.cs" />
+    <Compile Include="MongodbModels\News.cs" />
+    <Compile Include="MongodbModels\NewsCategory.cs" />
+    <Compile Include="MongodbModels\NotMap\User.cs" />
+    <Compile Include="MongodbModels\Parameter.cs" />
+    <Compile Include="MongodbModels\Permission.cs" />
+    <Compile Include="MongodbModels\Position.cs" />
+    <Compile Include="MongodbModels\ProductCategory.cs" />
+    <Compile Include="MongodbModels\Province.cs" />
+    <Compile Include="MongodbModels\Recruitment.cs" />
+    <Compile Include="MongodbModels\RecruitmentTag.cs" />
+    <Compile Include="MongodbModels\Role.cs" />
+    <Compile Include="MongodbModels\RoleToPermision.cs" />
+    <Compile Include="MongodbModels\RoleToUser.cs" />
+    <Compile Include="MongodbModels\RouteDataUrl.cs" />
+    <Compile Include="MongodbModels\Site.cs" />
+    <Compile Include="MongodbModels\TagPost.cs" />
+    <Compile Include="MongodbModels\User.cs" />
+    <Compile Include="MongodbModels\Career.cs" />
+    <Compile Include="MongodbModels\Ward.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GSID.Data\GSID.Data.csproj">
+      <Project>{d2c3d31a-7d84-46b2-80e8-e1eccb28360b}</Project>
+      <Name>GSID.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

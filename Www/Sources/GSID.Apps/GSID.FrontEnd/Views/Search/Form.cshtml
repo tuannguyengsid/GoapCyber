@@ -1,0 +1,52 @@
+﻿@using GSID.FrontEnd.ViewModels;
+@using GSID.Model.ExtraEntities;
+@using GSID.Model.MongodbModels;
+@using GSID.Setting;
+@model SearchBoxViewModel
+@{
+    List<GSID.FrontEnd.Models.Language> languages = (List<GSID.FrontEnd.Models.Language>)System.Web.HttpContext.Current.Application[SestionName.Languages];
+    GSID.FrontEnd.Models.Language vnLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language enLan = new GSID.FrontEnd.Models.Language();
+    GSID.FrontEnd.Models.Language currentLan = new GSID.FrontEnd.Models.Language();
+    if (languages != null)
+    {
+        vnLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese).FirstOrDefault();
+        enLan = languages.Where(i => i.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English).FirstOrDefault();
+        currentLan = languages.Where(i => i.Current == true).FirstOrDefault();
+    }
+}
+
+@if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.Vietmamese)
+{
+    using (Html.BeginForm("Index", "Search", new { language = currentLan != null ? currentLan.Parent : ""}, FormMethod.Get, new {  @class = "search_boxs" }))
+    {
+        <div class="search_box_inner">
+            <div class="close_icon">
+                <i class="icon_close"></i>
+            </div>
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.Keyword, new { @class = "form_control search-input", @placeholder = "Từ khóa tìm kiếm...", autofocus = "autofocus" })
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="icon_search"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+}
+else if (currentLan.Country == GSID.FrontEnd.Models.Language.LanguagueCountry.English)
+{
+    using (Html.BeginForm("Index", "Search", new { language = currentLan != null ? currentLan.Parent : "" }, FormMethod.Get, new { @class = "search_boxs" }))
+    {
+        <div class="search_box_inner">
+            <div class="close_icon">
+                <i class="icon_close"></i>
+            </div>
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.Keyword, new { @class = "form_control search-input", @placeholder = "Keyword...", autofocus = "autofocus" })
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="icon_search"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+}
